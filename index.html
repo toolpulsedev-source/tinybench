@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>JSON Formatter & Validator — TinyBench</title>
-  <meta name="description" content="Free online JSON formatter, beautifier and validator. Instantly format, minify and validate JSON in your browser. No data sent to any server." />
+  <title>TinyBench — Developer Tools</title>
+  <meta name="description" content="10 fast, private, client-side developer tools. No backend, no tracking, no nonsense." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Syne:wght@400;600;800&display=swap" rel="stylesheet" />
@@ -20,13 +20,6 @@
       --text: #e8e8f0;
       --muted: #555570;
       --card-bg: #13131c;
-      --error: #ff5566;
-      --success: #00ff99;
-      --string: #a8ff78;
-      --number: #79b8ff;
-      --boolean: #ffab70;
-      --null: #ff7b72;
-      --key: #d2a8ff;
     }
 
     html { scroll-behavior: smooth; }
@@ -39,6 +32,7 @@
       overflow-x: hidden;
     }
 
+    /* Grid background */
     body::before {
       content: '';
       position: fixed;
@@ -53,683 +47,477 @@
 
     /* NAV */
     nav {
-      position: sticky;
-      top: 0;
+      position: fixed;
+      top: 0; left: 0; right: 0;
       z-index: 100;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 1rem 2rem;
-      background: rgba(10,10,15,0.9);
+      padding: 1.2rem 2.5rem;
+      background: rgba(10,10,15,0.85);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
     }
 
     .logo {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 1rem;
+      font-size: 1.1rem;
       font-weight: 700;
       color: var(--accent);
       text-decoration: none;
+      letter-spacing: -0.5px;
     }
 
     .logo span { color: var(--muted); }
 
-    .nav-back {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.75rem;
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+
+    nav ul a {
       color: var(--muted);
       text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
       transition: color 0.2s;
     }
 
-    .nav-back:hover { color: var(--accent); }
+    nav ul a:hover { color: var(--accent); }
 
-    /* PAGE HEADER */
-    .page-header {
+    /* HERO */
+    .hero {
       position: relative;
       z-index: 1;
-      padding: 3rem 2rem 2rem;
-      max-width: 1300px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 8rem 2rem 4rem;
+    }
+
+    .hero-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--accent);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      border: 1px solid rgba(0,255,153,0.3);
+      padding: 0.3rem 1rem;
+      border-radius: 100px;
+      margin-bottom: 2rem;
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .hero h1 {
+      font-size: clamp(3rem, 8vw, 6.5rem);
+      font-weight: 800;
+      line-height: 1.0;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.6s 0.1s ease both;
+    }
+
+    .hero h1 .highlight {
+      color: var(--accent);
+      position: relative;
+    }
+
+    .hero h1 .highlight2 { color: var(--accent2); }
+
+    .hero p {
+      font-size: 1.15rem;
+      color: var(--muted);
+      max-width: 520px;
+      line-height: 1.7;
+      margin-bottom: 3rem;
+      animation: fadeUp 0.6s 0.2s ease both;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      animation: fadeUp 0.6s 0.3s ease both;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #000;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 0.85rem 2rem;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: transform 0.15s, box-shadow 0.15s;
+      letter-spacing: 0.02em;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(0,255,153,0.35);
+    }
+
+    .btn-ghost {
+      color: var(--text);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9rem;
+      padding: 0.85rem 2rem;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+    .hero-stats {
+      display: flex;
+      gap: 3rem;
+      margin-top: 5rem;
+      animation: fadeUp 0.6s 0.4s ease both;
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .stat-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-top: 0.3rem;
+    }
+
+    /* TOOLS SECTION */
+    .tools-section {
+      position: relative;
+      z-index: 1;
+      padding: 6rem 2rem;
+      max-width: 1200px;
       margin: 0 auto;
     }
 
-    .page-tag {
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 3rem;
+    }
+
+    .section-label {
       font-family: 'JetBrains Mono', monospace;
       font-size: 0.7rem;
       color: var(--accent);
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      margin-bottom: 0.6rem;
     }
 
-    .page-header h1 {
-      font-size: clamp(1.8rem, 4vw, 2.8rem);
+    .section-title {
+      font-size: 2rem;
       font-weight: 800;
-      letter-spacing: -0.03em;
-      margin-bottom: 0.5rem;
+      letter-spacing: -0.02em;
     }
 
-    .page-header p {
-      color: var(--muted);
-      font-size: 0.9rem;
-      line-height: 1.6;
-    }
-
-    /* TOOLBAR */
-    .toolbar {
-      position: relative;
-      z-index: 1;
-      max-width: 1300px;
-      margin: 0 auto;
-      padding: 0 2rem 1rem;
-      display: flex;
-      gap: 0.6rem;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-
-    .btn {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.78rem;
-      font-weight: 700;
-      padding: 0.55rem 1.2rem;
-      border-radius: 6px;
-      border: none;
-      cursor: pointer;
-      transition: transform 0.15s, box-shadow 0.15s, opacity 0.15s;
-      letter-spacing: 0.03em;
-    }
-
-    .btn:hover { transform: translateY(-1px); }
-    .btn:active { transform: translateY(0); }
-
-    .btn-accent {
-      background: var(--accent);
-      color: #000;
-    }
-
-    .btn-accent:hover { box-shadow: 0 6px 20px rgba(0,255,153,0.3); }
-
-    .btn-outline {
-      background: transparent;
-      color: var(--text);
-      border: 1px solid var(--border);
-    }
-
-    .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
-
-    .btn-danger {
-      background: transparent;
-      color: var(--error);
-      border: 1px solid rgba(255,85,102,0.3);
-    }
-
-    .btn-danger:hover { border-color: var(--error); }
-
-    .toolbar-spacer { flex: 1; }
-
-    .indent-control {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.75rem;
-      color: var(--muted);
-    }
-
-    .indent-control select {
-      background: var(--card-bg);
-      color: var(--text);
-      border: 1px solid var(--border);
-      padding: 0.4rem 0.6rem;
-      border-radius: 6px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.75rem;
-      cursor: pointer;
-    }
-
-    /* MAIN EDITOR LAYOUT */
-    .editor-layout {
-      position: relative;
-      z-index: 1;
-      max-width: 1300px;
-      margin: 0 auto;
-      padding: 0 2rem 2rem;
+    .tools-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.2rem;
-      min-height: 520px;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
     }
 
-    .editor-panel {
-      display: flex;
-      flex-direction: column;
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      overflow: hidden;
-    }
-
-    .panel-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0.75rem 1rem;
-      border-bottom: 1px solid var(--border);
-      background: var(--surface);
-    }
-
-    .panel-title {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.72rem;
-      color: var(--muted);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-
-    .panel-actions {
-      display: flex;
-      gap: 0.5rem;
-    }
-
-    .icon-btn {
-      background: transparent;
-      border: none;
-      color: var(--muted);
-      cursor: pointer;
-      font-size: 0.8rem;
-      padding: 0.25rem 0.5rem;
-      border-radius: 4px;
-      font-family: 'JetBrains Mono', monospace;
-      transition: color 0.2s, background 0.2s;
-    }
-
-    .icon-btn:hover {
-      color: var(--accent);
-      background: rgba(0,255,153,0.08);
-    }
-
-    textarea {
-      flex: 1;
-      width: 100%;
-      min-height: 460px;
-      background: transparent;
-      border: none;
-      outline: none;
-      resize: none;
-      padding: 1.2rem;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.82rem;
-      line-height: 1.7;
-      color: var(--text);
-      tab-size: 2;
-    }
-
-    textarea::placeholder { color: var(--muted); }
-
-    /* OUTPUT PANEL */
-    .output-content {
-      flex: 1;
-      overflow: auto;
-      padding: 1.2rem;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.82rem;
-      line-height: 1.7;
-      min-height: 460px;
-    }
-
-    /* STATUS BAR */
-    .status-bar {
-      position: relative;
-      z-index: 1;
-      max-width: 1300px;
-      margin: 0 auto;
-      padding: 0 2rem 1rem;
-    }
-
-    .status {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.75rem;
-      padding: 0.6rem 1rem;
-      border-radius: 6px;
-      border: 1px solid var(--border);
-      background: var(--card-bg);
-    }
-
-    .status.success {
-      border-color: rgba(0,255,153,0.3);
-      color: var(--success);
-      background: rgba(0,255,153,0.05);
-    }
-
-    .status.error {
-      border-color: rgba(255,85,102,0.3);
-      color: var(--error);
-      background: rgba(255,85,102,0.05);
-    }
-
-    .status.idle { color: var(--muted); }
-
-    .status-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: currentColor;
-      flex-shrink: 0;
-    }
-
-    /* JSON SYNTAX HIGHLIGHTING */
-    .json-key    { color: var(--key); }
-    .json-string { color: var(--string); }
-    .json-number { color: var(--number); }
-    .json-bool   { color: var(--boolean); }
-    .json-null   { color: var(--null); }
-    .json-punct  { color: var(--muted); }
-
-    /* INFO SECTION */
-    .info-section {
-      position: relative;
-      z-index: 1;
-      max-width: 1300px;
-      margin: 2rem auto 0;
-      padding: 0 2rem 4rem;
-      display: grid;
-      grid-template-columns: 2fr 1fr;
-      gap: 2rem;
-    }
-
-    .info-card {
+    .tool-card {
       background: var(--card-bg);
       border: 1px solid var(--border);
       border-radius: 12px;
       padding: 1.8rem;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      position: relative;
+      overflow: hidden;
     }
 
-    .info-card h2 {
+    .tool-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .tool-card:hover {
+      border-color: rgba(0,255,153,0.3);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+    }
+
+    .tool-card:hover::before { opacity: 1; }
+
+    .tool-icon {
+      font-size: 1.8rem;
+      line-height: 1;
+    }
+
+    .tool-name {
       font-size: 1rem;
       font-weight: 700;
-      margin-bottom: 1rem;
-      color: var(--accent);
+      letter-spacing: -0.01em;
     }
 
-    .info-card p, .info-card li {
+    .tool-desc {
       font-size: 0.83rem;
       color: var(--muted);
-      line-height: 1.8;
+      line-height: 1.6;
     }
 
-    .info-card ul {
-      padding-left: 1.2rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.3rem;
-    }
-
-    .shortcuts-list {
-      display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
-    }
-
-    .shortcut {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 0.78rem;
-      color: var(--muted);
-    }
-
-    kbd {
+    .tool-tag {
+      display: inline-block;
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.7rem;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      padding: 0.15rem 0.4rem;
+      font-size: 0.65rem;
+      color: var(--accent);
+      background: rgba(0,255,153,0.08);
+      border: 1px solid rgba(0,255,153,0.2);
+      padding: 0.2rem 0.6rem;
       border-radius: 4px;
-      color: var(--text);
+      letter-spacing: 0.05em;
+      margin-top: auto;
+      align-self: flex-start;
+    }
+
+    /* WHY SECTION */
+    .why-section {
+      position: relative;
+      z-index: 1;
+      padding: 5rem 2rem;
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .why-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 3rem;
+    }
+
+    .why-item { text-align: center; }
+
+    .why-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .why-title {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .why-text {
+      font-size: 0.83rem;
+      color: var(--muted);
+      line-height: 1.6;
     }
 
     /* FOOTER */
     footer {
       position: relative;
       z-index: 1;
-      padding: 2rem;
+      padding: 2.5rem;
       text-align: center;
       border-top: 1px solid var(--border);
     }
 
     footer p {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.72rem;
+      font-size: 0.75rem;
       color: var(--muted);
     }
 
     footer a { color: var(--accent); text-decoration: none; }
 
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
     /* RESPONSIVE */
-    @media (max-width: 900px) {
-      .editor-layout { grid-template-columns: 1fr; }
-      .info-section { grid-template-columns: 1fr; }
+    @media (max-width: 768px) {
+      nav ul { display: none; }
+      .hero-stats { gap: 2rem; }
+      .why-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .tools-grid { grid-template-columns: 1fr; }
     }
-
-    @media (max-width: 600px) {
-      .toolbar { gap: 0.4rem; }
-      .btn { font-size: 0.7rem; padding: 0.45rem 0.8rem; }
-    }
-
-    /* TOAST */
-    .toast {
-      position: fixed;
-      bottom: 2rem;
-      right: 2rem;
-      background: var(--accent);
-      color: #000;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.8rem;
-      font-weight: 700;
-      padding: 0.7rem 1.4rem;
-      border-radius: 8px;
-      z-index: 999;
-      opacity: 0;
-      transform: translateY(10px);
-      transition: opacity 0.2s, transform 0.2s;
-      pointer-events: none;
-    }
-
-    .toast.show { opacity: 1; transform: translateY(0); }
   </style>
 </head>
 <body>
 
   <nav>
     <a href="/" class="logo">tiny<span>bench</span>.dev</a>
-    <a href="/" class="nav-back">← All Tools</a>
+    <ul>
+      <li><a href="#tools">Tools</a></li>
+      <li><a href="#why">Why</a></li>
+    </ul>
   </nav>
 
-  <div class="page-header">
-    <div class="page-tag">// tool 01</div>
-    <h1>JSON Formatter & Validator</h1>
-    <p>Beautify, minify, and validate JSON instantly — 100% client-side. Your data never leaves the browser.</p>
-  </div>
-
-  <div class="toolbar">
-    <button class="btn btn-accent" onclick="formatJSON()">▶ Format</button>
-    <button class="btn btn-outline" onclick="minifyJSON()">Minify</button>
-    <button class="btn btn-outline" onclick="copyOutput()">Copy Output</button>
-    <button class="btn btn-outline" onclick="pasteInput()">Paste</button>
-    <button class="btn btn-danger" onclick="clearAll()">Clear</button>
-    <div class="toolbar-spacer"></div>
-    <div class="indent-control">
-      <span>Indent:</span>
-      <select id="indentSize" onchange="formatJSON()">
-        <option value="2" selected>2 spaces</option>
-        <option value="4">4 spaces</option>
-        <option value="tab">Tab</option>
-      </select>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-tag">// 10 tools · client-side · zero tracking</div>
+    <h1>
+      Dev tools that<br>
+      <span class="highlight">just work.</span>
+    </h1>
+    <p>Fast, private, browser-based utilities for developers and designers. No login. No upload. No nonsense.</p>
+    <div class="hero-cta">
+      <a href="#tools" class="btn-primary">Browse Tools →</a>
+      <a href="https://github.com/toolpulsedev-source/tinybench" target="_blank" class="btn-ghost">GitHub</a>
     </div>
-  </div>
-
-  <div class="editor-layout">
-    <!-- INPUT -->
-    <div class="editor-panel">
-      <div class="panel-header">
-        <span class="panel-title">// input</span>
-        <div class="panel-actions">
-          <button class="icon-btn" onclick="loadSample()">Load sample</button>
-          <button class="icon-btn" onclick="clearInput()">Clear</button>
-        </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">10</div>
+        <div class="stat-label">Tools</div>
       </div>
-      <textarea
-        id="jsonInput"
-        placeholder='Paste your JSON here...&#10;&#10;Example:&#10;{"name":"tinybench","tools":10,"fast":true}'
-        oninput="onInputChange()"
-        spellcheck="false"
-      ></textarea>
-    </div>
-
-    <!-- OUTPUT -->
-    <div class="editor-panel">
-      <div class="panel-header">
-        <span class="panel-title">// output</span>
-        <div class="panel-actions">
-          <button class="icon-btn" onclick="copyOutput()">Copy</button>
-          <button class="icon-btn" onclick="downloadOutput()">Download</button>
-        </div>
+      <div class="stat">
+        <div class="stat-num">0ms</div>
+        <div class="stat-label">Server calls</div>
       </div>
-      <div class="output-content" id="jsonOutput">
-        <span style="color: var(--muted); font-family: 'JetBrains Mono', monospace; font-size: 0.82rem;">
-          Formatted output will appear here...
-        </span>
+      <div class="stat">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Client-side</div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <!-- STATUS BAR -->
-  <div class="status-bar">
-    <div class="status idle" id="statusBar">
-      <div class="status-dot"></div>
-      <span id="statusText">Ready — paste JSON and click Format</span>
+  <!-- TOOLS -->
+  <section class="tools-section" id="tools">
+    <div class="section-header">
+      <span class="section-label">// tools</span>
+      <h2 class="section-title">Everything you need</h2>
     </div>
-  </div>
+    <div class="tools-grid">
 
-  <!-- INFO SECTION -->
-  <div class="info-section">
-    <div class="info-card">
-      <h2>About this tool</h2>
-      <p>This JSON Formatter lets you instantly beautify and validate any JSON data. It runs entirely in your browser — no data is ever sent to a server, making it safe for sensitive configs, API responses, and tokens.</p>
-      <br/>
-      <p><strong style="color: var(--text);">Features:</strong></p>
-      <ul>
-        <li>Syntax highlighting for keys, strings, numbers, booleans, and nulls</li>
-        <li>Real-time validation with clear error messages</li>
-        <li>Minify JSON for production use</li>
-        <li>Configurable indent size (2 spaces, 4 spaces, or tabs)</li>
-        <li>One-click copy and download</li>
-        <li>100% private — works offline once loaded</li>
-      </ul>
+      <a href="/tools/json-formatter/" class="tool-card">
+        <div class="tool-icon">{ }</div>
+        <div class="tool-name">JSON Formatter & Validator</div>
+        <div class="tool-desc">Beautify, minify, and validate JSON instantly. Highlights errors with line numbers.</div>
+        <span class="tool-tag">formatter</span>
+      </a>
+
+      <a href="/tools/jwt-decoder/" class="tool-card">
+        <div class="tool-icon">🔑</div>
+        <div class="tool-name">JWT Decoder</div>
+        <div class="tool-desc">Decode and inspect JWT tokens. View header, payload, and expiry — all client-side.</div>
+        <span class="tool-tag">auth</span>
+      </a>
+
+      <a href="/tools/regex-tester/" class="tool-card">
+        <div class="tool-icon">.*</div>
+        <div class="tool-name">Regex Tester</div>
+        <div class="tool-desc">Test and debug regular expressions with real-time match highlighting and group output.</div>
+        <span class="tool-tag">testing</span>
+      </a>
+
+      <a href="/tools/timestamp-converter/" class="tool-card">
+        <div class="tool-icon">⏱</div>
+        <div class="tool-name">Unix Timestamp Converter</div>
+        <div class="tool-desc">Convert between Unix timestamps and human-readable dates instantly.</div>
+        <span class="tool-tag">datetime</span>
+      </a>
+
+      <a href="/tools/base64/" class="tool-card">
+        <div class="tool-icon">64</div>
+        <div class="tool-name">Base64 Encoder / Decoder</div>
+        <div class="tool-desc">Encode or decode Base64 strings and files right in your browser.</div>
+        <span class="tool-tag">encoding</span>
+      </a>
+
+      <a href="/tools/uuid-generator/" class="tool-card">
+        <div class="tool-icon">#</div>
+        <div class="tool-name">UUID Generator</div>
+        <div class="tool-desc">Generate v4 UUIDs in bulk. Copy single or multiple with one click.</div>
+        <span class="tool-tag">generator</span>
+      </a>
+
+      <a href="/tools/sql-formatter/" class="tool-card">
+        <div class="tool-icon">⚙︎</div>
+        <div class="tool-name">SQL Formatter</div>
+        <div class="tool-desc">Beautify raw SQL queries. Supports MySQL, PostgreSQL, and more.</div>
+        <span class="tool-tag">database</span>
+      </a>
+
+      <a href="/tools/image-compressor/" class="tool-card">
+        <div class="tool-icon">🖼</div>
+        <div class="tool-name">Image Compressor</div>
+        <div class="tool-desc">Compress JPEG/PNG images in-browser. No uploads to any server — ever.</div>
+        <span class="tool-tag">images</span>
+      </a>
+
+      <a href="/tools/color-contrast/" class="tool-card">
+        <div class="tool-icon">◑</div>
+        <div class="tool-name">Color Contrast Checker</div>
+        <div class="tool-desc">Check WCAG AA/AAA contrast ratios. Essential for accessible UI design.</div>
+        <span class="tool-tag">accessibility</span>
+      </a>
+
+      <a href="/tools/css-beautifier/" class="tool-card">
+        <div class="tool-icon">✦</div>
+        <div class="tool-name">CSS Beautifier & Minifier</div>
+        <div class="tool-desc">Format messy CSS or minify it for production in one click.</div>
+        <span class="tool-tag">css</span>
+      </a>
+
     </div>
-    <div class="info-card">
-      <h2>Keyboard Shortcuts</h2>
-      <div class="shortcuts-list">
-        <div class="shortcut">
-          <span>Format JSON</span>
-          <kbd>Ctrl + Enter</kbd>
-        </div>
-        <div class="shortcut">
-          <span>Copy output</span>
-          <kbd>Ctrl + Shift + C</kbd>
-        </div>
-        <div class="shortcut">
-          <span>Clear all</span>
-          <kbd>Ctrl + Shift + X</kbd>
-        </div>
-        <div class="shortcut">
-          <span>Load sample</span>
-          <kbd>Ctrl + Shift + S</kbd>
-        </div>
+  </section>
+
+  <!-- WHY -->
+  <section class="why-section" id="why">
+    <div class="why-inner">
+      <div class="why-item">
+        <div class="why-icon">⚡</div>
+        <div class="why-title">Instant</div>
+        <div class="why-text">Everything runs in your browser. No waiting for servers. No round trips.</div>
+      </div>
+      <div class="why-item">
+        <div class="why-icon">🔒</div>
+        <div class="why-title">Private</div>
+        <div class="why-text">Your data never leaves your machine. No accounts, no logging, no tracking.</div>
+      </div>
+      <div class="why-item">
+        <div class="why-icon">🛠</div>
+        <div class="why-title">Built for Devs</div>
+        <div class="why-text">Clean interface, keyboard-friendly, dark mode. Tools made by devs, for devs.</div>
       </div>
     </div>
-  </div>
+  </section>
 
+  <!-- FOOTER -->
   <footer>
-    <p>tinybench.dev — <a href="/">← back to all tools</a></p>
+    <p>tinybench.dev — built with ♥ · <a href="https://github.com/toolpulsedev-source/tinybench" target="_blank">GitHub</a></p>
   </footer>
-
-  <div class="toast" id="toast"></div>
-
-  <script>
-    const SAMPLE_JSON = {
-      "name": "TinyBench",
-      "version": "1.0.0",
-      "description": "Fast developer tools, client-side only",
-      "tools": [
-        { "id": 1, "name": "JSON Formatter", "category": "formatter" },
-        { "id": 2, "name": "JWT Decoder", "category": "auth" },
-        { "id": 3, "name": "Regex Tester", "category": "testing" }
-      ],
-      "meta": {
-        "private": true,
-        "serverCalls": 0,
-        "openSource": true,
-        "rating": 5.0
-      }
-    };
-
-    let lastValidJSON = null;
-
-    function getIndent() {
-      const v = document.getElementById('indentSize').value;
-      return v === 'tab' ? '\t' : parseInt(v);
-    }
-
-    function syntaxHighlight(json) {
-      json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-      return json.replace(
-        /("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g,
-        function(match) {
-          let cls = 'json-number';
-          if (/^"/.test(match)) {
-            if (/:$/.test(match)) {
-              cls = 'json-key';
-              match = match.replace(/:$/, '');
-              return '<span class="' + cls + '">' + match + '</span>:';
-            } else {
-              cls = 'json-string';
-            }
-          } else if (/true|false/.test(match)) {
-            cls = 'json-bool';
-          } else if (/null/.test(match)) {
-            cls = 'json-null';
-          }
-          return '<span class="' + cls + '">' + match + '</span>';
-        }
-      );
-    }
-
-    function setStatus(type, message) {
-      const bar = document.getElementById('statusBar');
-      const txt = document.getElementById('statusText');
-      bar.className = 'status ' + type;
-      txt.textContent = message;
-    }
-
-    function formatJSON() {
-      const input = document.getElementById('jsonInput').value.trim();
-      if (!input) {
-        setStatus('idle', 'Ready — paste JSON and click Format');
-        return;
-      }
-      try {
-        const parsed = JSON.parse(input);
-        const formatted = JSON.stringify(parsed, null, getIndent());
-        lastValidJSON = formatted;
-        const highlighted = syntaxHighlight(formatted);
-        document.getElementById('jsonOutput').innerHTML =
-          '<pre style="white-space:pre-wrap;word-break:break-all;">' + highlighted + '</pre>';
-
-        // Stats
-        const keys = (formatted.match(/"[^"]+"\s*:/g) || []).length;
-        const size = new Blob([formatted]).size;
-        setStatus('success', `✓ Valid JSON — ${keys} keys · ${size} bytes`);
-      } catch (e) {
-        lastValidJSON = null;
-        document.getElementById('jsonOutput').innerHTML =
-          '<span style="color:var(--error);font-family:\'JetBrains Mono\',monospace;font-size:0.82rem;">⚠ ' + e.message + '</span>';
-        setStatus('error', '✗ Invalid JSON — ' + e.message);
-      }
-    }
-
-    function minifyJSON() {
-      const input = document.getElementById('jsonInput').value.trim();
-      if (!input) return;
-      try {
-        const parsed = JSON.parse(input);
-        const minified = JSON.stringify(parsed);
-        lastValidJSON = minified;
-        document.getElementById('jsonOutput').innerHTML =
-          '<pre style="white-space:pre-wrap;word-break:break-all;color:var(--text);">' + minified + '</pre>';
-        const size = new Blob([minified]).size;
-        setStatus('success', `✓ Minified — ${size} bytes`);
-      } catch (e) {
-        setStatus('error', '✗ Invalid JSON — ' + e.message);
-      }
-    }
-
-    function copyOutput() {
-      if (!lastValidJSON) { showToast('Nothing to copy'); return; }
-      navigator.clipboard.writeText(lastValidJSON).then(() => showToast('Copied!'));
-    }
-
-    function downloadOutput() {
-      if (!lastValidJSON) { showToast('Nothing to download'); return; }
-      const blob = new Blob([lastValidJSON], { type: 'application/json' });
-      const a = document.createElement('a');
-      a.href = URL.createObjectURL(blob);
-      a.download = 'formatted.json';
-      a.click();
-      showToast('Downloaded!');
-    }
-
-    async function pasteInput() {
-      try {
-        const text = await navigator.clipboard.readText();
-        document.getElementById('jsonInput').value = text;
-        formatJSON();
-      } catch { showToast('Paste failed — use Ctrl+V'); }
-    }
-
-    function clearAll() {
-      document.getElementById('jsonInput').value = '';
-      document.getElementById('jsonOutput').innerHTML =
-        '<span style="color: var(--muted); font-family: \'JetBrains Mono\', monospace; font-size: 0.82rem;">Formatted output will appear here...</span>';
-      lastValidJSON = null;
-      setStatus('idle', 'Ready — paste JSON and click Format');
-    }
-
-    function clearInput() { clearAll(); }
-
-    function loadSample() {
-      document.getElementById('jsonInput').value = JSON.stringify(SAMPLE_JSON);
-      formatJSON();
-    }
-
-    function onInputChange() {
-      const input = document.getElementById('jsonInput').value.trim();
-      if (!input) {
-        setStatus('idle', 'Ready — paste JSON and click Format');
-        return;
-      }
-      // Auto-format on paste if looks like JSON
-      try {
-        JSON.parse(input);
-        setStatus('idle', 'Valid JSON detected — click Format or press Ctrl+Enter');
-      } catch {
-        setStatus('idle', 'Paste complete — click Format to validate');
-      }
-    }
-
-    function showToast(msg) {
-      const t = document.getElementById('toast');
-      t.textContent = msg;
-      t.classList.add('show');
-      setTimeout(() => t.classList.remove('show'), 2000);
-    }
-
-    // Keyboard shortcuts
-    document.addEventListener('keydown', (e) => {
-      if (e.ctrlKey && e.key === 'Enter') { e.preventDefault(); formatJSON(); }
-      if (e.ctrlKey && e.shiftKey && e.key === 'C') { e.preventDefault(); copyOutput(); }
-      if (e.ctrlKey && e.shiftKey && e.key === 'X') { e.preventDefault(); clearAll(); }
-      if (e.ctrlKey && e.shiftKey && e.key === 'S') { e.preventDefault(); loadSample(); }
-    });
-  </script>
 
 </body>
 </html>
