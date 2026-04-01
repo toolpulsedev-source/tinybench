@@ -32,7 +32,6 @@
       overflow-x: hidden;
     }
 
-    /* Grid background */
     body::before {
       content: '';
       position: fixed;
@@ -123,11 +122,7 @@
       animation: fadeUp 0.6s 0.1s ease both;
     }
 
-    .hero h1 .highlight {
-      color: var(--accent);
-      position: relative;
-    }
-
+    .hero h1 .highlight { color: var(--accent); }
     .hero h1 .highlight2 { color: var(--accent2); }
 
     .hero p {
@@ -185,9 +180,7 @@
       animation: fadeUp 0.6s 0.4s ease both;
     }
 
-    .stat {
-      text-align: center;
-    }
+    .stat { text-align: center; }
 
     .stat-num {
       font-family: 'JetBrains Mono', monospace;
@@ -274,22 +267,9 @@
 
     .tool-card:hover::before { opacity: 1; }
 
-    .tool-icon {
-      font-size: 1.8rem;
-      line-height: 1;
-    }
-
-    .tool-name {
-      font-size: 1rem;
-      font-weight: 700;
-      letter-spacing: -0.01em;
-    }
-
-    .tool-desc {
-      font-size: 0.83rem;
-      color: var(--muted);
-      line-height: 1.6;
-    }
+    .tool-icon { font-size: 1.8rem; line-height: 1; }
+    .tool-name { font-size: 1rem; font-weight: 700; letter-spacing: -0.01em; }
+    .tool-desc { font-size: 0.83rem; color: var(--muted); line-height: 1.6; }
 
     .tool-tag {
       display: inline-block;
@@ -324,40 +304,104 @@
     }
 
     .why-item { text-align: center; }
+    .why-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .why-title { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .why-text { font-size: 0.83rem; color: var(--muted); line-height: 1.6; }
 
-    .why-icon {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-    }
-
-    .why-title {
-      font-size: 1rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-    }
-
-    .why-text {
-      font-size: 0.83rem;
-      color: var(--muted);
-      line-height: 1.6;
-    }
-
-    /* FOOTER */
+    /* ── FOOTER ── */
     footer {
       position: relative;
       z-index: 1;
-      padding: 2.5rem;
-      text-align: center;
       border-top: 1px solid var(--border);
+      padding: 3.5rem 2.5rem 2rem;
     }
 
-    footer p {
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr 1fr 1fr;
+      gap: 3rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .footer-brand .logo {
+      display: inline-block;
+      margin-bottom: 0.9rem;
+      font-size: 1rem;
+    }
+
+    .footer-brand p {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 240px;
+    }
+
+    .footer-col h4 {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.75rem;
+      font-size: 0.65rem;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 1rem;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .footer-col ul a {
+      font-size: 0.82rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-col ul a:hover { color: var(--accent); }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 1.8rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-bottom p {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
       color: var(--muted);
     }
 
-    footer a { color: var(--accent); text-decoration: none; }
+    .footer-bottom a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .footer-legal {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-legal a {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-legal a:hover { color: var(--accent); }
 
     /* ANIMATIONS */
     @keyframes fadeUp {
@@ -366,11 +410,21 @@
     }
 
     /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    }
+
     @media (max-width: 768px) {
       nav ul { display: none; }
       .hero-stats { gap: 2rem; }
       .why-inner { grid-template-columns: 1fr; gap: 2rem; }
       .tools-grid { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
+    }
+
+    @media (max-width: 480px) {
+      .footer-top { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -476,7 +530,7 @@
         <span class="tool-tag">images</span>
       </a>
 
-      <a href="/tools/color-contrast/" class="tool-card">
+      <a href="/tools/color-contrast-checker/" class="tool-card">
         <div class="tool-icon">◑</div>
         <div class="tool-name">Color Contrast Checker</div>
         <div class="tool-desc">Check WCAG AA/AAA contrast ratios. Essential for accessible UI design.</div>
@@ -516,7 +570,64 @@
 
   <!-- FOOTER -->
   <footer>
-    <p>tinybench.dev — built with ♥ · <a href="https://github.com/toolpulsedev-source/tinybench" target="_blank">GitHub</a></p>
+    <div class="footer-inner">
+      <div class="footer-top">
+
+        <!-- Brand -->
+        <div class="footer-brand">
+          <a href="/" class="logo">tiny<span>bench</span>.dev</a>
+          <p>Fast, private, client-side developer tools. No backend. No tracking. No nonsense.</p>
+        </div>
+
+        <!-- Tools -->
+        <div class="footer-col">
+          <h4>// tools</h4>
+          <ul>
+            <li><a href="/tools/json-formatter/">JSON Formatter</a></li>
+            <li><a href="/tools/jwt-decoder/">JWT Decoder</a></li>
+            <li><a href="/tools/regex-tester/">Regex Tester</a></li>
+            <li><a href="/tools/timestamp-converter/">Timestamp Converter</a></li>
+            <li><a href="/tools/base64/">Base64 Encoder</a></li>
+            <li><a href="/tools/uuid-generator/">UUID Generator</a></li>
+            <li><a href="/tools/sql-formatter/">SQL Formatter</a></li>
+            <li><a href="/tools/image-compressor/">Image Compressor</a></li>
+            <li><a href="/tools/color-contrast-checker/">Color Contrast</a></li>
+            <li><a href="/tools/css-beautifier/">CSS Beautifier</a></li>
+          </ul>
+        </div>
+
+        <!-- Company -->
+        <div class="footer-col">
+          <h4>// company</h4>
+          <ul>
+            <li><a href="/about/">About</a></li>
+            <li><a href="/contact/">Contact</a></li>
+            <li><a href="https://github.com/toolpulsedev-source/tinybench" target="_blank">GitHub</a></li>
+          </ul>
+        </div>
+
+        <!-- Legal -->
+        <div class="footer-col">
+          <h4>// legal</h4>
+          <ul>
+            <li><a href="/privacy-policy/">Privacy Policy</a></li>
+            <li><a href="/terms/">Terms & Conditions</a></li>
+            <li><a href="/cookie-policy/">Cookie Policy</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2025 tinybench.dev — built with ♥ for developers</p>
+        <div class="footer-legal">
+          <a href="/privacy-policy/">Privacy</a>
+          <a href="/terms/">Terms</a>
+          <a href="/cookie-policy/">Cookies</a>
+          <a href="/contact/">Contact</a>
+        </div>
+      </div>
+    </div>
   </footer>
 
 </body>

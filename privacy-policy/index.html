@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — tinybench.dev</title>
+  <meta name="description" content="Privacy Policy for tinybench.dev. We don't collect, store, or share your data. Everything runs client-side in your browser." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Syne:wght@400;600;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0a0a0f; --surface: #111118; --border: #1e1e2e;
+      --accent: #00ff99; --text: #e8e8f0; --muted: #555570;
+    }
+    body { background: var(--bg); color: var(--text); font-family: 'Syne', sans-serif; min-height: 100vh; }
+    body::before {
+      content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+      background-image: linear-gradient(rgba(0,255,153,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,255,153,0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 2.5rem;
+      background: rgba(10,10,15,0.9); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .logo { font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; font-weight: 700; color: var(--accent); text-decoration: none; }
+    .logo span { color: var(--muted); }
+    .back-link { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .back-link:hover { color: var(--accent); }
+    main { position: relative; z-index: 1; max-width: 760px; margin: 0 auto; padding: 4rem 2rem 6rem; }
+    .page-tag { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 0.8rem; }
+    h1 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; letter-spacing: -0.03em; margin-bottom: 0.5rem; }
+    .updated { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--muted); margin-bottom: 3rem; }
+    .lead { font-size: 1.05rem; color: var(--muted); line-height: 1.8; margin-bottom: 3rem; padding: 1.5rem; background: rgba(0,255,153,0.05); border: 1px solid rgba(0,255,153,0.15); border-radius: 8px; }
+    .lead strong { color: var(--accent); }
+    h2 { font-size: 1.1rem; font-weight: 700; margin: 2.5rem 0 0.8rem; color: var(--text); }
+    h2::before { content: '// '; font-family: 'JetBrains Mono', monospace; color: var(--accent); font-size: 0.85rem; }
+    p { font-size: 0.9rem; color: var(--muted); line-height: 1.8; margin-bottom: 1rem; }
+    ul { margin: 0.5rem 0 1rem 1.2rem; }
+    ul li { font-size: 0.9rem; color: var(--muted); line-height: 1.8; margin-bottom: 0.3rem; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    hr { border: none; border-top: 1px solid var(--border); margin: 2.5rem 0; }
+    footer { position: relative; z-index: 1; border-top: 1px solid var(--border); padding: 2rem 2.5rem; text-align: center; }
+    footer p { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--muted); }
+    .footer-legal { display: flex; gap: 1.5rem; justify-content: center; margin-top: 0.8rem; flex-wrap: wrap; }
+    .footer-legal a { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--muted); text-decoration: none; }
+    .footer-legal a:hover { color: var(--accent); }
+  </style>
+</head>
+<body>
+<nav>
+  <a href="/" class="logo">tiny<span>bench</span>.dev</a>
+  <a href="/" class="back-link">← All Tools</a>
+</nav>
+<main>
+  <div class="page-tag">// legal</div>
+  <h1>Privacy Policy</h1>
+  <p class="updated">Last updated: January 1, 2025</p>
+
+  <div class="lead">
+    <strong>Short version:</strong> tinybench.dev does not collect, store, or transmit your personal data. All tools run entirely in your browser. Your data never leaves your device.
+  </div>
+
+  <h2>Who we are</h2>
+  <p>tinybench.dev is a free collection of developer tools operated as a static website. We do not have user accounts, a database, or a server that processes your data.</p>
+
+  <h2>Information we do NOT collect</h2>
+  <p>We do not collect:</p>
+  <ul>
+    <li>Any data you paste or type into our tools</li>
+    <li>Personal identification information (name, email, address)</li>
+    <li>Passwords or authentication credentials</li>
+    <li>Files you upload (e.g. images for compression)</li>
+    <li>Payment information</li>
+  </ul>
+  <p>All tool processing happens locally in your browser using JavaScript. Nothing is sent to any server.</p>
+
+  <h2>Information collected automatically</h2>
+  <p>Like all websites, our hosting provider (Cloudflare Pages) may collect basic server logs including IP addresses and browser user-agent strings for security and performance purposes. We do not control or access these logs directly.</p>
+  <p>We use <strong>Google AdSense</strong> to display advertisements. Google may use cookies and similar technologies to serve personalised ads based on your visits to this and other websites. Google's use of advertising cookies is governed by <a href="https://policies.google.com/privacy" target="_blank">Google's Privacy Policy</a>.</p>
+
+  <h2>Cookies</h2>
+  <p>tinybench.dev itself does not set any first-party cookies. However, third-party services we use (Google AdSense) may set cookies on your device. Please see our <a href="/cookie-policy/">Cookie Policy</a> for full details.</p>
+  <p>You can opt out of personalised advertising via <a href="https://www.google.com/settings/ads" target="_blank">Google's Ad Settings</a> or by visiting <a href="https://www.aboutads.info" target="_blank">aboutads.info</a>.</p>
+
+  <h2>Analytics</h2>
+  <p>We may use privacy-respecting analytics (such as Cloudflare Web Analytics) to understand aggregate traffic patterns — for example, which tools are most popular. This data is anonymous and not linked to individual users.</p>
+
+  <h2>Third-party links</h2>
+  <p>Our site links to GitHub and other external services. We are not responsible for the privacy practices of those sites. We encourage you to review their privacy policies.</p>
+
+  <h2>Children's privacy</h2>
+  <p>tinybench.dev is not directed at children under the age of 13. We do not knowingly collect personal information from children.</p>
+
+  <h2>Your rights (GDPR / EU users)</h2>
+  <p>If you are located in the European Economic Area, you have rights under the General Data Protection Regulation (GDPR), including the right to access, correct, or delete personal data we hold about you. Since we do not collect personal data, there is nothing to access or delete. If you have questions, contact us at the address below.</p>
+
+  <h2>Changes to this policy</h2>
+  <p>We may update this Privacy Policy from time to time. Changes will be posted on this page with an updated date. Continued use of the site constitutes acceptance of the updated policy.</p>
+
+  <h2>Contact</h2>
+  <p>If you have any questions about this Privacy Policy, please contact us via our <a href="/contact/">Contact page</a>.</p>
+</main>
+<footer>
+  <p>© 2025 tinybench.dev</p>
+  <div class="footer-legal">
+    <a href="/privacy-policy/">Privacy Policy</a>
+    <a href="/terms/">Terms & Conditions</a>
+    <a href="/cookie-policy/">Cookie Policy</a>
+    <a href="/contact/">Contact</a>
+    <a href="/">Home</a>
+  </div>
+</footer>
+</body>
+</html>
