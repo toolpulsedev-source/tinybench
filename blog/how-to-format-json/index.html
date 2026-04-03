@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Primary SEO -->
+  <title>How to Format JSON Online — Free JSON Formatter & Beautifier</title>
+  <meta name="description" content="Learn how to format, beautify, and validate JSON online in seconds. Free client-side JSON formatter — no uploads, no server, instant results." />
+  <link rel="canonical" href="https://tinybench.dev/blog/how-to-format-json/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="How to Format JSON Online — Free JSON Formatter & Beautifier" />
+  <meta property="og:description" content="Learn how to format, beautify, and validate JSON online in seconds. Free client-side JSON formatter — no uploads, no server, instant results." />
+  <meta property="og:url" content="https://tinybench.dev/blog/how-to-format-json/" />
+  <meta property="og:site_name" content="tinybench.dev" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="How to Format JSON Online — tinybench.dev" />
+  <meta name="twitter:description" content="Free JSON formatter and beautifier. No uploads, no server, instant results." />
+
+  <!-- Schema.org Article -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "How to Format JSON Online",
+    "description": "Learn how to format, beautify, and validate JSON online in seconds using a free client-side JSON formatter.",
+    "url": "https://tinybench.dev/blog/how-to-format-json/",
+    "datePublished": "2025-01-01",
+    "dateModified": "2025-01-01",
+    "publisher": {
+      "@type": "Organization",
+      "name": "tinybench.dev",
+      "url": "https://tinybench.dev"
+    }
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Syne:wght@400;600;800&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0a0a0f; --surface: #111118; --surface2: #13131c;
+      --border: #1e1e2e; --accent: #00ff99; --accent2: #7b61ff;
+      --text: #e8e8f0; --muted: #555570; --card: #13131c;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: 'Syne', sans-serif; min-height: 100vh; line-height: 1.7; }
+    body::before {
+      content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+      background-image: linear-gradient(rgba(0,255,153,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,255,153,0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 2.5rem;
+      background: rgba(10,10,15,0.92); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .logo { font-family: 'JetBrains Mono', monospace; font-size: 1rem; font-weight: 700; color: var(--accent); text-decoration: none; }
+    .logo span { color: var(--muted); }
+    .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+    .nav-links a { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* LAYOUT */
+    .page-wrap {
+      position: relative; z-index: 1;
+      max-width: 1100px; margin: 0 auto;
+      padding: 3rem 2rem 6rem;
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: 4rem;
+      align-items: start;
+    }
+    @media (max-width: 900px) { .page-wrap { grid-template-columns: 1fr; } .sidebar { display: none; } }
+
+    /* ARTICLE */
+    article { min-width: 0; }
+
+    .breadcrumb {
+      font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--muted);
+      margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem;
+    }
+    .breadcrumb a { color: var(--muted); text-decoration: none; }
+    .breadcrumb a:hover { color: var(--accent); }
+    .breadcrumb span { color: var(--muted); }
+
+    .article-tag {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace; font-size: 0.65rem;
+      color: var(--accent); background: rgba(0,255,153,0.08);
+      border: 1px solid rgba(0,255,153,0.2);
+      padding: 0.2rem 0.7rem; border-radius: 4px;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 800; letter-spacing: -0.03em; line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+    h1 em { font-style: normal; color: var(--accent); }
+
+    .article-meta {
+      font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--muted);
+      margin-bottom: 2rem; display: flex; gap: 1.5rem; flex-wrap: wrap;
+    }
+
+    .article-intro {
+      font-size: 1.05rem; color: var(--muted); line-height: 1.8;
+      margin-bottom: 2.5rem;
+      padding: 1.25rem 1.5rem;
+      border-left: 3px solid var(--accent);
+      background: rgba(0,255,153,0.04);
+      border-radius: 0 8px 8px 0;
+    }
+
+    h2 {
+      font-size: 1.3rem; font-weight: 800; letter-spacing: -0.02em;
+      margin: 2.5rem 0 0.8rem; color: var(--text);
+    }
+    h2::before { content: '// '; font-family: 'JetBrains Mono', monospace; color: var(--accent); font-size: 1rem; }
+
+    h3 { font-size: 1rem; font-weight: 700; margin: 1.5rem 0 0.5rem; color: var(--text); }
+
+    p { font-size: 0.95rem; color: var(--muted); line-height: 1.85; margin-bottom: 1.1rem; }
+
+    ul, ol { margin: 0.5rem 0 1.2rem 1.4rem; }
+    ul li, ol li { font-size: 0.92rem; color: var(--muted); line-height: 1.8; margin-bottom: 0.3rem; }
+
+    strong { color: var(--text); font-weight: 700; }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* CODE BLOCKS */
+    .code-block {
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 8px; margin: 1.2rem 0;
+      overflow: hidden;
+    }
+    .code-block-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.5rem 1rem;
+      background: var(--surface); border-bottom: 1px solid var(--border);
+      font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--muted);
+    }
+    .copy-btn {
+      background: none; border: 1px solid var(--border); color: var(--muted);
+      font-family: 'JetBrains Mono', monospace; font-size: 0.68rem;
+      padding: 2px 8px; border-radius: 4px; cursor: pointer; transition: all 0.15s;
+    }
+    .copy-btn:hover { color: var(--accent); border-color: var(--accent); }
+    pre {
+      padding: 1.1rem 1.2rem; overflow-x: auto;
+      font-family: 'JetBrains Mono', monospace; font-size: 0.82rem;
+      line-height: 1.7; color: var(--text);
+    }
+    .kw { color: #7b61ff; }
+    .str { color: #00ff99; }
+    .num { color: #ff9966; }
+    .key { color: #79c0ff; }
+    .cm  { color: #444; font-style: italic; }
+    .bad { color: #ff4d6a; }
+
+    /* CALLOUT */
+    .callout {
+      background: rgba(123,97,255,0.07); border: 1px solid rgba(123,97,255,0.2);
+      border-radius: 8px; padding: 1rem 1.2rem; margin: 1.5rem 0;
+      font-size: 0.88rem; color: var(--muted); line-height: 1.7;
+    }
+    .callout strong { color: #7b61ff; }
+
+    .callout-green {
+      background: rgba(0,255,153,0.06); border: 1px solid rgba(0,255,153,0.18);
+      border-radius: 8px; padding: 1rem 1.2rem; margin: 1.5rem 0;
+      font-size: 0.88rem; color: var(--muted); line-height: 1.7;
+    }
+    .callout-green strong { color: var(--accent); }
+
+    /* CTA BOX */
+    .cta-box {
+      background: var(--card); border: 1px solid rgba(0,255,153,0.25);
+      border-radius: 12px; padding: 1.8rem;
+      margin: 2.5rem 0; text-align: center;
+    }
+    .cta-box h3 { font-size: 1.15rem; margin-bottom: 0.5rem; color: var(--text); }
+    .cta-box h3::before { display: none; }
+    .cta-box p { font-size: 0.85rem; margin-bottom: 1.2rem; }
+    .cta-btn {
+      display: inline-block;
+      background: var(--accent); color: #000;
+      font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 0.88rem;
+      padding: 0.75rem 2rem; border-radius: 6px; text-decoration: none;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,255,153,0.3); text-decoration: none; }
+
+    /* FAQ */
+    .faq-item { border-bottom: 1px solid var(--border); padding: 1rem 0; }
+    .faq-q { font-size: 0.95rem; font-weight: 700; color: var(--text); margin-bottom: 0.5rem; cursor: pointer; }
+    .faq-a { font-size: 0.88rem; color: var(--muted); line-height: 1.7; }
+
+    /* TABLE */
+    .table-wrap { overflow-x: auto; margin: 1.2rem 0; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+    th { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); text-align: left; padding: 0.6rem 0.8rem; border-bottom: 1px solid var(--border); }
+    td { color: var(--muted); padding: 0.65rem 0.8rem; border-bottom: 1px solid rgba(30,30,46,0.5); }
+    tr:last-child td { border-bottom: none; }
+
+    /* SIDEBAR */
+    .sidebar { position: sticky; top: 80px; }
+    .sidebar-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 10px; padding: 1.2rem; margin-bottom: 1rem;
+    }
+    .sidebar-title { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 0.8rem; }
+    .toc-list { list-style: none; margin: 0; padding: 0; }
+    .toc-list li { margin-bottom: 0.4rem; }
+    .toc-list a { font-size: 0.82rem; color: var(--muted); text-decoration: none; transition: color 0.2s; display: block; padding: 0.2rem 0; border-left: 2px solid transparent; padding-left: 0.6rem; }
+    .toc-list a:hover { color: var(--accent); border-left-color: var(--accent); }
+    .related-list { list-style: none; margin: 0; padding: 0; }
+    .related-list li { margin-bottom: 0.6rem; }
+    .related-list a { font-size: 0.82rem; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .related-list a:hover { color: var(--accent); }
+
+    /* FOOTER */
+    footer { position: relative; z-index: 1; border-top: 1px solid var(--border); padding: 2rem 2.5rem; text-align: center; }
+    footer p { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--muted); }
+    .footer-legal { display: flex; gap: 1.5rem; justify-content: center; margin-top: 0.8rem; flex-wrap: wrap; }
+    .footer-legal a { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--muted); text-decoration: none; }
+    .footer-legal a:hover { color: var(--accent); }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="logo">tiny<span>bench</span>.dev</a>
+  <ul class="nav-links">
+    <li><a href="/#tools">Tools</a></li>
+    <li><a href="/about/">About</a></li>
+  </ul>
+</nav>
+
+<div class="page-wrap">
+
+  <!-- ARTICLE -->
+  <article>
+    <div class="breadcrumb">
+      <a href="/">Home</a>
+      <span>/</span>
+      <a href="/blog/">Blog</a>
+      <span>/</span>
+      <span>How to Format JSON Online</span>
+    </div>
+
+    <div class="article-tag">JSON · Guide</div>
+
+    <h1>How to Format <em>JSON</em> Online — Free, Instant & Private</h1>
+
+    <div class="article-meta">
+      <span>5 min read</span>
+      <span>Updated January 2025</span>
+      <span>Developer Tools</span>
+    </div>
+
+    <div class="article-intro">
+      Need to format messy JSON fast? Paste it into a JSON formatter online and get clean, readable output instantly — no sign-up, no upload, no waiting. This guide explains exactly how it works and why it matters.
+    </div>
+
+    <!-- CTA early -->
+    <div class="cta-box">
+      <h3>Free Online JSON Formatter</h3>
+      <p>Paste your JSON and get clean, formatted output instantly. Validates errors, highlights syntax, runs entirely in your browser.</p>
+      <a href="/tools/json-formatter/" class="cta-btn">Open JSON Formatter →</a>
+    </div>
+
+    <h2>What is JSON formatting?</h2>
+    <p>JSON (JavaScript Object Notation) is the most widely used data format for APIs, configuration files, and web applications. Raw JSON from an API or database is often minified — all on one line with no spaces — making it nearly impossible to read by eye.</p>
+    <p><strong>JSON formatting</strong> (also called JSON beautifying or pretty printing) adds proper indentation, line breaks, and spacing so the structure becomes immediately readable. Compare these two — they contain identical data:</p>
+
+    <div class="code-block">
+      <div class="code-block-header"><span>Minified JSON (hard to read)</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+      <pre><span class="bad">{"user":{"id":1,"name":"Ada Lovelace","email":"ada@example.com","roles":["admin","developer"],"active":true}}</span></pre>
+    </div>
+
+    <div class="code-block">
+      <div class="code-block-header"><span>Formatted JSON (easy to read)</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+      <pre>{
+  <span class="key">"user"</span>: {
+    <span class="key">"id"</span>: <span class="num">1</span>,
+    <span class="key">"name"</span>: <span class="str">"Ada Lovelace"</span>,
+    <span class="key">"email"</span>: <span class="str">"ada@example.com"</span>,
+    <span class="key">"roles"</span>: [
+      <span class="str">"admin"</span>,
+      <span class="str">"developer"</span>
+    ],
+    <span class="key">"active"</span>: <span class="kw">true</span>
+  }
+}</pre>
+    </div>
+
+    <p>The formatted version instantly shows the structure — a <code>user</code> object with five fields including a nested array. That clarity is invaluable when debugging APIs, reviewing config files, or reading logs.</p>
+
+    <h2>How to format JSON online in 3 steps</h2>
+    <p>Using an online JSON formatter is the fastest way to beautify JSON without installing anything. Here's how:</p>
+    <ol>
+      <li><strong>Copy your JSON</strong> — from an API response, a log file, a database query, or anywhere else.</li>
+      <li><strong>Paste it into the formatter</strong> — open <a href="/tools/json-formatter/">tinybench.dev/tools/json-formatter/</a> and paste your JSON into the input panel.</li>
+      <li><strong>Click Format</strong> — the output panel instantly shows your formatted, syntax-highlighted JSON. Copy it out with one click.</li>
+    </ol>
+
+    <div class="callout-green">
+      <strong>Privacy note:</strong> The JSON formatter on tinybench.dev runs entirely in your browser using JavaScript. Your JSON data never leaves your machine — no server receives it, no logs are kept. Safe for API keys, tokens, and sensitive payloads.
+    </div>
+
+    <h2>JSON formatting options explained</h2>
+    <p>A good JSON formatter online gives you control over how the output looks. Here are the most common options:</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Option</th><th>What it does</th><th>When to use</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>2-space indent</strong></td><td>Indents nested levels with 2 spaces</td><td>Most common — compact and readable</td></tr>
+          <tr><td><strong>4-space indent</strong></td><td>Indents with 4 spaces</td><td>Easier to scan deeply nested structures</td></tr>
+          <tr><td><strong>Tab indent</strong></td><td>Uses tab characters</td><td>When pasting into editors that use tabs</td></tr>
+          <tr><td><strong>Minify</strong></td><td>Removes all whitespace</td><td>Reducing payload size for production</td></tr>
+          <tr><td><strong>Validate</strong></td><td>Checks for syntax errors</td><td>Before using JSON in production code</td></tr>
+          <tr><td><strong>Sort keys</strong></td><td>Orders keys alphabetically</td><td>Easier to diff two JSON objects</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>How to validate JSON online</h2>
+    <p>JSON validation checks that your JSON follows the correct syntax rules. A <strong>JSON validator online</strong> will catch errors like:</p>
+    <ul>
+      <li>Missing or extra commas</li>
+      <li>Unquoted keys (valid in JavaScript but not in JSON)</li>
+      <li>Single quotes instead of double quotes</li>
+      <li>Trailing commas after the last item in an array or object</li>
+      <li>Unescaped special characters in strings</li>
+    </ul>
+
+    <div class="code-block">
+      <div class="code-block-header"><span>Common JSON errors</span></div>
+      <pre><span class="cm">// ❌ Unquoted key — invalid JSON</span>
+{ <span class="bad">name</span>: "Ada Lovelace" }
+
+<span class="cm">// ❌ Single quotes — invalid JSON</span>
+{ <span class="bad">'name'</span>: <span class="bad">'Ada Lovelace'</span> }
+
+<span class="cm">// ❌ Trailing comma — invalid JSON</span>
+{ <span class="key">"name"</span>: <span class="str">"Ada Lovelace"</span><span class="bad">,</span> }
+
+<span class="cm">// ✅ Valid JSON</span>
+{ <span class="key">"name"</span>: <span class="str">"Ada Lovelace"</span> }</pre>
+    </div>
+
+    <p>When you paste invalid JSON into the <a href="/tools/json-formatter/">tinybench.dev JSON formatter</a>, it immediately highlights the error and shows the line number — so you can fix it in seconds instead of hunting through hundreds of lines manually.</p>
+
+    <h2>JSON beautifier vs JSON formatter — what's the difference?</h2>
+    <p>Nothing — they mean the same thing. You'll see all of these terms used interchangeably online:</p>
+    <ul>
+      <li><strong>JSON formatter</strong> — most common term</li>
+      <li><strong>JSON beautifier</strong> — emphasises the visual improvement</li>
+      <li><strong>JSON pretty printer</strong> — refers to the indentation output</li>
+      <li><strong>JSON lint</strong> or <strong>JSON linter</strong> — focuses on the validation/error-checking aspect</li>
+      <li><strong>JSON viewer</strong> — usually a tree-view representation</li>
+    </ul>
+    <p>All of these tools format JSON and validate it. The differences are mainly in how they display the output (flat text vs. tree view) and what extra features they offer.</p>
+
+    <h2>When do you need to format JSON?</h2>
+    <p>Developers format JSON constantly. Here are the most common real-world scenarios:</p>
+
+    <h3>Debugging API responses</h3>
+    <p>When you call a REST API and get back a wall of minified JSON, the first thing you do is paste it into a JSON formatter to understand the response structure — which fields exist, how they're nested, and what values they contain.</p>
+
+    <h3>Reading config files</h3>
+    <p>Package files like <code>package.json</code>, <code>tsconfig.json</code>, and <code>appsettings.json</code> are sometimes minified or poorly indented. A JSON formatter cleans them up instantly.</p>
+
+    <h3>Comparing two JSON objects</h3>
+    <p>When you need to diff two JSON responses, sort the keys alphabetically first using a JSON formatter — then differences jump out immediately instead of being hidden by key-order variations.</p>
+
+    <h3>Preparing JSON for documentation</h3>
+    <p>Before pasting JSON examples into documentation, README files, or Notion, run it through a formatter so it looks clean and professional.</p>
+
+    <div class="callout">
+      <strong>Pro tip:</strong> Many developers bookmark a JSON formatter online because it's faster than opening VS Code for a quick format. Keep <a href="/tools/json-formatter/">tinybench.dev/tools/json-formatter/</a> bookmarked — it loads in under a second and works without internet once cached.
+    </div>
+
+    <h2>JSON formatting in different languages</h2>
+    <p>If you need to format JSON inside code rather than in a browser, here are the one-liners for common languages:</p>
+
+    <div class="code-block">
+      <div class="code-block-header"><span>JavaScript</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+      <pre><span class="kw">const</span> formatted = JSON.<span class="key">stringify</span>(obj, <span class="kw">null</span>, <span class="num">2</span>);</pre>
+    </div>
+
+    <div class="code-block">
+      <div class="code-block-header"><span>Python</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+      <pre><span class="kw">import</span> json
+formatted = json.<span class="key">dumps</span>(obj, indent=<span class="num">2</span>)</pre>
+    </div>
+
+    <div class="code-block">
+      <div class="code-block-header"><span>Command line (using jq)</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+      <pre>cat data.json | jq <span class="str">'.'</span></pre>
+    </div>
+
+    <div class="code-block">
+      <div class="code-block-header"><span>curl + jq (format API response directly)</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+      <pre>curl https://api.example.com/users | jq <span class="str">'.'</span></pre>
+    </div>
+
+    <p>For quick one-off formatting without writing code, an <strong>online JSON formatter</strong> is always faster. For automated pipelines, use the code approach above.</p>
+
+    <h2>Frequently asked questions</h2>
+
+    <div class="faq-item">
+      <div class="faq-q">Is it safe to paste sensitive JSON into an online formatter?</div>
+      <div class="faq-a">It depends on the tool. Most online JSON formatters send your data to a server — which means your API keys, tokens, and user data could be logged. The <a href="/tools/json-formatter/">tinybench.dev JSON formatter</a> is 100% client-side: your JSON never leaves your browser. It's safe for any content including secrets and production data.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What's the difference between JSON and JavaScript objects?</div>
+      <div class="faq-a">JSON is a strict subset of JavaScript object notation. The key differences: JSON keys must be double-quoted strings, JSON doesn't support comments, trailing commas are not allowed, and <code>undefined</code>, functions, and symbols can't appear as values. JavaScript objects are more flexible — JSON is a portable text format.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Can I format large JSON files online?</div>
+      <div class="faq-a">Yes. Since the tinybench.dev formatter runs in your browser, it can handle large files without any upload limits or timeouts. Performance depends on your device — for files larger than 10MB, a local tool like <code>jq</code> or VS Code will be faster.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">How do I minify JSON online?</div>
+      <div class="faq-a">Use the Minify button in the <a href="/tools/json-formatter/">JSON formatter tool</a>. Minifying removes all whitespace and line breaks, reducing file size — useful before sending JSON payloads in production APIs where every byte counts.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What is JSONLint?</div>
+      <div class="faq-a">JSONLint is a popular online JSON validator. "Lint" refers to static analysis tools that check code for errors without running it. A JSON linter checks that your JSON is syntactically valid. Our JSON formatter includes built-in validation — it highlights errors with line numbers automatically.</div>
+    </div>
+
+    <!-- Bottom CTA -->
+    <div class="cta-box">
+      <h3>Ready to format your JSON?</h3>
+      <p>Free, instant, private. No sign-up. Works offline after first load.</p>
+      <a href="/tools/json-formatter/" class="cta-btn">Open JSON Formatter →</a>
+    </div>
+
+    <!-- Related tools -->
+    <h2>Related tools on tinybench.dev</h2>
+    <ul>
+      <li><a href="/tools/jwt-decoder/">JWT Decoder</a> — decode and inspect JWT tokens client-side</li>
+      <li><a href="/tools/base64/">Base64 Encoder / Decoder</a> — encode or decode Base64 strings instantly</li>
+      <li><a href="/tools/regex-tester/">Regex Tester</a> — test regular expressions with live match highlighting</li>
+      <li><a href="/tools/css-beautifier/">CSS Beautifier & Minifier</a> — format or minify CSS for production</li>
+    </ul>
+
+  </article>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-card">
+      <div class="sidebar-title">// contents</div>
+      <ul class="toc-list">
+        <li><a href="#what-is-json-formatting">What is JSON formatting?</a></li>
+        <li><a href="#how-to-format-json">Format JSON in 3 steps</a></li>
+        <li><a href="#formatting-options">Formatting options</a></li>
+        <li><a href="#validate-json">How to validate JSON</a></li>
+        <li><a href="#beautifier-vs-formatter">Beautifier vs formatter</a></li>
+        <li><a href="#when-to-format">When do you need it?</a></li>
+        <li><a href="#in-code">Formatting in code</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+    </div>
+
+    <div class="sidebar-card">
+      <div class="sidebar-title">// try the tool</div>
+      <p style="font-size:0.82rem;color:var(--muted);margin-bottom:1rem;line-height:1.6">Free JSON formatter. Runs in your browser — no uploads, no server.</p>
+      <a href="/tools/json-formatter/" class="cta-btn" style="display:block;text-align:center;font-size:0.82rem;padding:0.65rem 1rem;">Open JSON Formatter →</a>
+    </div>
+
+    <div class="sidebar-card">
+      <div class="sidebar-title">// related tools</div>
+      <ul class="related-list">
+        <li><a href="/tools/jwt-decoder/">JWT Decoder</a></li>
+        <li><a href="/tools/base64/">Base64 Encoder</a></li>
+        <li><a href="/tools/regex-tester/">Regex Tester</a></li>
+        <li><a href="/tools/sql-formatter/">SQL Formatter</a></li>
+        <li><a href="/tools/css-beautifier/">CSS Beautifier</a></li>
+      </ul>
+    </div>
+  </aside>
+
+</div>
+
+<footer>
+  <p>© 2025 tinybench.dev — fast developer tools, no backend, no tracking.</p>
+  <div class="footer-legal">
+    <a href="/privacy-policy/">Privacy Policy</a>
+    <a href="/terms/">Terms</a>
+    <a href="/cookie-policy/">Cookies</a>
+    <a href="/contact/">Contact</a>
+    <a href="/">Home</a>
+  </div>
+</footer>
+
+<script>
+function copyCode(btn) {
+  const pre = btn.closest('.code-block').querySelector('pre');
+  navigator.clipboard.writeText(pre.textContent).then(() => {
+    btn.textContent = 'copied!';
+    setTimeout(() => btn.textContent = 'copy', 2000);
+  });
+}
+</script>
+</body>
+</html>
