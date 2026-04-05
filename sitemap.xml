@@ -109,6 +109,84 @@
   <changefreq>monthly</changefreq>
   <priority>0.8</priority>
 </url>
-
+<!-- Blog posts -->
+<url>
+  <loc>https://tinybench.dev/blog/how-to-format-json/</loc>
+  <lastmod>2025-01-01</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://tinybench.dev/blog/how-to-compress-images/</loc>
+  <lastmod>2025-01-01</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://tinybench.dev/blog/what-is-jwt/</loc>
+  <lastmod>2025-01-01</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://tinybench.dev/blog/regex-cheat-sheet/</loc>
+  <lastmod>2025-01-01</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://tinybench.dev/blog/what-is-base64/</loc>
+  <lastmod>2025-01-01</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://tinybench.dev/blog/wcag-color-contrast-guide/</loc>
+  <lastmod>2025-01-01</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://tinybench.dev/blog/unix-timestamp-explained/</loc>
+  <lastmod>2025-01-01</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://tinybench.dev/blog/sql-formatting-best-practices/</loc>
+  <lastmod>2025-01-01</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://tinybench.dev/blog/css-minification-guide/</loc>
+  <lastmod>2025-01-01</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://tinybench.dev/blog/uuid-vs-ulid/</loc>
+  <lastmod>2025-01-01</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://tinybench.dev/blog/how-to-decode-jwt/</loc>
+  <lastmod>2025-01-01</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://tinybench.dev/blog/json-validation-guide/</loc>
+  <lastmod>2025-01-01</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://tinybench.dev/blog/uuid-generator-online/</loc>
+  <lastmod>2025-01-01</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.8</priority>
+</url>
 
 </urlset>

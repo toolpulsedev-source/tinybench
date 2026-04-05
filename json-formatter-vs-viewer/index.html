@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>JSON Formatter vs JSON Viewer — What's the Difference?</title>
+  <meta name="description" content="Learn the difference between a JSON formatter and a JSON viewer. Understand which tool to use for formatting, validation, tree view, and debugging."/>
+  <link rel="canonical" href="https://tinybench.dev/blog/json-formatter-vs-viewer/"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:title" content="JSON Formatter vs JSON Viewer — What's the Difference?"/>
+  <meta property="og:description" content="Learn the difference between a JSON formatter and a JSON viewer. Understand which tool to use for formatting, validation, tree view, and debugging."/>
+  <meta property="og:url" content="https://tinybench.dev/blog/json-formatter-vs-viewer/"/>
+  <meta property="og:site_name" content="tinybench.dev"/>
+  <meta name="twitter:card" content="summary"/>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"JSON Formatter vs JSON Viewer — What's the Difference?","description":"Learn the difference between a JSON formatter and a JSON viewer. Understand which tool to use for formatting, validation, tree view, and debugging.","url":"https://tinybench.dev/blog/json-formatter-vs-viewer/","datePublished":"2025-01-01","dateModified":"2025-01-01","publisher":{"@type":"Organization","name":"tinybench.dev","url":"https://tinybench.dev"}}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Syne:wght@400;600;800&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--bg:#0a0a0f;--surface:#111118;--s2:#13131c;--border:#1e1e2e;--accent:#00ff99;--a2:#7b61ff;--text:#e8e8f0;--muted:#555570;--card:#13131c}
+    html{scroll-behavior:smooth}
+    body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;min-height:100vh;line-height:1.7}
+    body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;background-image:linear-gradient(rgba(0,255,153,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,255,153,.03) 1px,transparent 1px);background-size:40px 40px}
+    nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1rem 2.5rem;background:rgba(10,10,15,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+    .logo{font-family:'JetBrains Mono',monospace;font-size:1rem;font-weight:700;color:var(--accent);text-decoration:none}
+    .logo span{color:var(--muted)}
+    .nav-links{display:flex;gap:1.5rem;list-style:none}
+    .nav-links a{font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--muted);text-decoration:none;transition:color .2s}
+    .nav-links a:hover{color:var(--accent)}
+    .pw{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:3rem 2rem 6rem;display:grid;grid-template-columns:1fr 300px;gap:4rem;align-items:start}
+    @media(max-width:900px){.pw{grid-template-columns:1fr}.sb{display:none}}
+    article{min-width:0}
+    .bc{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--muted);margin-bottom:1.5rem;display:flex;align-items:center;gap:.5rem}
+    .bc a{color:var(--muted);text-decoration:none}
+    .bc a:hover{color:var(--accent)}
+    .atag{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.65rem;color:var(--accent);background:rgba(0,255,153,.08);border:1px solid rgba(0,255,153,.2);padding:.2rem .7rem;border-radius:4px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:1rem}
+    h1{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;letter-spacing:-.03em;line-height:1.15;margin-bottom:1rem}
+    h1 em{font-style:normal;color:var(--accent)}
+    .ameta{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--muted);margin-bottom:2rem;display:flex;gap:1.5rem;flex-wrap:wrap}
+    .aintro{font-size:1.05rem;color:var(--muted);line-height:1.8;margin-bottom:2.5rem;padding:1.25rem 1.5rem;border-left:3px solid var(--accent);background:rgba(0,255,153,.04);border-radius:0 8px 8px 0}
+    h2{font-size:1.3rem;font-weight:800;letter-spacing:-.02em;margin:2.5rem 0 .8rem;color:var(--text)}
+    h2::before{content:'// ';font-family:'JetBrains Mono',monospace;color:var(--accent);font-size:1rem}
+    h3{font-size:1rem;font-weight:700;margin:1.5rem 0 .5rem;color:var(--text)}
+    p{font-size:.95rem;color:var(--muted);line-height:1.85;margin-bottom:1.1rem}
+    ul,ol{margin:.5rem 0 1.2rem 1.4rem}
+    ul li,ol li{font-size:.92rem;color:var(--muted);line-height:1.8;margin-bottom:.3rem}
+    strong{color:var(--text);font-weight:700}
+    a{color:var(--accent);text-decoration:none}
+    a:hover{text-decoration:underline}
+    code{font-family:'JetBrains Mono',monospace;font-size:.82rem;background:var(--s2);padding:.15rem .4rem;border-radius:3px;color:var(--accent)}
+    .cg{background:rgba(0,255,153,.06);border:1px solid rgba(0,255,153,.18);border-radius:8px;padding:1rem 1.2rem;margin:1.5rem 0;font-size:.88rem;color:var(--muted);line-height:1.7}
+    .cg strong{color:var(--accent)}
+    .cp{background:rgba(123,97,255,.07);border:1px solid rgba(123,97,255,.2);border-radius:8px;padding:1rem 1.2rem;margin:1.5rem 0;font-size:.88rem;color:var(--muted);line-height:1.7}
+    .cp strong{color:#7b61ff}
+    .cta{background:var(--card);border:1px solid rgba(0,255,153,.25);border-radius:12px;padding:1.8rem;margin:2.5rem 0;text-align:center}
+    .cta h3{font-size:1.15rem;margin-bottom:.5rem;color:var(--text)}
+    .cta h3::before{display:none}
+    .cta p{font-size:.85rem;margin-bottom:1.2rem}
+    .ctab{display:inline-block;background:var(--accent);color:#000;font-family:'JetBrains Mono',monospace;font-weight:700;font-size:.88rem;padding:.75rem 2rem;border-radius:6px;text-decoration:none;transition:transform .15s,box-shadow .15s}
+    .ctab:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(0,255,153,.3);text-decoration:none}
+    .cb{background:var(--s2);border:1px solid var(--border);border-radius:8px;margin:1.2rem 0;overflow:hidden}
+    .cbh{display:flex;align-items:center;justify-content:space-between;padding:.5rem 1rem;background:var(--surface);border-bottom:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--muted)}
+    .cpb{background:none;border:1px solid var(--border);color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:.68rem;padding:2px 8px;border-radius:4px;cursor:pointer;transition:all .15s}
+    .cpb:hover{color:var(--accent);border-color:var(--accent)}
+    pre{padding:1.1rem 1.2rem;overflow-x:auto;font-family:'JetBrains Mono',monospace;font-size:.82rem;line-height:1.7;color:var(--text)}
+    .tw{overflow-x:auto;margin:1.2rem 0}
+    table{width:100%;border-collapse:collapse;font-size:.85rem}
+    th{font-family:'JetBrains Mono',monospace;font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);text-align:left;padding:.6rem .8rem;border-bottom:1px solid var(--border)}
+    td{color:var(--muted);padding:.65rem .8rem;border-bottom:1px solid rgba(30,30,46,.5)}
+    tr:last-child td{border-bottom:none}
+    .fq{border-bottom:1px solid var(--border);padding:1rem 0}
+    .fq-q{font-size:.95rem;font-weight:700;color:var(--text);margin-bottom:.5rem}
+    .fq-a{font-size:.88rem;color:var(--muted);line-height:1.7}
+    .sb{position:sticky;top:80px}
+    .sc{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.2rem;margin-bottom:1rem}
+    .st{font-family:'JetBrains Mono',monospace;font-size:.65rem;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);margin-bottom:.8rem}
+    .tl{list-style:none;margin:0;padding:0}
+    .tl li{margin-bottom:.4rem}
+    .tl a{font-size:.82rem;color:var(--muted);text-decoration:none;display:block;padding:.2rem 0;border-left:2px solid transparent;padding-left:.6rem}
+    .tl a:hover{color:var(--accent);border-left-color:var(--accent)}
+    .rl{list-style:none;margin:0;padding:0}
+    .rl li{margin-bottom:.6rem}
+    .rl a{font-size:.82rem;color:var(--muted);text-decoration:none}
+    .rl a:hover{color:var(--accent)}
+    footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:2rem 2.5rem;text-align:center}
+    footer p{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--muted)}
+    .fl{display:flex;gap:1.5rem;justify-content:center;margin-top:.8rem;flex-wrap:wrap}
+    .fl a{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--muted);text-decoration:none}
+    .fl a:hover{color:var(--accent)}
+  </style>
+</head>
+<body>
+<nav><a href="/" class="logo">tiny<span>bench</span>.dev</a><ul class="nav-links"><li><a href="/#tools">Tools</a></li><li><a href="/about/">About</a></li></ul></nav>
+<div class="pw">
+<article>
+  <div class="bc"><a href="/">Home</a><span>/</span><a href="/blog/">Blog</a><span>/</span><span>JSON Formatter vs JSON Viewer</span></div>
+  <div class="atag">JSON · Guide</div>
+  <h1>JSON Formatter vs <em>JSON Viewer</em></h1>
+  <div class="ameta"><span>4 min read</span><span>Updated January 2025</span><span>Developer Tools</span></div>
+  <div class="aintro">Searching for a JSON tool and confused by all the different names — formatter, viewer, beautifier, linter? This guide explains what each one does and when to use it.</div>
+  <div class="cta"><h3>JSON Formatter & Validator</h3><p>Format, validate, and beautify JSON instantly. Free and client-side.</p><a href="/tools/json-formatter/" class="ctab">Open JSON Formatter & Validator &rarr;</a></div>
+  
+<h2 id="definitions">The terms defined</h2>
+<p>All of these tools work with JSON, but they emphasise different things:</p>
+<div class="tw"><table>
+  <thead><tr><th>Term</th><th>What it does</th><th>Best for</th></tr></thead>
+  <tbody>
+    <tr><td><strong>JSON Formatter</strong></td><td>Adds indentation and line breaks to minified JSON</td><td>Making raw API responses readable</td></tr>
+    <tr><td><strong>JSON Beautifier</strong></td><td>Same as formatter — different name</td><td>Same as above</td></tr>
+    <tr><td><strong>JSON Validator</strong></td><td>Checks JSON syntax is correct, shows errors</td><td>Debugging invalid JSON</td></tr>
+    <tr><td><strong>JSON Viewer</strong></td><td>Displays JSON in an interactive tree structure</td><td>Exploring deeply nested data</td></tr>
+    <tr><td><strong>JSON Lint</strong></td><td>Another name for JSON validator</td><td>Syntax checking</td></tr>
+    <tr><td><strong>JSON Minifier</strong></td><td>Removes all whitespace to reduce file size</td><td>Production API payloads</td></tr>
+  </tbody>
+</table></div>
+
+<h2 id="formatter">When to use a JSON formatter</h2>
+<p>Use a JSON formatter when you have minified or poorly indented JSON and want to read it. This is the most common use case — copying an API response, a log entry, or a config snippet and making it readable in seconds.</p>
+<div class="cb"><div class="cbh"><span>Use case: API debugging</span></div><pre>// What you get from the API:
+{{"user":{{"id":1,"name":"Ada","roles":["admin","dev"]}}}}
+
+// What you want to see:
+{{
+  "user": {{
+    "id": 1,
+    "name": "Ada",
+    "roles": ["admin", "dev"]
+  }}
+}}</pre></div>
+
+<h2 id="viewer">When to use a JSON viewer</h2>
+<p>A JSON viewer (tree view) is better for exploring deeply nested structures — collapsing and expanding branches, finding specific keys in large responses, and understanding the data hierarchy at a glance. Most full-featured JSON tools (like the <a href="/tools/json-formatter/">tinybench.dev formatter</a>) include both flat text view and tree view.</p>
+
+<h2 id="validator">When to use a JSON validator</h2>
+<p>Use a validator when your JSON is broken and you need to find the error. A good validator shows you the exact line and character position of the problem — a missing comma, an unquoted key, a trailing bracket. The <a href="/tools/json-formatter/">tinybench.dev JSON formatter</a> validates automatically — if your JSON has an error, it highlights it immediately.</p>
+
+<h2 id="which">Which one do you actually need?</h2>
+<ul>
+  <li><strong>Just need to read an API response?</strong> → JSON Formatter</li>
+  <li><strong>Your JSON is broken and you can't find why?</strong> → JSON Validator</li>
+  <li><strong>Large complex nested data?</strong> → JSON Viewer (tree mode)</li>
+  <li><strong>Preparing JSON for production?</strong> → JSON Minifier</li>
+  <li><strong>All of the above</strong> → use a tool that does all four in one, like <a href="/tools/json-formatter/">tinybench.dev</a></li>
+</ul>
+
+<h2 id="faq">Frequently asked questions</h2>
+<div class="fq"><div class="fq-q">Is JSON lint the same as JSON validation?</div><div class="fq-a">Yes. "Lint" is borrowed from code analysis tools — a linter checks for errors without running the code. JSON lint checks that your JSON is syntactically correct. It's the same as JSON validation, just a different name.</div></div>
+<div class="fq"><div class="fq-q">Can a JSON formatter fix invalid JSON?</div><div class="fq-a">No — a formatter can only format structurally valid JSON. It can't guess what you meant by a missing comma or wrong quote. You need to fix the syntax error first, then format. The validator tells you where the error is so you can fix it manually.</div></div>
+
+  <div class="cta"><h3>Try it free — no sign-up needed</h3><p>Runs entirely in your browser. Nothing uploaded, nothing stored.</p><a href="/tools/json-formatter/" class="ctab">Open JSON Formatter & Validator &rarr;</a></div>
+  <h2>Related tools on tinybench.dev</h2>
+  <ul><li><a href="/tools/json-formatter/">JSON Formatter</a></li><li><a href="/tools/jwt-decoder/">JWT Decoder</a></li><li><a href="/tools/regex-tester/">Regex Tester</a></li></ul>
+</article>
+<aside class="sb">
+  <div class="sc"><div class="st">// contents</div><ul class="tl">      <li><a href="#definitions">Terms defined</a></li>
+      <li><a href="#formatter">JSON formatter</a></li>
+      <li><a href="#viewer">JSON viewer</a></li>
+      <li><a href="#validator">JSON validator</a></li>
+      <li><a href="#which">Which do you need?</a></li>
+      <li><a href="#faq">FAQ</a></li></ul></div>
+  <div class="sc"><div class="st">// try the tool</div><p style="font-size:.82rem;color:var(--muted);margin-bottom:1rem;line-height:1.6">Format, validate, and beautify JSON instantly. Free and client-side.</p><a href="/tools/json-formatter/" class="ctab" style="display:block;text-align:center;font-size:.82rem;padding:.65rem 1rem;">Open JSON Formatter & Validator &rarr;</a></div>
+  <div class="sc"><div class="st">// related</div><ul class="rl">      <li><a href="/tools/json-formatter/">JSON Formatter</a></li>
+      <li><a href="/tools/jwt-decoder/">JWT Decoder</a></li>
+      <li><a href="/tools/regex-tester/">Regex Tester</a></li></ul></div>
+</aside>
+</div>
+<footer><p>&copy; 2025 tinybench.dev</p><div class="fl"><a href="/privacy-policy/">Privacy</a><a href="/terms/">Terms</a><a href="/cookie-policy/">Cookies</a><a href="/contact/">Contact</a><a href="/">Home</a></div></footer>
+<script>function copyCode(b){const p=b.closest('.cb').querySelector('pre');navigator.clipboard.writeText(p.textContent).then(()=>{b.textContent='copied!';setTimeout(()=>b.textContent='copy',2000)})}</script>
+</body></html>

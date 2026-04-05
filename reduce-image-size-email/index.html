@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>How to Reduce Image File Size for Email — Best Practices</title>
+  <meta name="description" content="Learn how to reduce image file size for email. Optimal dimensions, file formats, compression tips, and how to avoid emails being flagged as spam by oversized images."/>
+  <link rel="canonical" href="https://tinybench.dev/blog/reduce-image-size-email/"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:title" content="How to Reduce Image File Size for Email — Best Practices"/>
+  <meta property="og:description" content="Learn how to reduce image file size for email. Optimal dimensions, file formats, compression tips, and how to avoid emails being flagged as spam by oversized images."/>
+  <meta property="og:url" content="https://tinybench.dev/blog/reduce-image-size-email/"/>
+  <meta property="og:site_name" content="tinybench.dev"/>
+  <meta name="twitter:card" content="summary"/>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How to Reduce Image File Size for Email — Best Practices","description":"Learn how to reduce image file size for email. Optimal dimensions, file formats, compression tips, and how to avoid emails being flagged as spam by oversized images.","url":"https://tinybench.dev/blog/reduce-image-size-email/","datePublished":"2025-01-01","dateModified":"2025-01-01","publisher":{"@type":"Organization","name":"tinybench.dev","url":"https://tinybench.dev"}}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Syne:wght@400;600;800&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--bg:#0a0a0f;--surface:#111118;--s2:#13131c;--border:#1e1e2e;--accent:#00ff99;--a2:#7b61ff;--text:#e8e8f0;--muted:#555570;--card:#13131c}
+    html{scroll-behavior:smooth}
+    body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;min-height:100vh;line-height:1.7}
+    body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;background-image:linear-gradient(rgba(0,255,153,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,255,153,.03) 1px,transparent 1px);background-size:40px 40px}
+    nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1rem 2.5rem;background:rgba(10,10,15,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+    .logo{font-family:'JetBrains Mono',monospace;font-size:1rem;font-weight:700;color:var(--accent);text-decoration:none}
+    .logo span{color:var(--muted)}
+    .nav-links{display:flex;gap:1.5rem;list-style:none}
+    .nav-links a{font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--muted);text-decoration:none;transition:color .2s}
+    .nav-links a:hover{color:var(--accent)}
+    .pw{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:3rem 2rem 6rem;display:grid;grid-template-columns:1fr 300px;gap:4rem;align-items:start}
+    @media(max-width:900px){.pw{grid-template-columns:1fr}.sb{display:none}}
+    article{min-width:0}
+    .bc{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--muted);margin-bottom:1.5rem;display:flex;align-items:center;gap:.5rem}
+    .bc a{color:var(--muted);text-decoration:none}
+    .bc a:hover{color:var(--accent)}
+    .atag{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.65rem;color:var(--accent);background:rgba(0,255,153,.08);border:1px solid rgba(0,255,153,.2);padding:.2rem .7rem;border-radius:4px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:1rem}
+    h1{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;letter-spacing:-.03em;line-height:1.15;margin-bottom:1rem}
+    h1 em{font-style:normal;color:var(--accent)}
+    .ameta{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--muted);margin-bottom:2rem;display:flex;gap:1.5rem;flex-wrap:wrap}
+    .aintro{font-size:1.05rem;color:var(--muted);line-height:1.8;margin-bottom:2.5rem;padding:1.25rem 1.5rem;border-left:3px solid var(--accent);background:rgba(0,255,153,.04);border-radius:0 8px 8px 0}
+    h2{font-size:1.3rem;font-weight:800;letter-spacing:-.02em;margin:2.5rem 0 .8rem;color:var(--text)}
+    h2::before{content:'// ';font-family:'JetBrains Mono',monospace;color:var(--accent);font-size:1rem}
+    h3{font-size:1rem;font-weight:700;margin:1.5rem 0 .5rem;color:var(--text)}
+    p{font-size:.95rem;color:var(--muted);line-height:1.85;margin-bottom:1.1rem}
+    ul,ol{margin:.5rem 0 1.2rem 1.4rem}
+    ul li,ol li{font-size:.92rem;color:var(--muted);line-height:1.8;margin-bottom:.3rem}
+    strong{color:var(--text);font-weight:700}
+    a{color:var(--accent);text-decoration:none}
+    a:hover{text-decoration:underline}
+    code{font-family:'JetBrains Mono',monospace;font-size:.82rem;background:var(--s2);padding:.15rem .4rem;border-radius:3px;color:var(--accent)}
+    .cg{background:rgba(0,255,153,.06);border:1px solid rgba(0,255,153,.18);border-radius:8px;padding:1rem 1.2rem;margin:1.5rem 0;font-size:.88rem;color:var(--muted);line-height:1.7}
+    .cg strong{color:var(--accent)}
+    .cp{background:rgba(123,97,255,.07);border:1px solid rgba(123,97,255,.2);border-radius:8px;padding:1rem 1.2rem;margin:1.5rem 0;font-size:.88rem;color:var(--muted);line-height:1.7}
+    .cp strong{color:#7b61ff}
+    .cta{background:var(--card);border:1px solid rgba(0,255,153,.25);border-radius:12px;padding:1.8rem;margin:2.5rem 0;text-align:center}
+    .cta h3{font-size:1.15rem;margin-bottom:.5rem;color:var(--text)}
+    .cta h3::before{display:none}
+    .cta p{font-size:.85rem;margin-bottom:1.2rem}
+    .ctab{display:inline-block;background:var(--accent);color:#000;font-family:'JetBrains Mono',monospace;font-weight:700;font-size:.88rem;padding:.75rem 2rem;border-radius:6px;text-decoration:none;transition:transform .15s,box-shadow .15s}
+    .ctab:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(0,255,153,.3);text-decoration:none}
+    .cb{background:var(--s2);border:1px solid var(--border);border-radius:8px;margin:1.2rem 0;overflow:hidden}
+    .cbh{display:flex;align-items:center;justify-content:space-between;padding:.5rem 1rem;background:var(--surface);border-bottom:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--muted)}
+    .cpb{background:none;border:1px solid var(--border);color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:.68rem;padding:2px 8px;border-radius:4px;cursor:pointer;transition:all .15s}
+    .cpb:hover{color:var(--accent);border-color:var(--accent)}
+    pre{padding:1.1rem 1.2rem;overflow-x:auto;font-family:'JetBrains Mono',monospace;font-size:.82rem;line-height:1.7;color:var(--text)}
+    .tw{overflow-x:auto;margin:1.2rem 0}
+    table{width:100%;border-collapse:collapse;font-size:.85rem}
+    th{font-family:'JetBrains Mono',monospace;font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);text-align:left;padding:.6rem .8rem;border-bottom:1px solid var(--border)}
+    td{color:var(--muted);padding:.65rem .8rem;border-bottom:1px solid rgba(30,30,46,.5)}
+    tr:last-child td{border-bottom:none}
+    .fq{border-bottom:1px solid var(--border);padding:1rem 0}
+    .fq-q{font-size:.95rem;font-weight:700;color:var(--text);margin-bottom:.5rem}
+    .fq-a{font-size:.88rem;color:var(--muted);line-height:1.7}
+    .sb{position:sticky;top:80px}
+    .sc{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.2rem;margin-bottom:1rem}
+    .st{font-family:'JetBrains Mono',monospace;font-size:.65rem;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);margin-bottom:.8rem}
+    .tl{list-style:none;margin:0;padding:0}
+    .tl li{margin-bottom:.4rem}
+    .tl a{font-size:.82rem;color:var(--muted);text-decoration:none;display:block;padding:.2rem 0;border-left:2px solid transparent;padding-left:.6rem}
+    .tl a:hover{color:var(--accent);border-left-color:var(--accent)}
+    .rl{list-style:none;margin:0;padding:0}
+    .rl li{margin-bottom:.6rem}
+    .rl a{font-size:.82rem;color:var(--muted);text-decoration:none}
+    .rl a:hover{color:var(--accent)}
+    footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:2rem 2.5rem;text-align:center}
+    footer p{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--muted)}
+    .fl{display:flex;gap:1.5rem;justify-content:center;margin-top:.8rem;flex-wrap:wrap}
+    .fl a{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--muted);text-decoration:none}
+    .fl a:hover{color:var(--accent)}
+  </style>
+</head>
+<body>
+<nav><a href="/" class="logo">tiny<span>bench</span>.dev</a><ul class="nav-links"><li><a href="/#tools">Tools</a></li><li><a href="/about/">About</a></li></ul></nav>
+<div class="pw">
+<article>
+  <div class="bc"><a href="/">Home</a><span>/</span><a href="/blog/">Blog</a><span>/</span><span>Reduce Image Size for Email</span></div>
+  <div class="atag">Images · Email</div>
+  <h1>Reduce Image Size <em>for Email</em></h1>
+  <div class="ameta"><span>4 min read</span><span>Updated January 2025</span><span>Developer Tools</span></div>
+  <div class="aintro">Large images in emails cause slow loading, deliverability problems, and spam filters. Here's exactly how to size and compress images for email — with recommended dimensions and file sizes.</div>
+  <div class="cta"><h3>Image Compressor</h3><p>Compress images for email — free, no watermark, no upload required.</p><a href="/tools/image-compressor/" class="ctab">Open Image Compressor &rarr;</a></div>
+  
+<h2 id="why">Why image size matters in email</h2>
+<p>Emails with oversized images have serious problems:</p>
+<ul>
+  <li><strong>Spam filters</strong> — large total email size (over 100 KB) triggers spam scoring</li>
+  <li><strong>Slow loading on mobile</strong> — most emails are opened on phones with variable connections</li>
+  <li><strong>Gmail clipping</strong> — Gmail clips emails over 102 KB, hiding your call to action</li>
+  <li><strong>Data usage</strong> — recipients on mobile data plans may have images blocked by default</li>
+</ul>
+
+<h2 id="recommended">Recommended image sizes for email</h2>
+<div class="tw"><table>
+  <thead><tr><th>Image type</th><th>Max width</th><th>Target file size</th><th>Format</th></tr></thead>
+  <tbody>
+    <tr><td>Header/banner image</td><td>600px</td><td>Under 70 KB</td><td>JPEG</td></tr>
+    <tr><td>Product image</td><td>400px</td><td>Under 40 KB</td><td>JPEG</td></tr>
+    <tr><td>Logo</td><td>200px</td><td>Under 10 KB</td><td>PNG</td></tr>
+    <tr><td>Icon</td><td>50–80px</td><td>Under 5 KB</td><td>PNG</td></tr>
+    <tr><td>Total email images</td><td>—</td><td>Under 200 KB total</td><td>—</td></tr>
+  </tbody>
+</table></div>
+
+<h2 id="how-to">How to compress images for email</h2>
+<ol>
+  <li>Open the <a href="/tools/image-compressor/">image compressor on tinybench.dev</a></li>
+  <li>Upload your image</li>
+  <li>Enable <strong>Resize</strong> — set width to 600px for banners, 400px for product images</li>
+  <li>Keep aspect ratio locked</li>
+  <li>Set quality to <strong>75–80%</strong> for JPEG</li>
+  <li>Enable <strong>Strip metadata</strong> to remove EXIF data</li>
+  <li>Download — check the file size in the stats bar before downloading</li>
+</ol>
+<div class="cg"><strong>Tip:</strong> Use the Target Max Size feature to automatically compress to under 70 KB — the compressor binary-searches the optimal quality level for you.</div>
+
+<h2 id="format">Which format to use for email images</h2>
+<p>Use <strong>JPEG</strong> for photos and complex images — it produces the smallest files. Use <strong>PNG</strong> for logos, icons, and images with transparency. Avoid WebP for email — many email clients (especially Outlook) don't support it.</p>
+<div class="cp"><strong>Avoid WebP in email.</strong> While WebP is great for web, email client support is poor. Outlook, older iOS mail, and some Android clients won't display WebP images. Stick with JPEG and PNG for maximum compatibility.</div>
+
+<h2 id="2x">Retina / 2x images for email</h2>
+<p>For sharp display on retina screens, serve images at 2x the display size but compress them to keep file size small. For a 300px wide column, use a 600px wide image at 65–70% JPEG quality.</p>
+
+<h2 id="faq">Frequently asked questions</h2>
+<div class="fq"><div class="fq-q">What is the maximum email size for Gmail?</div><div class="fq-a">Gmail clips emails over 102 KB in size — the "View entire message" link appears and the rest of the email is hidden. Keep total HTML + images under 100 KB to avoid clipping. Note this is the rendered HTML size, not just images.</div></div>
+<div class="fq"><div class="fq-q">Should I embed images or host them externally?</div><div class="fq-a">Always host images externally (on a CDN or your server) and reference them by URL. Embedding images as Base64 or attachments dramatically increases email size and causes spam filter issues. Most email clients block embedded images by default anyway.</div></div>
+<div class="fq"><div class="fq-q">Why do my email images look blurry on mobile?</div><div class="fq-a">You're serving images at 1x resolution on 2x (retina) screens. Serve images at 2x the displayed size. For example, if an image displays at 300px wide, serve a 600px wide version at compressed quality.</div></div>
+
+  <div class="cta"><h3>Try it free — no sign-up needed</h3><p>Runs entirely in your browser. Nothing uploaded, nothing stored.</p><a href="/tools/image-compressor/" class="ctab">Open Image Compressor &rarr;</a></div>
+  <h2>Related tools on tinybench.dev</h2>
+  <ul><li><a href="/tools/image-compressor/">Image Compressor</a></li><li><a href="/tools/color-contrast-checker/">Color Contrast</a></li><li><a href="/tools/css-beautifier/">CSS Beautifier</a></li></ul>
+</article>
+<aside class="sb">
+  <div class="sc"><div class="st">// contents</div><ul class="tl">      <li><a href="#why">Why size matters</a></li>
+      <li><a href="#recommended">Recommended sizes</a></li>
+      <li><a href="#how-to">How to compress</a></li>
+      <li><a href="#format">Which format</a></li>
+      <li><a href="#2x">Retina images</a></li>
+      <li><a href="#faq">FAQ</a></li></ul></div>
+  <div class="sc"><div class="st">// try the tool</div><p style="font-size:.82rem;color:var(--muted);margin-bottom:1rem;line-height:1.6">Compress images for email — free, no watermark, no upload required.</p><a href="/tools/image-compressor/" class="ctab" style="display:block;text-align:center;font-size:.82rem;padding:.65rem 1rem;">Open Image Compressor &rarr;</a></div>
+  <div class="sc"><div class="st">// related</div><ul class="rl">      <li><a href="/tools/image-compressor/">Image Compressor</a></li>
+      <li><a href="/tools/color-contrast-checker/">Color Contrast</a></li>
+      <li><a href="/tools/css-beautifier/">CSS Beautifier</a></li></ul></div>
+</aside>
+</div>
+<footer><p>&copy; 2025 tinybench.dev</p><div class="fl"><a href="/privacy-policy/">Privacy</a><a href="/terms/">Terms</a><a href="/cookie-policy/">Cookies</a><a href="/contact/">Contact</a><a href="/">Home</a></div></footer>
+<script>function copyCode(b){const p=b.closest('.cb').querySelector('pre');navigator.clipboard.writeText(p.textContent).then(()=>{b.textContent='copied!';setTimeout(()=>b.textContent='copy',2000)})}</script>
+</body></html>
