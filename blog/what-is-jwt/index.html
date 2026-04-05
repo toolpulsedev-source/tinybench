@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>What is a JWT Token? JSON Web Tokens Explained</title>
+  <meta name="description" content="Learn what JWT (JSON Web Token) is, how it works, and how to decode one. Covers header, payload, signature, and common use cases." />
+  <link rel="canonical" href="https://tinybench.dev/blog/what-is-jwt/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="What is a JWT Token? JSON Web Tokens Explained" />
+  <meta property="og:description" content="Learn what JWT (JSON Web Token) is, how it works, and how to decode one. Covers header, payload, signature, and common use cases." />
+  <meta property="og:url" content="https://tinybench.dev/blog/what-is-jwt/" />
+  <meta property="og:site_name" content="tinybench.dev" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="What is a JWT Token? JSON Web Tokens Explained" />
+  <meta name="twitter:description" content="Learn what JWT (JSON Web Token) is, how it works, and how to decode one. Covers header, payload, signature, and common use cases." />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"What is a JWT Token","description":"Learn what JWT (JSON Web Token) is, how it works, and how to decode one. Covers header, payload, signature, and common use cases.","url":"https://tinybench.dev/blog/what-is-jwt/","datePublished":"2025-01-01","dateModified":"2025-01-01","publisher":{"@type":"Organization","name":"tinybench.dev","url":"https://tinybench.dev"}}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Syne:wght@400;600;800&display=swap" rel="stylesheet" />
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--bg:#0a0a0f;--surface:#111118;--surface2:#13131c;--border:#1e1e2e;--accent:#00ff99;--accent2:#7b61ff;--text:#e8e8f0;--muted:#555570;--card:#13131c}
+    html{scroll-behavior:smooth}
+    body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;min-height:100vh;line-height:1.7}
+    body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;background-image:linear-gradient(rgba(0,255,153,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,255,153,0.03) 1px,transparent 1px);background-size:40px 40px}
+    nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1rem 2.5rem;background:rgba(10,10,15,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+    .logo{font-family:'JetBrains Mono',monospace;font-size:1rem;font-weight:700;color:var(--accent);text-decoration:none}
+    .logo span{color:var(--muted)}
+    .nav-links{display:flex;gap:1.5rem;list-style:none}
+    .nav-links a{font-family:'JetBrains Mono',monospace;font-size:0.78rem;color:var(--muted);text-decoration:none;transition:color 0.2s}
+    .nav-links a:hover{color:var(--accent)}
+    .page-wrap{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:3rem 2rem 6rem;display:grid;grid-template-columns:1fr 300px;gap:4rem;align-items:start}
+    @media(max-width:900px){.page-wrap{grid-template-columns:1fr}.sidebar{display:none}}
+    article{min-width:0}
+    .breadcrumb{font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--muted);margin-bottom:1.5rem;display:flex;align-items:center;gap:0.5rem}
+    .breadcrumb a{color:var(--muted);text-decoration:none}
+    .breadcrumb a:hover{color:var(--accent)}
+    .article-tag{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--accent);background:rgba(0,255,153,0.08);border:1px solid rgba(0,255,153,0.2);padding:0.2rem 0.7rem;border-radius:4px;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:1rem}
+    h1{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;letter-spacing:-0.03em;line-height:1.15;margin-bottom:1rem}
+    h1 em{font-style:normal;color:var(--accent)}
+    .article-meta{font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--muted);margin-bottom:2rem;display:flex;gap:1.5rem;flex-wrap:wrap}
+    .article-intro{font-size:1.05rem;color:var(--muted);line-height:1.8;margin-bottom:2.5rem;padding:1.25rem 1.5rem;border-left:3px solid var(--accent);background:rgba(0,255,153,0.04);border-radius:0 8px 8px 0}
+    h2{font-size:1.3rem;font-weight:800;letter-spacing:-0.02em;margin:2.5rem 0 0.8rem;color:var(--text)}
+    h2::before{content:'// ';font-family:'JetBrains Mono',monospace;color:var(--accent);font-size:1rem}
+    h3{font-size:1rem;font-weight:700;margin:1.5rem 0 0.5rem;color:var(--text)}
+    p{font-size:0.95rem;color:var(--muted);line-height:1.85;margin-bottom:1.1rem}
+    ul,ol{margin:0.5rem 0 1.2rem 1.4rem}
+    ul li,ol li{font-size:0.92rem;color:var(--muted);line-height:1.8;margin-bottom:0.3rem}
+    strong{color:var(--text);font-weight:700}
+    a{color:var(--accent);text-decoration:none}
+    a:hover{text-decoration:underline}
+    code{font-family:'JetBrains Mono',monospace;font-size:0.82rem;background:var(--surface2);padding:0.15rem 0.4rem;border-radius:3px;color:var(--accent)}
+    .callout-green{background:rgba(0,255,153,0.06);border:1px solid rgba(0,255,153,0.18);border-radius:8px;padding:1rem 1.2rem;margin:1.5rem 0;font-size:0.88rem;color:var(--muted);line-height:1.7}
+    .callout-green strong{color:var(--accent)}
+    .callout{background:rgba(123,97,255,0.07);border:1px solid rgba(123,97,255,0.2);border-radius:8px;padding:1rem 1.2rem;margin:1.5rem 0;font-size:0.88rem;color:var(--muted);line-height:1.7}
+    .callout strong{color:#7b61ff}
+    .cta-box{background:var(--card);border:1px solid rgba(0,255,153,0.25);border-radius:12px;padding:1.8rem;margin:2.5rem 0;text-align:center}
+    .cta-box h3{font-size:1.15rem;margin-bottom:0.5rem;color:var(--text)}
+    .cta-box h3::before{display:none}
+    .cta-box p{font-size:0.85rem;margin-bottom:1.2rem}
+    .cta-btn{display:inline-block;background:var(--accent);color:#000;font-family:'JetBrains Mono',monospace;font-weight:700;font-size:0.88rem;padding:0.75rem 2rem;border-radius:6px;text-decoration:none;transition:transform 0.15s,box-shadow 0.15s}
+    .cta-btn:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(0,255,153,0.3);text-decoration:none}
+    .table-wrap{overflow-x:auto;margin:1.2rem 0}
+    table{width:100%;border-collapse:collapse;font-size:0.85rem}
+    th{font-family:'JetBrains Mono',monospace;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--accent);text-align:left;padding:0.6rem 0.8rem;border-bottom:1px solid var(--border)}
+    td{color:var(--muted);padding:0.65rem 0.8rem;border-bottom:1px solid rgba(30,30,46,0.5)}
+    tr:last-child td{border-bottom:none}
+    .faq-item{border-bottom:1px solid var(--border);padding:1rem 0}
+    .faq-q{font-size:0.95rem;font-weight:700;color:var(--text);margin-bottom:0.5rem}
+    .faq-a{font-size:0.88rem;color:var(--muted);line-height:1.7}
+    .code-block{background:var(--surface2);border:1px solid var(--border);border-radius:8px;margin:1.2rem 0;overflow:hidden}
+    .code-block-header{display:flex;align-items:center;justify-content:space-between;padding:0.5rem 1rem;background:var(--surface);border-bottom:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--muted)}
+    .copy-btn{background:none;border:1px solid var(--border);color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:0.68rem;padding:2px 8px;border-radius:4px;cursor:pointer;transition:all 0.15s}
+    .copy-btn:hover{color:var(--accent);border-color:var(--accent)}
+    pre{padding:1.1rem 1.2rem;overflow-x:auto;font-family:'JetBrains Mono',monospace;font-size:0.82rem;line-height:1.7;color:var(--text)}
+    .sidebar{position:sticky;top:80px}
+    .sidebar-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.2rem;margin-bottom:1rem}
+    .sidebar-title{font-family:'JetBrains Mono',monospace;font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--accent);margin-bottom:0.8rem}
+    .toc-list{list-style:none;margin:0;padding:0}
+    .toc-list li{margin-bottom:0.4rem}
+    .toc-list a{font-size:0.82rem;color:var(--muted);text-decoration:none;transition:color 0.2s;display:block;padding:0.2rem 0;border-left:2px solid transparent;padding-left:0.6rem}
+    .toc-list a:hover{color:var(--accent);border-left-color:var(--accent)}
+    .related-list{list-style:none;margin:0;padding:0}
+    .related-list li{margin-bottom:0.6rem}
+    .related-list a{font-size:0.82rem;color:var(--muted);text-decoration:none}
+    .related-list a:hover{color:var(--accent)}
+    footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:2rem 2.5rem;text-align:center}
+    footer p{font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--muted)}
+    .footer-legal{display:flex;gap:1.5rem;justify-content:center;margin-top:0.8rem;flex-wrap:wrap}
+    .footer-legal a{font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--muted);text-decoration:none}
+    .footer-legal a:hover{color:var(--accent)}
+  </style>
+</head>
+<body>
+<nav>
+  <a href="/" class="logo">tiny<span>bench</span>.dev</a>
+  <ul class="nav-links"><li><a href="/#tools">Tools</a></li><li><a href="/about/">About</a></li></ul>
+</nav>
+<div class="page-wrap">
+<article>
+  <div class="breadcrumb"><a href="/">Home</a><span>/</span><a href="/blog/">Blog</a><span>/</span><span>What is a JWT Token</span></div>
+  <div class="article-tag">JWT · Guide</div>
+  <h1>What is a <em>JWT Token?</em></h1>
+  <div class="article-meta"><span>5 min read</span><span>Updated January 2025</span><span>Developer Tools</span></div>
+  <div class="article-intro">JWT tokens are everywhere in modern web development — authentication, APIs, single sign-on. But what exactly is a JWT, what's inside it, and how do you read one?</div>
+  <div class="cta-box">
+    <h3>Free Online JWT Decoder</h3>
+    <p>Decode any JWT token instantly. See the header, payload, claims and expiry — all in your browser.</p>
+    <a href="/tools/jwt-decoder/" class="cta-btn">Open JWT Decoder &rarr;</a>
+  </div>
+  
+  <h2>What is a JWT?</h2>
+  <p>A <strong>JWT (JSON Web Token)</strong> is an open standard (RFC 7519) for securely transmitting information between two parties as a compact, URL-safe string. JWTs are most commonly used for <strong>authentication</strong> — after you log in, the server issues a JWT that your browser sends with every subsequent request to prove who you are.</p>
+  <p>A JWT looks like this:</p>
+  <div class="code-block"><div class="code-block-header"><span>Example JWT</span></div><pre>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFkYSBMb3ZlbGFjZSIsImlhdCI6MTUxNjIzOTAyMn0.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c</pre></div>
+  <p>Those three dot-separated sections are the three parts of every JWT.</p>
+
+  <h2>The 3 parts of a JWT</h2>
+  <p>Every JWT has exactly three parts, separated by dots: <code>header.payload.signature</code>. Each part is Base64URL-encoded.</p>
+  <h3>1. Header</h3>
+  <p>The header contains metadata about the token — specifically the algorithm used to sign it and the token type.</p>
+  <div class="code-block"><div class="code-block-header"><span>Header (decoded)</span></div><pre>{"alg": "HS256","typ": "JWT"}</pre></div>
+  <h3>2. Payload (Claims)</h3>
+  <p>The payload contains the actual data — called <strong>claims</strong>. These are statements about the user and other metadata.</p>
+  <div class="code-block"><div class="code-block-header"><span>Payload (decoded)</span></div><pre>{"sub": "1234567890","name": "Ada Lovelace","email": "ada@example.com","roles": ["admin"],"iat": 1516239022,"exp": 1516242622}</pre></div>
+  <p>Standard claims include: <code>sub</code> (subject/user ID), <code>iat</code> (issued at), <code>exp</code> (expiry time), <code>iss</code> (issuer), <code>aud</code> (audience).</p>
+  <h3>3. Signature</h3>
+  <p>The signature verifies the token hasn't been tampered with. It's created by signing the encoded header and payload with a secret key. Without the secret, you can read the payload but can't forge a valid signature.</p>
+  <div class="callout-green"><strong>Important:</strong> The JWT payload is only Base64-encoded — not encrypted. Anyone can decode and read it. Never put passwords, credit card numbers, or sensitive PII in a JWT payload.</div>
+
+  <h2>How to decode a JWT</h2>
+  <p>You can decode any JWT instantly using the <a href="/tools/jwt-decoder/">tinybench.dev JWT decoder</a> — paste the token and see the header, payload, and expiry time decoded and formatted. Since the tool runs entirely in your browser, your tokens are never sent to any server.</p>
+
+  <h2>How JWT authentication works</h2>
+  <ol>
+    <li><strong>User logs in</strong> — sends username and password to the server</li>
+    <li><strong>Server verifies credentials</strong> — checks the database</li>
+    <li><strong>Server issues JWT</strong> — creates a signed token with user info and expiry</li>
+    <li><strong>Client stores JWT</strong> — usually in memory or localStorage</li>
+    <li><strong>Client sends JWT with requests</strong> — in the <code>Authorization: Bearer &lt;token&gt;</code> header</li>
+    <li><strong>Server validates JWT</strong> — verifies the signature, checks expiry, reads claims</li>
+  </ol>
+
+  <h2>JWT vs session tokens</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Feature</th><th>JWT</th><th>Session Token</th></tr></thead>
+    <tbody>
+      <tr><td>Stored on server?</td><td>No (stateless)</td><td>Yes (in DB or cache)</td></tr>
+      <tr><td>Scales easily?</td><td>Yes</td><td>Requires shared session store</td></tr>
+      <tr><td>Can be revoked?</td><td>Only at expiry (or with blocklist)</td><td>Yes, instantly</td></tr>
+      <tr><td>Contains user data?</td><td>Yes</td><td>No (just an ID)</td></tr>
+      <tr><td>Common use</td><td>APIs, microservices, SPAs</td><td>Traditional web apps</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>Frequently asked questions</h2>
+  <div class="faq-item"><div class="faq-q">Is a JWT encrypted?</div><div class="faq-a">No. A standard JWT (JWS) is signed, not encrypted. The payload is Base64-encoded and readable by anyone. JWE (JSON Web Encryption) is a separate standard for encrypted tokens. For sensitive data, use JWE or keep sensitive fields out of the payload entirely.</div></div>
+  <div class="faq-item"><div class="faq-q">How long should a JWT last?</div><div class="faq-a">Short-lived access tokens (15 minutes to 1 hour) are best practice. Pair them with longer-lived refresh tokens. Long-lived JWTs are risky because they can't be revoked if stolen.</div></div>
+  <div class="faq-item"><div class="faq-q">Where should I store a JWT in the browser?</div><div class="faq-a">In-memory (a JavaScript variable) is most secure. localStorage is convenient but vulnerable to XSS. HttpOnly cookies protect against XSS but need CSRF protection. The right choice depends on your threat model.</div></div>
+  <div class="faq-item"><div class="faq-q">What does "invalid signature" mean?</div><div class="faq-a">It means the token was signed with a different secret key, or the token has been tampered with. Never trust a JWT with an invalid signature.</div></div>
+  
+  <div class="cta-box">
+    <h3>Try it now — free &amp; private</h3>
+    <p>Runs entirely in your browser. No sign-up, no uploads, no tracking.</p>
+    <a href="/tools/jwt-decoder/" class="cta-btn">Open JWT Decoder &rarr;</a>
+  </div>
+  <h2>Related tools on tinybench.dev</h2>
+  <ul>
+    <li><a href="/tools/json-formatter/">JSON Formatter</a></li><li><a href="/tools/base64/">Base64 Encoder</a></li><li><a href="/tools/regex-tester/">Regex Tester</a></li><li><a href="/tools/uuid-generator/">UUID Generator</a></li>
+  </ul>
+</article>
+<aside class="sidebar">
+  <div class="sidebar-card">
+    <div class="sidebar-title">// contents</div>
+    <ul class="toc-list">
+      <li><a href="#what-is-jwt">What is a JWT?</a></li>
+      <li><a href="#how-it-works">How JWT auth works</a></li>
+      <li><a href="#jwt-vs-session">JWT vs sessions</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+  </div>
+  <div class="sidebar-card">
+    <div class="sidebar-title">// try the tool</div>
+    <p style="font-size:0.82rem;color:var(--muted);margin-bottom:1rem;line-height:1.6">Decode any JWT token instantly. See the header, payload, claims and expiry — all in your browser.</p>
+    <a href="/tools/jwt-decoder/" class="cta-btn" style="display:block;text-align:center;font-size:0.82rem;padding:0.65rem 1rem;">Open JWT Decoder &rarr;</a>
+  </div>
+  <div class="sidebar-card">
+    <div class="sidebar-title">// related tools</div>
+    <ul class="related-list">
+      <li><a href="/tools/json-formatter/">JSON Formatter</a></li>
+      <li><a href="/tools/base64/">Base64 Encoder</a></li>
+      <li><a href="/tools/regex-tester/">Regex Tester</a></li>
+      <li><a href="/tools/uuid-generator/">UUID Generator</a></li>
+    </ul>
+  </div>
+</aside>
+</div>
+<footer>
+  <p>&copy; 2025 tinybench.dev &mdash; fast developer tools, no backend, no tracking.</p>
+  <div class="footer-legal"><a href="/privacy-policy/">Privacy Policy</a><a href="/terms/">Terms</a><a href="/cookie-policy/">Cookies</a><a href="/contact/">Contact</a><a href="/">Home</a></div>
+</footer>
+<script>
+function copyCode(btn){const pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.textContent).then(()=>{btn.textContent='copied!';setTimeout(()=>btn.textContent='copy',2000)})}
+</script>
+</body>
+</html>

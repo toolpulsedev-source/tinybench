@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SQL Formatting Best Practices — How to Write Readable SQL</title>
+  <meta name="description" content="Learn SQL formatting best practices: keyword casing, indentation, aliases, and how to use an online SQL formatter to beautify queries instantly." />
+  <link rel="canonical" href="https://tinybench.dev/blog/sql-formatting-best-practices/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="SQL Formatting Best Practices — How to Write Readable SQL" />
+  <meta property="og:description" content="Learn SQL formatting best practices: keyword casing, indentation, aliases, and how to use an online SQL formatter to beautify queries instantly." />
+  <meta property="og:url" content="https://tinybench.dev/blog/sql-formatting-best-practices/" />
+  <meta property="og:site_name" content="tinybench.dev" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="SQL Formatting Best Practices — How to Write Readable SQL" />
+  <meta name="twitter:description" content="Learn SQL formatting best practices: keyword casing, indentation, aliases, and how to use an online SQL formatter to beautify queries instantly." />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"SQL Formatting Best Practices","description":"Learn SQL formatting best practices: keyword casing, indentation, aliases, and how to use an online SQL formatter to beautify queries instantly.","url":"https://tinybench.dev/blog/sql-formatting-best-practices/","datePublished":"2025-01-01","dateModified":"2025-01-01","publisher":{"@type":"Organization","name":"tinybench.dev","url":"https://tinybench.dev"}}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Syne:wght@400;600;800&display=swap" rel="stylesheet" />
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--bg:#0a0a0f;--surface:#111118;--surface2:#13131c;--border:#1e1e2e;--accent:#00ff99;--accent2:#7b61ff;--text:#e8e8f0;--muted:#555570;--card:#13131c}
+    html{scroll-behavior:smooth}
+    body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;min-height:100vh;line-height:1.7}
+    body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;background-image:linear-gradient(rgba(0,255,153,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,255,153,0.03) 1px,transparent 1px);background-size:40px 40px}
+    nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1rem 2.5rem;background:rgba(10,10,15,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+    .logo{font-family:'JetBrains Mono',monospace;font-size:1rem;font-weight:700;color:var(--accent);text-decoration:none}
+    .logo span{color:var(--muted)}
+    .nav-links{display:flex;gap:1.5rem;list-style:none}
+    .nav-links a{font-family:'JetBrains Mono',monospace;font-size:0.78rem;color:var(--muted);text-decoration:none;transition:color 0.2s}
+    .nav-links a:hover{color:var(--accent)}
+    .page-wrap{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:3rem 2rem 6rem;display:grid;grid-template-columns:1fr 300px;gap:4rem;align-items:start}
+    @media(max-width:900px){.page-wrap{grid-template-columns:1fr}.sidebar{display:none}}
+    article{min-width:0}
+    .breadcrumb{font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--muted);margin-bottom:1.5rem;display:flex;align-items:center;gap:0.5rem}
+    .breadcrumb a{color:var(--muted);text-decoration:none}
+    .breadcrumb a:hover{color:var(--accent)}
+    .article-tag{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--accent);background:rgba(0,255,153,0.08);border:1px solid rgba(0,255,153,0.2);padding:0.2rem 0.7rem;border-radius:4px;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:1rem}
+    h1{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;letter-spacing:-0.03em;line-height:1.15;margin-bottom:1rem}
+    h1 em{font-style:normal;color:var(--accent)}
+    .article-meta{font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--muted);margin-bottom:2rem;display:flex;gap:1.5rem;flex-wrap:wrap}
+    .article-intro{font-size:1.05rem;color:var(--muted);line-height:1.8;margin-bottom:2.5rem;padding:1.25rem 1.5rem;border-left:3px solid var(--accent);background:rgba(0,255,153,0.04);border-radius:0 8px 8px 0}
+    h2{font-size:1.3rem;font-weight:800;letter-spacing:-0.02em;margin:2.5rem 0 0.8rem;color:var(--text)}
+    h2::before{content:'// ';font-family:'JetBrains Mono',monospace;color:var(--accent);font-size:1rem}
+    h3{font-size:1rem;font-weight:700;margin:1.5rem 0 0.5rem;color:var(--text)}
+    p{font-size:0.95rem;color:var(--muted);line-height:1.85;margin-bottom:1.1rem}
+    ul,ol{margin:0.5rem 0 1.2rem 1.4rem}
+    ul li,ol li{font-size:0.92rem;color:var(--muted);line-height:1.8;margin-bottom:0.3rem}
+    strong{color:var(--text);font-weight:700}
+    a{color:var(--accent);text-decoration:none}
+    a:hover{text-decoration:underline}
+    code{font-family:'JetBrains Mono',monospace;font-size:0.82rem;background:var(--surface2);padding:0.15rem 0.4rem;border-radius:3px;color:var(--accent)}
+    .callout-green{background:rgba(0,255,153,0.06);border:1px solid rgba(0,255,153,0.18);border-radius:8px;padding:1rem 1.2rem;margin:1.5rem 0;font-size:0.88rem;color:var(--muted);line-height:1.7}
+    .callout-green strong{color:var(--accent)}
+    .callout{background:rgba(123,97,255,0.07);border:1px solid rgba(123,97,255,0.2);border-radius:8px;padding:1rem 1.2rem;margin:1.5rem 0;font-size:0.88rem;color:var(--muted);line-height:1.7}
+    .callout strong{color:#7b61ff}
+    .cta-box{background:var(--card);border:1px solid rgba(0,255,153,0.25);border-radius:12px;padding:1.8rem;margin:2.5rem 0;text-align:center}
+    .cta-box h3{font-size:1.15rem;margin-bottom:0.5rem;color:var(--text)}
+    .cta-box h3::before{display:none}
+    .cta-box p{font-size:0.85rem;margin-bottom:1.2rem}
+    .cta-btn{display:inline-block;background:var(--accent);color:#000;font-family:'JetBrains Mono',monospace;font-weight:700;font-size:0.88rem;padding:0.75rem 2rem;border-radius:6px;text-decoration:none;transition:transform 0.15s,box-shadow 0.15s}
+    .cta-btn:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(0,255,153,0.3);text-decoration:none}
+    .table-wrap{overflow-x:auto;margin:1.2rem 0}
+    table{width:100%;border-collapse:collapse;font-size:0.85rem}
+    th{font-family:'JetBrains Mono',monospace;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--accent);text-align:left;padding:0.6rem 0.8rem;border-bottom:1px solid var(--border)}
+    td{color:var(--muted);padding:0.65rem 0.8rem;border-bottom:1px solid rgba(30,30,46,0.5)}
+    tr:last-child td{border-bottom:none}
+    .faq-item{border-bottom:1px solid var(--border);padding:1rem 0}
+    .faq-q{font-size:0.95rem;font-weight:700;color:var(--text);margin-bottom:0.5rem}
+    .faq-a{font-size:0.88rem;color:var(--muted);line-height:1.7}
+    .code-block{background:var(--surface2);border:1px solid var(--border);border-radius:8px;margin:1.2rem 0;overflow:hidden}
+    .code-block-header{display:flex;align-items:center;justify-content:space-between;padding:0.5rem 1rem;background:var(--surface);border-bottom:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--muted)}
+    .copy-btn{background:none;border:1px solid var(--border);color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:0.68rem;padding:2px 8px;border-radius:4px;cursor:pointer;transition:all 0.15s}
+    .copy-btn:hover{color:var(--accent);border-color:var(--accent)}
+    pre{padding:1.1rem 1.2rem;overflow-x:auto;font-family:'JetBrains Mono',monospace;font-size:0.82rem;line-height:1.7;color:var(--text)}
+    .sidebar{position:sticky;top:80px}
+    .sidebar-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.2rem;margin-bottom:1rem}
+    .sidebar-title{font-family:'JetBrains Mono',monospace;font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--accent);margin-bottom:0.8rem}
+    .toc-list{list-style:none;margin:0;padding:0}
+    .toc-list li{margin-bottom:0.4rem}
+    .toc-list a{font-size:0.82rem;color:var(--muted);text-decoration:none;transition:color 0.2s;display:block;padding:0.2rem 0;border-left:2px solid transparent;padding-left:0.6rem}
+    .toc-list a:hover{color:var(--accent);border-left-color:var(--accent)}
+    .related-list{list-style:none;margin:0;padding:0}
+    .related-list li{margin-bottom:0.6rem}
+    .related-list a{font-size:0.82rem;color:var(--muted);text-decoration:none}
+    .related-list a:hover{color:var(--accent)}
+    footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:2rem 2.5rem;text-align:center}
+    footer p{font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--muted)}
+    .footer-legal{display:flex;gap:1.5rem;justify-content:center;margin-top:0.8rem;flex-wrap:wrap}
+    .footer-legal a{font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--muted);text-decoration:none}
+    .footer-legal a:hover{color:var(--accent)}
+  </style>
+</head>
+<body>
+<nav>
+  <a href="/" class="logo">tiny<span>bench</span>.dev</a>
+  <ul class="nav-links"><li><a href="/#tools">Tools</a></li><li><a href="/about/">About</a></li></ul>
+</nav>
+<div class="page-wrap">
+<article>
+  <div class="breadcrumb"><a href="/">Home</a><span>/</span><a href="/blog/">Blog</a><span>/</span><span>SQL Formatting Best Practices</span></div>
+  <div class="article-tag">SQL · Guide</div>
+  <h1>SQL Formatting <em>Best Practices</em></h1>
+  <div class="article-meta"><span>5 min read</span><span>Updated January 2025</span><span>Developer Tools</span></div>
+  <div class="article-intro">Messy SQL is hard to debug, review, and maintain. This guide covers SQL formatting conventions used by professional database developers — and how to automate the cleanup with a free online SQL formatter.</div>
+  <div class="cta-box">
+    <h3>Free Online SQL Formatter</h3>
+    <p>Beautify raw SQL queries instantly. Supports MySQL, PostgreSQL, and more.</p>
+    <a href="/tools/sql-formatter/" class="cta-btn">Open SQL Formatter &rarr;</a>
+  </div>
+  
+  <h2>Why SQL formatting matters</h2>
+  <p>SQL queries can grow to hundreds of lines involving multiple joins, subqueries, CTEs, and window functions. Without consistent formatting, a complex query becomes nearly impossible to review in a pull request, debug in production, or hand off to another developer.</p>
+  <p>Good SQL formatting makes the logical structure of a query immediately visible — which tables are involved, what conditions apply, how data is grouped and ordered.</p>
+
+  <h2>Keyword casing — UPPERCASE vs lowercase</h2>
+  <p>The most visible formatting choice is whether SQL keywords are uppercase or lowercase. Both are valid SQL — it's a style choice. The two dominant conventions are:</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Style</th><th>Example</th><th>Common in</th></tr></thead>
+    <tbody>
+      <tr><td><strong>UPPERCASE keywords</strong></td><td><code>SELECT id FROM users WHERE active = true</code></td><td>Traditional SQL, enterprise teams, most style guides</td></tr>
+      <tr><td><strong>lowercase keywords</strong></td><td><code>select id from users where active = true</code></td><td>Modern teams, ORM-generated SQL</td></tr>
+    </tbody>
+  </table></div>
+  <p>The <a href="/tools/sql-formatter/">tinybench.dev SQL formatter</a> lets you choose your preferred keyword casing — UPPERCASE, lowercase, or preserve original.</p>
+
+  <h2>Indentation and line breaks</h2>
+  <p>Each major clause should start on a new line. Use consistent indentation (2 or 4 spaces) for sub-clauses.</p>
+  <div class="code-block"><div class="code-block-header"><span>Before formatting</span></div><pre>SELECT u.id, u.name, COUNT(o.id) AS orders FROM users u LEFT JOIN orders o ON u.id = o.user_id WHERE u.active = true GROUP BY u.id, u.name HAVING COUNT(o.id) > 0 ORDER BY orders DESC LIMIT 10</pre></div>
+  <div class="code-block"><div class="code-block-header"><span>After formatting</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div><pre>SELECT
+    u.id,
+    u.name,
+    COUNT(o.id) AS orders
+FROM users u
+LEFT JOIN orders o
+    ON u.id = o.user_id
+WHERE u.active = true
+GROUP BY
+    u.id,
+    u.name
+HAVING COUNT(o.id) > 0
+ORDER BY orders DESC
+LIMIT 10</pre></div>
+
+  <h2>Commas — leading vs trailing</h2>
+  <p>Two schools of thought exist on where to place commas in SELECT lists:</p>
+  <div class="code-block"><div class="code-block-header"><span>Trailing commas (most common)</span></div><pre>SELECT
+    id,
+    name,
+    email,
+    created_at
+FROM users</pre></div>
+  <div class="code-block"><div class="code-block-header"><span>Leading commas (easier to comment out lines)</span></div><pre>SELECT
+    id
+  , name
+  , email
+  , created_at
+FROM users</pre></div>
+  <p>Leading commas make it easy to comment out a line without worrying about trailing commas. Pick one style and be consistent within a project.</p>
+
+  <h2>Aliasing tables and columns</h2>
+  <ul>
+    <li>Use meaningful aliases — <code>u</code> for <code>users</code>, <code>o</code> for <code>orders</code></li>
+    <li>Always use the <code>AS</code> keyword explicitly — <code>COUNT(id) AS order_count</code> is clearer than <code>COUNT(id) order_count</code></li>
+    <li>Qualify all column names with table aliases in multi-table queries to avoid ambiguity</li>
+  </ul>
+
+  <h2>CTE formatting</h2>
+  <p>Common Table Expressions (CTEs) should be formatted with each CTE clearly separated and named descriptively:</p>
+  <div class="code-block"><div class="code-block-header"><span>Well-formatted CTE</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div><pre>WITH
+active_users AS (
+    SELECT id, name
+    FROM users
+    WHERE active = true
+),
+order_counts AS (
+    SELECT user_id, COUNT(*) AS total
+    FROM orders
+    GROUP BY user_id
+)
+SELECT
+    u.name,
+    COALESCE(o.total, 0) AS orders
+FROM active_users u
+LEFT JOIN order_counts o
+    ON u.id = o.user_id
+ORDER BY orders DESC</pre></div>
+
+  <div class="callout"><strong>Pro tip:</strong> Paste any query into the <a href="/tools/sql-formatter/">SQL formatter</a> and hit Format. It handles SELECT, INSERT, UPDATE, DELETE, CTEs, subqueries, and window functions automatically.</div>
+
+  <h2>Frequently asked questions</h2>
+  <div class="faq-item"><div class="faq-q">Does SQL formatting affect query performance?</div><div class="faq-a">No. SQL formatting is purely cosmetic — whitespace, line breaks, and casing have zero effect on how the database engine parses or executes the query.</div></div>
+  <div class="faq-item"><div class="faq-q">Should I format SQL in stored procedures?</div><div class="faq-a">Absolutely. Stored procedures and views are code that other developers will need to read, review, and maintain. Consistent formatting is especially important in stored procedures because they tend to contain complex logic.</div></div>
+  <div class="faq-item"><div class="faq-q">What indentation size should I use for SQL?</div><div class="faq-a">4 spaces is the most common convention for SQL. Some teams use 2 spaces for consistency with their other code. The key is picking one and sticking to it across the codebase.</div></div>
+  
+  <div class="cta-box">
+    <h3>Try it now — free &amp; private</h3>
+    <p>Runs entirely in your browser. No sign-up, no uploads, no tracking.</p>
+    <a href="/tools/sql-formatter/" class="cta-btn">Open SQL Formatter &rarr;</a>
+  </div>
+  <h2>Related tools on tinybench.dev</h2>
+  <ul>
+    <li><a href="/tools/sql-formatter/">SQL Formatter</a></li><li><a href="/tools/json-formatter/">JSON Formatter</a></li><li><a href="/tools/regex-tester/">Regex Tester</a></li>
+  </ul>
+</article>
+<aside class="sidebar">
+  <div class="sidebar-card">
+    <div class="sidebar-title">// contents</div>
+    <ul class="toc-list">
+      <li><a href="#why-matters">Why SQL formatting matters</a></li>
+      <li><a href="#keyword-casing">Keyword casing</a></li>
+      <li><a href="#indentation">Indentation</a></li>
+      <li><a href="#commas">Commas</a></li>
+      <li><a href="#aliases">Aliasing</a></li>
+      <li><a href="#cte">CTE formatting</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+  </div>
+  <div class="sidebar-card">
+    <div class="sidebar-title">// try the tool</div>
+    <p style="font-size:0.82rem;color:var(--muted);margin-bottom:1rem;line-height:1.6">Beautify raw SQL queries instantly. Supports MySQL, PostgreSQL, and more.</p>
+    <a href="/tools/sql-formatter/" class="cta-btn" style="display:block;text-align:center;font-size:0.82rem;padding:0.65rem 1rem;">Open SQL Formatter &rarr;</a>
+  </div>
+  <div class="sidebar-card">
+    <div class="sidebar-title">// related tools</div>
+    <ul class="related-list">
+      <li><a href="/tools/sql-formatter/">SQL Formatter</a></li>
+      <li><a href="/tools/json-formatter/">JSON Formatter</a></li>
+      <li><a href="/tools/regex-tester/">Regex Tester</a></li>
+    </ul>
+  </div>
+</aside>
+</div>
+<footer>
+  <p>&copy; 2025 tinybench.dev &mdash; fast developer tools, no backend, no tracking.</p>
+  <div class="footer-legal"><a href="/privacy-policy/">Privacy Policy</a><a href="/terms/">Terms</a><a href="/cookie-policy/">Cookies</a><a href="/contact/">Contact</a><a href="/">Home</a></div>
+</footer>
+<script>
+function copyCode(btn){const pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.textContent).then(()=>{btn.textContent='copied!';setTimeout(()=>btn.textContent='copy',2000)})}
+</script>
+</body>
+</html>

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How to Compress Images Online — Free, Private, No Upload</title>
+  <meta name="description" content="Compress JPEG, PNG and WebP images online for free. Reduce image file size without losing quality — runs entirely in your browser, nothing uploaded." />
+  <link rel="canonical" href="https://tinybench.dev/blog/how-to-compress-images/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="How to Compress Images Online — Free, Private, No Upload" />
+  <meta property="og:description" content="Compress JPEG, PNG and WebP images online for free. Reduce image file size without losing quality — runs entirely in your browser." />
+  <meta property="og:url" content="https://tinybench.dev/blog/how-to-compress-images/" />
+  <meta property="og:site_name" content="tinybench.dev" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="How to Compress Images Online — tinybench.dev" />
+  <meta name="twitter:description" content="Free image compressor. No uploads, no server, instant results." />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How to Compress Images Online","description":"Compress JPEG, PNG and WebP images online for free without losing quality.","url":"https://tinybench.dev/blog/how-to-compress-images/","datePublished":"2025-01-01","dateModified":"2025-01-01","publisher":{"@type":"Organization","name":"tinybench.dev","url":"https://tinybench.dev"}}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Syne:wght@400;600;800&display=swap" rel="stylesheet" />
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--bg:#0a0a0f;--surface:#111118;--surface2:#13131c;--border:#1e1e2e;--accent:#00ff99;--accent2:#7b61ff;--text:#e8e8f0;--muted:#555570;--card:#13131c}
+    html{scroll-behavior:smooth}
+    body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;min-height:100vh;line-height:1.7}
+    body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;background-image:linear-gradient(rgba(0,255,153,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,255,153,0.03) 1px,transparent 1px);background-size:40px 40px}
+    nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1rem 2.5rem;background:rgba(10,10,15,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+    .logo{font-family:'JetBrains Mono',monospace;font-size:1rem;font-weight:700;color:var(--accent);text-decoration:none}
+    .logo span{color:var(--muted)}
+    .nav-links{display:flex;gap:1.5rem;list-style:none}
+    .nav-links a{font-family:'JetBrains Mono',monospace;font-size:0.78rem;color:var(--muted);text-decoration:none;transition:color 0.2s}
+    .nav-links a:hover{color:var(--accent)}
+    .page-wrap{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:3rem 2rem 6rem;display:grid;grid-template-columns:1fr 300px;gap:4rem;align-items:start}
+    @media(max-width:900px){.page-wrap{grid-template-columns:1fr}.sidebar{display:none}}
+    article{min-width:0}
+    .breadcrumb{font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--muted);margin-bottom:1.5rem;display:flex;align-items:center;gap:0.5rem}
+    .breadcrumb a{color:var(--muted);text-decoration:none}
+    .breadcrumb a:hover{color:var(--accent)}
+    .article-tag{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--accent);background:rgba(0,255,153,0.08);border:1px solid rgba(0,255,153,0.2);padding:0.2rem 0.7rem;border-radius:4px;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:1rem}
+    h1{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;letter-spacing:-0.03em;line-height:1.15;margin-bottom:1rem}
+    h1 em{font-style:normal;color:var(--accent)}
+    .article-meta{font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--muted);margin-bottom:2rem;display:flex;gap:1.5rem;flex-wrap:wrap}
+    .article-intro{font-size:1.05rem;color:var(--muted);line-height:1.8;margin-bottom:2.5rem;padding:1.25rem 1.5rem;border-left:3px solid var(--accent);background:rgba(0,255,153,0.04);border-radius:0 8px 8px 0}
+    h2{font-size:1.3rem;font-weight:800;letter-spacing:-0.02em;margin:2.5rem 0 0.8rem;color:var(--text)}
+    h2::before{content:'// ';font-family:'JetBrains Mono',monospace;color:var(--accent);font-size:1rem}
+    h3{font-size:1rem;font-weight:700;margin:1.5rem 0 0.5rem;color:var(--text)}
+    p{font-size:0.95rem;color:var(--muted);line-height:1.85;margin-bottom:1.1rem}
+    ul,ol{margin:0.5rem 0 1.2rem 1.4rem}
+    ul li,ol li{font-size:0.92rem;color:var(--muted);line-height:1.8;margin-bottom:0.3rem}
+    strong{color:var(--text);font-weight:700}
+    a{color:var(--accent);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .callout-green{background:rgba(0,255,153,0.06);border:1px solid rgba(0,255,153,0.18);border-radius:8px;padding:1rem 1.2rem;margin:1.5rem 0;font-size:0.88rem;color:var(--muted);line-height:1.7}
+    .callout-green strong{color:var(--accent)}
+    .callout{background:rgba(123,97,255,0.07);border:1px solid rgba(123,97,255,0.2);border-radius:8px;padding:1rem 1.2rem;margin:1.5rem 0;font-size:0.88rem;color:var(--muted);line-height:1.7}
+    .callout strong{color:#7b61ff}
+    .cta-box{background:var(--card);border:1px solid rgba(0,255,153,0.25);border-radius:12px;padding:1.8rem;margin:2.5rem 0;text-align:center}
+    .cta-box h3{font-size:1.15rem;margin-bottom:0.5rem;color:var(--text)}
+    .cta-box h3::before{display:none}
+    .cta-box p{font-size:0.85rem;margin-bottom:1.2rem}
+    .cta-btn{display:inline-block;background:var(--accent);color:#000;font-family:'JetBrains Mono',monospace;font-weight:700;font-size:0.88rem;padding:0.75rem 2rem;border-radius:6px;text-decoration:none;transition:transform 0.15s,box-shadow 0.15s}
+    .cta-btn:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(0,255,153,0.3);text-decoration:none}
+    .table-wrap{overflow-x:auto;margin:1.2rem 0}
+    table{width:100%;border-collapse:collapse;font-size:0.85rem}
+    th{font-family:'JetBrains Mono',monospace;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--accent);text-align:left;padding:0.6rem 0.8rem;border-bottom:1px solid var(--border)}
+    td{color:var(--muted);padding:0.65rem 0.8rem;border-bottom:1px solid rgba(30,30,46,0.5)}
+    tr:last-child td{border-bottom:none}
+    .faq-item{border-bottom:1px solid var(--border);padding:1rem 0}
+    .faq-q{font-size:0.95rem;font-weight:700;color:var(--text);margin-bottom:0.5rem}
+    .faq-a{font-size:0.88rem;color:var(--muted);line-height:1.7}
+    .sidebar{position:sticky;top:80px}
+    .sidebar-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.2rem;margin-bottom:1rem}
+    .sidebar-title{font-family:'JetBrains Mono',monospace;font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--accent);margin-bottom:0.8rem}
+    .toc-list{list-style:none;margin:0;padding:0}
+    .toc-list li{margin-bottom:0.4rem}
+    .toc-list a{font-size:0.82rem;color:var(--muted);text-decoration:none;transition:color 0.2s;display:block;padding:0.2rem 0;border-left:2px solid transparent;padding-left:0.6rem}
+    .toc-list a:hover{color:var(--accent);border-left-color:var(--accent)}
+    .related-list{list-style:none;margin:0;padding:0}
+    .related-list li{margin-bottom:0.6rem}
+    .related-list a{font-size:0.82rem;color:var(--muted);text-decoration:none;transition:color 0.2s}
+    .related-list a:hover{color:var(--accent)}
+    footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:2rem 2.5rem;text-align:center}
+    footer p{font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--muted)}
+    .footer-legal{display:flex;gap:1.5rem;justify-content:center;margin-top:0.8rem;flex-wrap:wrap}
+    .footer-legal a{font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--muted);text-decoration:none}
+    .footer-legal a:hover{color:var(--accent)}
+  </style>
+</head>
+<body>
+<nav>
+  <a href="/" class="logo">tiny<span>bench</span>.dev</a>
+  <ul class="nav-links"><li><a href="/#tools">Tools</a></li><li><a href="/about/">About</a></li></ul>
+</nav>
+<div class="page-wrap">
+<article>
+  <div class="breadcrumb"><a href="/">Home</a><span>/</span><a href="/blog/">Blog</a><span>/</span><span>How to Compress Images Online</span></div>
+  <div class="article-tag">Images · Guide</div>
+  <h1>How to <em>Compress Images</em> Online — Free & Private</h1>
+  <div class="article-meta"><span>5 min read</span><span>Updated January 2025</span><span>Developer Tools</span></div>
+  <div class="article-intro">Large images slow down websites, inflate storage costs, and frustrate users. Learn how to compress images online for free — reducing file size by up to 80% without visible quality loss, entirely in your browser.</div>
+
+  <div class="cta-box">
+    <h3>Free Online Image Compressor</h3>
+    <p>Compress JPEG, PNG and WebP images instantly. No uploads to any server — ever.</p>
+    <a href="/tools/image-compressor/" class="cta-btn">Open Image Compressor →</a>
+  </div>
+
+  <h2>Why compress images?</h2>
+  <p>Images are typically the largest assets on any web page. A single uncompressed JPEG from a modern smartphone can be 4–8 MB. That same image, properly compressed, can be under 200 KB with no visible difference to the human eye.</p>
+  <p>Compressing images before publishing them online has a direct impact on:</p>
+  <ul>
+    <li><strong>Page load speed</strong> — smaller images load faster, especially on mobile networks</li>
+    <li><strong>Google rankings</strong> — Core Web Vitals (LCP) is directly affected by image size</li>
+    <li><strong>Storage costs</strong> — fewer bytes stored means lower S3, Cloudflare, or CDN bills</li>
+    <li><strong>User experience</strong> — pages that load in under 3 seconds have significantly lower bounce rates</li>
+    <li><strong>Bandwidth costs</strong> — especially important for high-traffic sites</li>
+  </ul>
+
+  <h2>How to compress images online in 3 steps</h2>
+  <ol>
+    <li><strong>Open the image compressor</strong> — go to <a href="/tools/image-compressor/">tinybench.dev/tools/image-compressor/</a></li>
+    <li><strong>Drop or select your image</strong> — drag a JPEG, PNG, or WebP file onto the drop zone, or click to browse</li>
+    <li><strong>Adjust quality and download</strong> — use the quality slider to find the right balance, then click Download</li>
+  </ol>
+
+  <div class="callout-green">
+    <strong>100% private:</strong> The image compressor runs entirely in your browser using the Canvas API. Your images are never uploaded to any server. This makes it safe for confidential screenshots, client work, and personal photos.
+  </div>
+
+  <h2>Image formats explained</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Format</th><th>Best for</th><th>Compression</th><th>Transparency</th></tr></thead>
+      <tbody>
+        <tr><td><strong>JPEG</strong></td><td>Photos, complex images</td><td>Lossy — very small files</td><td>No</td></tr>
+        <tr><td><strong>PNG</strong></td><td>Screenshots, logos, UI</td><td>Lossless — larger files</td><td>Yes</td></tr>
+        <tr><td><strong>WebP</strong></td><td>Web images (modern browsers)</td><td>Lossy or lossless — smallest files</td><td>Yes</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>For most web images, <strong>WebP gives the best results</strong> — up to 30% smaller than JPEG at the same quality. All modern browsers support WebP. If you need broad compatibility or the image will be used in email, stick with JPEG.</p>
+
+  <h2>What quality setting should I use?</h2>
+  <p>The quality slider controls how aggressively the image is compressed. Higher quality = larger file. The sweet spot for most web images is <strong>70–85%</strong>:</p>
+  <ul>
+    <li><strong>85–100%</strong> — near-lossless, large files. Use for print or professional photography.</li>
+    <li><strong>70–85%</strong> — excellent quality, significantly reduced size. Best for most websites.</li>
+    <li><strong>50–70%</strong> — visible compression on close inspection. Good for thumbnails.</li>
+    <li><strong>Below 50%</strong> — noticeable quality loss. Use only for tiny previews or placeholders.</li>
+  </ul>
+
+  <div class="callout">
+    <strong>Pro tip:</strong> Use the target file size feature to automatically hit a specific size limit. For example, set it to 200 KB and the compressor will binary-search the optimal quality level to get as close as possible to that target.
+  </div>
+
+  <h2>How to reduce image file size without losing quality</h2>
+  <p>Truly lossless compression (reducing file size with zero quality change) is possible but limited. Here are techniques that reduce size without visible quality loss:</p>
+  <ul>
+    <li><strong>Strip metadata (EXIF)</strong> — photos from cameras and phones contain GPS coordinates, camera model, timestamp and more. Stripping this metadata alone can reduce file size by 10–20% with zero visual change.</li>
+    <li><strong>Convert to WebP</strong> — switching a JPEG to WebP at the same quality produces a 25–35% smaller file.</li>
+    <li><strong>Resize before compressing</strong> — if you're displaying an image at 800px wide, there's no reason to serve a 3000px wide original. Resize first, then compress.</li>
+    <li><strong>Use 80% quality for JPEG</strong> — at 80%, JPEG compression artefacts are invisible to most people. The file is typically 60% smaller than the original.</li>
+  </ul>
+
+  <h2>Compress images for web performance</h2>
+  <p>Google's PageSpeed Insights and Core Web Vitals directly penalise pages with oversized images. The <strong>Largest Contentful Paint (LCP)</strong> metric measures how long your main image takes to load — compressing that image is one of the fastest ways to improve your LCP score.</p>
+  <p>A good target for web images:</p>
+  <ul>
+    <li>Hero images: under 200 KB</li>
+    <li>Blog post images: under 100 KB</li>
+    <li>Thumbnails: under 30 KB</li>
+    <li>Icons and logos: under 10 KB (consider SVG instead)</li>
+  </ul>
+
+  <h2>Frequently asked questions</h2>
+  <div class="faq-item">
+    <div class="faq-q">Does compressing an image reduce its dimensions?</div>
+    <div class="faq-a">Not automatically. Compression reduces file size by discarding pixel data, not by changing dimensions. You can optionally resize the image using the width/height inputs in the tool. Resizing and compressing together gives the biggest file size reduction.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">Can I compress PNG images without losing transparency?</div>
+    <div class="faq-a">Yes. Select PNG as the output format and transparency is preserved. If you convert a PNG to JPEG, transparency is lost (replaced with a white background). Convert to WebP if you need both transparency and small file size.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">Is there a file size limit?</div>
+    <div class="faq-a">No upload limit because nothing is uploaded — the compression happens in your browser. Performance depends on your device. Images up to 20 MB compress without issues on most modern devices.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">What is lossy vs lossless compression?</div>
+    <div class="faq-a">Lossy compression permanently removes some image data to achieve smaller files — JPEG is lossy. Lossless compression reduces file size without removing any data — PNG is lossless. For photos, lossy at high quality (80%+) is usually the best choice for web.</div>
+  </div>
+
+  <div class="cta-box">
+    <h3>Ready to compress your images?</h3>
+    <p>Free, instant, private. Supports JPEG, PNG, and WebP.</p>
+    <a href="/tools/image-compressor/" class="cta-btn">Open Image Compressor →</a>
+  </div>
+
+  <h2>Related tools on tinybench.dev</h2>
+  <ul>
+    <li><a href="/tools/color-contrast-checker/">Color Contrast Checker</a> — check WCAG accessibility contrast ratios</li>
+    <li><a href="/tools/css-beautifier/">CSS Beautifier & Minifier</a> — format or minify CSS</li>
+    <li><a href="/tools/json-formatter/">JSON Formatter</a> — beautify and validate JSON instantly</li>
+  </ul>
+</article>
+<aside class="sidebar">
+  <div class="sidebar-card">
+    <div class="sidebar-title">// contents</div>
+    <ul class="toc-list">
+      <li><a href="#why-compress">Why compress images?</a></li>
+      <li><a href="#how-to">3 steps to compress</a></li>
+      <li><a href="#formats">Image formats</a></li>
+      <li><a href="#quality">Quality settings</a></li>
+      <li><a href="#lossless">Without losing quality</a></li>
+      <li><a href="#web-performance">Web performance</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+  </div>
+  <div class="sidebar-card">
+    <div class="sidebar-title">// try the tool</div>
+    <p style="font-size:0.82rem;color:var(--muted);margin-bottom:1rem;line-height:1.6">Free image compressor. Nothing uploaded to any server.</p>
+    <a href="/tools/image-compressor/" class="cta-btn" style="display:block;text-align:center;font-size:0.82rem;padding:0.65rem 1rem;">Open Image Compressor →</a>
+  </div>
+  <div class="sidebar-card">
+    <div class="sidebar-title">// related tools</div>
+    <ul class="related-list">
+      <li><a href="/tools/json-formatter/">JSON Formatter</a></li>
+      <li><a href="/tools/css-beautifier/">CSS Beautifier</a></li>
+      <li><a href="/tools/color-contrast-checker/">Color Contrast</a></li>
+    </ul>
+  </div>
+</aside>
+</div>
+<footer>
+  <p>© 2025 tinybench.dev — fast developer tools, no backend, no tracking.</p>
+  <div class="footer-legal"><a href="/privacy-policy/">Privacy Policy</a><a href="/terms/">Terms</a><a href="/cookie-policy/">Cookies</a><a href="/contact/">Contact</a><a href="/">Home</a></div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Unix Timestamp Explained — What is Epoch Time & How to Convert It</title>
+  <meta name="description" content="Learn what a Unix timestamp is, why developers use epoch time, and how to convert timestamps to human-readable dates online and in code." />
+  <link rel="canonical" href="https://tinybench.dev/blog/unix-timestamp-explained/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Unix Timestamp Explained — What is Epoch Time & How to Convert" />
+  <meta property="og:description" content="Learn what a Unix timestamp is, why developers use epoch time, and how to convert timestamps to human-readable dates online and in code." />
+  <meta property="og:url" content="https://tinybench.dev/blog/unix-timestamp-explained/" />
+  <meta property="og:site_name" content="tinybench.dev" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Unix Timestamp Explained — What is Epoch Time & How to Convert" />
+  <meta name="twitter:description" content="Learn what a Unix timestamp is, why developers use epoch time, and how to convert timestamps to human-readable dates online and in code." />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Unix Timestamp Explained","description":"Learn what a Unix timestamp is, why developers use epoch time, and how to convert timestamps to human-readable dates online and in code.","url":"https://tinybench.dev/blog/unix-timestamp-explained/","datePublished":"2025-01-01","dateModified":"2025-01-01","publisher":{"@type":"Organization","name":"tinybench.dev","url":"https://tinybench.dev"}}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Syne:wght@400;600;800&display=swap" rel="stylesheet" />
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--bg:#0a0a0f;--surface:#111118;--surface2:#13131c;--border:#1e1e2e;--accent:#00ff99;--accent2:#7b61ff;--text:#e8e8f0;--muted:#555570;--card:#13131c}
+    html{scroll-behavior:smooth}
+    body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;min-height:100vh;line-height:1.7}
+    body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;background-image:linear-gradient(rgba(0,255,153,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,255,153,0.03) 1px,transparent 1px);background-size:40px 40px}
+    nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1rem 2.5rem;background:rgba(10,10,15,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+    .logo{font-family:'JetBrains Mono',monospace;font-size:1rem;font-weight:700;color:var(--accent);text-decoration:none}
+    .logo span{color:var(--muted)}
+    .nav-links{display:flex;gap:1.5rem;list-style:none}
+    .nav-links a{font-family:'JetBrains Mono',monospace;font-size:0.78rem;color:var(--muted);text-decoration:none;transition:color 0.2s}
+    .nav-links a:hover{color:var(--accent)}
+    .page-wrap{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:3rem 2rem 6rem;display:grid;grid-template-columns:1fr 300px;gap:4rem;align-items:start}
+    @media(max-width:900px){.page-wrap{grid-template-columns:1fr}.sidebar{display:none}}
+    article{min-width:0}
+    .breadcrumb{font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--muted);margin-bottom:1.5rem;display:flex;align-items:center;gap:0.5rem}
+    .breadcrumb a{color:var(--muted);text-decoration:none}
+    .breadcrumb a:hover{color:var(--accent)}
+    .article-tag{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--accent);background:rgba(0,255,153,0.08);border:1px solid rgba(0,255,153,0.2);padding:0.2rem 0.7rem;border-radius:4px;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:1rem}
+    h1{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;letter-spacing:-0.03em;line-height:1.15;margin-bottom:1rem}
+    h1 em{font-style:normal;color:var(--accent)}
+    .article-meta{font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--muted);margin-bottom:2rem;display:flex;gap:1.5rem;flex-wrap:wrap}
+    .article-intro{font-size:1.05rem;color:var(--muted);line-height:1.8;margin-bottom:2.5rem;padding:1.25rem 1.5rem;border-left:3px solid var(--accent);background:rgba(0,255,153,0.04);border-radius:0 8px 8px 0}
+    h2{font-size:1.3rem;font-weight:800;letter-spacing:-0.02em;margin:2.5rem 0 0.8rem;color:var(--text)}
+    h2::before{content:'// ';font-family:'JetBrains Mono',monospace;color:var(--accent);font-size:1rem}
+    h3{font-size:1rem;font-weight:700;margin:1.5rem 0 0.5rem;color:var(--text)}
+    p{font-size:0.95rem;color:var(--muted);line-height:1.85;margin-bottom:1.1rem}
+    ul,ol{margin:0.5rem 0 1.2rem 1.4rem}
+    ul li,ol li{font-size:0.92rem;color:var(--muted);line-height:1.8;margin-bottom:0.3rem}
+    strong{color:var(--text);font-weight:700}
+    a{color:var(--accent);text-decoration:none}
+    a:hover{text-decoration:underline}
+    code{font-family:'JetBrains Mono',monospace;font-size:0.82rem;background:var(--surface2);padding:0.15rem 0.4rem;border-radius:3px;color:var(--accent)}
+    .callout-green{background:rgba(0,255,153,0.06);border:1px solid rgba(0,255,153,0.18);border-radius:8px;padding:1rem 1.2rem;margin:1.5rem 0;font-size:0.88rem;color:var(--muted);line-height:1.7}
+    .callout-green strong{color:var(--accent)}
+    .callout{background:rgba(123,97,255,0.07);border:1px solid rgba(123,97,255,0.2);border-radius:8px;padding:1rem 1.2rem;margin:1.5rem 0;font-size:0.88rem;color:var(--muted);line-height:1.7}
+    .callout strong{color:#7b61ff}
+    .cta-box{background:var(--card);border:1px solid rgba(0,255,153,0.25);border-radius:12px;padding:1.8rem;margin:2.5rem 0;text-align:center}
+    .cta-box h3{font-size:1.15rem;margin-bottom:0.5rem;color:var(--text)}
+    .cta-box h3::before{display:none}
+    .cta-box p{font-size:0.85rem;margin-bottom:1.2rem}
+    .cta-btn{display:inline-block;background:var(--accent);color:#000;font-family:'JetBrains Mono',monospace;font-weight:700;font-size:0.88rem;padding:0.75rem 2rem;border-radius:6px;text-decoration:none;transition:transform 0.15s,box-shadow 0.15s}
+    .cta-btn:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(0,255,153,0.3);text-decoration:none}
+    .table-wrap{overflow-x:auto;margin:1.2rem 0}
+    table{width:100%;border-collapse:collapse;font-size:0.85rem}
+    th{font-family:'JetBrains Mono',monospace;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--accent);text-align:left;padding:0.6rem 0.8rem;border-bottom:1px solid var(--border)}
+    td{color:var(--muted);padding:0.65rem 0.8rem;border-bottom:1px solid rgba(30,30,46,0.5)}
+    tr:last-child td{border-bottom:none}
+    .faq-item{border-bottom:1px solid var(--border);padding:1rem 0}
+    .faq-q{font-size:0.95rem;font-weight:700;color:var(--text);margin-bottom:0.5rem}
+    .faq-a{font-size:0.88rem;color:var(--muted);line-height:1.7}
+    .code-block{background:var(--surface2);border:1px solid var(--border);border-radius:8px;margin:1.2rem 0;overflow:hidden}
+    .code-block-header{display:flex;align-items:center;justify-content:space-between;padding:0.5rem 1rem;background:var(--surface);border-bottom:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--muted)}
+    .copy-btn{background:none;border:1px solid var(--border);color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:0.68rem;padding:2px 8px;border-radius:4px;cursor:pointer;transition:all 0.15s}
+    .copy-btn:hover{color:var(--accent);border-color:var(--accent)}
+    pre{padding:1.1rem 1.2rem;overflow-x:auto;font-family:'JetBrains Mono',monospace;font-size:0.82rem;line-height:1.7;color:var(--text)}
+    .sidebar{position:sticky;top:80px}
+    .sidebar-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.2rem;margin-bottom:1rem}
+    .sidebar-title{font-family:'JetBrains Mono',monospace;font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--accent);margin-bottom:0.8rem}
+    .toc-list{list-style:none;margin:0;padding:0}
+    .toc-list li{margin-bottom:0.4rem}
+    .toc-list a{font-size:0.82rem;color:var(--muted);text-decoration:none;transition:color 0.2s;display:block;padding:0.2rem 0;border-left:2px solid transparent;padding-left:0.6rem}
+    .toc-list a:hover{color:var(--accent);border-left-color:var(--accent)}
+    .related-list{list-style:none;margin:0;padding:0}
+    .related-list li{margin-bottom:0.6rem}
+    .related-list a{font-size:0.82rem;color:var(--muted);text-decoration:none}
+    .related-list a:hover{color:var(--accent)}
+    footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:2rem 2.5rem;text-align:center}
+    footer p{font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--muted)}
+    .footer-legal{display:flex;gap:1.5rem;justify-content:center;margin-top:0.8rem;flex-wrap:wrap}
+    .footer-legal a{font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--muted);text-decoration:none}
+    .footer-legal a:hover{color:var(--accent)}
+  </style>
+</head>
+<body>
+<nav>
+  <a href="/" class="logo">tiny<span>bench</span>.dev</a>
+  <ul class="nav-links"><li><a href="/#tools">Tools</a></li><li><a href="/about/">About</a></li></ul>
+</nav>
+<div class="page-wrap">
+<article>
+  <div class="breadcrumb"><a href="/">Home</a><span>/</span><a href="/blog/">Blog</a><span>/</span><span>Unix Timestamp Explained</span></div>
+  <div class="article-tag">DateTime · Guide</div>
+  <h1>Unix Timestamp — <em>Epoch Time Explained</em></h1>
+  <div class="article-meta"><span>5 min read</span><span>Updated January 2025</span><span>Developer Tools</span></div>
+  <div class="article-intro">Unix timestamps are used everywhere in programming — databases, APIs, logs, JWTs. But what exactly is a Unix timestamp, why does it start at 1970, and how do you convert one to a readable date?</div>
+  <div class="cta-box">
+    <h3>Free Online Unix Timestamp Converter</h3>
+    <p>Convert Unix timestamps to human-readable dates and back. Supports seconds, milliseconds, and multiple timezones.</p>
+    <a href="/tools/timestamp-converter/" class="cta-btn">Open Unix Timestamp Converter &rarr;</a>
+  </div>
+  
+  <h2>What is a Unix timestamp?</h2>
+  <p>A <strong>Unix timestamp</strong> (also called epoch time or POSIX time) is the number of seconds that have elapsed since <strong>January 1, 1970, at 00:00:00 UTC</strong>. This reference point is called the <strong>Unix epoch</strong>.</p>
+  <div class="code-block"><div class="code-block-header"><span>Example</span></div><pre>Unix timestamp:  1704067200
+Human readable:  Monday, January 1, 2024, 00:00:00 UTC</pre></div>
+  <p>The current Unix timestamp is always a large integer — around 1.7 billion for dates in 2024. It's a universal, timezone-independent way to represent a moment in time.</p>
+
+  <h2>Why does Unix time start in 1970?</h2>
+  <p>The Unix operating system was developed in the late 1960s and early 1970s at Bell Labs. When the developers needed to choose a starting point for their time system, they picked January 1, 1970 — a round number that was recent enough to be practical. It was an arbitrary but convenient choice that became the global standard.</p>
+
+  <h2>Seconds vs milliseconds</h2>
+  <p>You'll encounter two common formats:</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Format</th><th>Example</th><th>Precision</th><th>Common in</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Seconds</strong></td><td>1704067200</td><td>1 second</td><td>Unix/Linux, databases, JWT (exp claim)</td></tr>
+      <tr><td><strong>Milliseconds</strong></td><td>1704067200000</td><td>1 millisecond</td><td>JavaScript (Date.now()), Java, most APIs</td></tr>
+    </tbody>
+  </table></div>
+  <p>A quick way to tell them apart: if the number is 13 digits, it's milliseconds. If it's 10 digits, it's seconds. The <a href="/tools/timestamp-converter/">timestamp converter</a> handles both automatically.</p>
+
+  <h2>How to get the current Unix timestamp in code</h2>
+  <div class="code-block"><div class="code-block-header"><span>JavaScript</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div><pre>// Seconds
+Math.floor(Date.now() / 1000)
+
+// Milliseconds
+Date.now()</pre></div>
+  <div class="code-block"><div class="code-block-header"><span>Python</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div><pre>import time
+
+# Seconds
+int(time.time())
+
+# Milliseconds
+int(time.time() * 1000)</pre></div>
+  <div class="code-block"><div class="code-block-header"><span>SQL (PostgreSQL)</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div><pre>-- Current timestamp in seconds
+SELECT EXTRACT(EPOCH FROM NOW())::INT;
+
+-- Convert timestamp to date
+SELECT TO_TIMESTAMP(1704067200);</pre></div>
+  <div class="code-block"><div class="code-block-header"><span>SQL (MySQL)</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div><pre>-- Current Unix timestamp
+SELECT UNIX_TIMESTAMP();
+
+-- Convert to datetime
+SELECT FROM_UNIXTIME(1704067200);</pre></div>
+
+  <h2>How to convert a Unix timestamp online</h2>
+  <p>Paste any Unix timestamp (seconds or milliseconds) into the <a href="/tools/timestamp-converter/">tinybench.dev timestamp converter</a> to get the human-readable date and time in UTC and your local timezone. You can also convert in the other direction — enter a date and get the Unix timestamp back.</p>
+
+  <h2>The Year 2038 problem</h2>
+  <p>32-bit systems store Unix timestamps as a signed 32-bit integer, which has a maximum value of 2,147,483,647 — representing <strong>January 19, 2038, at 03:14:07 UTC</strong>. After this point, 32-bit systems will overflow and wrap around to a negative number (representing 1901).</p>
+  <p>Most modern systems use 64-bit timestamps, which won't overflow for approximately 292 billion years. The 2038 problem is mainly a concern for legacy embedded systems and old databases still using 32-bit storage.</p>
+
+  <h2>Frequently asked questions</h2>
+  <div class="faq-item"><div class="faq-q">Is Unix time affected by timezones?</div><div class="faq-a">No. A Unix timestamp always represents a moment in UTC, regardless of where in the world you are. This makes it ideal for storing times in databases — you store the UTC timestamp and convert to local time on display.</div></div>
+  <div class="faq-item"><div class="faq-q">Does Unix time account for leap seconds?</div><div class="faq-a">No. Unix time assumes exactly 86,400 seconds per day. Leap seconds (which are occasionally added to keep UTC in sync with Earth's rotation) are not counted. This means Unix time is technically not perfectly synchronised with UTC, but the difference is negligible for most applications.</div></div>
+  <div class="faq-item"><div class="faq-q">Why are JWT expiry times stored as Unix timestamps?</div><div class="faq-a">The exp claim in a JWT is a Unix timestamp (seconds since epoch) because it's compact, timezone-independent, and easy to compare against the current time with a simple integer comparison.</div></div>
+  
+  <div class="cta-box">
+    <h3>Try it now — free &amp; private</h3>
+    <p>Runs entirely in your browser. No sign-up, no uploads, no tracking.</p>
+    <a href="/tools/timestamp-converter/" class="cta-btn">Open Unix Timestamp Converter &rarr;</a>
+  </div>
+  <h2>Related tools on tinybench.dev</h2>
+  <ul>
+    <li><a href="/tools/timestamp-converter/">Timestamp Converter</a></li><li><a href="/tools/jwt-decoder/">JWT Decoder</a></li><li><a href="/tools/json-formatter/">JSON Formatter</a></li>
+  </ul>
+</article>
+<aside class="sidebar">
+  <div class="sidebar-card">
+    <div class="sidebar-title">// contents</div>
+    <ul class="toc-list">
+      <li><a href="#what-is">What is a Unix timestamp?</a></li>
+      <li><a href="#why-1970">Why 1970?</a></li>
+      <li><a href="#seconds-ms">Seconds vs milliseconds</a></li>
+      <li><a href="#in-code">Get timestamp in code</a></li>
+      <li><a href="#convert">Convert online</a></li>
+      <li><a href="#year-2038">Year 2038 problem</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+  </div>
+  <div class="sidebar-card">
+    <div class="sidebar-title">// try the tool</div>
+    <p style="font-size:0.82rem;color:var(--muted);margin-bottom:1rem;line-height:1.6">Convert Unix timestamps to human-readable dates and back. Supports seconds, milliseconds, and multiple timezones.</p>
+    <a href="/tools/timestamp-converter/" class="cta-btn" style="display:block;text-align:center;font-size:0.82rem;padding:0.65rem 1rem;">Open Unix Timestamp Converter &rarr;</a>
+  </div>
+  <div class="sidebar-card">
+    <div class="sidebar-title">// related tools</div>
+    <ul class="related-list">
+      <li><a href="/tools/timestamp-converter/">Timestamp Converter</a></li>
+      <li><a href="/tools/jwt-decoder/">JWT Decoder</a></li>
+      <li><a href="/tools/json-formatter/">JSON Formatter</a></li>
+    </ul>
+  </div>
+</aside>
+</div>
+<footer>
+  <p>&copy; 2025 tinybench.dev &mdash; fast developer tools, no backend, no tracking.</p>
+  <div class="footer-legal"><a href="/privacy-policy/">Privacy Policy</a><a href="/terms/">Terms</a><a href="/cookie-policy/">Cookies</a><a href="/contact/">Contact</a><a href="/">Home</a></div>
+</footer>
+<script>
+function copyCode(btn){const pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.textContent).then(()=>{btn.textContent='copied!';setTimeout(()=>btn.textContent='copy',2000)})}
+</script>
+</body>
+</html>

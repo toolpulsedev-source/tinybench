@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UUID vs ULID — Which Should You Use for Unique IDs?</title>
+  <meta name="description" content="Compare UUID and ULID for generating unique identifiers. Learn the differences in format, sortability, performance, and when to use each one." />
+  <link rel="canonical" href="https://tinybench.dev/blog/uuid-vs-ulid/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="UUID vs ULID — Which Should You Use for Unique IDs?" />
+  <meta property="og:description" content="Compare UUID and ULID for generating unique identifiers. Learn the differences in format, sortability, performance, and when to use each one." />
+  <meta property="og:url" content="https://tinybench.dev/blog/uuid-vs-ulid/" />
+  <meta property="og:site_name" content="tinybench.dev" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="UUID vs ULID — Which Should You Use for Unique IDs?" />
+  <meta name="twitter:description" content="Compare UUID and ULID for generating unique identifiers. Learn the differences in format, sortability, performance, and when to use each one." />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"UUID vs ULID","description":"Compare UUID and ULID for generating unique identifiers. Learn the differences in format, sortability, performance, and when to use each one.","url":"https://tinybench.dev/blog/uuid-vs-ulid/","datePublished":"2025-01-01","dateModified":"2025-01-01","publisher":{"@type":"Organization","name":"tinybench.dev","url":"https://tinybench.dev"}}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Syne:wght@400;600;800&display=swap" rel="stylesheet" />
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--bg:#0a0a0f;--surface:#111118;--surface2:#13131c;--border:#1e1e2e;--accent:#00ff99;--accent2:#7b61ff;--text:#e8e8f0;--muted:#555570;--card:#13131c}
+    html{scroll-behavior:smooth}
+    body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;min-height:100vh;line-height:1.7}
+    body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;background-image:linear-gradient(rgba(0,255,153,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,255,153,0.03) 1px,transparent 1px);background-size:40px 40px}
+    nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1rem 2.5rem;background:rgba(10,10,15,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+    .logo{font-family:'JetBrains Mono',monospace;font-size:1rem;font-weight:700;color:var(--accent);text-decoration:none}
+    .logo span{color:var(--muted)}
+    .nav-links{display:flex;gap:1.5rem;list-style:none}
+    .nav-links a{font-family:'JetBrains Mono',monospace;font-size:0.78rem;color:var(--muted);text-decoration:none;transition:color 0.2s}
+    .nav-links a:hover{color:var(--accent)}
+    .page-wrap{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:3rem 2rem 6rem;display:grid;grid-template-columns:1fr 300px;gap:4rem;align-items:start}
+    @media(max-width:900px){.page-wrap{grid-template-columns:1fr}.sidebar{display:none}}
+    article{min-width:0}
+    .breadcrumb{font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--muted);margin-bottom:1.5rem;display:flex;align-items:center;gap:0.5rem}
+    .breadcrumb a{color:var(--muted);text-decoration:none}
+    .breadcrumb a:hover{color:var(--accent)}
+    .article-tag{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--accent);background:rgba(0,255,153,0.08);border:1px solid rgba(0,255,153,0.2);padding:0.2rem 0.7rem;border-radius:4px;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:1rem}
+    h1{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;letter-spacing:-0.03em;line-height:1.15;margin-bottom:1rem}
+    h1 em{font-style:normal;color:var(--accent)}
+    .article-meta{font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--muted);margin-bottom:2rem;display:flex;gap:1.5rem;flex-wrap:wrap}
+    .article-intro{font-size:1.05rem;color:var(--muted);line-height:1.8;margin-bottom:2.5rem;padding:1.25rem 1.5rem;border-left:3px solid var(--accent);background:rgba(0,255,153,0.04);border-radius:0 8px 8px 0}
+    h2{font-size:1.3rem;font-weight:800;letter-spacing:-0.02em;margin:2.5rem 0 0.8rem;color:var(--text)}
+    h2::before{content:'// ';font-family:'JetBrains Mono',monospace;color:var(--accent);font-size:1rem}
+    h3{font-size:1rem;font-weight:700;margin:1.5rem 0 0.5rem;color:var(--text)}
+    p{font-size:0.95rem;color:var(--muted);line-height:1.85;margin-bottom:1.1rem}
+    ul,ol{margin:0.5rem 0 1.2rem 1.4rem}
+    ul li,ol li{font-size:0.92rem;color:var(--muted);line-height:1.8;margin-bottom:0.3rem}
+    strong{color:var(--text);font-weight:700}
+    a{color:var(--accent);text-decoration:none}
+    a:hover{text-decoration:underline}
+    code{font-family:'JetBrains Mono',monospace;font-size:0.82rem;background:var(--surface2);padding:0.15rem 0.4rem;border-radius:3px;color:var(--accent)}
+    .callout-green{background:rgba(0,255,153,0.06);border:1px solid rgba(0,255,153,0.18);border-radius:8px;padding:1rem 1.2rem;margin:1.5rem 0;font-size:0.88rem;color:var(--muted);line-height:1.7}
+    .callout-green strong{color:var(--accent)}
+    .callout{background:rgba(123,97,255,0.07);border:1px solid rgba(123,97,255,0.2);border-radius:8px;padding:1rem 1.2rem;margin:1.5rem 0;font-size:0.88rem;color:var(--muted);line-height:1.7}
+    .callout strong{color:#7b61ff}
+    .cta-box{background:var(--card);border:1px solid rgba(0,255,153,0.25);border-radius:12px;padding:1.8rem;margin:2.5rem 0;text-align:center}
+    .cta-box h3{font-size:1.15rem;margin-bottom:0.5rem;color:var(--text)}
+    .cta-box h3::before{display:none}
+    .cta-box p{font-size:0.85rem;margin-bottom:1.2rem}
+    .cta-btn{display:inline-block;background:var(--accent);color:#000;font-family:'JetBrains Mono',monospace;font-weight:700;font-size:0.88rem;padding:0.75rem 2rem;border-radius:6px;text-decoration:none;transition:transform 0.15s,box-shadow 0.15s}
+    .cta-btn:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(0,255,153,0.3);text-decoration:none}
+    .table-wrap{overflow-x:auto;margin:1.2rem 0}
+    table{width:100%;border-collapse:collapse;font-size:0.85rem}
+    th{font-family:'JetBrains Mono',monospace;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--accent);text-align:left;padding:0.6rem 0.8rem;border-bottom:1px solid var(--border)}
+    td{color:var(--muted);padding:0.65rem 0.8rem;border-bottom:1px solid rgba(30,30,46,0.5)}
+    tr:last-child td{border-bottom:none}
+    .faq-item{border-bottom:1px solid var(--border);padding:1rem 0}
+    .faq-q{font-size:0.95rem;font-weight:700;color:var(--text);margin-bottom:0.5rem}
+    .faq-a{font-size:0.88rem;color:var(--muted);line-height:1.7}
+    .code-block{background:var(--surface2);border:1px solid var(--border);border-radius:8px;margin:1.2rem 0;overflow:hidden}
+    .code-block-header{display:flex;align-items:center;justify-content:space-between;padding:0.5rem 1rem;background:var(--surface);border-bottom:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--muted)}
+    .copy-btn{background:none;border:1px solid var(--border);color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:0.68rem;padding:2px 8px;border-radius:4px;cursor:pointer;transition:all 0.15s}
+    .copy-btn:hover{color:var(--accent);border-color:var(--accent)}
+    pre{padding:1.1rem 1.2rem;overflow-x:auto;font-family:'JetBrains Mono',monospace;font-size:0.82rem;line-height:1.7;color:var(--text)}
+    .sidebar{position:sticky;top:80px}
+    .sidebar-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.2rem;margin-bottom:1rem}
+    .sidebar-title{font-family:'JetBrains Mono',monospace;font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--accent);margin-bottom:0.8rem}
+    .toc-list{list-style:none;margin:0;padding:0}
+    .toc-list li{margin-bottom:0.4rem}
+    .toc-list a{font-size:0.82rem;color:var(--muted);text-decoration:none;transition:color 0.2s;display:block;padding:0.2rem 0;border-left:2px solid transparent;padding-left:0.6rem}
+    .toc-list a:hover{color:var(--accent);border-left-color:var(--accent)}
+    .related-list{list-style:none;margin:0;padding:0}
+    .related-list li{margin-bottom:0.6rem}
+    .related-list a{font-size:0.82rem;color:var(--muted);text-decoration:none}
+    .related-list a:hover{color:var(--accent)}
+    footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:2rem 2.5rem;text-align:center}
+    footer p{font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--muted)}
+    .footer-legal{display:flex;gap:1.5rem;justify-content:center;margin-top:0.8rem;flex-wrap:wrap}
+    .footer-legal a{font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--muted);text-decoration:none}
+    .footer-legal a:hover{color:var(--accent)}
+  </style>
+</head>
+<body>
+<nav>
+  <a href="/" class="logo">tiny<span>bench</span>.dev</a>
+  <ul class="nav-links"><li><a href="/#tools">Tools</a></li><li><a href="/about/">About</a></li></ul>
+</nav>
+<div class="page-wrap">
+<article>
+  <div class="breadcrumb"><a href="/">Home</a><span>/</span><a href="/blog/">Blog</a><span>/</span><span>UUID vs ULID</span></div>
+  <div class="article-tag">IDs · Guide</div>
+  <h1>UUID vs ULID — <em>Which to Use?</em></h1>
+  <div class="article-meta"><span>5 min read</span><span>Updated January 2025</span><span>Developer Tools</span></div>
+  <div class="article-intro">UUID is the most common unique identifier format, but ULID has been gaining ground. What are the real differences, which is better for databases, and when should you use each?</div>
+  <div class="cta-box">
+    <h3>Free Online UUID Generator</h3>
+    <p>Generate v4 UUIDs in bulk. Copy single or multiple with one click. Runs in your browser.</p>
+    <a href="/tools/uuid-generator/" class="cta-btn">Open UUID Generator &rarr;</a>
+  </div>
+  
+  <h2>What is a UUID?</h2>
+  <p>A <strong>UUID (Universally Unique Identifier)</strong> is a 128-bit identifier standardised in RFC 4122. The most common version, <strong>UUID v4</strong>, is randomly generated — making collisions astronomically unlikely.</p>
+  <div class="code-block"><div class="code-block-header"><span>UUID v4 example</span></div><pre>550e8400-e29b-41d4-a716-446655440000</pre></div>
+  <p>A UUID has 32 hex characters split into 5 groups by hyphens. The format is: <code>8-4-4-4-12</code>.</p>
+
+  <h2>What is a ULID?</h2>
+  <p>A <strong>ULID (Universally Unique Lexicographically Sortable Identifier)</strong> is also 128 bits, but combines a 48-bit millisecond timestamp with 80 bits of randomness.</p>
+  <div class="code-block"><div class="code-block-header"><span>ULID example</span></div><pre>01ARZ3NDEKTSV4RRFFQ69G5FAV</pre></div>
+  <p>ULIDs use Crockford's Base32 encoding — 26 characters, uppercase letters and digits, no hyphens. The first 10 characters encode the timestamp, making ULIDs sortable by creation time.</p>
+
+  <h2>UUID vs ULID — key differences</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Feature</th><th>UUID v4</th><th>ULID</th></tr></thead>
+    <tbody>
+      <tr><td>Length</td><td>36 chars (with hyphens)</td><td>26 chars</td></tr>
+      <tr><td>Sortable by time?</td><td>No</td><td>Yes</td></tr>
+      <tr><td>Contains timestamp?</td><td>No</td><td>Yes (ms precision)</td></tr>
+      <tr><td>URL safe?</td><td>Yes</td><td>Yes</td></tr>
+      <tr><td>Case sensitive?</td><td>Lowercase convention</td><td>Case insensitive</td></tr>
+      <tr><td>Standardised?</td><td>RFC 4122</td><td>Community spec</td></tr>
+      <tr><td>DB index performance</td><td>Random — poor for sequential inserts</td><td>Sorted — better for indexes</td></tr>
+      <tr><td>Language support</td><td>Universally supported</td><td>Library required</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>Database performance — the real difference</h2>
+  <p>This is where ULIDs have a significant advantage. Database indexes (especially B-tree indexes like PostgreSQL's default) work best with <strong>sequential values</strong>. Random UUIDs cause <strong>index fragmentation</strong> — each new insert lands in a random position in the index, causing frequent page splits and increased I/O.</p>
+  <p>ULIDs, being time-sortable, are mostly inserted at the end of the index (since new records have larger timestamps). This leads to <strong>better write performance</strong> at scale — similar to auto-increment integers but without requiring a centralised counter.</p>
+  <div class="callout"><strong>Note:</strong> UUID v7 (a newer version of the UUID standard) addresses this by embedding a timestamp like ULID does. If your database library supports UUID v7, it's a good alternative that maintains the UUID format.</div>
+
+  <h2>When to use UUID</h2>
+  <ul>
+    <li>When you need maximum compatibility — every language and database supports UUID natively</li>
+    <li>When you don't want creation time to be inferable from the ID</li>
+    <li>When working with systems that already use UUIDs</li>
+    <li>For low-to-medium volume applications where index performance isn't a concern</li>
+  </ul>
+
+  <h2>When to use ULID</h2>
+  <ul>
+    <li>High-volume write workloads where index performance matters</li>
+    <li>When you want IDs that are naturally sortable by creation time</li>
+    <li>When you want shorter, more readable IDs</li>
+    <li>Event sourcing, logging systems, and audit trails</li>
+  </ul>
+
+  <h2>Generate UUIDs online</h2>
+  <p>Use the <a href="/tools/uuid-generator/">tinybench.dev UUID generator</a> to generate v4 UUIDs in bulk — generate 1 to 100 at once, copy individually or all at once. Everything runs in your browser.</p>
+
+  <h2>Frequently asked questions</h2>
+  <div class="faq-item"><div class="faq-q">Can two UUIDs ever be the same?</div><div class="faq-a">Theoretically yes, but practically never. A UUID v4 has 122 bits of randomness. The probability of generating a duplicate in 1 billion UUIDs is about 1 in 10^18 — less likely than being struck by lightning twice.</div></div>
+  <div class="faq-item"><div class="faq-q">Should I store UUIDs as strings or binary in the database?</div><div class="faq-a">Binary (16 bytes) is more efficient than storing as a string (36 bytes for UUID with hyphens). PostgreSQL has a native UUID type. MySQL users often use BINARY(16) for better performance than VARCHAR(36).</div></div>
+  <div class="faq-item"><div class="faq-q">What is UUID v7?</div><div class="faq-a">UUID v7 is a newer version (RFC 9562) that embeds a millisecond timestamp in the first 48 bits — similar to ULID but in the familiar UUID format. It provides the sortability benefits of ULID while maintaining full UUID compatibility. Native support is growing in databases and languages.</div></div>
+  
+  <div class="cta-box">
+    <h3>Try it now — free &amp; private</h3>
+    <p>Runs entirely in your browser. No sign-up, no uploads, no tracking.</p>
+    <a href="/tools/uuid-generator/" class="cta-btn">Open UUID Generator &rarr;</a>
+  </div>
+  <h2>Related tools on tinybench.dev</h2>
+  <ul>
+    <li><a href="/tools/uuid-generator/">UUID Generator</a></li><li><a href="/tools/json-formatter/">JSON Formatter</a></li><li><a href="/tools/jwt-decoder/">JWT Decoder</a></li>
+  </ul>
+</article>
+<aside class="sidebar">
+  <div class="sidebar-card">
+    <div class="sidebar-title">// contents</div>
+    <ul class="toc-list">
+      <li><a href="#what-is-uuid">What is UUID?</a></li>
+      <li><a href="#what-is-ulid">What is ULID?</a></li>
+      <li><a href="#differences">Key differences</a></li>
+      <li><a href="#db-performance">DB performance</a></li>
+      <li><a href="#when-uuid">When to use UUID</a></li>
+      <li><a href="#when-ulid">When to use ULID</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+  </div>
+  <div class="sidebar-card">
+    <div class="sidebar-title">// try the tool</div>
+    <p style="font-size:0.82rem;color:var(--muted);margin-bottom:1rem;line-height:1.6">Generate v4 UUIDs in bulk. Copy single or multiple with one click. Runs in your browser.</p>
+    <a href="/tools/uuid-generator/" class="cta-btn" style="display:block;text-align:center;font-size:0.82rem;padding:0.65rem 1rem;">Open UUID Generator &rarr;</a>
+  </div>
+  <div class="sidebar-card">
+    <div class="sidebar-title">// related tools</div>
+    <ul class="related-list">
+      <li><a href="/tools/uuid-generator/">UUID Generator</a></li>
+      <li><a href="/tools/json-formatter/">JSON Formatter</a></li>
+      <li><a href="/tools/jwt-decoder/">JWT Decoder</a></li>
+    </ul>
+  </div>
+</aside>
+</div>
+<footer>
+  <p>&copy; 2025 tinybench.dev &mdash; fast developer tools, no backend, no tracking.</p>
+  <div class="footer-legal"><a href="/privacy-policy/">Privacy Policy</a><a href="/terms/">Terms</a><a href="/cookie-policy/">Cookies</a><a href="/contact/">Contact</a><a href="/">Home</a></div>
+</footer>
+<script>
+function copyCode(btn){const pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.textContent).then(()=>{btn.textContent='copied!';setTimeout(()=>btn.textContent='copy',2000)})}
+</script>
+</body>
+</html>
