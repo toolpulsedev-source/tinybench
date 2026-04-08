@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TinyBench — Free Developer Tools Online</title>
+  <meta name="description" content="10 fast, private, client-side developer tools. JSON formatter, JWT decoder, regex tester, image compressor and more. No backend, no tracking." />
+  <link rel="canonical" href="https://tinybench.dev/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="TinyBench — Free Developer Tools Online" />
+  <meta property="og:description" content="10 fast, private, client-side developer tools. No backend, no tracking, no nonsense." />
+  <meta property="og:url" content="https://tinybench.dev/" />
+  <meta property="og:site_name" content="tinybench.dev" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="TinyBench — Free Developer Tools Online" />
+  <meta name="twitter:description" content="10 free client-side developer tools. No server, no tracking." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Syne:wght@400;600;800&display=swap" rel="stylesheet" />
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--bg:#0a0a0f;--surface:#111118;--border:#1e1e2e;--accent:#00ff99;--accent2:#7b61ff;--text:#e8e8f0;--muted:#555570;--card-bg:#13131c}
+    html{scroll-behavior:smooth}
+    body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;min-height:100vh;overflow-x:hidden}
+    body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,255,153,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,255,153,.03) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 2.5rem;background:rgba(10,10,15,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+    .logo{font-family:'JetBrains Mono',monospace;font-size:1.1rem;font-weight:700;color:var(--accent);text-decoration:none;letter-spacing:-.5px}
+    .logo span{color:var(--muted)}
+    nav ul{list-style:none;display:flex;gap:2rem}
+    nav ul a{color:var(--muted);text-decoration:none;font-size:.85rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;transition:color .2s}
+    nav ul a:hover{color:var(--accent)}
+    .hero{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:8rem 2rem 4rem}
+    .hero-tag{font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--accent);letter-spacing:.15em;text-transform:uppercase;border:1px solid rgba(0,255,153,.3);padding:.3rem 1rem;border-radius:100px;margin-bottom:2rem;animation:fadeUp .6s ease both}
+    .hero h1{font-size:clamp(3rem,8vw,6.5rem);font-weight:800;line-height:1;letter-spacing:-.03em;margin-bottom:1.5rem;animation:fadeUp .6s .1s ease both}
+    .hero h1 .highlight{color:var(--accent)}
+    .hero p{font-size:1.15rem;color:var(--muted);max-width:520px;line-height:1.7;margin-bottom:3rem;animation:fadeUp .6s .2s ease both}
+    .hero-cta{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;animation:fadeUp .6s .3s ease both}
+    .btn-primary{background:var(--accent);color:#000;font-family:'JetBrains Mono',monospace;font-weight:700;font-size:.9rem;padding:.85rem 2rem;border-radius:6px;text-decoration:none;transition:transform .15s,box-shadow .15s;letter-spacing:.02em}
+    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,255,153,.35)}
+    .btn-ghost{color:var(--text);font-family:'JetBrains Mono',monospace;font-size:.9rem;padding:.85rem 2rem;border-radius:6px;border:1px solid var(--border);text-decoration:none;transition:border-color .2s,color .2s}
+    .btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+    .hero-stats{display:flex;gap:3rem;margin-top:5rem;animation:fadeUp .6s .4s ease both}
+    .stat{text-align:center}
+    .stat-num{font-family:'JetBrains Mono',monospace;font-size:2rem;font-weight:700;color:var(--accent);line-height:1}
+    .stat-label{font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-top:.3rem}
+    .tools-section{position:relative;z-index:1;padding:6rem 2rem;max-width:1200px;margin:0 auto}
+    .section-header{display:flex;align-items:baseline;gap:1rem;margin-bottom:3rem}
+    .section-label{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--accent);letter-spacing:.15em;text-transform:uppercase}
+    .section-title{font-size:2rem;font-weight:800;letter-spacing:-.02em}
+    .tools-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5rem}
+    .tool-card{background:var(--card-bg);border:1px solid var(--border);border-radius:12px;padding:1.8rem;text-decoration:none;color:inherit;transition:border-color .2s,transform .2s,box-shadow .2s;display:flex;flex-direction:column;gap:.8rem;position:relative;overflow:hidden}
+    .tool-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2));opacity:0;transition:opacity .2s}
+    .tool-card:hover{border-color:rgba(0,255,153,.3);transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,.4)}
+    .tool-card:hover::before{opacity:1}
+    .tool-icon{font-size:1.8rem;line-height:1}
+    .tool-name{font-size:1rem;font-weight:700;letter-spacing:-.01em}
+    .tool-desc{font-size:.83rem;color:var(--muted);line-height:1.6}
+    .tool-tag{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.65rem;color:var(--accent);background:rgba(0,255,153,.08);border:1px solid rgba(0,255,153,.2);padding:.2rem .6rem;border-radius:4px;letter-spacing:.05em;margin-top:auto;align-self:flex-start}
+    .why-section{position:relative;z-index:1;padding:5rem 2rem;background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+    .why-inner{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr 1fr;gap:3rem}
+    .why-item{text-align:center}
+    .why-icon{font-size:2rem;margin-bottom:1rem}
+    .why-title{font-size:1rem;font-weight:700;margin-bottom:.5rem}
+    .why-text{font-size:.83rem;color:var(--muted);line-height:1.6}
+
+    /* BLOG SECTION */
+    .blog-section{position:relative;z-index:1;padding:5rem 2rem;max-width:1200px;margin:0 auto}
+    .blog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem;margin-bottom:2rem}
+    .blog-card{background:var(--card-bg);border:1px solid var(--border);border-radius:10px;padding:1.2rem;text-decoration:none;color:inherit;transition:border-color .2s,transform .15s;display:flex;flex-direction:column;gap:.5rem}
+    .blog-card:hover{border-color:rgba(0,255,153,.3);transform:translateY(-2px)}
+    .blog-tag{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--accent);background:rgba(0,255,153,.08);border:1px solid rgba(0,255,153,.2);padding:.15rem .5rem;border-radius:3px;text-transform:uppercase;letter-spacing:.05em;align-self:flex-start}
+    .blog-title{font-size:.88rem;font-weight:700;line-height:1.4;color:var(--text)}
+    .blog-desc{font-size:.76rem;color:var(--muted);line-height:1.5}
+    .blog-more{display:inline-flex;align-items:center;gap:.5rem;font-family:'JetBrains Mono',monospace;font-size:.82rem;color:var(--accent);text-decoration:none;border:1px solid rgba(0,255,153,.3);padding:.6rem 1.2rem;border-radius:6px;transition:background .2s}
+    .blog-more:hover{background:rgba(0,255,153,.08);text-decoration:none}
+
+    /* CONTACT STRIP */
+    .contact-strip{position:relative;z-index:1;background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:4rem 2rem}
+    .contact-inner{max-width:700px;margin:0 auto;text-align:center}
+    .contact-inner h2{font-size:1.8rem;font-weight:800;letter-spacing:-.02em;margin-bottom:.8rem}
+    .contact-inner p{font-size:.95rem;color:var(--muted);line-height:1.7;margin-bottom:2rem}
+    .contact-options{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+    .contact-card{background:var(--card-bg);border:1px solid var(--border);border-radius:10px;padding:1.2rem 1.8rem;text-align:left;min-width:200px}
+    .contact-card-label{font-family:'JetBrains Mono',monospace;font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.4rem}
+    .contact-card a{color:var(--accent);text-decoration:none;font-size:.88rem;font-weight:700}
+    .contact-card a:hover{text-decoration:underline}
+
+    /* FOOTER */
+    footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:3.5rem 2.5rem 2rem}
+    .footer-inner{max-width:1100px;margin:0 auto}
+    .footer-top{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr 1fr;gap:3rem;padding-bottom:3rem;border-bottom:1px solid var(--border)}
+    .footer-brand .logo{display:inline-block;margin-bottom:.9rem;font-size:1rem}
+    .footer-brand p{font-size:.8rem;color:var(--muted);line-height:1.7;max-width:220px}
+    .footer-col h4{font-family:'JetBrains Mono',monospace;font-size:.65rem;color:var(--accent);text-transform:uppercase;letter-spacing:.12em;margin-bottom:1rem}
+    .footer-col ul{list-style:none;display:flex;flex-direction:column;gap:.6rem}
+    .footer-col ul a{font-size:.82rem;color:var(--muted);text-decoration:none;transition:color .2s}
+    .footer-col ul a:hover{color:var(--accent)}
+    .footer-bottom{display:flex;align-items:center;justify-content:space-between;padding-top:1.8rem;flex-wrap:wrap;gap:1rem}
+    .footer-bottom p{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--muted)}
+    .footer-legal{display:flex;gap:1.5rem;flex-wrap:wrap}
+    .footer-legal a{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--muted);text-decoration:none;transition:color .2s}
+    .footer-legal a:hover{color:var(--accent)}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+    @media(max-width:1000px){.footer-top{grid-template-columns:1fr 1fr 1fr}}
+    @media(max-width:768px){nav ul{display:none}.hero-stats{gap:2rem}.why-inner{grid-template-columns:1fr;gap:2rem}.tools-grid{grid-template-columns:1fr}.footer-top{grid-template-columns:1fr 1fr}.footer-bottom{flex-direction:column;align-items:flex-start}}
+    @media(max-width:480px){.footer-top{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="logo">tiny<span>bench</span>.dev</a>
+  <ul>
+    <li><a href="#tools">Tools</a></li>
+    <li><a href="/blog/">Blog</a></li>
+    <li><a href="#why">Why</a></li>
+    <li><a href="/contact/">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-tag">// 10 tools · client-side · zero tracking</div>
+  <h1>Dev tools that<br><span class="highlight">just work.</span></h1>
+  <p>Fast, private, browser-based utilities for developers and designers. No login. No upload. No nonsense.</p>
+  <div class="hero-cta">
+    <a href="#tools" class="btn-primary">Browse Tools →</a>
+    <a href="https://github.com/toolpulsedev-source/tinybench" target="_blank" class="btn-ghost">GitHub</a>
+  </div>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">10</div><div class="stat-label">Tools</div></div>
+    <div class="stat"><div class="stat-num">0ms</div><div class="stat-label">Server calls</div></div>
+    <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Client-side</div></div>
+  </div>
+</section>
+
+<!-- TOOLS -->
+<section class="tools-section" id="tools">
+  <div class="section-header">
+    <span class="section-label">// tools</span>
+    <h2 class="section-title">Everything you need</h2>
+  </div>
+  <div class="tools-grid">
+    <a href="/tools/json-formatter/" class="tool-card">
+      <div class="tool-icon">{ }</div>
+      <div class="tool-name">JSON Formatter & Validator</div>
+      <div class="tool-desc">Beautify, minify, and validate JSON instantly. Highlights errors with line numbers.</div>
+      <span class="tool-tag">formatter</span>
+    </a>
+    <a href="/tools/jwt-decoder/" class="tool-card">
+      <div class="tool-icon">🔑</div>
+      <div class="tool-name">JWT Decoder</div>
+      <div class="tool-desc">Decode and inspect JWT tokens. View header, payload, and expiry — all client-side.</div>
+      <span class="tool-tag">auth</span>
+    </a>
+    <a href="/tools/regex-tester/" class="tool-card">
+      <div class="tool-icon">.*</div>
+      <div class="tool-name">Regex Tester</div>
+      <div class="tool-desc">Test and debug regular expressions with real-time match highlighting and group output.</div>
+      <span class="tool-tag">testing</span>
+    </a>
+    <a href="/tools/timestamp-converter/" class="tool-card">
+      <div class="tool-icon">⏱</div>
+      <div class="tool-name">Unix Timestamp Converter</div>
+      <div class="tool-desc">Convert between Unix timestamps and human-readable dates instantly.</div>
+      <span class="tool-tag">datetime</span>
+    </a>
+    <a href="/tools/base64/" class="tool-card">
+      <div class="tool-icon">64</div>
+      <div class="tool-name">Base64 Encoder / Decoder</div>
+      <div class="tool-desc">Encode or decode Base64 strings and files right in your browser.</div>
+      <span class="tool-tag">encoding</span>
+    </a>
+    <a href="/tools/uuid-generator/" class="tool-card">
+      <div class="tool-icon">#</div>
+      <div class="tool-name">UUID Generator</div>
+      <div class="tool-desc">Generate v4 UUIDs in bulk. Copy single or multiple with one click.</div>
+      <span class="tool-tag">generator</span>
+    </a>
+    <a href="/tools/sql-formatter/" class="tool-card">
+      <div class="tool-icon">⚙︎</div>
+      <div class="tool-name">SQL Formatter</div>
+      <div class="tool-desc">Beautify raw SQL queries. Supports MySQL, PostgreSQL, and more.</div>
+      <span class="tool-tag">database</span>
+    </a>
+    <a href="/tools/image-compressor/" class="tool-card">
+      <div class="tool-icon">🖼</div>
+      <div class="tool-name">Image Compressor</div>
+      <div class="tool-desc">Compress JPEG/PNG images in-browser. No uploads to any server — ever.</div>
+      <span class="tool-tag">images</span>
+    </a>
+    <a href="/tools/color-contrast-checker/" class="tool-card">
+      <div class="tool-icon">◑</div>
+      <div class="tool-name">Color Contrast Checker</div>
+      <div class="tool-desc">Check WCAG AA/AAA contrast ratios. Essential for accessible UI design.</div>
+      <span class="tool-tag">accessibility</span>
+    </a>
+    <a href="/tools/css-beautifier/" class="tool-card">
+      <div class="tool-icon">✦</div>
+      <div class="tool-name">CSS Beautifier & Minifier</div>
+      <div class="tool-desc">Format messy CSS or minify it for production in one click.</div>
+      <span class="tool-tag">css</span>
+    </a>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="why-section" id="why">
+  <div class="why-inner">
+    <div class="why-item">
+      <div class="why-icon">⚡</div>
+      <div class="why-title">Instant</div>
+      <div class="why-text">Everything runs in your browser. No waiting for servers. No round trips.</div>
+    </div>
+    <div class="why-item">
+      <div class="why-icon">🔒</div>
+      <div class="why-title">Private</div>
+      <div class="why-text">Your data never leaves your machine. No accounts, no logging, no tracking.</div>
+    </div>
+    <div class="why-item">
+      <div class="why-icon">🛠</div>
+      <div class="why-title">Built for Devs</div>
+      <div class="why-text">Clean interface, keyboard-friendly, dark mode. Tools made by devs, for devs.</div>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG -->
+<section class="blog-section" id="blog">
+  <div class="section-header">
+    <span class="section-label">// blog</span>
+    <h2 class="section-title">Developer guides</h2>
+  </div>
+  <div class="blog-grid">
+    <a href="/blog/how-to-format-json/" class="blog-card"><span class="blog-tag">JSON</span><div class="blog-title">How to Format JSON Online</div><div class="blog-desc">Beautify, validate and minify JSON instantly in your browser.</div></a>
+    <a href="/blog/fix-invalid-json/" class="blog-card"><span class="blog-tag">JSON · Debug</span><div class="blog-title">How to Fix Invalid JSON</div><div class="blog-desc">Every common JSON error and exactly how to fix it.</div></a>
+    <a href="/blog/what-is-jwt/" class="blog-card"><span class="blog-tag">JWT</span><div class="blog-title">What is a JWT Token?</div><div class="blog-desc">Header, payload, signature, and how JWT auth works.</div></a>
+    <a href="/blog/decode-jwt-python/" class="blog-card"><span class="blog-tag">JWT · Python</span><div class="blog-title">Decode a JWT in Python</div><div class="blog-desc">PyJWT, python-jose, and manual base64 decode with examples.</div></a>
+    <a href="/blog/compress-png-without-losing-quality/" class="blog-card"><span class="blog-tag">Images</span><div class="blog-title">Compress PNG Without Losing Quality</div><div class="blog-desc">5 methods to reduce PNG size with no visible difference.</div></a>
+    <a href="/blog/jpeg-vs-png-vs-webp/" class="blog-card"><span class="blog-tag">Images</span><div class="blog-title">JPEG vs PNG vs WebP</div><div class="blog-desc">Which format to use — with real file size comparisons.</div></a>
+    <a href="/blog/regex-cheat-sheet/" class="blog-card"><span class="blog-tag">Regex</span><div class="blog-title">Regex Cheat Sheet</div><div class="blog-desc">Complete reference — anchors, quantifiers, groups, lookaheads.</div></a>
+    <a href="/blog/validate-json-javascript/" class="blog-card"><span class="blog-tag">JSON · JS</span><div class="blog-title">Validate JSON in JavaScript</div><div class="blog-desc">try/catch, type check, and JSON Schema with ajv.</div></a>
+    <a href="/blog/timestamp-to-date-javascript/" class="blog-card"><span class="blog-tag">DateTime · JS</span><div class="blog-title">Timestamp to Date in JavaScript</div><div class="blog-desc">new Date(), Intl.DateTimeFormat, timezones explained.</div></a>
+    <a href="/blog/css-minification-guide/" class="blog-card"><span class="blog-tag">CSS</span><div class="blog-title">CSS Minification Guide</div><div class="blog-desc">How it works, how much it saves, and build tool setup.</div></a>
+    <a href="/blog/wcag-color-contrast-guide/" class="blog-card"><span class="blog-tag">Accessibility</span><div class="blog-title">WCAG Color Contrast Guide</div><div class="blog-desc">AA and AAA requirements, common failures, and fixes.</div></a>
+    <a href="/blog/uuid-vs-ulid/" class="blog-card"><span class="blog-tag">IDs</span><div class="blog-title">UUID vs ULID</div><div class="blog-desc">Sortability, DB performance, and when to use each.</div></a>
+  </div>
+  <a href="/blog/" class="blog-more">View all 28 guides →</a>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-strip" id="contact">
+  <div class="contact-inner">
+    <h2>Get in touch</h2>
+    <p>Found a bug? Have a tool suggestion? Want to report an issue? We read every message and usually reply within 48 hours.</p>
+    <div class="contact-options">
+      <div class="contact-card">
+        <div class="contact-card-label">Email us</div>
+        <a href="mailto:hello@tinybench.dev">hello@tinybench.dev</a>
+      </div>
+      <div class="contact-card">
+        <div class="contact-card-label">Contact form</div>
+        <a href="/contact/">Open contact page →</a>
+      </div>
+      <div class="contact-card">
+        <div class="contact-card-label">GitHub</div>
+        <a href="https://github.com/toolpulsedev-source/tinybench" target="_blank">Open an issue →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="/" class="logo">tiny<span>bench</span>.dev</a>
+        <p>Fast, private, client-side developer tools. No backend. No tracking. No nonsense.</p>
+      </div>
+      <div class="footer-col">
+        <h4>// tools</h4>
+        <ul>
+          <li><a href="/tools/json-formatter/">JSON Formatter</a></li>
+          <li><a href="/tools/jwt-decoder/">JWT Decoder</a></li>
+          <li><a href="/tools/regex-tester/">Regex Tester</a></li>
+          <li><a href="/tools/timestamp-converter/">Timestamp Converter</a></li>
+          <li><a href="/tools/base64/">Base64 Encoder</a></li>
+          <li><a href="/tools/uuid-generator/">UUID Generator</a></li>
+          <li><a href="/tools/sql-formatter/">SQL Formatter</a></li>
+          <li><a href="/tools/image-compressor/">Image Compressor</a></li>
+          <li><a href="/tools/color-contrast-checker/">Color Contrast</a></li>
+          <li><a href="/tools/css-beautifier/">CSS Beautifier</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>// blog</h4>
+        <ul>
+          <li><a href="/blog/how-to-format-json/">Format JSON</a></li>
+          <li><a href="/blog/what-is-jwt/">What is JWT</a></li>
+          <li><a href="/blog/regex-cheat-sheet/">Regex Cheat Sheet</a></li>
+          <li><a href="/blog/compress-png-without-losing-quality/">Compress PNG</a></li>
+          <li><a href="/blog/wcag-color-contrast-guide/">WCAG Contrast</a></li>
+          <li><a href="/blog/fix-invalid-json/">Fix Invalid JSON</a></li>
+          <li><a href="/blog/uuid-vs-ulid/">UUID vs ULID</a></li>
+          <li><a href="/blog/">All guides →</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>// company</h4>
+        <ul>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/contact/">Contact</a></li>
+          <li><a href="https://github.com/toolpulsedev-source/tinybench" target="_blank">GitHub</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>// legal</h4>
+        <ul>
+          <li><a href="/privacy-policy/">Privacy Policy</a></li>
+          <li><a href="/terms/">Terms & Conditions</a></li>
+          <li><a href="/cookie-policy/">Cookie Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 tinybench.dev — built with ♥ for developers</p>
+      <div class="footer-legal">
+        <a href="/privacy-policy/">Privacy</a>
+        <a href="/terms/">Terms</a>
+        <a href="/cookie-policy/">Cookies</a>
+        <a href="/contact/">Contact</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
