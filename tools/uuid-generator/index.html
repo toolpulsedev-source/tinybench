@@ -3,8 +3,34 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>UUID Generator — TinyBench</title>
-  <meta name="description" content="Free online UUID generator. Generate v4 UUIDs in bulk instantly. Copy single or multiple UUIDs with one click. 100% client-side, cryptographically random." />
+
+  <!-- SEO: keyword-rich title -->
+  <title>UUID Generator Online — Free Random UUID v4 Generator | TinyBench</title>
+  <meta name="description" content="Free online UUID generator. Instantly generate cryptographically random UUID v4, single or bulk up to 100 at once. No sign-up, 100% client-side. Copy or download as .txt." />
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://tinybench.dev/tools/uuid-generator/" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="UUID Generator Online — Free Random UUID v4 Generator" />
+  <meta property="og:description" content="Generate cryptographically random UUID v4 instantly. Single or bulk up to 100. Free, fast, 100% client-side." />
+  <meta property="og:url" content="https://tinybench.dev/tools/uuid-generator/" />
+  <meta property="og:type" content="website" />
+
+  <!-- Schema: SoftwareApplication -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "UUID Generator",
+    "url": "https://tinybench.dev/tools/uuid-generator/",
+    "description": "Free online UUID v4 generator. Generate single or bulk cryptographically random UUIDs instantly. 100% client-side.",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Syne:wght@400;600;800&display=swap" rel="stylesheet" />
@@ -106,7 +132,6 @@
       line-height: 1.6;
     }
 
-    /* SINGLE UUID HERO */
     .single-section {
       position: relative;
       z-index: 1;
@@ -179,7 +204,6 @@
     .btn-danger { background: transparent; color: var(--error); border: 1px solid rgba(255,85,102,0.3); }
     .btn-danger:hover { border-color: var(--error); }
 
-    /* FORMAT OPTIONS */
     .options-section {
       position: relative;
       z-index: 1;
@@ -237,7 +261,6 @@
 
     .count-input:focus { border-color: rgba(0,255,153,0.4); }
 
-    /* BULK SECTION */
     .bulk-section {
       position: relative;
       z-index: 1;
@@ -287,10 +310,7 @@
 
     .icon-btn:hover { color: var(--accent); background: rgba(0,255,153,0.08); }
 
-    .uuid-list {
-      max-height: 400px;
-      overflow-y: auto;
-    }
+    .uuid-list { max-height: 400px; overflow-y: auto; }
 
     .uuid-row {
       display: flex;
@@ -338,13 +358,12 @@
     .uuid-row:hover .uuid-copy-btn { opacity: 1; }
     .uuid-copy-btn:hover { color: var(--accent); border-color: var(--accent); }
 
-    /* INFO */
     .info-section {
       position: relative;
       z-index: 1;
       max-width: 900px;
       margin: 2rem auto 0;
-      padding: 0 2rem 4rem;
+      padding: 0 2rem 2rem;
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 1.2rem;
@@ -375,28 +394,89 @@
     .part-e { color: #d2a8ff; }
     .part-sep { color: var(--muted); }
 
-    .anatomy-legend {
-      display: flex;
-      flex-direction: column;
-      gap: 0.4rem;
-      margin-top: 0.8rem;
-    }
+    .anatomy-legend { display: flex; flex-direction: column; gap: 0.4rem; margin-top: 0.8rem; }
 
-    .legend-item {
-      display: flex;
-      gap: 0.6rem;
-      font-size: 0.75rem;
-      align-items: center;
-    }
+    .legend-item { display: flex; gap: 0.6rem; font-size: 0.75rem; align-items: center; }
 
-    .legend-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 2px;
-      flex-shrink: 0;
-    }
+    .legend-dot { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
 
     .legend-text { color: var(--muted); }
+
+    /* SEO SECTION */
+    .seo-section {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 2rem 2rem;
+    }
+
+    .seo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+      margin-bottom: 1.2rem;
+    }
+
+    @media (max-width: 620px) { .seo-grid { grid-template-columns: 1fr; } }
+
+    .seo-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.4rem;
+    }
+
+    .seo-card h2 {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.8rem;
+    }
+
+    .seo-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.7; }
+    .seo-card p + p { margin-top: 0.6rem; }
+
+    .faq-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .faq-header {
+      padding: 0.9rem 1.2rem;
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .faq-item {
+      padding: 1.1rem 1.4rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .faq-item:last-child { border-bottom: none; }
+
+    .faq-q { font-size: 0.88rem; font-weight: 700; color: var(--text); margin-bottom: 0.5rem; }
+
+    .faq-a { font-size: 0.82rem; color: var(--muted); line-height: 1.7; }
+
+    .faq-a code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 0.1rem 0.4rem;
+      border-radius: 4px;
+      color: var(--accent);
+    }
 
     footer {
       position: relative;
@@ -445,7 +525,7 @@
   <div class="page-header">
     <div class="page-tag">// tool 06</div>
     <h1>UUID Generator</h1>
-    <p>Generate cryptographically random v4 UUIDs instantly. Single or bulk — copy with one click. 100% client-side.</p>
+    <p>Generate cryptographically random UUID v4 instantly — single or bulk up to 100. Copy or download as .txt. 100% client-side, nothing leaves your browser.</p>
   </div>
 
   <!-- SINGLE UUID -->
@@ -534,11 +614,93 @@
     </div>
   </div>
 
+  <!-- SEO CONTENT SECTION -->
+  <div class="seo-section">
+    <div class="seo-grid">
+      <div class="seo-card">
+        <h2>// what is a uuid?</h2>
+        <p>A UUID (Universally Unique Identifier) is a 128-bit label used to uniquely identify information in computer systems. The standard format is 32 hexadecimal characters split into 5 groups: <strong style="color:var(--text)">xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx</strong>.</p>
+        <p>UUID v4 is the most commonly used version — all bits are randomly generated except for 6 version/variant bits, making it ideal for generating IDs without a central authority.</p>
+      </div>
+      <div class="seo-card">
+        <h2>// uuid vs ulid vs nanoid</h2>
+        <p><strong style="color:var(--text)">UUID v4</strong> — 36 chars, universally supported, random. Best for databases and APIs where compatibility matters.</p>
+        <p><strong style="color:var(--text)">ULID</strong> — 26 chars, sortable by time, URL-safe. Better for event logs and time-ordered records.</p>
+        <p><strong style="color:var(--text)">NanoID</strong> — customizable length, URL-safe, smaller. Good for short IDs in URLs and filenames.</p>
+      </div>
+    </div>
+
+    <div class="faq-card">
+      <div class="faq-header">// frequently asked questions</div>
+
+      <div class="faq-item">
+        <div class="faq-q">How do I generate a UUID in JavaScript?</div>
+        <div class="faq-a">Modern browsers and Node.js 19+ support <code>crypto.randomUUID()</code> natively — no library needed. It returns a v4 UUID string like <code>"110e8400-e29b-41d4-a716-446655440000"</code>. This tool uses exactly that API.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">How do I generate a UUID in Python?</div>
+        <div class="faq-a">Use the built-in <code>uuid</code> module: <code>import uuid; str(uuid.uuid4())</code>. This generates a random v4 UUID. For a UUID without hyphens use <code>uuid.uuid4().hex</code>.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Are these UUIDs truly unique?</div>
+        <div class="faq-a">Yes. UUID v4 has 122 random bits, giving 2¹²² possible values (~5.3 undecillion). The chance of two randomly generated UUIDs colliding is negligible for any practical application — including large-scale distributed systems.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Can I use a UUID as a database primary key?</div>
+        <div class="faq-a">Yes — UUIDs are widely used as primary keys, especially in distributed systems where you need to generate IDs on the client without a database round-trip. The trade-off is that they are larger than integer IDs and not naturally sortable. Consider ULID if sort order matters.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">What is the difference between UUID v1 and UUID v4?</div>
+        <div class="faq-a">UUID v1 is generated from the current timestamp and the machine's MAC address — it is time-sortable but can expose system information. UUID v4 is entirely random and reveals nothing about the host or time of generation, making it safer and more private for most use cases.</div>
+      </div>
+
+    </div>
+  </div>
+
   <footer>
     <p>tinybench.dev — <a href="/">← back to all tools</a></p>
   </footer>
 
   <div class="toast" id="toast"></div>
+
+  <!-- FAQ Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How do I generate a UUID in JavaScript?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Use crypto.randomUUID() in modern browsers or Node.js 19+. It returns a v4 UUID string with no dependencies required." }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I generate a UUID in Python?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Use the built-in uuid module: import uuid; str(uuid.uuid4()). For a UUID without hyphens use uuid.uuid4().hex." }
+      },
+      {
+        "@type": "Question",
+        "name": "Are these UUIDs truly unique?",
+        "acceptedAnswer": { "@type": "Answer", "text": "UUID v4 has 122 random bits giving 2^122 possible values. The probability of collision is negligible for any practical application." }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I use a UUID as a database primary key?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. UUIDs are widely used as primary keys in distributed systems. The trade-off is they are larger than integer IDs and not naturally sortable. Consider ULID if sort order matters." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between UUID v1 and UUID v4?",
+        "acceptedAnswer": { "@type": "Answer", "text": "UUID v1 is generated from a timestamp and MAC address — time-sortable but exposes system info. UUID v4 is entirely random and reveals nothing about the host or generation time." }
+      }
+    ]
+  }
+  </script>
 
   <script>
     let caseMode  = 'lower';
@@ -621,7 +783,6 @@
       setTimeout(() => t.classList.remove('show'), 2000);
     }
 
-    // Generate one on load
     generateSingle();
     generateBulk();
 
