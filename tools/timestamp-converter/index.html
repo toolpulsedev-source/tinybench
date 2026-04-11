@@ -3,8 +3,34 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Unix Timestamp Converter — TinyBench</title>
-  <meta name="description" content="Free online Unix timestamp converter. Convert Unix timestamps to human-readable dates and vice versa. Supports seconds and milliseconds. 100% client-side." />
+
+  <!-- SEO: more specific, keyword-rich title -->
+  <title>Unix Timestamp Converter — Convert Timestamp to Date Online | TinyBench</title>
+  <meta name="description" content="Free Unix timestamp converter online. Instantly convert Unix timestamp to human-readable date and time, or any date to Unix timestamp. Supports seconds and milliseconds. 100% client-side, no sign-up." />
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://tinybench.dev/tools/timestamp-converter/" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Unix Timestamp Converter — Convert Timestamp to Date Online" />
+  <meta property="og:description" content="Instantly convert Unix timestamps to human-readable dates and back. Supports seconds and milliseconds. Free, fast, 100% client-side." />
+  <meta property="og:url" content="https://tinybench.dev/tools/timestamp-converter/" />
+  <meta property="og:type" content="website" />
+
+  <!-- Schema.org structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Unix Timestamp Converter",
+    "url": "https://tinybench.dev/tools/timestamp-converter/",
+    "description": "Free online Unix timestamp converter. Convert Unix timestamps to human-readable dates and back. Supports seconds and milliseconds.",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Syne:wght@400;600;800&display=swap" rel="stylesheet" />
@@ -297,7 +323,6 @@
     .btn-outline { background: transparent; color: var(--text); border: 1px solid var(--border); }
     .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
 
-    /* RESULTS GRID */
     .results-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -365,7 +390,7 @@
       z-index: 1;
       max-width: 900px;
       margin: 0 auto;
-      padding: 0 2rem 4rem;
+      padding: 0 2rem 2rem;
     }
 
     .ref-card {
@@ -412,8 +437,98 @@
 
     .ref-table tr:last-child td { border-bottom: none; }
     .ref-table tr:hover td { background: rgba(0,255,153,0.03); }
-
     .ts-val { color: var(--accent); }
+
+    /* SEO CONTENT SECTION */
+    .seo-section {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 2rem 2rem;
+    }
+
+    .seo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+      margin-bottom: 1.2rem;
+    }
+
+    @media (max-width: 620px) { .seo-grid { grid-template-columns: 1fr; } }
+
+    .seo-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.4rem;
+    }
+
+    .seo-card h2 {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.8rem;
+    }
+
+    .seo-card p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .seo-card p + p { margin-top: 0.6rem; }
+
+    /* FAQ */
+    .faq-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .faq-header {
+      padding: 0.9rem 1.2rem;
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .faq-item {
+      padding: 1.1rem 1.4rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .faq-item:last-child { border-bottom: none; }
+
+    .faq-q {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+
+    .faq-a {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .faq-a code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 0.1rem 0.4rem;
+      border-radius: 4px;
+      color: var(--accent);
+    }
 
     footer {
       position: relative;
@@ -462,7 +577,7 @@
   <div class="page-header">
     <div class="page-tag">// tool 04</div>
     <h1>Unix Timestamp Converter</h1>
-    <p>Convert Unix timestamps to human-readable dates and back. Supports seconds and milliseconds. 100% client-side.</p>
+    <p>Convert Unix timestamps to human-readable dates and back. Supports seconds and milliseconds. 100% client-side — nothing leaves your browser.</p>
   </div>
 
   <!-- LIVE CLOCK -->
@@ -556,16 +671,96 @@
     </div>
   </div>
 
+  <!-- SEO CONTENT SECTION -->
+  <div class="seo-section">
+    <div class="seo-grid">
+      <div class="seo-card">
+        <h2>// what is a unix timestamp?</h2>
+        <p>A Unix timestamp is the number of seconds (or milliseconds) elapsed since <strong style="color:var(--text)">January 1, 1970 00:00:00 UTC</strong> — known as the Unix Epoch.</p>
+        <p>It is the standard way most programming languages, databases, and APIs represent dates and times internally. For example, <code>1700000000</code> equals <strong style="color:var(--text)">November 14, 2023 22:13:20 UTC</strong>.</p>
+      </div>
+      <div class="seo-card">
+        <h2>// seconds vs milliseconds</h2>
+        <p>Unix timestamps in <strong style="color:var(--text)">seconds</strong> are 10 digits long (e.g. <code>1700000000</code>). Most Unix systems, Linux, and server-side languages use seconds.</p>
+        <p>Timestamps in <strong style="color:var(--text)">milliseconds</strong> are 13 digits long (e.g. <code>1700000000000</code>). JavaScript's <code>Date.now()</code> returns milliseconds. This tool auto-detects and handles both.</p>
+      </div>
+    </div>
+
+    <!-- FAQ with schema markup -->
+    <div class="faq-card">
+      <div class="faq-header">// frequently asked questions</div>
+
+      <div class="faq-item">
+        <div class="faq-q">How do I convert a Unix timestamp to a date in JavaScript?</div>
+        <div class="faq-a">Use <code>new Date(timestamp * 1000)</code> for seconds, or <code>new Date(timestamp)</code> for milliseconds. For example: <code>new Date(1700000000 * 1000).toISOString()</code> returns <code>"2023-11-14T22:13:20.000Z"</code>.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">What is the current Unix timestamp?</div>
+        <div class="faq-a">The live timestamp is shown at the top of this page and updates every second. You can also get it in your terminal with <code>date +%s</code> on Linux/Mac, or <code>Date.now()</code> in JavaScript.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">What is Unix timestamp 0?</div>
+        <div class="faq-a">Timestamp <code>0</code> represents the Unix Epoch: <strong style="color:var(--text)">January 1, 1970, 00:00:00 UTC</strong>. All Unix timestamps are counted from this point in time.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">What is the Year 2038 problem?</div>
+        <div class="faq-a">32-bit signed integers overflow at timestamp <code>2147483647</code> — which equals <strong style="color:var(--text)">January 19, 2038</strong>. Systems still using 32-bit time values may break after this date. Modern 64-bit systems are not affected.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">How do I convert a date to Unix timestamp in Python?</div>
+        <div class="faq-a">Use the <code>datetime</code> module: <code>import datetime; int(datetime.datetime(2024, 1, 1).timestamp())</code>. For timezone-aware conversion, use <code>datetime.timezone.utc</code> to avoid local time offsets.</div>
+      </div>
+    </div>
+  </div>
+
   <footer>
     <p>tinybench.dev — <a href="/">← back to all tools</a></p>
   </footer>
 
   <div class="toast" id="toast"></div>
 
+  <!-- FAQ Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How do I convert a Unix timestamp to a date in JavaScript?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Use new Date(timestamp * 1000) for seconds, or new Date(timestamp) for milliseconds." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the current Unix timestamp?",
+        "acceptedAnswer": { "@type": "Answer", "text": "You can get the current Unix timestamp in JavaScript with Date.now() (milliseconds) or Math.floor(Date.now()/1000) (seconds). On Linux/Mac use the terminal command: date +%s" }
+      },
+      {
+        "@type": "Question",
+        "name": "What is Unix timestamp 0?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Timestamp 0 represents the Unix Epoch: January 1, 1970, 00:00:00 UTC." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the Year 2038 problem?",
+        "acceptedAnswer": { "@type": "Answer", "text": "32-bit signed integers overflow at timestamp 2147483647, which equals January 19, 2038. Modern 64-bit systems are not affected." }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I convert a date to Unix timestamp in Python?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Use the datetime module: import datetime; int(datetime.datetime(2024, 1, 1).timestamp())" }
+      }
+    ]
+  }
+  </script>
+
   <script>
     let unit = 's';
 
-    // Live clock
     function updateClock() {
       const now = new Date();
       const sec = Math.floor(now.getTime() / 1000);
@@ -601,7 +796,6 @@
       let ts = parseFloat(raw);
       if (isNaN(ts)) { err.textContent = '⚠ Invalid timestamp'; res.innerHTML = ''; return; }
 
-      // Auto-detect ms if number > 1e10
       let ms = unit === 'ms' ? ts : ts * 1000;
       if (unit === 's' && ts > 1e12) {
         ms = ts;
@@ -687,12 +881,12 @@
       const abs  = Math.abs(diff);
       const future = diff < 0;
       let str;
-      if (abs < 60)         str = abs + ' seconds';
-      else if (abs < 3600)  str = Math.floor(abs/60) + ' minutes';
-      else if (abs < 86400) str = Math.floor(abs/3600) + ' hours';
+      if (abs < 60)          str = abs + ' seconds';
+      else if (abs < 3600)   str = Math.floor(abs/60) + ' minutes';
+      else if (abs < 86400)  str = Math.floor(abs/3600) + ' hours';
       else if (abs < 2592000) str = Math.floor(abs/86400) + ' days';
       else if (abs < 31536000) str = Math.floor(abs/2592000) + ' months';
-      else                  str = Math.floor(abs/31536000) + ' years';
+      else                   str = Math.floor(abs/31536000) + ' years';
       return future ? 'in ' + str : str + ' ago';
     }
 
@@ -700,16 +894,15 @@
       navigator.clipboard.writeText(val).then(() => showToast('Copied!'));
     }
 
-    // Reference table
     const REF_EVENTS = [
-      { label: 'Unix Epoch',         ts: 0 },
-      { label: 'Y2K',                ts: 946684800 },
-      { label: 'iPhone launched',    ts: 1167609600 },
-      { label: 'Bitcoin genesis',    ts: 1231006505 },
-      { label: 'Year 2020 start',    ts: 1577836800 },
-      { label: 'Year 2025 start',    ts: 1735689600 },
-      { label: 'Year 2030 start',    ts: 1893456000 },
-      { label: 'Y2K38 (int overflow)',ts: 2147483647 },
+      { label: 'Unix Epoch',          ts: 0 },
+      { label: 'Y2K',                 ts: 946684800 },
+      { label: 'iPhone launched',     ts: 1167609600 },
+      { label: 'Bitcoin genesis',     ts: 1231006505 },
+      { label: 'Year 2020 start',     ts: 1577836800 },
+      { label: 'Year 2025 start',     ts: 1735689600 },
+      { label: 'Year 2030 start',     ts: 1893456000 },
+      { label: 'Y2K38 (int overflow)', ts: 2147483647 },
     ];
 
     document.getElementById('refTable').innerHTML = REF_EVENTS.map(e => {
