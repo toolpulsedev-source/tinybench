@@ -3,8 +3,30 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Base64 Encoder / Decoder — TinyBench</title>
-  <meta name="description" content="Free online Base64 encoder and decoder. Encode or decode Base64 strings and files instantly in your browser. 100% client-side, no data sent to any server." />
+
+  <title>Base64 Encoder / Decoder Online — Free Base64 Tool | TinyBench</title>
+  <meta name="description" content="Free online Base64 encoder and decoder. Encode or decode Base64 strings and files instantly in your browser. Supports text, URLs, and binary files. 100% client-side." />
+
+  <link rel="canonical" href="https://tinybench.dev/tools/base64/" />
+
+  <meta property="og:title" content="Base64 Encoder / Decoder Online — Free Base64 Tool" />
+  <meta property="og:description" content="Encode or decode Base64 strings and files instantly in your browser. Supports text, URLs, and binary files. Free, 100% client-side." />
+  <meta property="og:url" content="https://tinybench.dev/tools/base64/" />
+  <meta property="og:type" content="website" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Base64 Encoder / Decoder",
+    "url": "https://tinybench.dev/tools/base64/",
+    "description": "Free online Base64 encoder and decoder. Encode or decode Base64 strings and files instantly in your browser.",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Syne:wght@400;600;800&display=swap" rel="stylesheet" />
@@ -12,346 +34,59 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #0a0a0f;
-      --surface: #111118;
-      --border: #1e1e2e;
-      --accent: #00ff99;
-      --accent2: #7b61ff;
-      --text: #e8e8f0;
-      --muted: #555570;
-      --card-bg: #13131c;
-      --error: #ff5566;
+      --bg: #0a0a0f; --surface: #111118; --border: #1e1e2e; --accent: #00ff99;
+      --accent2: #7b61ff; --text: #e8e8f0; --muted: #555570; --card-bg: #13131c; --error: #ff5566;
     }
 
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Syne', sans-serif;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
+    body { background: var(--bg); color: var(--text); font-family: 'Syne', sans-serif; min-height: 100vh; overflow-x: hidden; }
+    body::before { content: ''; position: fixed; inset: 0; background-image: linear-gradient(rgba(0,255,153,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,255,153,0.03) 1px, transparent 1px); background-size: 40px 40px; pointer-events: none; z-index: 0; }
 
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(0,255,153,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,255,153,0.03) 1px, transparent 1px);
-      background-size: 40px 40px;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 1rem 2rem;
-      background: rgba(10,10,15,0.9);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .logo {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--accent);
-      text-decoration: none;
-    }
-
+    nav { position: sticky; top: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1rem 2rem; background: rgba(10,10,15,0.9); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+    .logo { font-family: 'JetBrains Mono', monospace; font-size: 1rem; font-weight: 700; color: var(--accent); text-decoration: none; }
     .logo span { color: var(--muted); }
-
-    .nav-back {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.75rem;
-      color: var(--muted);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
+    .nav-back { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--muted); text-decoration: none; transition: color 0.2s; }
     .nav-back:hover { color: var(--accent); }
 
-    .page-header {
-      position: relative;
-      z-index: 1;
-      padding: 3rem 2rem 2rem;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
+    .page-header { position: relative; z-index: 1; padding: 3rem 2rem 2rem; max-width: 1000px; margin: 0 auto; }
+    .page-tag { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--accent); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.6rem; }
+    .page-header h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; letter-spacing: -0.03em; margin-bottom: 0.5rem; }
+    .page-header p { color: var(--muted); font-size: 0.9rem; line-height: 1.6; }
 
-    .page-tag {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.7rem;
-      color: var(--accent);
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      margin-bottom: 0.6rem;
-    }
+    .mode-section { position: relative; z-index: 1; max-width: 1000px; margin: 0 auto; padding: 0 2rem 1.5rem; }
+    .mode-toggle { display: inline-flex; background: var(--card-bg); border: 1px solid var(--border); border-radius: 10px; padding: 0.3rem; gap: 0.3rem; }
+    .mode-btn { font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; font-weight: 700; padding: 0.6rem 1.5rem; border-radius: 7px; border: none; cursor: pointer; transition: all 0.2s; color: var(--muted); background: transparent; }
+    .mode-btn.active { background: var(--accent); color: #000; }
 
-    .page-header h1 {
-      font-size: clamp(1.8rem, 4vw, 2.8rem);
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      margin-bottom: 0.5rem;
-    }
+    .tab-section { position: relative; z-index: 1; max-width: 1000px; margin: 0 auto; padding: 0 2rem 1rem; display: flex; gap: 0.5rem; }
+    .tab-btn { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 700; padding: 0.4rem 1rem; border-radius: 6px; border: 1px solid var(--border); background: transparent; color: var(--muted); cursor: pointer; transition: all 0.15s; }
+    .tab-btn.active { border-color: var(--accent); color: var(--accent); background: rgba(0,255,153,0.08); }
 
-    .page-header p {
-      color: var(--muted);
-      font-size: 0.9rem;
-      line-height: 1.6;
-    }
-
-    /* MODE TOGGLE */
-    .mode-section {
-      position: relative;
-      z-index: 1;
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 0 2rem 1.5rem;
-    }
-
-    .mode-toggle {
-      display: inline-flex;
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 0.3rem;
-      gap: 0.3rem;
-    }
-
-    .mode-btn {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.82rem;
-      font-weight: 700;
-      padding: 0.6rem 1.5rem;
-      border-radius: 7px;
-      border: none;
-      cursor: pointer;
-      transition: all 0.2s;
-      color: var(--muted);
-      background: transparent;
-    }
-
-    .mode-btn.active {
-      background: var(--accent);
-      color: #000;
-    }
-
-    /* TAB TOGGLE: TEXT / FILE */
-    .tab-section {
-      position: relative;
-      z-index: 1;
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 0 2rem 1rem;
-      display: flex;
-      gap: 0.5rem;
-    }
-
-    .tab-btn {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.75rem;
-      font-weight: 700;
-      padding: 0.4rem 1rem;
-      border-radius: 6px;
-      border: 1px solid var(--border);
-      background: transparent;
-      color: var(--muted);
-      cursor: pointer;
-      transition: all 0.15s;
-    }
-
-    .tab-btn.active {
-      border-color: var(--accent);
-      color: var(--accent);
-      background: rgba(0,255,153,0.08);
-    }
-
-    /* MAIN LAYOUT */
-    .editor-layout {
-      position: relative;
-      z-index: 1;
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 0 2rem 1.2rem;
-      display: grid;
-      grid-template-columns: 1fr auto 1fr;
-      gap: 1rem;
-      align-items: start;
-    }
-
-    .panel {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .panel-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0.75rem 1rem;
-      border-bottom: 1px solid var(--border);
-      background: var(--surface);
-    }
-
-    .panel-title {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.72rem;
-      color: var(--muted);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-
-    .icon-btn {
-      background: transparent;
-      border: none;
-      color: var(--muted);
-      cursor: pointer;
-      font-size: 0.75rem;
-      padding: 0.2rem 0.5rem;
-      border-radius: 4px;
-      font-family: 'JetBrains Mono', monospace;
-      transition: color 0.2s, background 0.2s;
-    }
-
+    .editor-layout { position: relative; z-index: 1; max-width: 1000px; margin: 0 auto; padding: 0 2rem 1.2rem; display: grid; grid-template-columns: 1fr auto 1fr; gap: 1rem; align-items: start; }
+    .panel { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; }
+    .panel-header { display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1rem; border-bottom: 1px solid var(--border); background: var(--surface); }
+    .panel-title { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; }
+    .icon-btn { background: transparent; border: none; color: var(--muted); cursor: pointer; font-size: 0.75rem; padding: 0.2rem 0.5rem; border-radius: 4px; font-family: 'JetBrains Mono', monospace; transition: color 0.2s, background 0.2s; }
     .icon-btn:hover { color: var(--accent); background: rgba(0,255,153,0.08); }
 
-    textarea {
-      width: 100%;
-      min-height: 280px;
-      background: transparent;
-      border: none;
-      outline: none;
-      resize: vertical;
-      padding: 1.2rem;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.82rem;
-      line-height: 1.7;
-      color: var(--text);
-      word-break: break-all;
-    }
-
+    textarea { width: 100%; min-height: 280px; background: transparent; border: none; outline: none; resize: vertical; padding: 1.2rem; font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; line-height: 1.7; color: var(--text); word-break: break-all; }
     textarea::placeholder { color: var(--muted); }
 
-    /* ARROW */
-    .arrow-col {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      padding-top: 3rem;
-    }
-
-    .convert-btn {
-      background: var(--accent);
-      color: #000;
-      border: none;
-      border-radius: 50%;
-      width: 44px;
-      height: 44px;
-      font-size: 1.2rem;
-      cursor: pointer;
-      transition: transform 0.15s, box-shadow 0.15s;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-    }
-
-    .convert-btn:hover {
-      transform: scale(1.1);
-      box-shadow: 0 6px 20px rgba(0,255,153,0.35);
-    }
-
-    .swap-btn {
-      background: transparent;
-      color: var(--muted);
-      border: 1px solid var(--border);
-      border-radius: 50%;
-      width: 36px;
-      height: 36px;
-      font-size: 0.9rem;
-      cursor: pointer;
-      transition: all 0.15s;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
+    .arrow-col { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.5rem; padding-top: 3rem; }
+    .convert-btn { background: var(--accent); color: #000; border: none; border-radius: 50%; width: 44px; height: 44px; font-size: 1.2rem; cursor: pointer; transition: transform 0.15s, box-shadow 0.15s; display: flex; align-items: center; justify-content: center; font-weight: 700; }
+    .convert-btn:hover { transform: scale(1.1); box-shadow: 0 6px 20px rgba(0,255,153,0.35); }
+    .swap-btn { background: transparent; color: var(--muted); border: 1px solid var(--border); border-radius: 50%; width: 36px; height: 36px; font-size: 0.9rem; cursor: pointer; transition: all 0.15s; display: flex; align-items: center; justify-content: center; }
     .swap-btn:hover { color: var(--accent); border-color: var(--accent); }
 
-    /* FILE DROP ZONE */
-    .file-zone {
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 280px;
-      padding: 2rem;
-      border: 2px dashed var(--border);
-      border-radius: 8px;
-      margin: 1rem;
-      cursor: pointer;
-      transition: border-color 0.2s, background 0.2s;
-      text-align: center;
-      gap: 0.8rem;
-    }
-
+    .file-zone { display: none; flex-direction: column; align-items: center; justify-content: center; min-height: 280px; padding: 2rem; border: 2px dashed var(--border); border-radius: 8px; margin: 1rem; cursor: pointer; transition: border-color 0.2s, background 0.2s; text-align: center; gap: 0.8rem; }
     .file-zone.active { display: flex; }
-    .file-zone:hover, .file-zone.dragover {
-      border-color: rgba(0,255,153,0.4);
-      background: rgba(0,255,153,0.04);
-    }
-
+    .file-zone:hover, .file-zone.dragover { border-color: rgba(0,255,153,0.4); background: rgba(0,255,153,0.04); }
     .file-icon { font-size: 2.5rem; }
-
-    .file-label {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.82rem;
-      color: var(--muted);
-    }
-
+    .file-label { font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; color: var(--muted); }
     .file-label span { color: var(--accent); }
+    .file-info { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--muted); }
 
-    .file-info {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.75rem;
-      color: var(--muted);
-    }
-
-    /* ACTIONS */
-    .actions {
-      position: relative;
-      z-index: 1;
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 0 2rem 1.5rem;
-      display: flex;
-      gap: 0.6rem;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.78rem;
-      font-weight: 700;
-      padding: 0.55rem 1.2rem;
-      border-radius: 6px;
-      border: none;
-      cursor: pointer;
-      transition: transform 0.15s, box-shadow 0.15s;
-    }
-
+    .actions { position: relative; z-index: 1; max-width: 1000px; margin: 0 auto; padding: 0 2rem 1.5rem; display: flex; gap: 0.6rem; flex-wrap: wrap; }
+    .btn { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; font-weight: 700; padding: 0.55rem 1.2rem; border-radius: 6px; border: none; cursor: pointer; transition: transform 0.15s, box-shadow 0.15s; }
     .btn:hover { transform: translateY(-1px); }
     .btn-accent { background: var(--accent); color: #000; }
     .btn-accent:hover { box-shadow: 0 6px 20px rgba(0,255,153,0.3); }
@@ -360,103 +95,72 @@
     .btn-danger { background: transparent; color: var(--error); border: 1px solid rgba(255,85,102,0.3); }
     .btn-danger:hover { border-color: var(--error); }
 
-    /* STATUS */
-    .status-section {
-      position: relative;
-      z-index: 1;
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 0 2rem 2rem;
-    }
-
-    .status {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.75rem;
-      padding: 0.6rem 1rem;
-      border-radius: 6px;
-      border: 1px solid var(--border);
-      background: var(--card-bg);
-    }
-
+    .status-section { position: relative; z-index: 1; max-width: 1000px; margin: 0 auto; padding: 0 2rem 2rem; }
+    .status { display: flex; align-items: center; gap: 0.6rem; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; padding: 0.6rem 1rem; border-radius: 6px; border: 1px solid var(--border); background: var(--card-bg); }
     .status.success { border-color: rgba(0,255,153,0.3); color: var(--accent); background: rgba(0,255,153,0.05); }
-    .status.error   { border-color: rgba(255,85,102,0.3); color: var(--error); background: rgba(255,85,102,0.05); }
-    .status.idle    { color: var(--muted); }
+    .status.error { border-color: rgba(255,85,102,0.3); color: var(--error); background: rgba(255,85,102,0.05); }
+    .status.idle { color: var(--muted); }
     .status-dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; flex-shrink: 0; }
 
-    /* INFO */
-    .info-section {
-      position: relative;
-      z-index: 1;
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 0 2rem 4rem;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.2rem;
-    }
-
-    .info-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.6rem;
-    }
-
+    .info-section { position: relative; z-index: 1; max-width: 1000px; margin: 0 auto; padding: 0 2rem 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+    .info-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 1.6rem; }
     .info-card h2 { font-size: 1rem; font-weight: 700; margin-bottom: 1rem; color: var(--accent); }
     .info-card p, .info-card li { font-size: 0.83rem; color: var(--muted); line-height: 1.8; }
     .info-card ul { padding-left: 1.2rem; display: flex; flex-direction: column; gap: 0.3rem; }
-
     .use-cases { display: flex; flex-direction: column; gap: 0.5rem; }
-
-    .use-case {
-      display: flex;
-      gap: 0.8rem;
-      align-items: flex-start;
-      font-size: 0.8rem;
-    }
-
+    .use-case { display: flex; gap: 0.8rem; align-items: flex-start; font-size: 0.8rem; }
     .use-case-icon { font-size: 1rem; flex-shrink: 0; margin-top: 0.1rem; }
     .use-case-text { color: var(--muted); line-height: 1.5; }
 
-    footer {
-      position: relative;
-      z-index: 1;
-      padding: 2rem;
-      text-align: center;
-      border-top: 1px solid var(--border);
-    }
+    /* SEO SECTION */
+    .seo-section { position: relative; z-index: 1; max-width: 1000px; margin: 0 auto; padding: 0 2rem 2rem; }
+    .seo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-bottom: 1.2rem; }
+    @media (max-width: 620px) { .seo-grid { grid-template-columns: 1fr; } }
+    .seo-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 1.4rem; }
+    .seo-card h2 { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.8rem; }
+    .seo-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.7; }
+    .seo-card p + p { margin-top: 0.6rem; }
+    .seo-card a { color: var(--accent); text-decoration: none; }
+    .seo-card a:hover { text-decoration: underline; }
 
-    footer p { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--muted); }
-    footer a { color: var(--accent); text-decoration: none; }
+    .faq-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-bottom: 1.2rem; }
+    .faq-header { padding: 0.9rem 1.2rem; border-bottom: 1px solid var(--border); background: var(--surface); font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; }
+    .faq-item { padding: 1.1rem 1.4rem; border-bottom: 1px solid var(--border); }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-q { font-size: 0.88rem; font-weight: 700; color: var(--text); margin-bottom: 0.5rem; }
+    .faq-a { font-size: 0.82rem; color: var(--muted); line-height: 1.7; }
+    .faq-a code { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; background: var(--surface); border: 1px solid var(--border); padding: 0.1rem 0.4rem; border-radius: 4px; color: var(--accent); }
+    .faq-a a { color: var(--accent); text-decoration: none; }
+    .faq-a a:hover { text-decoration: underline; }
 
-    .toast {
-      position: fixed;
-      bottom: 2rem;
-      right: 2rem;
-      background: var(--accent);
-      color: #000;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.8rem;
-      font-weight: 700;
-      padding: 0.7rem 1.4rem;
-      border-radius: 8px;
-      z-index: 999;
-      opacity: 0;
-      transform: translateY(10px);
-      transition: opacity 0.2s, transform 0.2s;
-      pointer-events: none;
-    }
+    /* RELATED TOOLS */
+    .related-section { position: relative; z-index: 1; max-width: 1000px; margin: 0 auto; padding: 0 2rem 2rem; }
+    .related-header { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; }
+    .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 0.8rem; }
+    .related-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 10px; padding: 1rem 1.2rem; text-decoration: none; transition: border-color 0.2s, transform 0.15s; display: block; }
+    .related-card:hover { border-color: rgba(0,255,153,0.3); transform: translateY(-2px); }
+    .related-card-label { font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.3rem; }
+    .related-card-name { font-size: 0.85rem; font-weight: 700; color: var(--text); }
 
+    /* RICH FOOTER */
+    .site-footer { position: relative; z-index: 1; border-top: 1px solid var(--border); padding: 3rem 2rem 2rem; margin-top: 2rem; }
+    .footer-grid { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2rem; margin-bottom: 2rem; }
+    .footer-brand .logo { font-size: 1.1rem; display: inline-block; margin-bottom: 0.8rem; }
+    .footer-brand p { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--muted); line-height: 1.7; max-width: 220px; }
+    .footer-col h4 { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.8rem; }
+    .footer-col a { display: block; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--muted); text-decoration: none; margin-bottom: 0.5rem; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--accent); }
+    .footer-bottom { max-width: 1000px; margin: 0 auto; padding-top: 1.5rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .footer-bottom p { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--muted); }
+    .footer-legal { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    .footer-legal a { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--muted); text-decoration: none; }
+    .footer-legal a:hover { color: var(--accent); }
+
+    .toast { position: fixed; bottom: 2rem; right: 2rem; background: var(--accent); color: #000; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; font-weight: 700; padding: 0.7rem 1.4rem; border-radius: 8px; z-index: 999; opacity: 0; transform: translateY(10px); transition: opacity 0.2s, transform 0.2s; pointer-events: none; }
     .toast.show { opacity: 1; transform: translateY(0); }
 
-    @media (max-width: 768px) {
-      .editor-layout { grid-template-columns: 1fr; }
-      .arrow-col { flex-direction: row; padding-top: 0; justify-content: center; }
-      .info-section { grid-template-columns: 1fr; }
-    }
+    @media (max-width: 768px) { .editor-layout { grid-template-columns: 1fr; } .arrow-col { flex-direction: row; padding-top: 0; justify-content: center; } .info-section { grid-template-columns: 1fr; } .footer-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 500px) { .footer-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
@@ -469,10 +173,9 @@
   <div class="page-header">
     <div class="page-tag">// tool 05</div>
     <h1>Base64 Encoder / Decoder</h1>
-    <p>Encode or decode Base64 strings and files instantly. Supports text, URLs, and binary files — 100% in your browser.</p>
+    <p>Encode or decode Base64 strings and files instantly. Supports text, URLs, and binary files — 100% in your browser. Nothing leaves your device.</p>
   </div>
 
-  <!-- MODE -->
   <div class="mode-section">
     <div class="mode-toggle">
       <button class="mode-btn active" id="encodeBtn" onclick="setMode('encode')">Encode →</button>
@@ -480,37 +183,29 @@
     </div>
   </div>
 
-  <!-- TAB: TEXT / FILE -->
   <div class="tab-section">
     <button class="tab-btn active" id="textTab" onclick="setTab('text')">Text</button>
     <button class="tab-btn" id="fileTab" onclick="setTab('file')">File</button>
   </div>
 
-  <!-- EDITOR -->
   <div class="editor-layout">
-    <!-- INPUT PANEL -->
     <div class="panel">
       <div class="panel-header">
         <span class="panel-title" id="inputLabel">// plain text</span>
         <button class="icon-btn" onclick="clearInput()">Clear</button>
       </div>
       <textarea id="inputText" placeholder="Enter text to encode..." oninput="autoConvert()" spellcheck="false"></textarea>
-      <div class="file-zone" id="fileZone" onclick="document.getElementById('fileInput').click()"
-        ondragover="onDragOver(event)" ondragleave="onDragLeave(event)" ondrop="onDrop(event)">
+      <div class="file-zone" id="fileZone" onclick="document.getElementById('fileInput').click()" ondragover="onDragOver(event)" ondragleave="onDragLeave(event)" ondrop="onDrop(event)">
         <div class="file-icon">📂</div>
         <div class="file-label">Drop file here or <span>click to browse</span></div>
         <div class="file-info" id="fileInfo">Any file type supported</div>
         <input type="file" id="fileInput" style="display:none" onchange="onFileSelect(event)" />
       </div>
     </div>
-
-    <!-- ARROW -->
     <div class="arrow-col">
       <button class="convert-btn" onclick="convert()" title="Convert">→</button>
       <button class="swap-btn" onclick="swapMode()" title="Swap">⇄</button>
     </div>
-
-    <!-- OUTPUT PANEL -->
     <div class="panel">
       <div class="panel-header">
         <span class="panel-title" id="outputLabel">// base64</span>
@@ -523,7 +218,6 @@
     </div>
   </div>
 
-  <!-- ACTIONS -->
   <div class="actions">
     <button class="btn btn-accent" onclick="convert()">▶ Convert</button>
     <button class="btn btn-outline" onclick="loadSample()">Load Sample</button>
@@ -531,7 +225,6 @@
     <button class="btn btn-danger" onclick="clearAll()">Clear</button>
   </div>
 
-  <!-- STATUS -->
   <div class="status-section">
     <div class="status idle" id="statusBar">
       <div class="status-dot"></div>
@@ -539,7 +232,6 @@
     </div>
   </div>
 
-  <!-- INFO -->
   <div class="info-section">
     <div class="info-card">
       <h2>About Base64</h2>
@@ -568,179 +260,208 @@
     </div>
   </div>
 
-  <footer>
-    <p>tinybench.dev — <a href="/">← back to all tools</a></p>
+  <!-- SEO CONTENT -->
+  <div class="seo-section">
+    <div class="seo-grid">
+      <div class="seo-card">
+        <h2>// what is base64 encoding?</h2>
+        <p>Base64 encoding converts binary data into a set of 64 ASCII characters (A–Z, a–z, 0–9, +, /). Each 3 bytes of binary data becomes 4 Base64 characters, making encoded output about 33% larger than the original.</p>
+        <p>Base64 is not encryption — it's purely an encoding scheme. Anyone can decode it. Read our full guide: <a href="/blog/what-is-base64/">what is Base64?</a> and the comparison: <a href="/blog/base64-vs-hex/">Base64 vs hex encoding</a>.</p>
+      </div>
+      <div class="seo-card">
+        <h2>// base64 vs url-safe base64</h2>
+        <p>Standard Base64 uses <code style="font-family:'JetBrains Mono',monospace;font-size:0.78rem;background:var(--surface);border:1px solid var(--border);padding:0.1rem 0.4rem;border-radius:4px;color:var(--accent);">+</code> and <code style="font-family:'JetBrains Mono',monospace;font-size:0.78rem;background:var(--surface);border:1px solid var(--border);padding:0.1rem 0.4rem;border-radius:4px;color:var(--accent);">/</code> which have special meaning in URLs. URL-safe Base64 replaces these with <code style="font-family:'JetBrains Mono',monospace;font-size:0.78rem;background:var(--surface);border:1px solid var(--border);padding:0.1rem 0.4rem;border-radius:4px;color:var(--accent);">-</code> and <code style="font-family:'JetBrains Mono',monospace;font-size:0.78rem;background:var(--surface);border:1px solid var(--border);padding:0.1rem 0.4rem;border-radius:4px;color:var(--accent);">_</code>.</p>
+        <p>JWT tokens use URL-safe Base64 without padding for the header and payload sections. See our <a href="/tools/jwt-decoder/">JWT Decoder</a> to decode JWT tokens directly.</p>
+      </div>
+    </div>
+
+    <div class="faq-card">
+      <div class="faq-header">// frequently asked questions</div>
+      <div class="faq-item">
+        <div class="faq-q">How do I encode a string to Base64 in JavaScript?</div>
+        <div class="faq-a">Use <code>btoa(string)</code> for ASCII strings. For Unicode text use: <code>btoa(unescape(encodeURIComponent(string)))</code>. To decode, use <code>atob(base64string)</code>. Read the full guide: <a href="/blog/encode-image-base64-javascript/">encode images to Base64 in JavaScript</a>.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">How do I encode a string to Base64 in Python?</div>
+        <div class="faq-a">Use the <code>base64</code> module: <code>import base64; base64.b64encode(b"Hello World")</code>. To decode: <code>base64.b64decode("SGVsbG8gV29ybGQ=")</code>. For URL-safe Base64 use <code>base64.urlsafe_b64encode()</code>.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Is Base64 the same as encryption?</div>
+        <div class="faq-a">No — Base64 is an encoding scheme, not encryption. It is completely reversible by anyone and provides no security. Do not use Base64 to hide sensitive data. Use proper encryption (like AES) for security and Base64 only for data transport compatibility.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">How do I embed an image as Base64 in HTML?</div>
+        <div class="faq-a">Use the File tab above to encode your image, then use the output as a data URI: <code>&lt;img src="data:image/png;base64,YOUR_BASE64_HERE"&gt;</code>. This embeds the image directly in your HTML without a separate file request. See our guide: <a href="/blog/encode-image-base64-javascript/">encode images to Base64</a>.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What is the difference between Base64 and hex encoding?</div>
+        <div class="faq-a">Both convert binary data to text, but Base64 is more compact — it uses 4 chars per 3 bytes (33% overhead) while hex uses 2 chars per byte (100% overhead). Base64 is preferred for large data like images. Hex is easier to read for debugging small binary values. Full comparison: <a href="/blog/base64-vs-hex/">Base64 vs hex</a>.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RELATED TOOLS -->
+  <div class="related-section">
+    <div class="related-header">// related tools</div>
+    <div class="related-grid">
+      <a href="/tools/jwt-decoder/" class="related-card">
+        <div class="related-card-label">Auth</div>
+        <div class="related-card-name">JWT Decoder</div>
+      </a>
+      <a href="/tools/json-formatter/" class="related-card">
+        <div class="related-card-label">Formatter</div>
+        <div class="related-card-name">JSON Formatter</div>
+      </a>
+      <a href="/tools/image-compressor/" class="related-card">
+        <div class="related-card-label">Images</div>
+        <div class="related-card-name">Image Compressor</div>
+      </a>
+      <a href="/tools/uuid-generator/" class="related-card">
+        <div class="related-card-label">Generator</div>
+        <div class="related-card-name">UUID Generator</div>
+      </a>
+      <a href="/tools/regex-tester/" class="related-card">
+        <div class="related-card-label">Testing</div>
+        <div class="related-card-name">Regex Tester</div>
+      </a>
+      <a href="/tools/timestamp-converter/" class="related-card">
+        <div class="related-card-label">Converter</div>
+        <div class="related-card-name">Timestamp Converter</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- RICH FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="/" class="logo">tiny<span>bench</span>.dev</a>
+        <p>Free client-side developer tools. No server, no tracking, no sign-up. Just tools that work.</p>
+      </div>
+      <div class="footer-col">
+        <h4>// tools</h4>
+        <a href="/tools/json-formatter/">JSON Formatter</a>
+        <a href="/tools/jwt-decoder/">JWT Decoder</a>
+        <a href="/tools/regex-tester/">Regex Tester</a>
+        <a href="/tools/timestamp-converter/">Timestamp Converter</a>
+        <a href="/tools/base64/">Base64 Encoder</a>
+        <a href="/tools/uuid-generator/">UUID Generator</a>
+        <a href="/tools/sql-formatter/">SQL Formatter</a>
+        <a href="/tools/image-compressor/">Image Compressor</a>
+        <a href="/tools/color-contrast-checker/">Color Contrast</a>
+        <a href="/tools/css-beautifier/">CSS Beautifier</a>
+      </div>
+      <div class="footer-col">
+        <h4>// blog</h4>
+        <a href="/blog/what-is-base64/">What is Base64?</a>
+        <a href="/blog/base64-vs-hex/">Base64 vs Hex</a>
+        <a href="/blog/encode-image-base64-javascript/">Encode Images Base64</a>
+        <a href="/blog/what-is-jwt/">What is JWT?</a>
+        <a href="/blog/how-to-format-json/">Format JSON</a>
+        <a href="/blog/regex-cheat-sheet/">Regex Cheat Sheet</a>
+        <a href="/blog/unix-timestamp-explained/">Unix Timestamps</a>
+        <a href="/blog/uuid-vs-ulid/">UUID vs ULID</a>
+        <a href="/blog/">All Articles →</a>
+      </div>
+      <div class="footer-col">
+        <h4>// company</h4>
+        <a href="/about/">About</a>
+        <a href="/contact/">Contact</a>
+        <a href="/privacy-policy/">Privacy Policy</a>
+        <a href="/terms/">Terms</a>
+        <a href="/cookie-policy/">Cookie Policy</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 tinybench.dev</p>
+      <div class="footer-legal">
+        <a href="/privacy-policy/">Privacy</a>
+        <a href="/terms/">Terms</a>
+        <a href="/cookie-policy/">Cookies</a>
+        <a href="/contact/">Contact</a>
+      </div>
+    </div>
   </footer>
 
   <div class="toast" id="toast"></div>
 
-  <script>
-    let mode = 'encode';
-    let tab  = 'text';
-    let fileData = null;
-    let fileName = '';
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "How do I encode a string to Base64 in JavaScript?", "acceptedAnswer": { "@type": "Answer", "text": "Use btoa(string) for ASCII. For Unicode: btoa(unescape(encodeURIComponent(string))). To decode use atob(base64string)." } },
+      { "@type": "Question", "name": "How do I encode a string to Base64 in Python?", "acceptedAnswer": { "@type": "Answer", "text": "Use import base64; base64.b64encode(b'Hello World'). For URL-safe Base64 use base64.urlsafe_b64encode()." } },
+      { "@type": "Question", "name": "Is Base64 the same as encryption?", "acceptedAnswer": { "@type": "Answer", "text": "No. Base64 is an encoding scheme, not encryption. It is completely reversible by anyone and provides no security." } },
+      { "@type": "Question", "name": "How do I embed an image as Base64 in HTML?", "acceptedAnswer": { "@type": "Answer", "text": "Encode your image file to Base64, then use it as a data URI: <img src=\"data:image/png;base64,YOUR_BASE64_HERE\">." } },
+      { "@type": "Question", "name": "What is the difference between Base64 and hex encoding?", "acceptedAnswer": { "@type": "Answer", "text": "Base64 uses 4 chars per 3 bytes (33% overhead). Hex uses 2 chars per byte (100% overhead). Base64 is preferred for large data like images." } }
+    ]
+  }
+  </script>
 
-    function setMode(m) {
-      mode = m;
-      document.getElementById('encodeBtn').classList.toggle('active', m === 'encode');
-      document.getElementById('decodeBtn').classList.toggle('active', m === 'decode');
-      document.getElementById('inputLabel').textContent  = m === 'encode' ? '// plain text' : '// base64';
-      document.getElementById('outputLabel').textContent = m === 'encode' ? '// base64' : '// plain text';
-      document.getElementById('inputText').placeholder   = m === 'encode' ? 'Enter text to encode...' : 'Enter Base64 to decode...';
-      document.getElementById('convertBtn') && (document.getElementById('convertBtn').textContent = m === 'encode' ? '→' : '←');
+  <script>
+    let mode='encode', tab='text', fileData=null, fileName='';
+
+    function setMode(m){
+      mode=m;
+      document.getElementById('encodeBtn').classList.toggle('active',m==='encode');
+      document.getElementById('decodeBtn').classList.toggle('active',m==='decode');
+      document.getElementById('inputLabel').textContent=m==='encode'?'// plain text':'// base64';
+      document.getElementById('outputLabel').textContent=m==='encode'?'// base64':'// plain text';
+      document.getElementById('inputText').placeholder=m==='encode'?'Enter text to encode...':'Enter Base64 to decode...';
       autoConvert();
     }
 
-    function setTab(t) {
-      tab = t;
-      document.getElementById('textTab').classList.toggle('active', t === 'text');
-      document.getElementById('fileTab').classList.toggle('active', t === 'file');
-      document.getElementById('inputText').style.display  = t === 'text' ? '' : 'none';
-      document.getElementById('fileZone').classList.toggle('active', t === 'file');
-      if (t === 'text') { fileData = null; fileName = ''; }
+    function setTab(t){
+      tab=t;
+      document.getElementById('textTab').classList.toggle('active',t==='text');
+      document.getElementById('fileTab').classList.toggle('active',t==='file');
+      document.getElementById('inputText').style.display=t==='text'?'':'none';
+      document.getElementById('fileZone').classList.toggle('active',t==='file');
+      if(t==='text'){fileData=null;fileName='';}
     }
 
-    function swapMode() {
-      const output = document.getElementById('outputText').value;
-      document.getElementById('inputText').value = output;
-      setMode(mode === 'encode' ? 'decode' : 'encode');
+    function swapMode(){
+      const output=document.getElementById('outputText').value;
+      document.getElementById('inputText').value=output;
+      setMode(mode==='encode'?'decode':'encode');
       convert();
     }
 
-    function convert() {
-      if (tab === 'file' && fileData) {
-        convertFile();
-        return;
-      }
-
-      const input = document.getElementById('inputText').value;
-      if (!input.trim()) {
-        setStatus('idle', 'Ready — enter text and click Convert');
-        document.getElementById('outputText').value = '';
-        return;
-      }
-
-      try {
+    function convert(){
+      if(tab==='file'&&fileData){convertFile();return;}
+      const input=document.getElementById('inputText').value;
+      if(!input.trim()){setStatus('idle','Ready — enter text and click Convert');document.getElementById('outputText').value='';return;}
+      try{
         let result;
-        if (mode === 'encode') {
-          result = btoa(unescape(encodeURIComponent(input)));
-          const ratio = ((result.length / input.length) * 100).toFixed(0);
-          setStatus('success', `✓ Encoded — ${input.length} chars → ${result.length} chars (${ratio}% size)`);
-        } else {
-          result = decodeURIComponent(escape(atob(input.trim())));
-          setStatus('success', `✓ Decoded — ${input.length} chars → ${result.length} chars`);
-        }
-        document.getElementById('outputText').value = result;
-      } catch(e) {
-        document.getElementById('outputText').value = '';
-        setStatus('error', '✗ ' + (mode === 'decode' ? 'Invalid Base64 string' : 'Encoding failed'));
-      }
+        if(mode==='encode'){result=btoa(unescape(encodeURIComponent(input)));const ratio=((result.length/input.length)*100).toFixed(0);setStatus('success',`✓ Encoded — ${input.length} chars → ${result.length} chars (${ratio}% size)`);}
+        else{result=decodeURIComponent(escape(atob(input.trim())));setStatus('success',`✓ Decoded — ${input.length} chars → ${result.length} chars`);}
+        document.getElementById('outputText').value=result;
+      }catch(e){document.getElementById('outputText').value='';setStatus('error','✗ '+(mode==='decode'?'Invalid Base64 string':'Encoding failed'));}
     }
 
-    function convertFile() {
-      if (!fileData) return;
-      const result = `data:${fileData.type};base64,${fileData.b64}`;
-      document.getElementById('outputText').value = result;
-      const kb = (fileData.size / 1024).toFixed(1);
-      setStatus('success', `✓ File encoded — ${fileData.name} (${kb} KB) → ${result.length} chars`);
+    function convertFile(){
+      if(!fileData)return;
+      const result=`data:${fileData.type};base64,${fileData.b64}`;
+      document.getElementById('outputText').value=result;
+      const kb=(fileData.size/1024).toFixed(1);
+      setStatus('success',`✓ File encoded — ${fileData.name} (${kb} KB) → ${result.length} chars`);
     }
 
-    function autoConvert() {
-      if (document.getElementById('inputText').value.trim()) convert();
-      else {
-        document.getElementById('outputText').value = '';
-        setStatus('idle', 'Ready — enter text and click Convert');
-      }
-    }
-
-    function onFileSelect(e) {
-      const file = e.target.files[0];
-      if (!file) return;
-      readFile(file);
-    }
-
-    function onDragOver(e) {
-      e.preventDefault();
-      document.getElementById('fileZone').classList.add('dragover');
-    }
-
-    function onDragLeave(e) {
-      document.getElementById('fileZone').classList.remove('dragover');
-    }
-
-    function onDrop(e) {
-      e.preventDefault();
-      document.getElementById('fileZone').classList.remove('dragover');
-      const file = e.dataTransfer.files[0];
-      if (file) readFile(file);
-    }
-
-    function readFile(file) {
-      const reader = new FileReader();
-      reader.onload = function(e) {
-        const b64 = e.target.result.split(',')[1];
-        fileData = { name: file.name, type: file.type || 'application/octet-stream', size: file.size, b64 };
-        fileName = file.name;
-        const kb = (file.size / 1024).toFixed(1);
-        document.getElementById('fileInfo').textContent = `${file.name} — ${kb} KB`;
-        convertFile();
-      };
-      reader.readAsDataURL(file);
-    }
-
-    function copyOutput() {
-      const out = document.getElementById('outputText').value;
-      if (!out) { showToast('Nothing to copy'); return; }
-      navigator.clipboard.writeText(out).then(() => showToast('Copied!'));
-    }
-
-    function downloadOutput() {
-      const out = document.getElementById('outputText').value;
-      if (!out) { showToast('Nothing to download'); return; }
-      const blob = new Blob([out], { type: 'text/plain' });
-      const a = document.createElement('a');
-      a.href = URL.createObjectURL(blob);
-      a.download = mode === 'encode' ? 'encoded.b64' : 'decoded.txt';
-      a.click();
-      showToast('Downloaded!');
-    }
-
-    function clearInput() {
-      document.getElementById('inputText').value = '';
-      document.getElementById('outputText').value = '';
-      fileData = null;
-      document.getElementById('fileInfo').textContent = 'Any file type supported';
-      setStatus('idle', 'Ready — enter text and click Convert');
-    }
-
-    function clearAll() { clearInput(); }
-
-    function loadSample() {
-      setTab('text');
-      setMode('encode');
-      document.getElementById('inputText').value = 'Hello from TinyBench! 🚀\nThis is a Base64 encoding example.\nUser: admin\nPassword: super_secret_123';
-      convert();
-    }
-
-    function setStatus(type, msg) {
-      const bar = document.getElementById('statusBar');
-      const txt = document.getElementById('statusText');
-      bar.className = 'status ' + type;
-      txt.textContent = msg;
-    }
-
-    function showToast(msg) {
-      const t = document.getElementById('toast');
-      t.textContent = msg;
-      t.classList.add('show');
-      setTimeout(() => t.classList.remove('show'), 2000);
-    }
-
-    document.addEventListener('keydown', e => {
-      if (e.ctrlKey && e.key === 'Enter') { e.preventDefault(); convert(); }
-      if (e.ctrlKey && e.shiftKey && e.key === 'X') { e.preventDefault(); clearAll(); }
-      if (e.ctrlKey && e.shiftKey && e.key === 'S') { e.preventDefault(); loadSample(); }
-    });
+    function autoConvert(){if(document.getElementById('inputText').value.trim())convert();else{document.getElementById('outputText').value='';setStatus('idle','Ready — enter text and click Convert');}}
+    function onFileSelect(e){const file=e.target.files[0];if(!file)return;readFile(file);}
+    function onDragOver(e){e.preventDefault();document.getElementById('fileZone').classList.add('dragover');}
+    function onDragLeave(e){document.getElementById('fileZone').classList.remove('dragover');}
+    function onDrop(e){e.preventDefault();document.getElementById('fileZone').classList.remove('dragover');const file=e.dataTransfer.files[0];if(file)readFile(file);}
+    function readFile(file){const reader=new FileReader();reader.onload=function(e){const b64=e.target.result.split(',')[1];fileData={name:file.name,type:file.type||'application/octet-stream',size:file.size,b64};fileName=file.name;const kb=(file.size/1024).toFixed(1);document.getElementById('fileInfo').textContent=`${file.name} — ${kb} KB`;convertFile();};reader.readAsDataURL(file);}
+    function copyOutput(){const out=document.getElementById('outputText').value;if(!out){showToast('Nothing to copy');return;}navigator.clipboard.writeText(out).then(()=>showToast('Copied!'));}
+    function downloadOutput(){const out=document.getElementById('outputText').value;if(!out){showToast('Nothing to download');return;}const blob=new Blob([out],{type:'text/plain'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=mode==='encode'?'encoded.b64':'decoded.txt';a.click();showToast('Downloaded!');}
+    function clearInput(){document.getElementById('inputText').value='';document.getElementById('outputText').value='';fileData=null;document.getElementById('fileInfo').textContent='Any file type supported';setStatus('idle','Ready — enter text and click Convert');}
+    function clearAll(){clearInput();}
+    function loadSample(){setTab('text');setMode('encode');document.getElementById('inputText').value='Hello from TinyBench! 🚀\nThis is a Base64 encoding example.\nUser: admin\nPassword: super_secret_123';convert();}
+    function setStatus(type,msg){document.getElementById('statusBar').className='status '+type;document.getElementById('statusText').textContent=msg;}
+    function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2000);}
+    document.addEventListener('keydown',e=>{if(e.ctrlKey&&e.key==='Enter'){e.preventDefault();convert();}if(e.ctrlKey&&e.shiftKey&&e.key==='X'){e.preventDefault();clearAll();}if(e.ctrlKey&&e.shiftKey&&e.key==='S'){e.preventDefault();loadSample();}});
   </script>
 
 </body>
