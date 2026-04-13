@@ -3,8 +3,30 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Color Contrast Checker (WCAG) — tinybench.dev</title>
-  <meta name="description" content="Check foreground and background color contrast ratios against WCAG 2.1 AA and AAA accessibility standards. Instant, client-side, no signup." />
+
+  <title>Color Contrast Checker WCAG — Free Accessibility Tool | TinyBench</title>
+  <meta name="description" content="Free WCAG color contrast checker. Test foreground and background color contrast ratios against WCAG 2.1 AA and AAA accessibility standards instantly. 100% client-side." />
+
+  <link rel="canonical" href="https://tinybench.dev/tools/color-contrast-checker/" />
+
+  <meta property="og:title" content="Color Contrast Checker WCAG — Free Accessibility Tool" />
+  <meta property="og:description" content="Check color contrast ratios against WCAG 2.1 AA and AAA standards. Instant results, live preview, color suggestions. Free, 100% client-side." />
+  <meta property="og:url" content="https://tinybench.dev/tools/color-contrast-checker/" />
+  <meta property="og:type" content="website" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Color Contrast Checker (WCAG)",
+    "url": "https://tinybench.dev/tools/color-contrast-checker/",
+    "description": "Free WCAG color contrast checker. Test foreground and background color contrast ratios against WCAG 2.1 AA and AAA standards.",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet" />
@@ -12,427 +34,146 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #0d0d0d;
-      --surface: #141414;
-      --surface2: #1a1a1a;
-      --border: #2a2a2a;
-      --accent: #00ff99;
-      --accent-dim: rgba(0,255,153,0.08);
-      --text: #e8e8e8;
-      --muted: #666;
-      --muted2: #444;
-      --pass: #00ff99;
-      --fail: #ff4d6a;
-      --warn: #ffaa00;
-      --radius: 10px;
+      --bg: #0d0d0d; --surface: #141414; --surface2: #1a1a1a; --border: #2a2a2a;
+      --accent: #00ff99; --accent-dim: rgba(0,255,153,0.08); --text: #e8e8e8;
+      --muted: #666; --muted2: #444; --pass: #00ff99; --fail: #ff4d6a; --warn: #ffaa00; --radius: 10px;
     }
 
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Syne', sans-serif;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
+    body { background: var(--bg); color: var(--text); font-family: 'Syne', sans-serif; min-height: 100vh; display: flex; flex-direction: column; }
 
-    /* NAV */
-    nav {
-      border-bottom: 1px solid var(--border);
-      padding: 0 24px;
-      height: 56px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      position: sticky;
-      top: 0;
-      background: rgba(13,13,13,0.95);
-      backdrop-filter: blur(12px);
-      z-index: 100;
-    }
+    nav { border-bottom: 1px solid var(--border); padding: 0 24px; height: 56px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; background: rgba(13,13,13,0.95); backdrop-filter: blur(12px); z-index: 100; }
     .nav-left { display: flex; align-items: center; gap: 20px; }
-    .back-link {
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 13px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      transition: color 0.2s;
-      font-family: 'JetBrains Mono', monospace;
-    }
+    .back-link { color: var(--muted); text-decoration: none; font-size: 13px; display: flex; align-items: center; gap: 6px; transition: color 0.2s; font-family: 'JetBrains Mono', monospace; }
     .back-link:hover { color: var(--accent); }
     .nav-brand { font-size: 15px; font-weight: 700; color: var(--text); text-decoration: none; letter-spacing: -0.3px; }
     .nav-brand span { color: var(--accent); }
-    .nav-badge {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      color: var(--muted);
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      padding: 3px 8px;
-      border-radius: 20px;
-    }
+    .nav-badge { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted); background: var(--surface2); border: 1px solid var(--border); padding: 3px 8px; border-radius: 20px; }
 
-    main {
-      flex: 1;
-      max-width: 960px;
-      width: 100%;
-      margin: 0 auto;
-      padding: 40px 24px 60px;
-    }
+    main { flex: 1; max-width: 960px; width: 100%; margin: 0 auto; padding: 40px 24px 60px; }
 
-    /* HEADER */
     .tool-header { margin-bottom: 36px; }
-    .tool-tag {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      color: var(--accent);
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      margin-bottom: 10px;
-    }
-    .tool-title {
-      font-size: clamp(26px, 4vw, 38px);
-      font-weight: 800;
-      letter-spacing: -1px;
-      line-height: 1.1;
-      margin-bottom: 10px;
-    }
+    .tool-tag { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--accent); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 10px; }
+    .tool-title { font-size: clamp(26px, 4vw, 38px); font-weight: 800; letter-spacing: -1px; line-height: 1.1; margin-bottom: 10px; }
     .tool-title span { color: var(--accent); }
     .tool-desc { color: var(--muted); font-size: 15px; line-height: 1.6; max-width: 560px; }
 
-    /* TOP GRID */
-    .top-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      margin-bottom: 16px;
-    }
+    .top-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
     @media (max-width: 640px) { .top-grid { grid-template-columns: 1fr; } }
 
-    /* COLOR PICKERS */
-    .color-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      overflow: hidden;
-    }
-    .color-card-header {
-      padding: 12px 16px;
-      border-bottom: 1px solid var(--border);
-      background: var(--surface2);
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
+    .color-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+    .color-card-header { padding: 12px 16px; border-bottom: 1px solid var(--border); background: var(--surface2); font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
     .color-card-body { padding: 16px; display: flex; flex-direction: column; gap: 12px; }
-
     .swatch-row { display: flex; align-items: center; gap: 12px; }
-    .color-swatch {
-      width: 48px;
-      height: 48px;
-      border-radius: 8px;
-      border: 2px solid var(--border);
-      cursor: pointer;
-      position: relative;
-      flex-shrink: 0;
-      overflow: hidden;
-      transition: border-color 0.2s;
-    }
+    .color-swatch { width: 48px; height: 48px; border-radius: 8px; border: 2px solid var(--border); cursor: pointer; position: relative; flex-shrink: 0; overflow: hidden; transition: border-color 0.2s; }
     .color-swatch:hover { border-color: var(--accent); }
-    .color-swatch input[type="color"] {
-      position: absolute;
-      inset: -4px;
-      width: calc(100% + 8px);
-      height: calc(100% + 8px);
-      opacity: 0;
-      cursor: pointer;
-    }
-
+    .color-swatch input[type="color"] { position: absolute; inset: -4px; width: calc(100% + 8px); height: calc(100% + 8px); opacity: 0; cursor: pointer; }
     .hex-input-wrap { flex: 1; }
     .hex-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--muted); margin-bottom: 4px; }
-    .hex-input {
-      width: 100%;
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      color: var(--text);
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 14px;
-      padding: 9px 12px;
-      border-radius: 6px;
-      outline: none;
-      transition: border-color 0.2s;
-      letter-spacing: 1px;
-    }
+    .hex-input { width: 100%; background: var(--surface2); border: 1px solid var(--border); color: var(--text); font-family: 'JetBrains Mono', monospace; font-size: 14px; padding: 9px 12px; border-radius: 6px; outline: none; transition: border-color 0.2s; letter-spacing: 1px; }
     .hex-input:focus { border-color: var(--accent); }
     .hex-input.invalid { border-color: var(--fail); }
-
-    .color-formats {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 6px;
-    }
-    .fmt-box {
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 7px 10px;
-      cursor: pointer;
-      transition: border-color 0.15s;
-    }
+    .color-formats { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+    .fmt-box { background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 7px 10px; cursor: pointer; transition: border-color 0.15s; }
     .fmt-box:hover { border-color: var(--muted2); }
     .fmt-box-label { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--muted); text-transform: uppercase; margin-bottom: 2px; }
     .fmt-box-val { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text); }
 
-    /* PREVIEW */
-    .preview-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      overflow: hidden;
-      margin-bottom: 16px;
-    }
-    .preview-card-header {
-      padding: 12px 16px;
-      border-bottom: 1px solid var(--border);
-      background: var(--surface2);
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-    .preview-body {
-      padding: 28px 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      transition: background 0.3s;
-    }
-    .preview-large {
-      font-size: 28px;
-      font-weight: 800;
-      line-height: 1.2;
-      transition: color 0.3s;
-    }
-    .preview-normal {
-      font-size: 16px;
-      line-height: 1.6;
-      transition: color 0.3s;
-    }
-    .preview-small {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 12px;
-      line-height: 1.5;
-      transition: color 0.3s;
-    }
+    .preview-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin-bottom: 16px; }
+    .preview-card-header { padding: 12px 16px; border-bottom: 1px solid var(--border); background: var(--surface2); font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+    .preview-body { padding: 28px 24px; display: flex; flex-direction: column; gap: 10px; transition: background 0.3s; }
+    .preview-large { font-size: 28px; font-weight: 800; line-height: 1.2; transition: color 0.3s; }
+    .preview-normal { font-size: 16px; line-height: 1.6; transition: color 0.3s; }
+    .preview-small { font-family: 'JetBrains Mono', monospace; font-size: 12px; line-height: 1.5; transition: color 0.3s; }
     .preview-ui-row { display: flex; gap: 10px; margin-top: 4px; }
-    .preview-btn {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 12px;
-      font-weight: 700;
-      padding: 8px 16px;
-      border-radius: 6px;
-      border: none;
-      cursor: default;
-      transition: background 0.3s, color 0.3s;
-    }
-    .preview-tag {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      padding: 4px 10px;
-      border-radius: 4px;
-      border: 1px solid;
-      transition: all 0.3s;
-    }
+    .preview-btn { font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 700; padding: 8px 16px; border-radius: 6px; border: none; cursor: default; transition: background 0.3s, color 0.3s; }
+    .preview-tag { font-family: 'JetBrains Mono', monospace; font-size: 11px; padding: 4px 10px; border-radius: 4px; border: 1px solid; transition: all 0.3s; }
 
-    /* RATIO DISPLAY */
-    .ratio-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 24px;
-      margin-bottom: 16px;
-      display: flex;
-      align-items: center;
-      gap: 28px;
-      flex-wrap: wrap;
-    }
-    .ratio-big {
-      font-size: 52px;
-      font-weight: 800;
-      letter-spacing: -2px;
-      font-family: 'JetBrains Mono', monospace;
-      line-height: 1;
-      color: var(--text);
-      flex-shrink: 0;
-    }
+    .ratio-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; margin-bottom: 16px; display: flex; align-items: center; gap: 28px; flex-wrap: wrap; }
+    .ratio-big { font-size: 52px; font-weight: 800; letter-spacing: -2px; font-family: 'JetBrains Mono', monospace; line-height: 1; color: var(--text); flex-shrink: 0; }
     .ratio-big span { font-size: 24px; color: var(--muted); }
     .ratio-label { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--muted); margin-top: 4px; }
 
-    /* WCAG RESULTS GRID */
-    .wcag-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 10px;
-      flex: 1;
-      min-width: 280px;
-    }
+    .wcag-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; flex: 1; min-width: 280px; }
     @media (max-width: 680px) { .wcag-grid { grid-template-columns: repeat(2, 1fr); } }
-
-    .wcag-item {
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 12px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-    .wcag-item-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .wcag-level {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 10px;
-      font-weight: 700;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-    .wcag-badge {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 10px;
-      font-weight: 700;
-      padding: 2px 7px;
-      border-radius: 4px;
-    }
+    .wcag-item { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 12px; display: flex; flex-direction: column; gap: 6px; }
+    .wcag-item-top { display: flex; align-items: center; justify-content: space-between; }
+    .wcag-level { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+    .wcag-badge { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 4px; }
     .badge-pass { background: rgba(0,255,153,0.12); color: var(--pass); border: 1px solid rgba(0,255,153,0.25); }
     .badge-fail { background: rgba(255,77,106,0.1); color: var(--fail); border: 1px solid rgba(255,77,106,0.25); }
     .wcag-item-desc { font-size: 11px; color: var(--muted); line-height: 1.4; }
     .wcag-min { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--muted2); }
 
-    /* SUGGESTIONS */
-    .suggest-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      overflow: hidden;
-      margin-bottom: 16px;
-    }
-    .suggest-header {
-      padding: 12px 16px;
-      border-bottom: 1px solid var(--border);
-      background: var(--surface2);
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
+    .suggest-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin-bottom: 16px; }
+    .suggest-header { padding: 12px 16px; border-bottom: 1px solid var(--border); background: var(--surface2); font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; justify-content: space-between; }
     .suggest-body { padding: 16px; display: flex; gap: 10px; flex-wrap: wrap; }
-    .suggest-swatch {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 5px;
-      cursor: pointer;
-    }
-    .suggest-color {
-      width: 40px;
-      height: 40px;
-      border-radius: 6px;
-      border: 2px solid transparent;
-      transition: border-color 0.15s, transform 0.15s;
-    }
+    .suggest-swatch { display: flex; flex-direction: column; align-items: center; gap: 5px; cursor: pointer; }
+    .suggest-color { width: 40px; height: 40px; border-radius: 6px; border: 2px solid transparent; transition: border-color 0.15s, transform 0.15s; }
     .suggest-swatch:hover .suggest-color { border-color: var(--accent); transform: scale(1.1); }
     .suggest-hex { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--muted); }
     .suggest-ratio { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--accent); }
 
-    /* SWAP / RESET */
     .action-row { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 24px; }
-    .btn {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 12px;
-      font-weight: 700;
-      padding: 9px 18px;
-      border-radius: 6px;
-      border: none;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
+    .btn { font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 700; padding: 9px 18px; border-radius: 6px; border: none; cursor: pointer; transition: all 0.2s; }
     .btn-primary { background: var(--accent); color: #000; }
     .btn-primary:hover { background: #00e589; transform: translateY(-1px); }
     .btn-secondary { background: var(--surface2); color: var(--text); border: 1px solid var(--border); }
     .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
 
-    /* PRESETS */
     .presets-section { margin-top: 10px; }
-    .section-title {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: 12px;
-    }
+    .section-title { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
     .presets-grid { display: flex; gap: 8px; flex-wrap: wrap; }
-    .preset-btn {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 7px 12px;
-      cursor: pointer;
-      transition: all 0.15s;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      color: var(--muted);
-    }
+    .preset-btn { display: flex; align-items: center; gap: 8px; background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 7px 12px; cursor: pointer; transition: all 0.15s; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted); }
     .preset-btn:hover { border-color: var(--accent); color: var(--text); }
     .preset-swatches { display: flex; gap: 3px; }
     .preset-dot { width: 12px; height: 12px; border-radius: 3px; }
 
-    /* TOAST */
-    .toast {
-      position: fixed;
-      bottom: 28px;
-      right: 28px;
-      background: var(--surface2);
-      border: 1px solid var(--accent);
-      color: var(--accent);
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 12px;
-      padding: 10px 18px;
-      border-radius: 8px;
-      opacity: 0;
-      transform: translateY(8px);
-      transition: all 0.25s;
-      z-index: 999;
-      pointer-events: none;
-    }
+    /* SEO SECTION */
+    .seo-section { margin-top: 48px; }
+    .seo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+    @media (max-width: 620px) { .seo-grid { grid-template-columns: 1fr; } }
+    .seo-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; }
+    .seo-card h2 { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--accent); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 12px; }
+    .seo-card p { font-size: 13px; color: var(--muted); line-height: 1.7; }
+    .seo-card p + p { margin-top: 8px; }
+    .seo-card a { color: var(--accent); text-decoration: none; }
+    .seo-card a:hover { text-decoration: underline; }
+
+    .faq-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin-bottom: 16px; }
+    .faq-header { padding: 10px 14px; border-bottom: 1px solid var(--border); background: var(--surface2); font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--accent); text-transform: uppercase; letter-spacing: 1.5px; }
+    .faq-item { padding: 16px 20px; border-bottom: 1px solid var(--border); }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-q { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+    .faq-a { font-size: 13px; color: var(--muted); line-height: 1.7; }
+    .faq-a a { color: var(--accent); text-decoration: none; }
+    .faq-a a:hover { text-decoration: underline; }
+
+    .related-section { margin-top: 16px; }
+    .related-header { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--accent); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 12px; }
+    .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 8px; }
+    .related-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; text-decoration: none; transition: border-color 0.2s, transform 0.15s; display: block; }
+    .related-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .related-card-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
+    .related-card-name { font-size: 13px; font-weight: 700; color: var(--text); }
+
+    .site-footer { border-top: 1px solid var(--border); padding: 40px 24px 24px; margin-top: 40px; }
+    .footer-grid { max-width: 960px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 32px; margin-bottom: 32px; }
+    .footer-brand .nav-brand { font-size: 16px; display: inline-block; margin-bottom: 12px; }
+    .footer-brand p { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted); line-height: 1.7; max-width: 220px; }
+    .footer-col h4 { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--accent); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 12px; }
+    .footer-col a { display: block; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted); text-decoration: none; margin-bottom: 8px; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--accent); }
+    .footer-bottom { max-width: 960px; margin: 0 auto; padding-top: 20px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .footer-bottom p { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted); }
+    .footer-legal { display: flex; gap: 20px; flex-wrap: wrap; }
+    .footer-legal a { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted); text-decoration: none; }
+    .footer-legal a:hover { color: var(--accent); }
+
+    .toast { position: fixed; bottom: 28px; right: 28px; background: var(--surface2); border: 1px solid var(--accent); color: var(--accent); font-family: 'JetBrains Mono', monospace; font-size: 12px; padding: 10px 18px; border-radius: 8px; opacity: 0; transform: translateY(8px); transition: all 0.25s; z-index: 999; pointer-events: none; }
     .toast.show { opacity: 1; transform: translateY(0); }
 
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 20px 24px;
-      text-align: center;
-      font-size: 12px;
-      color: var(--muted);
-      font-family: 'JetBrains Mono', monospace;
-    }
-    footer a { color: var(--muted); text-decoration: none; }
-    footer a:hover { color: var(--accent); }
+    @media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 500px) { .footer-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
@@ -449,88 +190,48 @@
   <div class="tool-header">
     <div class="tool-tag">// tool_09</div>
     <h1 class="tool-title">Color Contrast <span>Checker</span></h1>
-    <p class="tool-desc">Check foreground/background color pairs against WCAG 2.1 AA and AAA standards. Instant results, no server, no signup.</p>
+    <p class="tool-desc">Check foreground/background color pairs against WCAG 2.1 AA and AAA standards. Instant results, live preview, suggested fixes — no server, no signup.</p>
   </div>
 
-  <!-- COLOR PICKERS -->
   <div class="top-grid">
-    <!-- Foreground -->
     <div class="color-card">
       <div class="color-card-header">Foreground (text)</div>
       <div class="color-card-body">
         <div class="swatch-row">
-          <div class="color-swatch" id="fgSwatch" style="background:#ffffff">
-            <input type="color" id="fgPicker" value="#ffffff" />
-          </div>
-          <div class="hex-input-wrap">
-            <div class="hex-label">HEX value</div>
-            <input type="text" class="hex-input" id="fgHex" value="#ffffff" maxlength="9" spellcheck="false" />
-          </div>
+          <div class="color-swatch" id="fgSwatch" style="background:#ffffff"><input type="color" id="fgPicker" value="#ffffff" /></div>
+          <div class="hex-input-wrap"><div class="hex-label">HEX value</div><input type="text" class="hex-input" id="fgHex" value="#ffffff" maxlength="9" spellcheck="false" /></div>
         </div>
-        <div class="color-formats" id="fgFormats">
-          <div class="fmt-box" title="Click to copy" onclick="copyText('rgb(255, 255, 255)')">
-            <div class="fmt-box-label">RGB</div>
-            <div class="fmt-box-val" id="fgRgb">rgb(255, 255, 255)</div>
-          </div>
-          <div class="fmt-box" title="Click to copy" onclick="copyFmt('fgHsl')">
-            <div class="fmt-box-label">HSL</div>
-            <div class="fmt-box-val" id="fgHsl">hsl(0, 0%, 100%)</div>
-          </div>
-          <div class="fmt-box" title="Click to copy" onclick="copyFmt('fgLum')">
-            <div class="fmt-box-label">Luminance</div>
-            <div class="fmt-box-val" id="fgLum">1.000</div>
-          </div>
-          <div class="fmt-box" title="Click to copy" onclick="copyFmt('fgHex')">
-            <div class="fmt-box-label">HEX</div>
-            <div class="fmt-box-val" id="fgHexFmt">#ffffff</div>
-          </div>
+        <div class="color-formats">
+          <div class="fmt-box" onclick="copyFmt('fgRgb')"><div class="fmt-box-label">RGB</div><div class="fmt-box-val" id="fgRgb">rgb(255, 255, 255)</div></div>
+          <div class="fmt-box" onclick="copyFmt('fgHsl')"><div class="fmt-box-label">HSL</div><div class="fmt-box-val" id="fgHsl">hsl(0, 0%, 100%)</div></div>
+          <div class="fmt-box" onclick="copyFmt('fgLum')"><div class="fmt-box-label">Luminance</div><div class="fmt-box-val" id="fgLum">1.000</div></div>
+          <div class="fmt-box" onclick="copyFmt('fgHexFmt')"><div class="fmt-box-label">HEX</div><div class="fmt-box-val" id="fgHexFmt">#ffffff</div></div>
         </div>
       </div>
     </div>
-
-    <!-- Background -->
     <div class="color-card">
       <div class="color-card-header">Background</div>
       <div class="color-card-body">
         <div class="swatch-row">
-          <div class="color-swatch" id="bgSwatch" style="background:#0d0d0d">
-            <input type="color" id="bgPicker" value="#0d0d0d" />
-          </div>
-          <div class="hex-input-wrap">
-            <div class="hex-label">HEX value</div>
-            <input type="text" class="hex-input" id="bgHex" value="#0d0d0d" maxlength="9" spellcheck="false" />
-          </div>
+          <div class="color-swatch" id="bgSwatch" style="background:#0d0d0d"><input type="color" id="bgPicker" value="#0d0d0d" /></div>
+          <div class="hex-input-wrap"><div class="hex-label">HEX value</div><input type="text" class="hex-input" id="bgHex" value="#0d0d0d" maxlength="9" spellcheck="false" /></div>
         </div>
-        <div class="color-formats" id="bgFormats">
-          <div class="fmt-box" onclick="copyFmt('bgRgb')">
-            <div class="fmt-box-label">RGB</div>
-            <div class="fmt-box-val" id="bgRgb">rgb(13, 13, 13)</div>
-          </div>
-          <div class="fmt-box" onclick="copyFmt('bgHsl')">
-            <div class="fmt-box-label">HSL</div>
-            <div class="fmt-box-val" id="bgHsl">hsl(0, 0%, 5%)</div>
-          </div>
-          <div class="fmt-box" onclick="copyFmt('bgLum')">
-            <div class="fmt-box-label">Luminance</div>
-            <div class="fmt-box-val" id="bgLum">0.002</div>
-          </div>
-          <div class="fmt-box" onclick="copyFmt('bgHex')">
-            <div class="fmt-box-label">HEX</div>
-            <div class="fmt-box-val" id="bgHexFmt">#0d0d0d</div>
-          </div>
+        <div class="color-formats">
+          <div class="fmt-box" onclick="copyFmt('bgRgb')"><div class="fmt-box-label">RGB</div><div class="fmt-box-val" id="bgRgb">rgb(13, 13, 13)</div></div>
+          <div class="fmt-box" onclick="copyFmt('bgHsl')"><div class="fmt-box-label">HSL</div><div class="fmt-box-val" id="bgHsl">hsl(0, 0%, 5%)</div></div>
+          <div class="fmt-box" onclick="copyFmt('bgLum')"><div class="fmt-box-label">Luminance</div><div class="fmt-box-val" id="bgLum">0.002</div></div>
+          <div class="fmt-box" onclick="copyFmt('bgHexFmt')"><div class="fmt-box-label">HEX</div><div class="fmt-box-val" id="bgHexFmt">#0d0d0d</div></div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- ACTION ROW -->
   <div class="action-row">
     <button class="btn btn-primary" onclick="swapColors()">⇅ Swap colors</button>
     <button class="btn btn-secondary" onclick="copyPair()">Copy pair</button>
     <button class="btn btn-secondary" onclick="shareURL()">Share URL</button>
   </div>
 
-  <!-- RATIO -->
   <div class="ratio-card">
     <div>
       <div class="ratio-big" id="ratioDisplay">21.0<span>:1</span></div>
@@ -539,7 +240,6 @@
     <div class="wcag-grid" id="wcagGrid"></div>
   </div>
 
-  <!-- LIVE PREVIEW -->
   <div class="preview-card">
     <div class="preview-card-header">Live preview</div>
     <div class="preview-body" id="previewBody">
@@ -553,7 +253,6 @@
     </div>
   </div>
 
-  <!-- SUGGESTIONS -->
   <div class="suggest-card" id="suggestCard">
     <div class="suggest-header">
       <span>Suggested foreground colors that pass AA</span>
@@ -562,329 +261,204 @@
     <div class="suggest-body" id="suggestBody"></div>
   </div>
 
-  <!-- PRESETS -->
   <div class="presets-section">
     <div class="section-title">// common pairs</div>
     <div class="presets-grid" id="presetsGrid"></div>
   </div>
+
+  <!-- SEO CONTENT -->
+  <div class="seo-section">
+    <div class="seo-grid">
+      <div class="seo-card">
+        <h2>// what is wcag contrast?</h2>
+        <p>WCAG (Web Content Accessibility Guidelines) defines minimum contrast ratios between text and background colors to ensure content is readable by people with low vision or color blindness.</p>
+        <p><strong style="color:var(--text)">AA level</strong> requires a ratio of 4.5:1 for normal text and 3:1 for large text (18pt+ or 14pt+ bold). <strong style="color:var(--text)">AAA level</strong> requires 7:1 for normal text and 4.5:1 for large. Read our full guide: <a href="/blog/wcag-color-contrast-guide/">WCAG color contrast guide</a>.</p>
+      </div>
+      <div class="seo-card">
+        <h2>// how contrast ratio is calculated</h2>
+        <p>The contrast ratio is calculated using relative luminance — a measure of how bright a color appears to the human eye. The formula is: <strong style="color:var(--text)">(L1 + 0.05) / (L2 + 0.05)</strong> where L1 is the lighter color's luminance and L2 is the darker.</p>
+        <p>Pure white (#ffffff) has luminance 1.0 and pure black (#000000) has luminance 0, giving the maximum ratio of 21:1. Most accessible text pairs target 4.5:1 or higher.</p>
+      </div>
+    </div>
+
+    <div class="faq-card">
+      <div class="faq-header">// frequently asked questions</div>
+      <div class="faq-item">
+        <div class="faq-q">What is the minimum contrast ratio for WCAG AA?</div>
+        <div class="faq-a">WCAG 2.1 AA requires a contrast ratio of at least 4.5:1 for normal text (below 18pt or 14pt bold) and 3:1 for large text. UI components and graphical objects also require a minimum of 3:1 against adjacent colors. Full guide: <a href="/blog/wcag-color-contrast-guide/">WCAG color contrast guide</a>.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What is the difference between WCAG AA and AAA?</div>
+        <div class="faq-a">AA is the standard compliance level required by most accessibility laws and frameworks (Section 508, EN 301 549, WCAG 2.1). AAA is the enhanced level — it requires 7:1 for normal text and is recommended for text-heavy content like documentation or news articles.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Does contrast ratio apply to placeholder text?</div>
+        <div class="faq-a">Yes — WCAG 1.4.3 applies to all visible text including placeholder text in form inputs. Placeholder text often fails contrast checks because designers use very light gray. The same 4.5:1 minimum applies.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What counts as "large text" in WCAG?</div>
+        <div class="faq-a">Large text is defined as 18pt (24px) or larger for regular weight, or 14pt (approximately 18.67px) or larger for bold text. Large text has a lower minimum contrast requirement of 3:1 for AA and 4.5:1 for AAA.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Can I share a color pair from this tool?</div>
+        <div class="faq-a">Yes — click "Share URL" above and the tool generates a shareable link with your color pair encoded in the URL parameters. You can also bookmark it to save your current pair for later reference.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RELATED TOOLS -->
+  <div class="related-section">
+    <div class="related-header">// related tools</div>
+    <div class="related-grid">
+      <a href="/tools/css-beautifier/" class="related-card">
+        <div class="related-card-label">Formatter</div>
+        <div class="related-card-name">CSS Beautifier</div>
+      </a>
+      <a href="/tools/image-compressor/" class="related-card">
+        <div class="related-card-label">Images</div>
+        <div class="related-card-name">Image Compressor</div>
+      </a>
+      <a href="/tools/json-formatter/" class="related-card">
+        <div class="related-card-label">Formatter</div>
+        <div class="related-card-name">JSON Formatter</div>
+      </a>
+      <a href="/tools/base64/" class="related-card">
+        <div class="related-card-label">Encoding</div>
+        <div class="related-card-name">Base64 Encoder</div>
+      </a>
+      <a href="/tools/regex-tester/" class="related-card">
+        <div class="related-card-label">Testing</div>
+        <div class="related-card-name">Regex Tester</div>
+      </a>
+      <a href="/tools/uuid-generator/" class="related-card">
+        <div class="related-card-label">Generator</div>
+        <div class="related-card-name">UUID Generator</div>
+      </a>
+    </div>
+  </div>
 </main>
 
-<footer>
-  <a href="/">tinybench.dev</a> — fast developer tools, no backend, no tracking.
+<!-- RICH FOOTER -->
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="/" class="nav-brand">tiny<span>bench</span>.dev</a>
+      <p>Free client-side developer tools. No server, no tracking, no sign-up. Just tools that work.</p>
+    </div>
+    <div class="footer-col">
+      <h4>// tools</h4>
+      <a href="/tools/json-formatter/">JSON Formatter</a>
+      <a href="/tools/jwt-decoder/">JWT Decoder</a>
+      <a href="/tools/regex-tester/">Regex Tester</a>
+      <a href="/tools/timestamp-converter/">Timestamp Converter</a>
+      <a href="/tools/base64/">Base64 Encoder</a>
+      <a href="/tools/uuid-generator/">UUID Generator</a>
+      <a href="/tools/sql-formatter/">SQL Formatter</a>
+      <a href="/tools/image-compressor/">Image Compressor</a>
+      <a href="/tools/color-contrast-checker/">Color Contrast</a>
+      <a href="/tools/css-beautifier/">CSS Beautifier</a>
+    </div>
+    <div class="footer-col">
+      <h4>// blog</h4>
+      <a href="/blog/wcag-color-contrast-guide/">WCAG Contrast Guide</a>
+      <a href="/blog/css-minification-guide/">CSS Minification</a>
+      <a href="/blog/how-to-compress-images/">Compress Images</a>
+      <a href="/blog/jpeg-vs-png-vs-webp/">JPEG vs PNG vs WebP</a>
+      <a href="/blog/how-to-format-json/">Format JSON</a>
+      <a href="/blog/what-is-jwt/">What is JWT?</a>
+      <a href="/blog/regex-cheat-sheet/">Regex Cheat Sheet</a>
+      <a href="/blog/uuid-vs-ulid/">UUID vs ULID</a>
+      <a href="/blog/">All Articles →</a>
+    </div>
+    <div class="footer-col">
+      <h4>// company</h4>
+      <a href="/about/">About</a>
+      <a href="/contact/">Contact</a>
+      <a href="/privacy-policy/">Privacy Policy</a>
+      <a href="/terms/">Terms</a>
+      <a href="/cookie-policy/">Cookie Policy</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 tinybench.dev</p>
+    <div class="footer-legal">
+      <a href="/privacy-policy/">Privacy</a>
+      <a href="/terms/">Terms</a>
+      <a href="/cookie-policy/">Cookies</a>
+      <a href="/contact/">Contact</a>
+    </div>
+  </div>
 </footer>
 
 <div class="toast" id="toast"></div>
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "What is the minimum contrast ratio for WCAG AA?", "acceptedAnswer": { "@type": "Answer", "text": "WCAG 2.1 AA requires 4.5:1 for normal text and 3:1 for large text (18pt+ or 14pt+ bold)." } },
+    { "@type": "Question", "name": "What is the difference between WCAG AA and AAA?", "acceptedAnswer": { "@type": "Answer", "text": "AA is the standard compliance level (4.5:1 for normal text). AAA is the enhanced level requiring 7:1 for normal text." } },
+    { "@type": "Question", "name": "Does contrast ratio apply to placeholder text?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. WCAG 1.4.3 applies to all visible text including placeholder text in form inputs. The same 4.5:1 minimum applies." } },
+    { "@type": "Question", "name": "What counts as large text in WCAG?", "acceptedAnswer": { "@type": "Answer", "text": "Large text is 18pt (24px) or larger for regular weight, or 14pt (18.67px) or larger for bold text." } },
+    { "@type": "Question", "name": "Can I share a color pair from this tool?", "acceptedAnswer": { "@type": "Answer", "text": "Yes — click Share URL and the tool generates a shareable link with your color pair encoded in the URL parameters." } }
+  ]
+}
+</script>
+
 <script>
-// ── COLOR MATH ────────────────────────────────────────────────────
-function hexToRgb(hex) {
-  hex = hex.replace(/^#/, '');
-  if (hex.length === 3) hex = hex.split('').map(c => c+c).join('');
-  if (hex.length !== 6) return null;
-  const n = parseInt(hex, 16);
-  if (isNaN(n)) return null;
-  return { r: (n >> 16) & 255, g: (n >> 8) & 255, b: n & 255 };
-}
+function hexToRgb(hex){hex=hex.replace(/^#/,'');if(hex.length===3)hex=hex.split('').map(c=>c+c).join('');if(hex.length!==6)return null;const n=parseInt(hex,16);if(isNaN(n))return null;return{r:(n>>16)&255,g:(n>>8)&255,b:n&255};}
+function rgbToHex(r,g,b){return'#'+[r,g,b].map(v=>v.toString(16).padStart(2,'0')).join('');}
+function linearize(c){const s=c/255;return s<=0.04045?s/12.92:Math.pow((s+0.055)/1.055,2.4);}
+function luminance(r,g,b){return 0.2126*linearize(r)+0.7152*linearize(g)+0.0722*linearize(b);}
+function contrastRatio(lum1,lum2){const[hi,lo]=lum1>lum2?[lum1,lum2]:[lum2,lum1];return(hi+0.05)/(lo+0.05);}
+function rgbToHsl(r,g,b){r/=255;g/=255;b/=255;const max=Math.max(r,g,b),min=Math.min(r,g,b);let h,s,l=(max+min)/2;if(max===min){h=s=0;}else{const d=max-min;s=l>0.5?d/(2-max-min):d/(max+min);switch(max){case r:h=((g-b)/d+(g<b?6:0))/6;break;case g:h=((b-r)/d+2)/6;break;case b:h=((r-g)/d+4)/6;break;}}return{h:Math.round(h*360),s:Math.round(s*100),l:Math.round(l*100)};}
 
-function rgbToHex(r, g, b) {
-  return '#' + [r,g,b].map(v => v.toString(16).padStart(2,'0')).join('');
-}
+let fg={hex:'#ffffff',rgb:{r:255,g:255,b:255}};
+let bg={hex:'#0d0d0d',rgb:{r:13,g:13,b:13}};
 
-function linearize(c) {
-  const s = c / 255;
-  return s <= 0.04045 ? s / 12.92 : Math.pow((s + 0.055) / 1.055, 2.4);
-}
+const WCAG_RULES=[{id:'aa-normal',label:'AA',desc:'Normal text',min:4.5,sub:'< 18pt / 14pt bold'},{id:'aa-large',label:'AA',desc:'Large text',min:3.0,sub:'≥ 18pt / 14pt bold'},{id:'aaa-normal',label:'AAA',desc:'Normal text',min:7.0,sub:'< 18pt / 14pt bold'},{id:'aaa-large',label:'AAA',desc:'Large text',min:4.5,sub:'≥ 18pt / 14pt bold'}];
 
-function luminance(r, g, b) {
-  return 0.2126 * linearize(r) + 0.7152 * linearize(g) + 0.0722 * linearize(b);
-}
-
-function contrastRatio(lum1, lum2) {
-  const [hi, lo] = lum1 > lum2 ? [lum1, lum2] : [lum2, lum1];
-  return (hi + 0.05) / (lo + 0.05);
-}
-
-function rgbToHsl(r, g, b) {
-  r /= 255; g /= 255; b /= 255;
-  const max = Math.max(r,g,b), min = Math.min(r,g,b);
-  let h, s, l = (max + min) / 2;
-  if (max === min) { h = s = 0; }
-  else {
-    const d = max - min;
-    s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
-    switch(max) {
-      case r: h = ((g - b) / d + (g < b ? 6 : 0)) / 6; break;
-      case g: h = ((b - r) / d + 2) / 6; break;
-      case b: h = ((r - g) / d + 4) / 6; break;
-    }
-  }
-  return { h: Math.round(h*360), s: Math.round(s*100), l: Math.round(l*100) };
-}
-
-// ── STATE ─────────────────────────────────────────────────────────
-let fg = { hex: '#ffffff', rgb: {r:255,g:255,b:255} };
-let bg = { hex: '#0d0d0d', rgb: {r:13,g:13,b:13} };
-
-// ── WCAG RULES ────────────────────────────────────────────────────
-const WCAG_RULES = [
-  { id: 'aa-normal',  label: 'AA',    desc: 'Normal text',  min: 4.5,  sub: '< 18pt / 14pt bold' },
-  { id: 'aa-large',   label: 'AA',    desc: 'Large text',   min: 3.0,  sub: '≥ 18pt / 14pt bold' },
-  { id: 'aaa-normal', label: 'AAA',   desc: 'Normal text',  min: 7.0,  sub: '< 18pt / 14pt bold' },
-  { id: 'aaa-large',  label: 'AAA',   desc: 'Large text',   min: 4.5,  sub: '≥ 18pt / 14pt bold' },
-];
-
-// ── RENDER ────────────────────────────────────────────────────────
-function update() {
-  const fgLum = luminance(fg.rgb.r, fg.rgb.g, fg.rgb.b);
-  const bgLum = luminance(bg.rgb.r, bg.rgb.g, bg.rgb.b);
-  const ratio = contrastRatio(fgLum, bgLum);
-
-  // Ratio
-  document.getElementById('ratioDisplay').innerHTML =
-    ratio.toFixed(1) + '<span>:1</span>';
-
-  // WCAG grid
-  const grid = document.getElementById('wcagGrid');
-  grid.innerHTML = '';
-  WCAG_RULES.forEach(rule => {
-    const pass = ratio >= rule.min;
-    const el = document.createElement('div');
-    el.className = 'wcag-item';
-    el.innerHTML = `
-      <div class="wcag-item-top">
-        <span class="wcag-level">${rule.label} ${rule.desc}</span>
-        <span class="wcag-badge ${pass ? 'badge-pass' : 'badge-fail'}">${pass ? 'PASS' : 'FAIL'}</span>
-      </div>
-      <div class="wcag-item-desc">${rule.desc}</div>
-      <div class="wcag-min">min ${rule.min}:1 · ${rule.sub}</div>
-    `;
-    grid.appendChild(el);
-  });
-
-  // Color formats
-  updateFormats('fg', fg.rgb, fg.hex, fgLum);
-  updateFormats('bg', bg.rgb, bg.hex, bgLum);
-
-  // Preview
-  const prevBody = document.getElementById('previewBody');
-  prevBody.style.background = bg.hex;
-  ['prevLarge','prevNormal','prevSmall'].forEach(id => {
-    document.getElementById(id).style.color = fg.hex;
-  });
-  const btn = document.getElementById('prevBtn');
-  btn.style.background = fg.hex;
-  btn.style.color = bg.hex;
-  const tag = document.getElementById('prevTag');
-  tag.style.color = fg.hex;
-  tag.style.borderColor = fg.hex;
-  tag.style.background = 'transparent';
-
-  // Suggestions
-  generateSuggestions(ratio, bgLum);
-
-  // URL sync
+function update(){
+  const fgLum=luminance(fg.rgb.r,fg.rgb.g,fg.rgb.b);
+  const bgLum=luminance(bg.rgb.r,bg.rgb.g,bg.rgb.b);
+  const ratio=contrastRatio(fgLum,bgLum);
+  document.getElementById('ratioDisplay').innerHTML=ratio.toFixed(1)+'<span>:1</span>';
+  const grid=document.getElementById('wcagGrid');grid.innerHTML='';
+  WCAG_RULES.forEach(rule=>{const pass=ratio>=rule.min;const el=document.createElement('div');el.className='wcag-item';el.innerHTML=`<div class="wcag-item-top"><span class="wcag-level">${rule.label} ${rule.desc}</span><span class="wcag-badge ${pass?'badge-pass':'badge-fail'}">${pass?'PASS':'FAIL'}</span></div><div class="wcag-item-desc">${rule.desc}</div><div class="wcag-min">min ${rule.min}:1 · ${rule.sub}</div>`;grid.appendChild(el);});
+  updateFormats('fg',fg.rgb,fg.hex,fgLum);
+  updateFormats('bg',bg.rgb,bg.hex,bgLum);
+  const prevBody=document.getElementById('previewBody');prevBody.style.background=bg.hex;
+  ['prevLarge','prevNormal','prevSmall'].forEach(id=>{document.getElementById(id).style.color=fg.hex;});
+  const btn=document.getElementById('prevBtn');btn.style.background=fg.hex;btn.style.color=bg.hex;
+  const tag=document.getElementById('prevTag');tag.style.color=fg.hex;tag.style.borderColor=fg.hex;tag.style.background='transparent';
+  generateSuggestions(ratio,bgLum);
   syncURL();
 }
 
-function updateFormats(which, rgb, hex, lum) {
-  const hsl = rgbToHsl(rgb.r, rgb.g, rgb.b);
-  document.getElementById(which + 'Rgb').textContent = `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`;
-  document.getElementById(which + 'Hsl').textContent = `hsl(${hsl.h}, ${hsl.s}%, ${hsl.l}%)`;
-  document.getElementById(which + 'Lum').textContent = lum.toFixed(3);
-  document.getElementById(which + 'HexFmt').textContent = hex;
-}
+function updateFormats(which,rgb,hex,lum){const hsl=rgbToHsl(rgb.r,rgb.g,rgb.b);document.getElementById(which+'Rgb').textContent=`rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`;document.getElementById(which+'Hsl').textContent=`hsl(${hsl.h}, ${hsl.s}%, ${hsl.l}%)`;document.getElementById(which+'Lum').textContent=lum.toFixed(3);document.getElementById(which+'HexFmt').textContent=hex;}
 
-// ── SUGGESTIONS ───────────────────────────────────────────────────
-function generateSuggestions(ratio, bgLum) {
-  const body = document.getElementById('suggestBody');
-  const note = document.getElementById('suggestNote');
-  body.innerHTML = '';
+function generateSuggestions(ratio,bgLum){const body=document.getElementById('suggestBody');const note=document.getElementById('suggestNote');body.innerHTML='';if(ratio>=4.5){note.textContent='✓ already passes AA';return;}note.textContent='click a swatch to apply';const suggestions=[];const targetRatio=4.5;for(let l=0;l<=100;l+=5){const hex=hslToHex(0,0,l);const rgb=hexToRgb(hex);const lum=luminance(rgb.r,rgb.g,rgb.b);const r=contrastRatio(lum,bgLum);if(r>=targetRatio){suggestions.push({hex,r});if(suggestions.length>=5)break;}}const fgHsl=rgbToHsl(fg.rgb.r,fg.rgb.g,fg.rgb.b);for(let dh=0;dh<360;dh+=30){for(let dl=-40;dl<=40;dl+=10){const newL=Math.max(0,Math.min(100,fgHsl.l+dl));const hex=hslToHex((fgHsl.h+dh)%360,fgHsl.s,newL);const rgb=hexToRgb(hex);if(!rgb)continue;const lum=luminance(rgb.r,rgb.g,rgb.b);const r=contrastRatio(lum,bgLum);if(r>=targetRatio&&!suggestions.find(s=>s.hex===hex)){suggestions.push({hex,r});if(suggestions.length>=10)break;}}if(suggestions.length>=10)break;}suggestions.slice(0,8).forEach(s=>{const el=document.createElement('div');el.className='suggest-swatch';el.innerHTML=`<div class="suggest-color" style="background:${s.hex}"></div><div class="suggest-hex">${s.hex}</div><div class="suggest-ratio">${s.r.toFixed(1)}:1</div>`;el.onclick=()=>applyColor('fg',s.hex);body.appendChild(el);});}
 
-  if (ratio >= 4.5) {
-    note.textContent = '✓ already passes AA';
-    return;
-  }
-  note.textContent = 'click a swatch to apply';
+function hslToHex(h,s,l){s/=100;l/=100;const k=n=>(n+h/30)%12;const a=s*Math.min(l,1-l);const f=n=>l-a*Math.max(-1,Math.min(k(n)-3,Math.min(9-k(n),1)));return rgbToHex(Math.round(f(0)*255),Math.round(f(8)*255),Math.round(f(4)*255));}
 
-  // Generate lightened/darkened variants of fg to pass AA (4.5:1)
-  const suggestions = [];
-  const targetRatio = 4.5;
+const PRESETS=[{name:'White on Black',fg:'#ffffff',bg:'#000000'},{name:'Black on White',fg:'#000000',bg:'#ffffff'},{name:'Accent on Dark',fg:'#00ff99',bg:'#0d0d0d'},{name:'Yellow on Navy',fg:'#ffd700',bg:'#001f3f'},{name:'Dark on Warning',fg:'#1a1a00',bg:'#ffdd00'},{name:'White on Blue',fg:'#ffffff',bg:'#0057b8'},{name:'Fail example',fg:'#aaaaaa',bg:'#888888'},{name:'GitHub Dark',fg:'#e6edf3',bg:'#0d1117'},{name:'Solarized',fg:'#657b83',bg:'#fdf6e3'},{name:'VS Code Dark',fg:'#d4d4d4',bg:'#1e1e1e'}];
+const presetsGrid=document.getElementById('presetsGrid');
+PRESETS.forEach(p=>{const btn=document.createElement('button');btn.className='preset-btn';btn.innerHTML=`<div class="preset-swatches"><div class="preset-dot" style="background:${p.fg}"></div><div class="preset-dot" style="background:${p.bg}"></div></div>${p.name}`;btn.onclick=()=>{applyColor('fg',p.fg);applyColor('bg',p.bg);};presetsGrid.appendChild(btn);});
 
-  // Try lighter and darker steps
-  for (let l = 0; l <= 100; l += 5) {
-    const hex = hslToHex(0, 0, l);
-    const rgb = hexToRgb(hex);
-    const lum = luminance(rgb.r, rgb.g, rgb.b);
-    const r = contrastRatio(lum, bgLum);
-    if (r >= targetRatio) {
-      suggestions.push({ hex, r });
-      if (suggestions.length >= 5) break;
-    }
-  }
+function applyColor(which,hex){hex=hex.toLowerCase();if(!hex.startsWith('#'))hex='#'+hex;const rgb=hexToRgb(hex);if(!rgb)return;if(which==='fg'){fg={hex,rgb};document.getElementById('fgHex').value=hex;document.getElementById('fgPicker').value=hex;document.getElementById('fgSwatch').style.background=hex;document.getElementById('fgHex').classList.remove('invalid');}else{bg={hex,rgb};document.getElementById('bgHex').value=hex;document.getElementById('bgPicker').value=hex;document.getElementById('bgSwatch').style.background=hex;document.getElementById('bgHex').classList.remove('invalid');}update();}
 
-  // Also try hue-rotated variations from fg
-  const fgHsl = rgbToHsl(fg.rgb.r, fg.rgb.g, fg.rgb.b);
-  for (let dh = 0; dh < 360; dh += 30) {
-    for (let dl = -40; dl <= 40; dl += 10) {
-      const newL = Math.max(0, Math.min(100, fgHsl.l + dl));
-      const hex = hslToHex((fgHsl.h + dh) % 360, fgHsl.s, newL);
-      const rgb = hexToRgb(hex);
-      if (!rgb) continue;
-      const lum = luminance(rgb.r, rgb.g, rgb.b);
-      const r = contrastRatio(lum, bgLum);
-      if (r >= targetRatio && !suggestions.find(s => s.hex === hex)) {
-        suggestions.push({ hex, r });
-        if (suggestions.length >= 10) break;
-      }
-    }
-    if (suggestions.length >= 10) break;
-  }
+['fg','bg'].forEach(which=>{const picker=document.getElementById(which+'Picker');const hexIn=document.getElementById(which+'Hex');picker.addEventListener('input',e=>applyColor(which,e.target.value));hexIn.addEventListener('input',e=>{let val=e.target.value.trim();if(!val.startsWith('#'))val='#'+val;const rgb=hexToRgb(val);if(rgb){hexIn.classList.remove('invalid');applyColor(which,val);}else{hexIn.classList.add('invalid');}});});
 
-  suggestions.slice(0, 8).forEach(s => {
-    const el = document.createElement('div');
-    el.className = 'suggest-swatch';
-    el.innerHTML = `
-      <div class="suggest-color" style="background:${s.hex}"></div>
-      <div class="suggest-hex">${s.hex}</div>
-      <div class="suggest-ratio">${s.r.toFixed(1)}:1</div>
-    `;
-    el.onclick = () => applyColor('fg', s.hex);
-    body.appendChild(el);
-  });
-}
+function swapColors(){const tmpFg=fg.hex,tmpBg=bg.hex;applyColor('fg',tmpBg);applyColor('bg',tmpFg);}
+function copyPair(){copyText(`fg: ${fg.hex}  bg: ${bg.hex}`);}
+function shareURL(){const url=new URL(location.href);url.searchParams.set('fg',fg.hex.replace('#',''));url.searchParams.set('bg',bg.hex.replace('#',''));navigator.clipboard.writeText(url.toString()).then(()=>toast('URL copied ✓'));}
+function syncURL(){const url=new URL(location.href);url.searchParams.set('fg',fg.hex.replace('#',''));url.searchParams.set('bg',bg.hex.replace('#',''));history.replaceState(null,'',url);}
+function copyFmt(id){copyText(document.getElementById(id)?.textContent||'');}
+function copyText(txt){navigator.clipboard.writeText(txt).then(()=>toast('Copied ✓'));}
+function toast(msg){const el=document.getElementById('toast');el.textContent=msg;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),2000);}
 
-function hslToHex(h, s, l) {
-  s /= 100; l /= 100;
-  const k = n => (n + h / 30) % 12;
-  const a = s * Math.min(l, 1 - l);
-  const f = n => l - a * Math.max(-1, Math.min(k(n) - 3, Math.min(9 - k(n), 1)));
-  return rgbToHex(Math.round(f(0)*255), Math.round(f(8)*255), Math.round(f(4)*255));
-}
-
-// ── PRESETS ───────────────────────────────────────────────────────
-const PRESETS = [
-  { name: 'White on Black',    fg: '#ffffff', bg: '#000000' },
-  { name: 'Black on White',    fg: '#000000', bg: '#ffffff' },
-  { name: 'Accent on Dark',    fg: '#00ff99', bg: '#0d0d0d' },
-  { name: 'Yellow on Navy',    fg: '#ffd700', bg: '#001f3f' },
-  { name: 'Dark on Warning',   fg: '#1a1a00', bg: '#ffdd00' },
-  { name: 'White on Blue',     fg: '#ffffff', bg: '#0057b8' },
-  { name: 'Fail example',      fg: '#aaaaaa', bg: '#888888' },
-  { name: 'GitHub Dark',       fg: '#e6edf3', bg: '#0d1117' },
-  { name: 'Solarized',         fg: '#657b83', bg: '#fdf6e3' },
-  { name: 'VS Code Dark',      fg: '#d4d4d4', bg: '#1e1e1e' },
-];
-
-const presetsGrid = document.getElementById('presetsGrid');
-PRESETS.forEach(p => {
-  const btn = document.createElement('button');
-  btn.className = 'preset-btn';
-  btn.innerHTML = `
-    <div class="preset-swatches">
-      <div class="preset-dot" style="background:${p.fg}"></div>
-      <div class="preset-dot" style="background:${p.bg}"></div>
-    </div>
-    ${p.name}
-  `;
-  btn.onclick = () => {
-    applyColor('fg', p.fg);
-    applyColor('bg', p.bg);
-  };
-  presetsGrid.appendChild(btn);
-});
-
-// ── APPLY COLOR ───────────────────────────────────────────────────
-function applyColor(which, hex) {
-  hex = hex.toLowerCase();
-  if (!hex.startsWith('#')) hex = '#' + hex;
-  const rgb = hexToRgb(hex);
-  if (!rgb) return;
-
-  if (which === 'fg') {
-    fg = { hex, rgb };
-    document.getElementById('fgHex').value = hex;
-    document.getElementById('fgPicker').value = hex;
-    document.getElementById('fgSwatch').style.background = hex;
-    document.getElementById('fgHex').classList.remove('invalid');
-  } else {
-    bg = { hex, rgb };
-    document.getElementById('bgHex').value = hex;
-    document.getElementById('bgPicker').value = hex;
-    document.getElementById('bgSwatch').style.background = hex;
-    document.getElementById('bgHex').classList.remove('invalid');
-  }
-  update();
-}
-
-// ── INPUTS ────────────────────────────────────────────────────────
-['fg','bg'].forEach(which => {
-  const picker = document.getElementById(which + 'Picker');
-  const hexIn = document.getElementById(which + 'Hex');
-
-  picker.addEventListener('input', e => applyColor(which, e.target.value));
-
-  hexIn.addEventListener('input', e => {
-    let val = e.target.value.trim();
-    if (!val.startsWith('#')) val = '#' + val;
-    const rgb = hexToRgb(val);
-    if (rgb) {
-      hexIn.classList.remove('invalid');
-      applyColor(which, val);
-    } else {
-      hexIn.classList.add('invalid');
-    }
-  });
-});
-
-// ── ACTIONS ───────────────────────────────────────────────────────
-function swapColors() {
-  const tmpFg = fg.hex, tmpBg = bg.hex;
-  applyColor('fg', tmpBg);
-  applyColor('bg', tmpFg);
-}
-
-function copyPair() {
-  copyText(`fg: ${fg.hex}  bg: ${bg.hex}`);
-}
-
-function shareURL() {
-  const url = new URL(location.href);
-  url.searchParams.set('fg', fg.hex.replace('#',''));
-  url.searchParams.set('bg', bg.hex.replace('#',''));
-  navigator.clipboard.writeText(url.toString()).then(() => toast('URL copied ✓'));
-}
-
-function syncURL() {
-  const url = new URL(location.href);
-  url.searchParams.set('fg', fg.hex.replace('#',''));
-  url.searchParams.set('bg', bg.hex.replace('#',''));
-  history.replaceState(null, '', url);
-}
-
-function copyFmt(id) {
-  copyText(document.getElementById(id)?.textContent || '');
-}
-
-function copyText(txt) {
-  navigator.clipboard.writeText(txt).then(() => toast('Copied ✓'));
-}
-
-function toast(msg) {
-  const el = document.getElementById('toast');
-  el.textContent = msg;
-  el.classList.add('show');
-  setTimeout(() => el.classList.remove('show'), 2000);
-}
-
-// ── INIT from URL params ──────────────────────────────────────────
-(function init() {
-  const params = new URLSearchParams(location.search);
-  const fgParam = params.get('fg');
-  const bgParam = params.get('bg');
-  if (fgParam) applyColor('fg', fgParam.startsWith('#') ? fgParam : '#' + fgParam);
-  if (bgParam) applyColor('bg', bgParam.startsWith('#') ? bgParam : '#' + bgParam);
-  update();
-})();
+(function init(){const params=new URLSearchParams(location.search);const fgParam=params.get('fg');const bgParam=params.get('bg');if(fgParam)applyColor('fg',fgParam.startsWith('#')?fgParam:'#'+fgParam);if(bgParam)applyColor('bg',bgParam.startsWith('#')?bgParam:'#'+bgParam);update();})();
 </script>
 </body>
 </html>

@@ -3,8 +3,30 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CSS Beautifier & Minifier — tinybench.dev</title>
-  <meta name="description" content="Beautify or minify CSS instantly in your browser. Format messy CSS, strip comments, compress for production — client-side, nothing uploaded." />
+
+  <title>CSS Beautifier & Minifier Online — Free CSS Formatter | TinyBench</title>
+  <meta name="description" content="Free online CSS beautifier and minifier. Format messy CSS into clean readable code or compress it for production. Syntax highlighting, live stats. 100% client-side." />
+
+  <link rel="canonical" href="https://tinybench.dev/tools/css-beautifier/" />
+
+  <meta property="og:title" content="CSS Beautifier & Minifier Online — Free CSS Formatter" />
+  <meta property="og:description" content="Beautify or minify CSS instantly in your browser. Format messy CSS, strip comments, compress for production. Free, 100% client-side." />
+  <meta property="og:url" content="https://tinybench.dev/tools/css-beautifier/" />
+  <meta property="og:type" content="website" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "CSS Beautifier & Minifier",
+    "url": "https://tinybench.dev/tools/css-beautifier/",
+    "description": "Free online CSS beautifier and minifier. Format or compress CSS instantly in your browser.",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet" />
@@ -12,207 +34,52 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #0d0d0d;
-      --surface: #141414;
-      --surface2: #1a1a1a;
-      --border: #2a2a2a;
-      --accent: #00ff99;
-      --accent-dim: rgba(0,255,153,0.08);
-      --text: #e8e8e8;
-      --muted: #666;
-      --muted2: #444;
-      --error: #ff4d6a;
-      --radius: 10px;
-
-      /* syntax */
-      --s-selector: #79c0ff;
-      --s-property: #e8e8e8;
-      --s-value: #a5d6ff;
-      --s-string: #ffcc66;
-      --s-number: #ff9966;
-      --s-unit: #cc99ff;
-      --s-comment: #484f58;
-      --s-at: #f2cc60;
-      --s-colon: #666;
-      --s-brace: #8b949e;
-      --s-important: #ff7b72;
-      --s-color: #79c0ff;
-      --s-pseudo: #d2a8ff;
+      --bg: #0d0d0d; --surface: #141414; --surface2: #1a1a1a; --border: #2a2a2a;
+      --accent: #00ff99; --accent-dim: rgba(0,255,153,0.08); --text: #e8e8e8;
+      --muted: #666; --muted2: #444; --error: #ff4d6a; --radius: 10px;
+      --s-selector: #79c0ff; --s-property: #e8e8e8; --s-value: #a5d6ff;
+      --s-string: #ffcc66; --s-number: #ff9966; --s-unit: #cc99ff;
+      --s-comment: #484f58; --s-at: #f2cc60; --s-colon: #666;
+      --s-brace: #8b949e; --s-important: #ff7b72; --s-color: #79c0ff; --s-pseudo: #d2a8ff;
     }
 
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Syne', sans-serif;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
+    body { background: var(--bg); color: var(--text); font-family: 'Syne', sans-serif; min-height: 100vh; display: flex; flex-direction: column; }
 
-    /* NAV */
-    nav {
-      border-bottom: 1px solid var(--border);
-      padding: 0 24px;
-      height: 56px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      position: sticky;
-      top: 0;
-      background: rgba(13,13,13,0.95);
-      backdrop-filter: blur(12px);
-      z-index: 100;
-    }
+    nav { border-bottom: 1px solid var(--border); padding: 0 24px; height: 56px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; background: rgba(13,13,13,0.95); backdrop-filter: blur(12px); z-index: 100; }
     .nav-left { display: flex; align-items: center; gap: 20px; }
-    .back-link {
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 13px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      transition: color 0.2s;
-      font-family: 'JetBrains Mono', monospace;
-    }
+    .back-link { color: var(--muted); text-decoration: none; font-size: 13px; display: flex; align-items: center; gap: 6px; transition: color 0.2s; font-family: 'JetBrains Mono', monospace; }
     .back-link:hover { color: var(--accent); }
     .nav-brand { font-size: 15px; font-weight: 700; color: var(--text); text-decoration: none; letter-spacing: -0.3px; }
     .nav-brand span { color: var(--accent); }
-    .nav-badge {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      color: var(--muted);
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      padding: 3px 8px;
-      border-radius: 20px;
-    }
+    .nav-badge { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted); background: var(--surface2); border: 1px solid var(--border); padding: 3px 8px; border-radius: 20px; }
     .nav-badge.complete { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); }
 
-    main {
-      flex: 1;
-      max-width: 1100px;
-      width: 100%;
-      margin: 0 auto;
-      padding: 40px 24px 60px;
-    }
+    main { flex: 1; max-width: 1100px; width: 100%; margin: 0 auto; padding: 40px 24px 60px; }
 
-    /* HEADER */
     .tool-header { margin-bottom: 32px; }
-    .tool-tag {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      color: var(--accent);
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      margin-bottom: 10px;
-    }
-    .tool-title {
-      font-size: clamp(26px, 4vw, 38px);
-      font-weight: 800;
-      letter-spacing: -1px;
-      line-height: 1.1;
-      margin-bottom: 10px;
-    }
+    .tool-tag { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--accent); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 10px; }
+    .tool-title { font-size: clamp(26px, 4vw, 38px); font-weight: 800; letter-spacing: -1px; line-height: 1.1; margin-bottom: 10px; }
     .tool-title span { color: var(--accent); }
     .tool-desc { color: var(--muted); font-size: 15px; line-height: 1.6; max-width: 580px; }
 
-    /* MODE TABS */
-    .mode-tabs {
-      display: flex;
-      gap: 4px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 4px;
-      width: fit-content;
-      margin-bottom: 20px;
-    }
-    .mode-tab {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 12px;
-      font-weight: 700;
-      padding: 8px 20px;
-      border-radius: 5px;
-      border: none;
-      cursor: pointer;
-      background: transparent;
-      color: var(--muted);
-      transition: all 0.18s;
-    }
+    .mode-tabs { display: flex; gap: 4px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 4px; width: fit-content; margin-bottom: 20px; }
+    .mode-tab { font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 700; padding: 8px 20px; border-radius: 5px; border: none; cursor: pointer; background: transparent; color: var(--muted); transition: all 0.18s; }
     .mode-tab.active { background: var(--accent); color: #000; }
     .mode-tab:not(.active):hover { color: var(--text); }
 
-    /* CONTROLS BAR */
-    .controls-bar {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 14px;
-      flex-wrap: wrap;
-    }
-    .controls-bar label {
-      font-size: 12px;
-      color: var(--muted);
-      font-family: 'JetBrains Mono', monospace;
-    }
-    select {
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      color: var(--text);
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 12px;
-      padding: 7px 11px;
-      border-radius: 6px;
-      cursor: pointer;
-      outline: none;
-      transition: border-color 0.2s;
-    }
+    .controls-bar { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; flex-wrap: wrap; }
+    .controls-bar label { font-size: 12px; color: var(--muted); font-family: 'JetBrains Mono', monospace; }
+    select { background: var(--surface2); border: 1px solid var(--border); color: var(--text); font-family: 'JetBrains Mono', monospace; font-size: 12px; padding: 7px 11px; border-radius: 6px; cursor: pointer; outline: none; transition: border-color 0.2s; }
     select:hover, select:focus { border-color: var(--accent); }
-
-    .toggle-wrap {
-      display: flex;
-      align-items: center;
-      gap: 7px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 12px;
-      color: var(--muted);
-      cursor: pointer;
-      user-select: none;
-    }
+    .toggle-wrap { display: flex; align-items: center; gap: 7px; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--muted); cursor: pointer; user-select: none; }
     .toggle-wrap input { display: none; }
-    .toggle-track {
-      width: 30px; height: 17px;
-      background: var(--muted2);
-      border-radius: 20px;
-      position: relative;
-      transition: background 0.2s;
-      flex-shrink: 0;
-    }
+    .toggle-track { width: 30px; height: 17px; background: var(--muted2); border-radius: 20px; position: relative; transition: background 0.2s; flex-shrink: 0; }
     .toggle-wrap input:checked ~ .toggle-track { background: var(--accent); }
-    .toggle-knob {
-      position: absolute;
-      top: 2px; left: 2px;
-      width: 13px; height: 13px;
-      border-radius: 50%;
-      background: #fff;
-      transition: left 0.2s;
-    }
+    .toggle-knob { position: absolute; top: 2px; left: 2px; width: 13px; height: 13px; border-radius: 50%; background: #fff; transition: left 0.2s; }
     .toggle-wrap input:checked ~ .toggle-track .toggle-knob { left: 15px; }
-
     .spacer { flex: 1; }
 
-    /* BUTTONS */
-    .btn {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 12px;
-      font-weight: 700;
-      padding: 8px 16px;
-      border-radius: 6px;
-      border: none;
-      cursor: pointer;
-      transition: all 0.18s;
-      white-space: nowrap;
-    }
+    .btn { font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 700; padding: 8px 16px; border-radius: 6px; border: none; cursor: pointer; transition: all 0.18s; white-space: nowrap; }
     .btn-primary { background: var(--accent); color: #000; }
     .btn-primary:hover { background: #00e589; transform: translateY(-1px); }
     .btn-secondary { background: var(--surface2); color: var(--text); border: 1px solid var(--border); }
@@ -220,189 +87,81 @@
     .btn-ghost { background: transparent; color: var(--muted); border: 1px solid var(--border); }
     .btn-ghost:hover { color: var(--text); border-color: var(--muted2); }
 
-    /* EDITOR GRID */
-    .editor-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      margin-bottom: 14px;
-    }
+    .editor-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 14px; }
     @media (max-width: 720px) { .editor-grid { grid-template-columns: 1fr; } }
 
-    .panel {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-    }
-    .panel-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 10px 14px;
-      border-bottom: 1px solid var(--border);
-      background: var(--surface2);
-      gap: 8px;
-    }
-    .panel-label {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
+    .panel { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column; }
+    .panel-header { display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; border-bottom: 1px solid var(--border); background: var(--surface2); gap: 8px; }
+    .panel-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
     .panel-actions { display: flex; gap: 5px; }
-    .icon-btn {
-      background: none;
-      border: 1px solid transparent;
-      color: var(--muted);
-      cursor: pointer;
-      font-size: 11px;
-      padding: 3px 8px;
-      border-radius: 4px;
-      font-family: 'JetBrains Mono', monospace;
-      transition: all 0.15s;
-    }
+    .icon-btn { background: none; border: 1px solid transparent; color: var(--muted); cursor: pointer; font-size: 11px; padding: 3px 8px; border-radius: 4px; font-family: 'JetBrains Mono', monospace; transition: all 0.15s; }
     .icon-btn:hover { color: var(--accent); border-color: var(--border); }
 
-    textarea {
-      flex: 1;
-      background: var(--surface);
-      border: none;
-      color: var(--text);
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 13px;
-      line-height: 1.75;
-      padding: 16px;
-      resize: none;
-      outline: none;
-      min-height: 380px;
-      tab-size: 2;
-    }
+    textarea { flex: 1; background: var(--surface); border: none; color: var(--text); font-family: 'JetBrains Mono', monospace; font-size: 13px; line-height: 1.75; padding: 16px; resize: none; outline: none; min-height: 380px; tab-size: 2; }
     textarea::placeholder { color: var(--muted2); }
+    .output-area { flex: 1; font-family: 'JetBrains Mono', monospace; font-size: 13px; line-height: 1.75; padding: 16px; min-height: 380px; overflow: auto; white-space: pre-wrap; word-break: break-all; background: var(--surface); }
 
-    .output-area {
-      flex: 1;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 13px;
-      line-height: 1.75;
-      padding: 16px;
-      min-height: 380px;
-      overflow: auto;
-      white-space: pre-wrap;
-      word-break: break-all;
-      background: var(--surface);
-    }
-
-    /* STATUS BAR */
-    .status-bar {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      padding: 9px 14px;
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      color: var(--muted);
-      flex-wrap: wrap;
-      margin-bottom: 28px;
-    }
+    .status-bar { display: flex; align-items: center; gap: 16px; padding: 9px 14px; background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted); flex-wrap: wrap; margin-bottom: 28px; }
     .status-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--muted2); display: inline-block; margin-right: 5px; }
-    .status-dot.ok { background: var(--accent); }
-    .status-dot.err { background: var(--error); }
-    .status-val { color: var(--text); }
-    .status-savings { color: var(--accent); font-weight: 700; }
+    .status-dot.ok { background: var(--accent); } .status-dot.err { background: var(--error); }
+    .status-val { color: var(--text); } .status-savings { color: var(--accent); font-weight: 700; }
 
-    /* ERROR */
-    .error-banner {
-      display: none;
-      background: rgba(255,77,106,0.08);
-      border: 1px solid rgba(255,77,106,0.3);
-      border-radius: 6px;
-      padding: 10px 14px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 12px;
-      color: var(--error);
-      margin-bottom: 14px;
-    }
+    .error-banner { display: none; background: rgba(255,77,106,0.08); border: 1px solid rgba(255,77,106,0.3); border-radius: 6px; padding: 10px 14px; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--error); margin-bottom: 14px; }
     .error-banner.show { display: block; }
 
-    /* SNIPPETS */
     .snippets-section { }
-    .section-title {
-      font-size: 11px;
-      font-weight: 700;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: 10px;
-      font-family: 'JetBrains Mono', monospace;
-    }
+    .section-title { font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; font-family: 'JetBrains Mono', monospace; }
     .snippets-grid { display: flex; gap: 8px; flex-wrap: wrap; }
-    .snippet-btn {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      color: var(--muted);
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      padding: 7px 12px;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: all 0.15s;
-      text-align: left;
-    }
+    .snippet-btn { background: var(--surface); border: 1px solid var(--border); color: var(--muted); font-family: 'JetBrains Mono', monospace; font-size: 11px; padding: 7px 12px; border-radius: 6px; cursor: pointer; transition: all 0.15s; text-align: left; }
     .snippet-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); }
 
-    /* TOAST */
-    .toast {
-      position: fixed;
-      bottom: 28px;
-      right: 28px;
-      background: var(--surface2);
-      border: 1px solid var(--accent);
-      color: var(--accent);
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 12px;
-      padding: 10px 18px;
-      border-radius: 8px;
-      opacity: 0;
-      transform: translateY(8px);
-      transition: all 0.25s;
-      z-index: 999;
-      pointer-events: none;
-    }
+    /* SEO SECTION */
+    .seo-section { margin-top: 48px; }
+    .seo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+    @media (max-width: 620px) { .seo-grid { grid-template-columns: 1fr; } }
+    .seo-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; }
+    .seo-card h2 { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--accent); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 12px; }
+    .seo-card p { font-size: 13px; color: var(--muted); line-height: 1.7; }
+    .seo-card p + p { margin-top: 8px; }
+    .seo-card a { color: var(--accent); text-decoration: none; }
+    .seo-card a:hover { text-decoration: underline; }
+
+    .faq-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin-bottom: 16px; }
+    .faq-header { padding: 10px 14px; border-bottom: 1px solid var(--border); background: var(--surface2); font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--accent); text-transform: uppercase; letter-spacing: 1.5px; }
+    .faq-item { padding: 16px 20px; border-bottom: 1px solid var(--border); }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-q { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+    .faq-a { font-size: 13px; color: var(--muted); line-height: 1.7; }
+    .faq-a code { font-family: 'JetBrains Mono', monospace; font-size: 12px; background: var(--surface2); border: 1px solid var(--border); padding: 1px 6px; border-radius: 4px; color: var(--accent); }
+    .faq-a a { color: var(--accent); text-decoration: none; }
+    .faq-a a:hover { text-decoration: underline; }
+
+    .related-section { margin-top: 16px; }
+    .related-header { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--accent); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 12px; }
+    .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 8px; }
+    .related-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; text-decoration: none; transition: border-color 0.2s, transform 0.15s; display: block; }
+    .related-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .related-card-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
+    .related-card-name { font-size: 13px; font-weight: 700; color: var(--text); }
+
+    .site-footer { border-top: 1px solid var(--border); padding: 40px 24px 24px; margin-top: 40px; }
+    .footer-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 32px; margin-bottom: 32px; }
+    .footer-brand .nav-brand { font-size: 16px; display: inline-block; margin-bottom: 12px; }
+    .footer-brand p { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted); line-height: 1.7; max-width: 220px; }
+    .footer-col h4 { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--accent); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 12px; }
+    .footer-col a { display: block; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted); text-decoration: none; margin-bottom: 8px; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--accent); }
+    .footer-bottom { max-width: 1100px; margin: 0 auto; padding-top: 20px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .footer-bottom p { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted); }
+    .footer-legal { display: flex; gap: 20px; flex-wrap: wrap; }
+    .footer-legal a { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted); text-decoration: none; }
+    .footer-legal a:hover { color: var(--accent); }
+
+    .toast { position: fixed; bottom: 28px; right: 28px; background: var(--surface2); border: 1px solid var(--accent); color: var(--accent); font-family: 'JetBrains Mono', monospace; font-size: 12px; padding: 10px 18px; border-radius: 8px; opacity: 0; transform: translateY(8px); transition: all 0.25s; z-index: 999; pointer-events: none; }
     .toast.show { opacity: 1; transform: translateY(0); }
 
-    /* COMPLETE BANNER */
-    .complete-banner {
-      background: var(--accent-dim);
-      border: 1px solid rgba(0,255,153,0.25);
-      border-radius: var(--radius);
-      padding: 16px 20px;
-      margin-bottom: 28px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 12px;
-      color: var(--accent);
-    }
-    .complete-banner strong { font-size: 14px; }
-
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 20px 24px;
-      text-align: center;
-      font-size: 12px;
-      color: var(--muted);
-      font-family: 'JetBrains Mono', monospace;
-    }
-    footer a { color: var(--muted); text-decoration: none; }
-    footer a:hover { color: var(--accent); }
+    @media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 500px) { .footer-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
@@ -416,58 +175,31 @@
 </nav>
 
 <main>
-
-  <div class="complete-banner">
-    <span>🎉</span>
-    <div><strong>All 10 tools complete!</strong> — tinybench.dev is ready for Google AdSense.</div>
-  </div>
-
   <div class="tool-header">
     <div class="tool-tag">// tool_10</div>
     <h1 class="tool-title">CSS Beautifier <span>&</span> Minifier</h1>
     <p class="tool-desc">Format messy CSS into clean, readable code — or compress it for production. Syntax highlighting, vendor prefix detection, and live stats.</p>
   </div>
 
-  <!-- MODE TABS -->
   <div class="mode-tabs">
     <button class="mode-tab active" id="tabBeautify" onclick="setMode('beautify')">Beautify</button>
     <button class="mode-tab" id="tabMinify" onclick="setMode('minify')">Minify</button>
   </div>
 
-  <!-- CONTROLS -->
   <div class="controls-bar" id="beautifyControls">
     <label>Indent:</label>
-    <select id="indentSelect">
-      <option value="2">2 spaces</option>
-      <option value="4" selected>4 spaces</option>
-      <option value="tab">tab</option>
-    </select>
+    <select id="indentSelect"><option value="2">2 spaces</option><option value="4" selected>4 spaces</option><option value="tab">tab</option></select>
     <label>Sort properties:</label>
-    <select id="sortSelect">
-      <option value="none">none</option>
-      <option value="alpha">alphabetical</option>
-    </select>
-    <label class="toggle-wrap">
-      <input type="checkbox" id="addNewlines" checked />
-      <span class="toggle-track"><span class="toggle-knob"></span></span>
-      blank lines between rules
-    </label>
+    <select id="sortSelect"><option value="none">none</option><option value="alpha">alphabetical</option></select>
+    <label class="toggle-wrap"><input type="checkbox" id="addNewlines" checked /><span class="toggle-track"><span class="toggle-knob"></span></span>blank lines between rules</label>
     <div class="spacer"></div>
     <button class="btn btn-ghost" onclick="clearAll()">clear</button>
     <button class="btn btn-primary" onclick="run()">Beautify ↵</button>
   </div>
 
   <div class="controls-bar" id="minifyControls" style="display:none">
-    <label class="toggle-wrap">
-      <input type="checkbox" id="stripComments" checked />
-      <span class="toggle-track"><span class="toggle-knob"></span></span>
-      strip comments
-    </label>
-    <label class="toggle-wrap">
-      <input type="checkbox" id="removeUnused" />
-      <span class="toggle-track"><span class="toggle-knob"></span></span>
-      collapse redundant selectors
-    </label>
+    <label class="toggle-wrap"><input type="checkbox" id="stripComments" checked /><span class="toggle-track"><span class="toggle-knob"></span></span>strip comments</label>
+    <label class="toggle-wrap"><input type="checkbox" id="removeUnused" /><span class="toggle-track"><span class="toggle-knob"></span></span>collapse redundant selectors</label>
     <div class="spacer"></div>
     <button class="btn btn-ghost" onclick="clearAll()">clear</button>
     <button class="btn btn-primary" onclick="run()">Minify ↵</button>
@@ -475,44 +207,28 @@
 
   <div class="error-banner" id="errorBanner"></div>
 
-  <!-- EDITORS -->
   <div class="editor-grid">
     <div class="panel">
       <div class="panel-header">
         <span class="panel-label">Input CSS</span>
-        <div class="panel-actions">
-          <button class="icon-btn" onclick="clearInput()">clear</button>
-          <button class="icon-btn" onclick="pasteClipboard()">paste</button>
-        </div>
+        <div class="panel-actions"><button class="icon-btn" onclick="clearInput()">clear</button><button class="icon-btn" onclick="pasteClipboard()">paste</button></div>
       </div>
       <textarea id="cssInput" spellcheck="false" placeholder=".hero {
   background:   #0d0d0d;
   color:#00ff99;
   font-family: 'Syne', sans-serif;
   padding: 60px 24px;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-}
-
-/* heading styles */
-.hero h1{font-size:clamp(32px,5vw,64px);font-weight:800;letter-spacing:-2px;line-height:1.1;margin-bottom:16px}
-.hero p{color:#666;font-size:16px;max-width:560px;line-height:1.6}"></textarea>
+}"></textarea>
     </div>
-
     <div class="panel">
       <div class="panel-header">
         <span class="panel-label" id="outputLabel">Beautified Output</span>
-        <div class="panel-actions">
-          <button class="icon-btn" onclick="copyOutput()">copy</button>
-          <button class="icon-btn" onclick="useAsInput()">use as input</button>
-        </div>
+        <div class="panel-actions"><button class="icon-btn" onclick="copyOutput()">copy</button><button class="icon-btn" onclick="useAsInput()">use as input</button></div>
       </div>
       <div class="output-area" id="cssOutput"></div>
     </div>
   </div>
 
-  <!-- STATUS -->
   <div class="status-bar">
     <span><span class="status-dot" id="statusDot"></span><span id="statusText">Ready</span></span>
     <span>input: <span class="status-val" id="inChars">0</span> chars</span>
@@ -522,535 +238,190 @@
     <span id="savingsSpan" style="display:none">saved: <span class="status-savings" id="savings"></span></span>
   </div>
 
-  <!-- SNIPPETS -->
   <div class="snippets-section">
     <div class="section-title">// quick examples</div>
     <div class="snippets-grid" id="snippetsGrid"></div>
   </div>
 
+  <!-- SEO CONTENT -->
+  <div class="seo-section">
+    <div class="seo-grid">
+      <div class="seo-card">
+        <h2>// css beautification vs minification</h2>
+        <p><strong style="color:var(--text)">Beautification</strong> formats compressed or inconsistently written CSS into clean, indented, readable code. Use it during development and code review to make your styles easier to understand and maintain.</p>
+        <p><strong style="color:var(--text)">Minification</strong> removes all whitespace, comments, and unnecessary characters to reduce file size for production. A minified CSS file can be 30–70% smaller. Read our guide: <a href="/blog/css-minification-guide/">CSS minification guide</a> and <a href="/blog/minify-css-vscode/">how to minify CSS in VS Code</a>.</p>
+      </div>
+      <div class="seo-card">
+        <h2>// how css minification works</h2>
+        <p>The minifier removes comments, collapses whitespace, shortens hex colors (<code>#ffffff</code> → <code>#fff</code>), removes leading zeros (<code>0.5</code> → <code>.5</code>), and strips the last semicolon in each rule block.</p>
+        <p>These changes have zero effect on how the browser renders your styles but can significantly reduce the bytes transferred to users — improving load time and Core Web Vitals scores.</p>
+      </div>
+    </div>
+
+    <div class="faq-card">
+      <div class="faq-header">// frequently asked questions</div>
+      <div class="faq-item">
+        <div class="faq-q">How do I minify CSS in VS Code?</div>
+        <div class="faq-a">Install the "CSS Minifier" or "Minify" extension, or use the built-in Live Server extension which can auto-minify on save. Alternatively paste your CSS here and copy the minified output. Full guide: <a href="/blog/minify-css-vscode/">minify CSS in VS Code</a>.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Does CSS minification affect how styles render?</div>
+        <div class="faq-a">No — minification only removes characters that browsers ignore (whitespace, comments, redundant semicolons). The computed styles and visual output are identical. Always test after minifying to catch any edge cases specific to your CSS.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">How much does CSS minification reduce file size?</div>
+        <div class="faq-a">Typically 20–50% for hand-written CSS. Heavily commented or consistently formatted CSS with lots of whitespace can see 60–70% reduction. Combined with Gzip/Brotli compression on the server, the actual transfer savings are even higher.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What is the difference between CSS beautifier and CSS formatter?</div>
+        <div class="faq-a">They are the same thing — "beautifier", "formatter", and "pretty printer" all refer to tools that add consistent indentation and line breaks to CSS. This tool supports 2-space, 4-space, or tab indentation, and optional property sorting.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Can I sort CSS properties alphabetically?</div>
+        <div class="faq-a">Yes — use the "Sort properties: alphabetical" option in the beautifier controls above. Alphabetical property sorting is a popular convention that makes it easier to scan long rule blocks and avoid duplicate declarations.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RELATED TOOLS -->
+  <div class="related-section">
+    <div class="related-header">// related tools</div>
+    <div class="related-grid">
+      <a href="/tools/json-formatter/" class="related-card">
+        <div class="related-card-label">Formatter</div>
+        <div class="related-card-name">JSON Formatter</div>
+      </a>
+      <a href="/tools/sql-formatter/" class="related-card">
+        <div class="related-card-label">Formatter</div>
+        <div class="related-card-name">SQL Formatter</div>
+      </a>
+      <a href="/tools/color-contrast-checker/" class="related-card">
+        <div class="related-card-label">Design</div>
+        <div class="related-card-name">Color Contrast</div>
+      </a>
+      <a href="/tools/image-compressor/" class="related-card">
+        <div class="related-card-label">Images</div>
+        <div class="related-card-name">Image Compressor</div>
+      </a>
+      <a href="/tools/regex-tester/" class="related-card">
+        <div class="related-card-label">Testing</div>
+        <div class="related-card-name">Regex Tester</div>
+      </a>
+      <a href="/tools/base64/" class="related-card">
+        <div class="related-card-label">Encoding</div>
+        <div class="related-card-name">Base64 Encoder</div>
+      </a>
+    </div>
+  </div>
 </main>
 
-<footer>
-  <a href="/">tinybench.dev</a> — fast developer tools, no backend, no tracking.
+<!-- RICH FOOTER -->
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="/" class="nav-brand">tiny<span>bench</span>.dev</a>
+      <p>Free client-side developer tools. No server, no tracking, no sign-up. Just tools that work.</p>
+    </div>
+    <div class="footer-col">
+      <h4>// tools</h4>
+      <a href="/tools/json-formatter/">JSON Formatter</a>
+      <a href="/tools/jwt-decoder/">JWT Decoder</a>
+      <a href="/tools/regex-tester/">Regex Tester</a>
+      <a href="/tools/timestamp-converter/">Timestamp Converter</a>
+      <a href="/tools/base64/">Base64 Encoder</a>
+      <a href="/tools/uuid-generator/">UUID Generator</a>
+      <a href="/tools/sql-formatter/">SQL Formatter</a>
+      <a href="/tools/image-compressor/">Image Compressor</a>
+      <a href="/tools/color-contrast-checker/">Color Contrast</a>
+      <a href="/tools/css-beautifier/">CSS Beautifier</a>
+    </div>
+    <div class="footer-col">
+      <h4>// blog</h4>
+      <a href="/blog/css-minification-guide/">CSS Minification</a>
+      <a href="/blog/minify-css-vscode/">Minify CSS in VS Code</a>
+      <a href="/blog/how-to-format-json/">Format JSON</a>
+      <a href="/blog/sql-formatting-best-practices/">SQL Formatting</a>
+      <a href="/blog/wcag-color-contrast-guide/">WCAG Contrast</a>
+      <a href="/blog/what-is-jwt/">What is JWT?</a>
+      <a href="/blog/regex-cheat-sheet/">Regex Cheat Sheet</a>
+      <a href="/blog/uuid-vs-ulid/">UUID vs ULID</a>
+      <a href="/blog/">All Articles →</a>
+    </div>
+    <div class="footer-col">
+      <h4>// company</h4>
+      <a href="/about/">About</a>
+      <a href="/contact/">Contact</a>
+      <a href="/privacy-policy/">Privacy Policy</a>
+      <a href="/terms/">Terms</a>
+      <a href="/cookie-policy/">Cookie Policy</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 tinybench.dev</p>
+    <div class="footer-legal">
+      <a href="/privacy-policy/">Privacy</a>
+      <a href="/terms/">Terms</a>
+      <a href="/cookie-policy/">Cookies</a>
+      <a href="/contact/">Contact</a>
+    </div>
+  </div>
 </footer>
 
 <div class="toast" id="toast"></div>
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "How do I minify CSS in VS Code?", "acceptedAnswer": { "@type": "Answer", "text": "Install the CSS Minifier or Minify extension, or paste your CSS here and copy the minified output." } },
+    { "@type": "Question", "name": "Does CSS minification affect how styles render?", "acceptedAnswer": { "@type": "Answer", "text": "No. Minification only removes characters browsers ignore. The computed styles and visual output are identical." } },
+    { "@type": "Question", "name": "How much does CSS minification reduce file size?", "acceptedAnswer": { "@type": "Answer", "text": "Typically 20-50% for hand-written CSS. Heavily commented CSS can see 60-70% reduction." } },
+    { "@type": "Question", "name": "What is the difference between CSS beautifier and CSS formatter?", "acceptedAnswer": { "@type": "Answer", "text": "They are the same thing. Beautifier, formatter, and pretty printer all add consistent indentation and line breaks to CSS." } },
+    { "@type": "Question", "name": "Can I sort CSS properties alphabetically?", "acceptedAnswer": { "@type": "Answer", "text": "Yes — use the Sort properties: alphabetical option in the beautifier controls." } }
+  ]
+}
+</script>
+
 <script>
-// ── STATE ─────────────────────────────────────────────────────────
-let mode = 'beautify';
+let mode='beautify';
+function setMode(m){mode=m;document.getElementById('tabBeautify').classList.toggle('active',m==='beautify');document.getElementById('tabMinify').classList.toggle('active',m==='minify');document.getElementById('beautifyControls').style.display=m==='beautify'?'flex':'none';document.getElementById('minifyControls').style.display=m==='minify'?'flex':'none';document.getElementById('outputLabel').textContent=m==='beautify'?'Beautified Output':'Minified Output';const val=document.getElementById('cssInput').value.trim();if(val)run();}
 
-function setMode(m) {
-  mode = m;
-  document.getElementById('tabBeautify').classList.toggle('active', m === 'beautify');
-  document.getElementById('tabMinify').classList.toggle('active', m === 'minify');
-  document.getElementById('beautifyControls').style.display = m === 'beautify' ? 'flex' : 'none';
-  document.getElementById('minifyControls').style.display = m === 'minify' ? 'flex' : 'none';
-  document.getElementById('outputLabel').textContent = m === 'beautify' ? 'Beautified Output' : 'Minified Output';
-  const val = document.getElementById('cssInput').value.trim();
-  if (val) run();
-}
+function tokenizeCSS(css){const tokens=[];let i=0;while(i<css.length){if(css[i]==='/'&&css[i+1]==='*'){let j=i+2;while(j<css.length-1&&!(css[j]==='*'&&css[j+1]==='/'))j++;j+=2;tokens.push({type:'comment',val:css.slice(i,j)});i=j;continue;}if(css[i]==='/'&&css[i+1]==='/'){let j=i;while(j<css.length&&css[j]!=='\n')j++;tokens.push({type:'comment',val:css.slice(i,j)});i=j;continue;}if(css[i]==='"'||css[i]==="'"){const q=css[i];let j=i+1;while(j<css.length&&css[j]!==q){if(css[j]==='\\')j++;j++;}j++;tokens.push({type:'string',val:css.slice(i,j)});i=j;continue;}if(/\s/.test(css[i])){let j=i;while(j<css.length&&/\s/.test(css[j]))j++;tokens.push({type:'ws',val:css.slice(i,j)});i=j;continue;}if(css[i]==='@'){let j=i+1;while(j<css.length&&/[a-zA-Z-]/.test(css[j]))j++;tokens.push({type:'at',val:css.slice(i,j)});i=j;continue;}if(css[i]==='{'){tokens.push({type:'open',val:'{'});i++;continue;}if(css[i]==='}'){tokens.push({type:'close',val:'}'});i++;continue;}if(css[i]===':'){tokens.push({type:'colon',val:':'});i++;continue;}if(css[i]===';'){tokens.push({type:'semi',val:';'});i++;continue;}let j=i;while(j<css.length&&!/[\s{}:;'"\/]/.test(css[j]))j++;if(j===i){tokens.push({type:'other',val:css[i]});i++;}else{tokens.push({type:'word',val:css.slice(i,j)});i=j;}}return tokens;}
 
-// ── TOKENISER ─────────────────────────────────────────────────────
-function tokenizeCSS(css) {
-  const tokens = [];
-  let i = 0;
-  while (i < css.length) {
-    // Block comment
-    if (css[i] === '/' && css[i+1] === '*') {
-      let j = i + 2;
-      while (j < css.length - 1 && !(css[j] === '*' && css[j+1] === '/')) j++;
-      j += 2;
-      tokens.push({ type: 'comment', val: css.slice(i, j) });
-      i = j; continue;
-    }
-    // Line comment (SCSS/Less)
-    if (css[i] === '/' && css[i+1] === '/') {
-      let j = i;
-      while (j < css.length && css[j] !== '\n') j++;
-      tokens.push({ type: 'comment', val: css.slice(i, j) });
-      i = j; continue;
-    }
-    // String
-    if (css[i] === '"' || css[i] === "'") {
-      const q = css[i]; let j = i + 1;
-      while (j < css.length && css[j] !== q) { if (css[j] === '\\') j++; j++; }
-      j++;
-      tokens.push({ type: 'string', val: css.slice(i, j) });
-      i = j; continue;
-    }
-    // Whitespace
-    if (/\s/.test(css[i])) {
-      let j = i;
-      while (j < css.length && /\s/.test(css[j])) j++;
-      tokens.push({ type: 'ws', val: css.slice(i, j) });
-      i = j; continue;
-    }
-    // At-rule keyword
-    if (css[i] === '@') {
-      let j = i + 1;
-      while (j < css.length && /[a-zA-Z-]/.test(css[j])) j++;
-      tokens.push({ type: 'at', val: css.slice(i, j) });
-      i = j; continue;
-    }
-    // Single chars
-    if (css[i] === '{') { tokens.push({ type: 'open', val: '{' }); i++; continue; }
-    if (css[i] === '}') { tokens.push({ type: 'close', val: '}' }); i++; continue; }
-    if (css[i] === ':') { tokens.push({ type: 'colon', val: ':' }); i++; continue; }
-    if (css[i] === ';') { tokens.push({ type: 'semi', val: ';' }); i++; continue; }
-    // Word / number / value chunk
-    let j = i;
-    while (j < css.length && !/[\s{}:;'"\/]/.test(css[j])) j++;
-    if (j === i) { tokens.push({ type: 'other', val: css[i] }); i++; }
-    else { tokens.push({ type: 'word', val: css.slice(i, j) }); i = j; }
-  }
-  return tokens;
-}
+function beautifyCSS(css){const indentSetting=document.getElementById('indentSelect').value;const indentStr=indentSetting==='tab'?'\t':' '.repeat(Number(indentSetting));const addNewlines=document.getElementById('addNewlines').checked;const sortProps=document.getElementById('sortSelect').value;const rules=parseRules(css);let out='';rules.forEach((rule,ri)=>{if(rule.type==='comment'){out+=formatComment(rule.val)+'\n';return;}if(ri>0&&addNewlines)out+='\n';if(rule.type==='atrule-block'){out+=rule.selector+' {\n';rule.children.forEach(child=>{if(child.type==='comment'){out+=indentStr+formatComment(child.val)+'\n';return;}out+=indentStr+formatSelector(child.selector)+' {\n';const props=sortProps==='alpha'?[...child.props].sort((a,b)=>a.name.localeCompare(b.name)):child.props;props.forEach(p=>out+=indentStr+indentStr+p.name+': '+p.value+';\n');out+=indentStr+'}\n';if(addNewlines)out+='\n';});out+='}\n';return;}if(rule.type==='atrule-simple'){out+=rule.val+'\n';return;}out+=formatSelector(rule.selector)+' {\n';const props=sortProps==='alpha'?[...rule.props].sort((a,b)=>a.name.localeCompare(b.name)):rule.props;props.forEach(p=>out+=indentStr+p.name+': '+p.value+';\n');out+='}\n';});return out.trim();}
+function formatSelector(sel){return sel.split(',').map(s=>s.trim()).join(',\n');}
+function formatComment(c){return c.trim();}
 
-// ── BEAUTIFIER ────────────────────────────────────────────────────
-function beautifyCSS(css) {
-  const indentSetting = document.getElementById('indentSelect').value;
-  const indentStr = indentSetting === 'tab' ? '\t' : ' '.repeat(Number(indentSetting));
-  const addNewlines = document.getElementById('addNewlines').checked;
-  const sortProps = document.getElementById('sortSelect').value;
+function parseRules(css){const rules=[];let i=0;css=css.trim();while(i<css.length){while(i<css.length&&/\s/.test(css[i]))i++;if(i>=css.length)break;if(css[i]==='/'&&css[i+1]==='*'){let j=i+2;while(j<css.length-1&&!(css[j]==='*'&&css[j+1]==='/'))j++;j+=2;rules.push({type:'comment',val:css.slice(i,j)});i=j;continue;}if(css[i]==='/'&&css[i+1]==='/'){let j=i;while(j<css.length&&css[j]!=='\n')j++;rules.push({type:'comment',val:css.slice(i,j)});i=j;continue;}if(css[i]==='@'){let j=i;let depth=0;while(j<css.length){if(css[j]==='{'){depth++;break;}if(css[j]===';'){j++;break;}j++;}if(depth===0){rules.push({type:'atrule-simple',val:css.slice(i,j).trim()});i=j;continue;}const selector=css.slice(i,j).trim();j++;let inner='',depth2=1;while(j<css.length&&depth2>0){if(css[j]==='{')depth2++;if(css[j]==='}')depth2--;if(depth2>0)inner+=css[j];j++;}const children=parseRules(inner);rules.push({type:'atrule-block',selector,children});i=j;continue;}let selStart=i;while(i<css.length&&css[i]!=='{')i++;const selector=css.slice(selStart,i).trim();if(!selector||i>=css.length)break;i++;let block='';let depth=1;while(i<css.length&&depth>0){if(css[i]==='{')depth++;if(css[i]==='}')depth--;if(depth>0)block+=css[i];i++;}const props=parseProps(block);rules.push({type:'rule',selector,props});}return rules;}
+function parseProps(block){const props=[];let current='',depth=0;for(let i=0;i<block.length;i++){const c=block[i];if(c==='(')depth++;if(c===')')depth--;if(c===';'&&depth===0){addProp(current.trim(),props);current='';}else{current+=c;}}if(current.trim())addProp(current.trim(),props);return props;}
+function addProp(str,props){if(!str)return;if(str.startsWith('/*')||str.startsWith('//')){props.push({name:str,value:'',comment:true});return;}const colon=str.indexOf(':');if(colon<0)return;const name=str.slice(0,colon).trim();const value=str.slice(colon+1).trim();if(name)props.push({name,value});}
 
-  // Parse into rules
-  const rules = parseRules(css);
-  let out = '';
+function minifyCSS(css){const stripComments=document.getElementById('stripComments').checked;if(stripComments){css=css.replace(/\/\*[\s\S]*?\*\//g,'');css=css.replace(/\/\/[^\n]*/g,'');}const strings=[];css=css.replace(/(["'])(?:(?!\1)[^\\]|\\.)*\1/g,m=>{strings.push(m);return `__STR${strings.length-1}__`;});css=css.replace(/\s+/g,' ').replace(/\s*{\s*/g,'{').replace(/\s*}\s*/g,'}').replace(/\s*:\s*/g,':').replace(/\s*;\s*/g,';').replace(/\s*,\s*/g,',').replace(/;}/g,'}').replace(/\s*>\s*/g,'>').replace(/\s*~\s*/g,'~').replace(/\s*\+\s*/g,'+').replace(/0\.([\d]+)/g,'.$1').replace(/#([0-9a-fA-F])\1([0-9a-fA-F])\2([0-9a-fA-F])\3/g,'#$1$2$3').trim();css=css.replace(/__STR(\d+)__/g,(_,i)=>strings[i]);return css;}
 
-  rules.forEach((rule, ri) => {
-    if (rule.type === 'comment') {
-      out += formatComment(rule.val) + '\n';
-      return;
-    }
-    if (ri > 0 && addNewlines) out += '\n';
+const COLOR_NAMES=new Set(['red','blue','green','white','black','gray','grey','yellow','orange','purple','pink','brown','cyan','magenta','lime','navy','teal','silver','gold','transparent','inherit','initial','unset','currentcolor']);
+function highlight(css){const tokens=tokenizeCSS(css);let html='';let inSelector=true,afterColon=false;tokens.forEach((tok,idx)=>{if(tok.type==='ws'){html+=tok.val;return;}if(tok.type==='comment'){html+=`<span style="color:var(--s-comment)">${esc(tok.val)}</span>`;return;}if(tok.type==='string'){html+=`<span style="color:var(--s-string)">${esc(tok.val)}</span>`;return;}if(tok.type==='at'){html+=`<span style="color:var(--s-at)">${esc(tok.val)}</span>`;return;}if(tok.type==='open'){inSelector=false;afterColon=false;html+=`<span style="color:var(--s-brace)">{</span>`;return;}if(tok.type==='close'){inSelector=true;html+=`<span style="color:var(--s-brace)">}</span>`;return;}if(tok.type==='colon'){afterColon=true;html+=`<span style="color:var(--s-colon)">:</span>`;return;}if(tok.type==='semi'){afterColon=false;html+=';';return;}const v=tok.val;if(inSelector){if(v.startsWith(':'))html+=`<span style="color:var(--s-pseudo)">${esc(v)}</span>`;else html+=`<span style="color:var(--s-selector)">${esc(v)}</span>`;return;}if(!afterColon){html+=`<span style="color:var(--s-property)">${esc(v)}</span>`;return;}if(v==='!important'){html+=`<span style="color:var(--s-important)">${esc(v)}</span>`;return;}if(/^#[0-9a-fA-F]{3,8}$/.test(v)){html+=`<span style="color:var(--s-color)">${esc(v)}</span>`;return;}if(/^-?[\d.]+[a-zA-Z%]+$/.test(v)){const num=v.match(/^-?[\d.]+/)[0];const unit=v.slice(num.length);html+=`<span style="color:var(--s-number)">${esc(num)}</span><span style="color:var(--s-unit)">${esc(unit)}</span>`;return;}if(/^-?[\d.]+$/.test(v)){html+=`<span style="color:var(--s-number)">${esc(v)}</span>`;return;}if(COLOR_NAMES.has(v.toLowerCase())){html+=`<span style="color:var(--s-color)">${esc(v)}</span>`;return;}html+=esc(v);});return html;}
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
 
-    if (rule.type === 'atrule-block') {
-      out += rule.selector + ' {\n';
-      rule.children.forEach(child => {
-        if (child.type === 'comment') { out += indentStr + formatComment(child.val) + '\n'; return; }
-        out += indentStr + formatSelector(child.selector) + ' {\n';
-        const props = sortProps === 'alpha' ? [...child.props].sort((a,b) => a.name.localeCompare(b.name)) : child.props;
-        props.forEach(p => out += indentStr + indentStr + p.name + ': ' + p.value + ';\n');
-        out += indentStr + '}\n';
-        if (addNewlines) out += '\n';
-      });
-      out += '}\n';
-      return;
-    }
+function run(){const raw=document.getElementById('cssInput').value.trim();if(!raw){showError('Paste some CSS to get started.');return;}hideError();try{let result=mode==='beautify'?beautifyCSS(raw):minifyCSS(raw);document.getElementById('cssOutput').innerHTML=highlight(result);updateStatus(raw,result);hideError();}catch(e){showError('Parse error: '+e.message);setStatus('err','Error');}}
+function updateStatus(input,output){setStatus('ok',mode==='beautify'?'Beautified':'Minified');document.getElementById('inChars').textContent=input.length;document.getElementById('outChars').textContent=output.length;const rules=(output.match(/[^{}]+\{/g)||[]).length;const props=(output.match(/[a-zA-Z-]+\s*:/g)||[]).length;document.getElementById('ruleCount').textContent=rules;document.getElementById('propCount').textContent=props;if(mode==='minify'&&input.length>0){const saved=Math.round((1-output.length/input.length)*100);document.getElementById('savings').textContent=saved+'%';document.getElementById('savingsSpan').style.display='';}else{document.getElementById('savingsSpan').style.display='none';}}
+function setStatus(state,text){document.getElementById('statusDot').className='status-dot '+state;document.getElementById('statusText').textContent=text;}
+function showError(msg){const b=document.getElementById('errorBanner');b.textContent='⚠ '+msg;b.classList.add('show');}
+function hideError(){document.getElementById('errorBanner').classList.remove('show');}
+function clearAll(){clearInput();document.getElementById('cssOutput').innerHTML='';}
+function clearInput(){document.getElementById('cssInput').value='';hideError();}
+async function pasteClipboard(){try{const text=await navigator.clipboard.readText();document.getElementById('cssInput').value=text;run();}catch{toast('Clipboard access denied');}}
+function copyOutput(){const text=document.getElementById('cssOutput').textContent;if(!text){toast('Nothing to copy');return;}navigator.clipboard.writeText(text).then(()=>toast('Copied ✓'));}
+function useAsInput(){const text=document.getElementById('cssOutput').textContent;if(!text)return;document.getElementById('cssInput').value=text;toast('Moved to input ✓');}
+function toast(msg){const el=document.getElementById('toast');el.textContent=msg;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),2200);}
 
-    if (rule.type === 'atrule-simple') {
-      out += rule.val + '\n';
-      return;
-    }
+document.getElementById('cssInput').addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key==='Enter'){e.preventDefault();run();}if(e.key==='Tab'){e.preventDefault();const s=e.target,st=s.selectionStart,en=s.selectionEnd;s.value=s.value.slice(0,st)+'  '+s.value.slice(en);s.selectionStart=s.selectionEnd=st+2;}});
+document.getElementById('cssInput').addEventListener('input',()=>{document.getElementById('inChars').textContent=document.getElementById('cssInput').value.length;});
 
-    // Normal rule
-    out += formatSelector(rule.selector) + ' {\n';
-    const props = sortProps === 'alpha' ? [...rule.props].sort((a,b) => a.name.localeCompare(b.name)) : rule.props;
-    props.forEach(p => out += indentStr + p.name + ': ' + p.value + ';\n');
-    out += '}\n';
-  });
-
-  return out.trim();
-}
-
-function formatSelector(sel) {
-  return sel.split(',').map(s => s.trim()).join(',\n');
-}
-
-function formatComment(c) {
-  return c.trim();
-}
-
-// ── RULE PARSER ───────────────────────────────────────────────────
-function parseRules(css) {
-  const rules = [];
-  let i = 0;
-  css = css.trim();
-
-  while (i < css.length) {
-    // Skip whitespace
-    while (i < css.length && /\s/.test(css[i])) i++;
-    if (i >= css.length) break;
-
-    // Comment
-    if (css[i] === '/' && css[i+1] === '*') {
-      let j = i + 2;
-      while (j < css.length - 1 && !(css[j] === '*' && css[j+1] === '/')) j++;
-      j += 2;
-      rules.push({ type: 'comment', val: css.slice(i, j) });
-      i = j; continue;
-    }
-    // Line comment
-    if (css[i] === '/' && css[i+1] === '/') {
-      let j = i;
-      while (j < css.length && css[j] !== '\n') j++;
-      rules.push({ type: 'comment', val: css.slice(i, j) });
-      i = j; continue;
-    }
-
-    // At-rule simple (no block)
-    if (css[i] === '@') {
-      let j = i;
-      // find end: either ; or {
-      let depth = 0;
-      while (j < css.length) {
-        if (css[j] === '{') { depth++; break; }
-        if (css[j] === ';') { j++; break; }
-        j++;
-      }
-      if (depth === 0) {
-        rules.push({ type: 'atrule-simple', val: css.slice(i, j).trim() });
-        i = j; continue;
-      }
-      // At-rule block
-      const selector = css.slice(i, j).trim();
-      j++; // skip {
-      let inner = '', depth2 = 1;
-      while (j < css.length && depth2 > 0) {
-        if (css[j] === '{') depth2++;
-        if (css[j] === '}') depth2--;
-        if (depth2 > 0) inner += css[j];
-        j++;
-      }
-      const children = parseRules(inner);
-      rules.push({ type: 'atrule-block', selector, children });
-      i = j; continue;
-    }
-
-    // Normal rule: find selector up to {
-    let selStart = i;
-    while (i < css.length && css[i] !== '{') i++;
-    const selector = css.slice(selStart, i).trim();
-    if (!selector || i >= css.length) break;
-    i++; // skip {
-    let block = '';
-    let depth = 1;
-    while (i < css.length && depth > 0) {
-      if (css[i] === '{') depth++;
-      if (css[i] === '}') depth--;
-      if (depth > 0) block += css[i];
-      i++;
-    }
-    const props = parseProps(block);
-    rules.push({ type: 'rule', selector, props });
-  }
-  return rules;
-}
-
-function parseProps(block) {
-  const props = [];
-  // Split by ; but respect strings and parens
-  let current = '', depth = 0;
-  for (let i = 0; i < block.length; i++) {
-    const c = block[i];
-    if (c === '(' ) depth++;
-    if (c === ')' ) depth--;
-    if (c === ';' && depth === 0) {
-      addProp(current.trim(), props);
-      current = '';
-    } else {
-      current += c;
-    }
-  }
-  if (current.trim()) addProp(current.trim(), props);
-  return props;
-}
-
-function addProp(str, props) {
-  if (!str) return;
-  if (str.startsWith('/*') || str.startsWith('//')) { props.push({ name: str, value: '', comment: true }); return; }
-  const colon = str.indexOf(':');
-  if (colon < 0) return;
-  const name = str.slice(0, colon).trim();
-  const value = str.slice(colon + 1).trim();
-  if (name) props.push({ name, value });
-}
-
-// ── MINIFIER ──────────────────────────────────────────────────────
-function minifyCSS(css) {
-  const stripComments = document.getElementById('stripComments').checked;
-
-  // Remove comments
-  if (stripComments) {
-    css = css.replace(/\/\*[\s\S]*?\*\//g, '');
-    css = css.replace(/\/\/[^\n]*/g, '');
-  }
-
-  // Preserve strings
-  const strings = [];
-  css = css.replace(/(["'])(?:(?!\1)[^\\]|\\.)*\1/g, m => {
-    strings.push(m);
-    return `__STR${strings.length - 1}__`;
-  });
-
-  css = css
-    .replace(/\s+/g, ' ')                       // collapse whitespace
-    .replace(/\s*{\s*/g, '{')                   // around braces
-    .replace(/\s*}\s*/g, '}')
-    .replace(/\s*:\s*/g, ':')                   // around colons
-    .replace(/\s*;\s*/g, ';')                   // around semicolons
-    .replace(/\s*,\s*/g, ',')                   // around commas
-    .replace(/;}/g, '}')                        // remove last semicolon
-    .replace(/\s*>\s*/g, '>')                   // combinators
-    .replace(/\s*~\s*/g, '~')
-    .replace(/\s*\+\s*/g, '+')
-    .replace(/0\.([\d]+)/g, '.$1')              // 0.5 → .5
-    .replace(/#([0-9a-fA-F])\1([0-9a-fA-F])\2([0-9a-fA-F])\3/g, '#$1$2$3') // #aabbcc → #abc
-    .trim();
-
-  // Restore strings
-  css = css.replace(/__STR(\d+)__/g, (_, i) => strings[i]);
-  return css;
-}
-
-// ── SYNTAX HIGHLIGHT ─────────────────────────────────────────────
-const CSS_PROPS = new Set([
-  'color','background','background-color','background-image','background-size',
-  'background-position','background-repeat','border','border-color','border-radius',
-  'border-width','border-style','border-top','border-right','border-bottom','border-left',
-  'margin','margin-top','margin-right','margin-bottom','margin-left',
-  'padding','padding-top','padding-right','padding-bottom','padding-left',
-  'width','height','min-width','max-width','min-height','max-height',
-  'display','flex','flex-direction','flex-wrap','flex-grow','flex-shrink','flex-basis',
-  'align-items','align-content','align-self','justify-content','justify-items','justify-self',
-  'grid','grid-template','grid-template-columns','grid-template-rows','grid-area',
-  'grid-column','grid-row','gap','column-gap','row-gap',
-  'position','top','right','bottom','left','z-index','overflow','overflow-x','overflow-y',
-  'font','font-family','font-size','font-weight','font-style','font-variant',
-  'line-height','letter-spacing','text-align','text-decoration','text-transform',
-  'white-space','word-break','word-wrap','opacity','visibility',
-  'transition','transform','animation','cursor','pointer-events',
-  'content','list-style','outline','box-shadow','text-shadow',
-  'vertical-align','float','clear','clip-path','object-fit','aspect-ratio',
-  'resize','user-select','appearance','will-change','filter','backdrop-filter',
-  '-webkit-backdrop-filter','-webkit-font-smoothing','-moz-osx-font-smoothing',
-  'scroll-behavior','scroll-snap-type','overscroll-behavior',
-]);
-
-const COLOR_NAMES = new Set([
-  'red','blue','green','white','black','gray','grey','yellow','orange','purple',
-  'pink','brown','cyan','magenta','lime','navy','teal','silver','gold','transparent',
-  'inherit','initial','unset','currentcolor',
-]);
-
-function highlight(css) {
-  // We highlight token by token
-  const tokens = tokenizeCSS(css);
-  let html = '';
-  let inSelector = true;
-  let inValue = false;
-  let afterColon = false;
-
-  tokens.forEach((tok, idx) => {
-    if (tok.type === 'ws') { html += tok.val; return; }
-    if (tok.type === 'comment') { html += `<span style="color:var(--s-comment)">${esc(tok.val)}</span>`; return; }
-    if (tok.type === 'string') { html += `<span style="color:var(--s-string)">${esc(tok.val)}</span>`; return; }
-    if (tok.type === 'at') { html += `<span style="color:var(--s-at)">${esc(tok.val)}</span>`; return; }
-    if (tok.type === 'open') { inSelector = false; inValue = false; afterColon = false; html += `<span style="color:var(--s-brace)">{</span>`; return; }
-    if (tok.type === 'close') { inSelector = true; html += `<span style="color:var(--s-brace)">}</span>`; return; }
-    if (tok.type === 'colon') {
-      afterColon = true; inValue = true;
-      html += `<span style="color:var(--s-colon)">:</span>`; return;
-    }
-    if (tok.type === 'semi') { afterColon = false; inValue = false; html += ';'; return; }
-
-    const v = tok.val;
-
-    if (inSelector) {
-      // pseudo-class / pseudo-element
-      if (v.startsWith(':')) { html += `<span style="color:var(--s-pseudo)">${esc(v)}</span>`; return; }
-      html += `<span style="color:var(--s-selector)">${esc(v)}</span>`; return;
-    }
-
-    if (!afterColon) {
-      // property name
-      const isVendor = v.startsWith('-');
-      if (CSS_PROPS.has(v.toLowerCase()) || isVendor) {
-        html += `<span style="color:var(--s-property)">${esc(v)}</span>`; return;
-      }
-      html += `<span style="color:var(--s-property)">${esc(v)}</span>`; return;
-    }
-
-    // value tokens
-    if (v === '!important') { html += `<span style="color:var(--s-important)">${esc(v)}</span>`; return; }
-    // hex color
-    if (/^#[0-9a-fA-F]{3,8}$/.test(v)) { html += `<span style="color:var(--s-color)">${esc(v)}</span>`; return; }
-    // number with unit
-    if (/^-?[\d.]+[a-zA-Z%]+$/.test(v)) {
-      const num = v.match(/^-?[\d.]+/)[0];
-      const unit = v.slice(num.length);
-      html += `<span style="color:var(--s-number)">${esc(num)}</span><span style="color:var(--s-unit)">${esc(unit)}</span>`;
-      return;
-    }
-    // pure number
-    if (/^-?[\d.]+$/.test(v)) { html += `<span style="color:var(--s-number)">${esc(v)}</span>`; return; }
-    // color name
-    if (COLOR_NAMES.has(v.toLowerCase())) { html += `<span style="color:var(--s-color)">${esc(v)}</span>`; return; }
-    // function call
-    if (/^[a-zA-Z-]+$/.test(v) && tokens[idx+1]?.val === '(') {
-      html += `<span style="color:var(--s-pseudo)">${esc(v)}</span>`; return;
-    }
-    html += esc(v);
-  });
-
-  return html;
-}
-
-function esc(s) {
-  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-}
-
-// ── RUN ───────────────────────────────────────────────────────────
-function run() {
-  const raw = document.getElementById('cssInput').value.trim();
-  if (!raw) { showError('Paste some CSS to get started.'); return; }
-  hideError();
-
-  try {
-    let result;
-    if (mode === 'beautify') {
-      result = beautifyCSS(raw);
-    } else {
-      result = minifyCSS(raw);
-    }
-
-    document.getElementById('cssOutput').innerHTML = highlight(result);
-    updateStatus(raw, result);
-    hideError();
-
-  } catch (e) {
-    showError('Parse error: ' + e.message);
-    setStatus('err', 'Error');
-  }
-}
-
-function updateStatus(input, output) {
-  setStatus('ok', mode === 'beautify' ? 'Beautified' : 'Minified');
-  document.getElementById('inChars').textContent = input.length;
-  document.getElementById('outChars').textContent = output.length;
-
-  // Count rules and props
-  const rules = (output.match(/[^{}]+\{/g) || []).length;
-  const props = (output.match(/[a-zA-Z-]+\s*:/g) || []).length;
-  document.getElementById('ruleCount').textContent = rules;
-  document.getElementById('propCount').textContent = props;
-
-  if (mode === 'minify' && input.length > 0) {
-    const saved = Math.round((1 - output.length / input.length) * 100);
-    document.getElementById('savings').textContent = saved + '%';
-    document.getElementById('savingsSpan').style.display = '';
-  } else {
-    document.getElementById('savingsSpan').style.display = 'none';
-  }
-}
-
-function setStatus(state, text) {
-  document.getElementById('statusDot').className = 'status-dot ' + state;
-  document.getElementById('statusText').textContent = text;
-}
-
-function showError(msg) {
-  const b = document.getElementById('errorBanner');
-  b.textContent = '⚠ ' + msg;
-  b.classList.add('show');
-}
-function hideError() { document.getElementById('errorBanner').classList.remove('show'); }
-
-// ── UTILS ─────────────────────────────────────────────────────────
-function clearAll() { clearInput(); document.getElementById('cssOutput').innerHTML = ''; }
-function clearInput() { document.getElementById('cssInput').value = ''; hideError(); }
-
-async function pasteClipboard() {
-  try {
-    const text = await navigator.clipboard.readText();
-    document.getElementById('cssInput').value = text;
-    run();
-  } catch { toast('Clipboard access denied'); }
-}
-
-function copyOutput() {
-  const text = document.getElementById('cssOutput').textContent;
-  if (!text) { toast('Nothing to copy'); return; }
-  navigator.clipboard.writeText(text).then(() => toast('Copied ✓'));
-}
-
-function useAsInput() {
-  const text = document.getElementById('cssOutput').textContent;
-  if (!text) return;
-  document.getElementById('cssInput').value = text;
-  toast('Moved to input ✓');
-}
-
-function toast(msg) {
-  const el = document.getElementById('toast');
-  el.textContent = msg;
-  el.classList.add('show');
-  setTimeout(() => el.classList.remove('show'), 2200);
-}
-
-// ── KEYBOARD ─────────────────────────────────────────────────────
-document.getElementById('cssInput').addEventListener('keydown', e => {
-  if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') { e.preventDefault(); run(); }
-  if (e.key === 'Tab') {
-    e.preventDefault();
-    const s = e.target, st = s.selectionStart, en = s.selectionEnd;
-    s.value = s.value.slice(0, st) + '  ' + s.value.slice(en);
-    s.selectionStart = s.selectionEnd = st + 2;
-  }
-});
-
-document.getElementById('cssInput').addEventListener('input', () => {
-  const val = document.getElementById('cssInput').value;
-  document.getElementById('inChars').textContent = val.length;
-});
-
-// ── SNIPPETS ──────────────────────────────────────────────────────
-const SNIPPETS = [
-  {
-    name: 'Flexbox layout',
-    css: `.container{display:flex;flex-direction:row;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}.item{flex:1;min-width:200px}`
-  },
-  {
-    name: 'CSS Grid',
-    css: `.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px;padding:24px}.grid-item{background:#1a1a1a;border-radius:8px;padding:20px}`
-  },
-  {
-    name: 'Dark card',
-    css: `.card{background:#141414;border:1px solid #2a2a2a;border-radius:10px;padding:24px;transition:border-color 0.2s,transform 0.2s}.card:hover{border-color:#00ff99;transform:translateY(-2px)}.card h2{font-size:20px;font-weight:700;margin-bottom:8px}.card p{color:#666;line-height:1.6}`
-  },
-  {
-    name: 'Button styles',
-    css: `.btn{font-family:inherit;font-size:14px;font-weight:700;padding:10px 22px;border-radius:6px;border:none;cursor:pointer;transition:all 0.2s}.btn-primary{background:#00ff99;color:#000}.btn-primary:hover{background:#00e589;transform:translateY(-1px)}.btn-secondary{background:transparent;color:#e8e8e8;border:1px solid #2a2a2a}.btn-secondary:hover{border-color:#00ff99;color:#00ff99}`
-  },
-  {
-    name: 'Media queries',
-    css: `.wrapper{max-width:1200px;margin:0 auto;padding:0 24px}@media(max-width:1024px){.wrapper{padding:0 20px}}@media(max-width:768px){.wrapper{padding:0 16px}}@media(max-width:480px){.wrapper{padding:0 12px}}`
-  },
-  {
-    name: 'Animations',
-    css: `@keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}@keyframes spin{to{transform:rotate(360deg)}}.fade-in{animation:fadeIn 0.4s ease forwards}.spinner{animation:spin 0.8s linear infinite}`
-  },
-];
-
-const grid = document.getElementById('snippetsGrid');
-SNIPPETS.forEach(s => {
-  const btn = document.createElement('button');
-  btn.className = 'snippet-btn';
-  btn.textContent = s.name;
-  btn.onclick = () => {
-    document.getElementById('cssInput').value = s.css;
-    run();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-  grid.appendChild(btn);
-});
-
-// Auto-run on load if placeholder content
-window.addEventListener('load', () => {
-  const val = document.getElementById('cssInput').value;
-  if (val.trim()) run();
-});
+const SNIPPETS=[{name:'Flexbox layout',css:`.container{display:flex;flex-direction:row;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}.item{flex:1;min-width:200px}`},{name:'CSS Grid',css:`.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px;padding:24px}.grid-item{background:#1a1a1a;border-radius:8px;padding:20px}`},{name:'Dark card',css:`.card{background:#141414;border:1px solid #2a2a2a;border-radius:10px;padding:24px;transition:border-color 0.2s,transform 0.2s}.card:hover{border-color:#00ff99;transform:translateY(-2px)}`},{name:'Button styles',css:`.btn{font-family:inherit;font-size:14px;font-weight:700;padding:10px 22px;border-radius:6px;border:none;cursor:pointer;transition:all 0.2s}.btn-primary{background:#00ff99;color:#000}.btn-primary:hover{background:#00e589;transform:translateY(-1px)}`},{name:'Media queries',css:`.wrapper{max-width:1200px;margin:0 auto;padding:0 24px}@media(max-width:1024px){.wrapper{padding:0 20px}}@media(max-width:768px){.wrapper{padding:0 16px}}`},{name:'Animations',css:`@keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}@keyframes spin{to{transform:rotate(360deg)}}.fade-in{animation:fadeIn 0.4s ease forwards}.spinner{animation:spin 0.8s linear infinite}`}];
+const grid=document.getElementById('snippetsGrid');
+SNIPPETS.forEach(s=>{const btn=document.createElement('button');btn.className='snippet-btn';btn.textContent=s.name;btn.onclick=()=>{document.getElementById('cssInput').value=s.css;run();window.scrollTo({top:0,behavior:'smooth'});};grid.appendChild(btn);});
+window.addEventListener('load',()=>{const val=document.getElementById('cssInput').value;if(val.trim())run();});
 </script>
 </body>
 </html>
