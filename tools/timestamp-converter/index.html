@@ -4,20 +4,23 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- SEO: more specific, keyword-rich title -->
-  <title>Unix Timestamp Converter — Convert Timestamp to Date Online | TinyBench</title>
-  <meta name="description" content="Free Unix timestamp converter online. Instantly convert Unix timestamp to human-readable date and time, or any date to Unix timestamp. Supports seconds and milliseconds. 100% client-side, no sign-up." />
+  <!-- SEO -->
+  <title>Unix Timestamp Converter — Timestamp to Date & Date to Timestamp | TinyBench</title>
+  <meta name="description" content="Convert Unix timestamp to human-readable date instantly — or any date back to Unix timestamp. Supports seconds & milliseconds. Free, client-side, no sign-up. Updated 2026." />
 
   <!-- Canonical -->
   <link rel="canonical" href="https://tinybench.dev/tools/timestamp-converter/" />
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Unix Timestamp Converter — Convert Timestamp to Date Online" />
-  <meta property="og:description" content="Instantly convert Unix timestamps to human-readable dates and back. Supports seconds and milliseconds. Free, fast, 100% client-side." />
+  <meta property="og:title" content="Unix Timestamp Converter — Timestamp to Date Online | TinyBench" />
+  <meta property="og:description" content="Convert Unix timestamps to human-readable dates instantly. Supports seconds & milliseconds. Free, fast, 100% client-side." />
   <meta property="og:url" content="https://tinybench.dev/tools/timestamp-converter/" />
   <meta property="og:type" content="website" />
 
-  <!-- Schema.org structured data -->
+  <!-- Last Modified signal for Google -->
+  <meta name="last-modified" content="2026-04-17" />
+
+  <!-- Schema: SoftwareApplication -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -27,6 +30,7 @@
     "description": "Free online Unix timestamp converter. Convert Unix timestamps to human-readable dates and back. Supports seconds and milliseconds.",
     "applicationCategory": "DeveloperApplication",
     "operatingSystem": "Any",
+    "dateModified": "2026-04-17",
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
   }
   </script>
@@ -132,6 +136,17 @@
       line-height: 1.6;
     }
 
+    .updated-badge {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      margin-top: 0.7rem;
+    }
+
     /* LIVE CLOCK */
     .live-clock {
       position: relative;
@@ -207,7 +222,7 @@
 
     .copy-now-btn:hover { background: rgba(0,255,153,0.15); }
 
-    /* CONVERTER CARDS */
+    /* CONVERTERS */
     .converters {
       position: relative;
       z-index: 1;
@@ -439,7 +454,7 @@
     .ref-table tr:hover td { background: rgba(0,255,153,0.03); }
     .ts-val { color: var(--accent); }
 
-    /* SEO CONTENT SECTION */
+    /* SEO CONTENT */
     .seo-section {
       position: relative;
       z-index: 1;
@@ -480,6 +495,69 @@
     }
 
     .seo-card p + p { margin-top: 0.6rem; }
+
+    /* BLOG CTA */
+    .blog-cta-section {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 2rem 2rem;
+    }
+
+    .section-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--accent);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .blog-links-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 0.8rem;
+    }
+
+    .blog-link-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.2rem;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+      transition: border-color 0.2s, transform 0.15s;
+    }
+
+    .blog-link-card:hover {
+      border-color: rgba(0,255,153,0.3);
+      transform: translateY(-2px);
+    }
+
+    .blog-link-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem;
+      color: var(--accent);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .blog-link-title {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.4;
+    }
+
+    .blog-link-arrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-top: 0.2rem;
+    }
 
     /* FAQ */
     .faq-card {
@@ -530,16 +608,141 @@
       color: var(--accent);
     }
 
-    footer {
+    /* RELATED TOOLS */
+    .related-section {
       position: relative;
       z-index: 1;
-      padding: 2rem;
-      text-align: center;
-      border-top: 1px solid var(--border);
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 2rem 2rem;
     }
 
-    footer p { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--muted); }
-    footer a { color: var(--accent); text-decoration: none; }
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 0.8rem;
+    }
+
+    .tool-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.2rem;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      transition: border-color 0.2s, transform 0.15s;
+    }
+
+    .tool-card:hover {
+      border-color: rgba(123,97,255,0.4);
+      transform: translateY(-2px);
+    }
+
+    .tool-icon {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--accent2);
+      background: rgba(123,97,255,0.1);
+      border: 1px solid rgba(123,97,255,0.2);
+      padding: 0.3rem 0.5rem;
+      border-radius: 6px;
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+
+    .tool-info { display: flex; flex-direction: column; gap: 0.15rem; }
+
+    .tool-name {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .tool-desc {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--muted);
+    }
+
+    /* RICH FOOTER */
+    .rich-footer {
+      position: relative;
+      z-index: 1;
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      padding: 3rem 2rem 2rem;
+      margin-top: 2rem;
+    }
+
+    .footer-inner {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    @media (max-width: 700px) {
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 420px) {
+      .footer-grid { grid-template-columns: 1fr; }
+    }
+
+    .footer-brand .logo { font-size: 1.1rem; display: block; margin-bottom: 0.6rem; }
+
+    .footer-tagline {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .footer-col h4 {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.8rem;
+    }
+
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+
+    .footer-col ul li a {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-col ul li a:hover { color: var(--accent); }
+
+    .footer-bottom {
+      border-top: 1px solid var(--border);
+      padding-top: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-bottom p {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--muted);
+    }
+
+    .footer-bottom a { color: var(--accent); text-decoration: none; }
 
     .toast {
       position: fixed;
@@ -578,6 +781,7 @@
     <div class="page-tag">// tool 04</div>
     <h1>Unix Timestamp Converter</h1>
     <p>Convert Unix timestamps to human-readable dates and back. Supports seconds and milliseconds. 100% client-side — nothing leaves your browser.</p>
+    <span class="updated-badge">// updated April 2026</span>
   </div>
 
   <!-- LIVE CLOCK -->
@@ -599,8 +803,6 @@
 
   <!-- CONVERTERS -->
   <div class="converters">
-
-    <!-- Timestamp → Date -->
     <div class="conv-card">
       <div class="conv-header">
         <span class="conv-num">01</span>
@@ -609,13 +811,7 @@
       <div class="conv-body">
         <div class="input-row">
           <div class="input-wrap">
-            <input
-              type="text"
-              class="conv-input"
-              id="tsInput"
-              placeholder="e.g. 1700000000"
-              oninput="tsToDate()"
-            />
+            <input type="text" class="conv-input" id="tsInput" placeholder="e.g. 1700000000" oninput="tsToDate()" />
           </div>
           <div class="unit-toggle">
             <button class="unit-btn active" id="secBtn" onclick="setUnit('s')">sec</button>
@@ -628,7 +824,6 @@
       </div>
     </div>
 
-    <!-- Date → Timestamp -->
     <div class="conv-card">
       <div class="conv-header">
         <span class="conv-num">02</span>
@@ -637,13 +832,7 @@
       <div class="conv-body">
         <div class="input-row">
           <div class="input-wrap">
-            <input
-              type="datetime-local"
-              class="conv-input"
-              id="dateInput"
-              oninput="dateToTs()"
-              style="color-scheme: dark;"
-            />
+            <input type="datetime-local" class="conv-input" id="dateInput" oninput="dateToTs()" style="color-scheme: dark;" />
           </div>
           <button class="btn btn-outline" onclick="useDateNow()">Use Now</button>
         </div>
@@ -651,7 +840,6 @@
         <div class="results-grid" id="dateResults"></div>
       </div>
     </div>
-
   </div>
 
   <!-- REFERENCE TABLE -->
@@ -660,18 +848,14 @@
       <div class="ref-header">// common timestamp reference</div>
       <table class="ref-table">
         <thead>
-          <tr>
-            <th>Event</th>
-            <th>Unix Timestamp</th>
-            <th>Date</th>
-          </tr>
+          <tr><th>Event</th><th>Unix Timestamp</th><th>Date</th></tr>
         </thead>
         <tbody id="refTable"></tbody>
       </table>
     </div>
   </div>
 
-  <!-- SEO CONTENT SECTION -->
+  <!-- SEO CONTENT -->
   <div class="seo-section">
     <div class="seo-grid">
       <div class="seo-card">
@@ -686,8 +870,8 @@
       </div>
     </div>
 
-    <!-- FAQ with schema markup -->
-    <div class="faq-card">
+    <!-- FAQ -->
+    <div class="faq-card" style="margin-bottom:1.2rem;">
       <div class="faq-header">// frequently asked questions</div>
 
       <div class="faq-item">
@@ -717,8 +901,120 @@
     </div>
   </div>
 
-  <footer>
-    <p>tinybench.dev — <a href="/">← back to all tools</a></p>
+  <!-- BLOG INTERNAL LINKS -->
+  <div class="blog-cta-section">
+    <div class="section-label">// related guides & articles</div>
+    <div class="blog-links-grid">
+      <a href="/blog/unix-timestamp-explained/" class="blog-link-card">
+        <span class="blog-link-tag">// guide</span>
+        <span class="blog-link-title">Unix Timestamps Explained — What They Are and How They Work</span>
+        <span class="blog-link-arrow">Read article →</span>
+      </a>
+      <a href="/blog/timestamp-to-date-javascript/" class="blog-link-card">
+        <span class="blog-link-tag">// tutorial</span>
+        <span class="blog-link-title">How to Convert a Timestamp to Date in JavaScript</span>
+        <span class="blog-link-arrow">Read article →</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- RELATED TOOLS -->
+  <div class="related-section">
+    <div class="section-label">// related tools</div>
+    <div class="tools-grid">
+      <a href="/tools/json-formatter/" class="tool-card">
+        <span class="tool-icon">JSON</span>
+        <div class="tool-info">
+          <span class="tool-name">JSON Formatter</span>
+          <span class="tool-desc">// format & validate JSON</span>
+        </div>
+      </a>
+      <a href="/tools/jwt-decoder/" class="tool-card">
+        <span class="tool-icon">JWT</span>
+        <div class="tool-info">
+          <span class="tool-name">JWT Decoder</span>
+          <span class="tool-desc">// decode JWT tokens</span>
+        </div>
+      </a>
+      <a href="/tools/base64/" class="tool-card">
+        <span class="tool-icon">B64</span>
+        <div class="tool-info">
+          <span class="tool-name">Base64 Encoder</span>
+          <span class="tool-desc">// encode & decode base64</span>
+        </div>
+      </a>
+      <a href="/tools/uuid-generator/" class="tool-card">
+        <span class="tool-icon">UUID</span>
+        <div class="tool-info">
+          <span class="tool-name">UUID Generator</span>
+          <span class="tool-desc">// generate UUIDs instantly</span>
+        </div>
+      </a>
+      <a href="/tools/regex-tester/" class="tool-card">
+        <span class="tool-icon">REG</span>
+        <div class="tool-info">
+          <span class="tool-name">Regex Tester</span>
+          <span class="tool-desc">// test regular expressions</span>
+        </div>
+      </a>
+      <a href="/tools/sql-formatter/" class="tool-card">
+        <span class="tool-icon">SQL</span>
+        <div class="tool-info">
+          <span class="tool-name">SQL Formatter</span>
+          <span class="tool-desc">// format SQL queries</span>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <!-- RICH FOOTER -->
+  <footer class="rich-footer">
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="/" class="logo">tiny<span>bench</span>.dev</a>
+          <p class="footer-tagline">Free developer tools.<br/>100% client-side. No sign-up.<br/>Fast, private, open.</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>// tools</h4>
+          <ul>
+            <li><a href="/tools/json-formatter/">JSON Formatter</a></li>
+            <li><a href="/tools/jwt-decoder/">JWT Decoder</a></li>
+            <li><a href="/tools/regex-tester/">Regex Tester</a></li>
+            <li><a href="/tools/timestamp-converter/">Timestamp Converter</a></li>
+            <li><a href="/tools/base64/">Base64 Encoder</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>// more tools</h4>
+          <ul>
+            <li><a href="/tools/uuid-generator/">UUID Generator</a></li>
+            <li><a href="/tools/sql-formatter/">SQL Formatter</a></li>
+            <li><a href="/tools/image-compressor/">Image Compressor</a></li>
+            <li><a href="/tools/color-contrast-checker/">Color Contrast</a></li>
+            <li><a href="/tools/css-beautifier/">CSS Beautifier</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>// company</h4>
+          <ul>
+            <li><a href="/blog/">Blog</a></li>
+            <li><a href="/about/">About</a></li>
+            <li><a href="/contact/">Contact</a></li>
+            <li><a href="/privacy-policy/">Privacy Policy</a></li>
+            <li><a href="/terms/">Terms</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 tinybench.dev — All tools are free and run entirely in your browser.</p>
+        <p>Built with ♥ for developers</p>
+      </div>
+    </div>
   </footer>
 
   <div class="toast" id="toast"></div>
@@ -881,12 +1177,12 @@
       const abs  = Math.abs(diff);
       const future = diff < 0;
       let str;
-      if (abs < 60)          str = abs + ' seconds';
-      else if (abs < 3600)   str = Math.floor(abs/60) + ' minutes';
-      else if (abs < 86400)  str = Math.floor(abs/3600) + ' hours';
+      if (abs < 60)           str = abs + ' seconds';
+      else if (abs < 3600)    str = Math.floor(abs/60) + ' minutes';
+      else if (abs < 86400)   str = Math.floor(abs/3600) + ' hours';
       else if (abs < 2592000) str = Math.floor(abs/86400) + ' days';
       else if (abs < 31536000) str = Math.floor(abs/2592000) + ' months';
-      else                   str = Math.floor(abs/31536000) + ' years';
+      else                    str = Math.floor(abs/31536000) + ' years';
       return future ? 'in ' + str : str + ' ago';
     }
 
@@ -895,13 +1191,13 @@
     }
 
     const REF_EVENTS = [
-      { label: 'Unix Epoch',          ts: 0 },
-      { label: 'Y2K',                 ts: 946684800 },
-      { label: 'iPhone launched',     ts: 1167609600 },
-      { label: 'Bitcoin genesis',     ts: 1231006505 },
-      { label: 'Year 2020 start',     ts: 1577836800 },
-      { label: 'Year 2025 start',     ts: 1735689600 },
-      { label: 'Year 2030 start',     ts: 1893456000 },
+      { label: 'Unix Epoch',           ts: 0 },
+      { label: 'Y2K',                  ts: 946684800 },
+      { label: 'iPhone launched',      ts: 1167609600 },
+      { label: 'Bitcoin genesis',      ts: 1231006505 },
+      { label: 'Year 2020 start',      ts: 1577836800 },
+      { label: 'Year 2025 start',      ts: 1735689600 },
+      { label: 'Year 2030 start',      ts: 1893456000 },
       { label: 'Y2K38 (int overflow)', ts: 2147483647 },
     ];
 
