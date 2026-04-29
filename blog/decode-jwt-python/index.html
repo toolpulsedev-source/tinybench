@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>How to Decode a JWT in Python — With and Without Libraries</title>
-  <meta name="description" content="Learn how to decode JWT tokens in Python using PyJWT and manually with base64. Includes examples for reading claims, checking expiry, and verifying signatures."/>
+  <title>How to Decode a JWT in Python 2026 — PyJWT, Manual &amp; FastAPI Examples</title>
+  <meta name="description" content="Decode a JWT in Python in 3 lines with PyJWT — or manually with base64. Working code examples for reading claims, checking expiry, and verifying signatures."/>
   <link rel="canonical" href="https://tinybench.dev/blog/decode-jwt-python/"/>
   <meta property="og:type" content="article"/>
-  <meta property="og:title" content="How to Decode a JWT in Python — With and Without Libraries"/>
-  <meta property="og:description" content="Learn how to decode JWT tokens in Python using PyJWT and manually with base64. Includes examples for reading claims, checking expiry, and verifying signatures."/>
+  <meta property="og:title" content="How to Decode a JWT in Python 2026 — PyJWT, Manual &amp; FastAPI Examples"/>
+  <meta property="og:description" content="Decode a JWT in Python in 3 lines with PyJWT — or manually with base64. Working code examples for reading claims, checking expiry, and verifying signatures."/>
   <meta property="og:url" content="https://tinybench.dev/blog/decode-jwt-python/"/>
   <meta property="og:site_name" content="tinybench.dev"/>
   <meta name="twitter:card" content="summary"/>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How to Decode a JWT in Python — With and Without Libraries","description":"Learn how to decode JWT tokens in Python using PyJWT and manually with base64. Includes examples for reading claims, checking expiry, and verifying signatures.","url":"https://tinybench.dev/blog/decode-jwt-python/","datePublished":"2025-01-01","dateModified":"2025-01-01","publisher":{"@type":"Organization","name":"tinybench.dev","url":"https://tinybench.dev"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How to Decode a JWT in Python 2026 — PyJWT, Manual & FastAPI Examples","description":"Decode a JWT in Python using PyJWT or manually with base64. Working code examples for reading claims, checking expiry, and verifying signatures in Django and FastAPI.","url":"https://tinybench.dev/blog/decode-jwt-python/","datePublished":"2025-01-01","dateModified":"2026-04-17","publisher":{"@type":"Organization","name":"tinybench.dev","url":"https://tinybench.dev"}}</script>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Syne:wght@400;600;800&display=swap" rel="stylesheet"/>
@@ -97,13 +97,13 @@
   <div class="bc"><a href="/">Home</a><span>/</span><a href="/blog/">Blog</a><span>/</span><span>How to Decode a JWT in Python</span></div>
   <div class="atag">JWT · Python</div>
   <h1>How to Decode a JWT <em>in Python</em></h1>
-  <div class="ameta"><span>4 min read</span><span>Updated January 2025</span><span>Developer Tools</span></div>
+  <div class="ameta"><span>4 min read</span><span>Updated April 2026</span><span>Developer Tools</span></div>
   <div class="aintro">Need to read the contents of a JWT token in Python? This guide covers three approaches — manual base64 decoding, using PyJWT, and using python-jose — with working code examples.</div>
   <div class="cta"><h3>JWT Decoder</h3><p>Decode any JWT instantly in your browser — no library needed. See header, payload, and expiry.</p><a href="/tools/jwt-decoder/" class="ctab">Open JWT Decoder &rarr;</a></div>
-  
-<h2 id="manual">Method 1 — Manual base64 decoding (no library)</h2>
-<p>A JWT payload is just Base64URL-encoded JSON. You can decode it without any external library:</p>
-<div class="cb"><div class="cbh"><span>Python</span><button class="cpb" onclick="copyCode(this)">copy</button></div><pre>import base64
+
+  <h2 id="manual">Method 1 — Manual base64 decoding (no library)</h2>
+  <p>A JWT payload is just Base64URL-encoded JSON. You can decode it without any external library:</p>
+  <div class="cb"><div class="cbh"><span>Python</span><button class="cpb" onclick="copyCode(this)">copy</button></div><pre>import base64
 import json
 
 def decode_jwt_payload(token: str) -> dict:
@@ -129,12 +129,12 @@ token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMjMiLCJleHAiOjk5OTk5OTk5OTl9.signature
 result = decode_jwt_payload(token)
 print(result["payload"]["sub"])  # "123"
 print(result["payload"]["exp"])  # expiry timestamp</pre></div>
-<div class="cg"><strong>Note:</strong> This decodes the payload but does NOT verify the signature. Only use this for inspection — never trust a decoded JWT without server-side signature verification.</div>
+  <div class="cg"><strong>Note:</strong> This decodes the payload but does NOT verify the signature. Only use this for inspection — never trust a decoded JWT without server-side signature verification.</div>
 
-<h2 id="pyjwt">Method 2 — PyJWT (recommended for production)</h2>
-<p>PyJWT is the standard library for JWT handling in Python — decoding, encoding, and verification:</p>
-<div class="cb"><div class="cbh"><span>Install</span><button class="cpb" onclick="copyCode(this)">copy</button></div><pre>pip install PyJWT</pre></div>
-<div class="cb"><div class="cbh"><span>Decode without verification (inspection only)</span><button class="cpb" onclick="copyCode(this)">copy</button></div><pre>import jwt
+  <h2 id="pyjwt">Method 2 — PyJWT (recommended for production)</h2>
+  <p>PyJWT is the standard library for JWT handling in Python — decoding, encoding, and verification:</p>
+  <div class="cb"><div class="cbh"><span>Install</span><button class="cpb" onclick="copyCode(this)">copy</button></div><pre>pip install PyJWT</pre></div>
+  <div class="cb"><div class="cbh"><span>Decode without verification (inspection only)</span><button class="cpb" onclick="copyCode(this)">copy</button></div><pre>import jwt
 
 token = "your.jwt.token"
 
@@ -144,7 +144,7 @@ payload = jwt.decode(
     options={"verify_signature": False}
 )
 print(payload)  # {'sub': '123', 'name': 'Ada', 'exp': 9999999999}</pre></div>
-<div class="cb"><div class="cbh"><span>Decode WITH signature verification</span><button class="cpb" onclick="copyCode(this)">copy</button></div><pre>import jwt
+  <div class="cb"><div class="cbh"><span>Decode WITH signature verification</span><button class="cpb" onclick="copyCode(this)">copy</button></div><pre>import jwt
 
 try:
     payload = jwt.decode(
@@ -160,8 +160,8 @@ except jwt.ExpiredSignatureError:
 except jwt.InvalidTokenError as e:
     print(f"Invalid token: {e}")</pre></div>
 
-<h2 id="expiry">Checking JWT expiry in Python</h2>
-<div class="cb"><div class="cbh"><span>Python</span><button class="cpb" onclick="copyCode(this)">copy</button></div><pre>import time
+  <h2 id="expiry">Checking JWT expiry in Python</h2>
+  <div class="cb"><div class="cbh"><span>Python</span><button class="cpb" onclick="copyCode(this)">copy</button></div><pre>import time
 import base64, json
 
 def is_token_expired(token: str) -> bool:
@@ -177,9 +177,9 @@ def is_token_expired(token: str) -> bool:
 if is_token_expired(token):
     print("Token is expired — redirect to login")</pre></div>
 
-<h2 id="django">Decoding JWTs in Django / FastAPI</h2>
-<p>Both frameworks have built-in or plug-in JWT support:</p>
-<div class="cb"><div class="cbh"><span>FastAPI — python-jose</span><button class="cpb" onclick="copyCode(this)">copy</button></div><pre>from jose import jwt, JWTError
+  <h2 id="django">Decoding JWTs in Django / FastAPI</h2>
+  <p>Both frameworks have built-in or plug-in JWT support:</p>
+  <div class="cb"><div class="cbh"><span>FastAPI — python-jose</span><button class="cpb" onclick="copyCode(this)">copy</button></div><pre>from jose import jwt, JWTError
 
 SECRET_KEY = "your-secret-key"
 ALGORITHM  = "HS256"
@@ -192,27 +192,46 @@ def get_current_user(token: str):
     except JWTError:
         raise HTTPException(status_code=401, detail="Invalid token")</pre></div>
 
-<h2 id="faq">Frequently asked questions</h2>
-<div class="fq"><div class="fq-q">What's the difference between PyJWT and python-jose?</div><div class="fq-a">PyJWT is simpler and more focused — good for most use cases. python-jose supports a broader range of algorithms and the full JOSE standard (JWE, JWK). FastAPI's documentation recommends python-jose. Either works for standard JWT decode use cases.</div></div>
-<div class="fq"><div class="fq-q">How do I decode a JWT with an RS256 (RSA) algorithm in Python?</div><div class="fq-a">Use the public key for decoding: <code>jwt.decode(token, public_key, algorithms=["RS256"])</code>. Load the public key from a PEM file using <code>open("public.pem").read()</code>.</div></div>
-<div class="fq"><div class="fq-q">Can I decode a JWT without knowing the secret key?</div><div class="fq-a">You can decode (read) the header and payload without the secret key. You cannot verify the signature. Use <code>options={{"verify_signature": False}}</code> in PyJWT for inspection-only decoding.</div></div>
+  <h2 id="faq">Frequently asked questions</h2>
+  <div class="fq"><div class="fq-q">What's the difference between PyJWT and python-jose?</div><div class="fq-a">PyJWT is simpler and more focused — good for most use cases. python-jose supports a broader range of algorithms and the full JOSE standard (JWE, JWK). FastAPI's documentation recommends python-jose. Either works for standard JWT decode use cases.</div></div>
+  <div class="fq"><div class="fq-q">How do I decode a JWT with an RS256 (RSA) algorithm in Python?</div><div class="fq-a">Use the public key for decoding: <code>jwt.decode(token, public_key, algorithms=["RS256"])</code>. Load the public key from a PEM file using <code>open("public.pem").read()</code>.</div></div>
+  <div class="fq"><div class="fq-q">Can I decode a JWT without knowing the secret key?</div><div class="fq-a">You can decode (read) the header and payload without the secret key. You cannot verify the signature. Use <code>options={{"verify_signature": False}}</code> in PyJWT for inspection-only decoding.</div></div>
 
   <div class="cta"><h3>Try it free — no sign-up needed</h3><p>Runs entirely in your browser. Nothing uploaded, nothing stored.</p><a href="/tools/jwt-decoder/" class="ctab">Open JWT Decoder &rarr;</a></div>
+
   <h2>Related tools on tinybench.dev</h2>
-  <ul><li><a href="/tools/jwt-decoder/">JWT Decoder</a></li><li><a href="/tools/base64/">Base64 Encoder</a></li><li><a href="/tools/json-formatter/">JSON Formatter</a></li></ul>
+  <ul>
+    <li><a href="/tools/jwt-decoder/">JWT Decoder</a></li>
+    <li><a href="/tools/base64/">Base64 Encoder</a></li>
+    <li><a href="/tools/json-formatter/">JSON Formatter</a></li>
+  </ul>
 </article>
 <aside class="sb">
-  <div class="sc"><div class="st">// contents</div><ul class="tl">      <li><a href="#manual">Manual base64 decode</a></li>
-      <li><a href="#pyjwt">PyJWT</a></li>
-      <li><a href="#expiry">Check expiry</a></li>
-      <li><a href="#django">Django / FastAPI</a></li>
-      <li><a href="#faq">FAQ</a></li></ul></div>
+  <div class="sc"><div class="st">// contents</div><ul class="tl">
+    <li><a href="#manual">Manual base64 decode</a></li>
+    <li><a href="#pyjwt">PyJWT</a></li>
+    <li><a href="#expiry">Check expiry</a></li>
+    <li><a href="#django">Django / FastAPI</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul></div>
   <div class="sc"><div class="st">// try the tool</div><p style="font-size:.82rem;color:var(--muted);margin-bottom:1rem;line-height:1.6">Decode any JWT instantly in your browser — no library needed. See header, payload, and expiry.</p><a href="/tools/jwt-decoder/" class="ctab" style="display:block;text-align:center;font-size:.82rem;padding:.65rem 1rem;">Open JWT Decoder &rarr;</a></div>
-  <div class="sc"><div class="st">// related</div><ul class="rl">      <li><a href="/tools/jwt-decoder/">JWT Decoder</a></li>
-      <li><a href="/tools/base64/">Base64 Encoder</a></li>
-      <li><a href="/tools/json-formatter/">JSON Formatter</a></li></ul></div>
+  <div class="sc"><div class="st">// related</div><ul class="rl">
+    <li><a href="/tools/jwt-decoder/">JWT Decoder</a></li>
+    <li><a href="/tools/base64/">Base64 Encoder</a></li>
+    <li><a href="/tools/json-formatter/">JSON Formatter</a></li>
+  </ul></div>
 </aside>
 </div>
-<footer><p>&copy; 2025 tinybench.dev</p><div class="fl"><a href="/privacy-policy/">Privacy</a><a href="/terms/">Terms</a><a href="/cookie-policy/">Cookies</a><a href="/contact/">Contact</a><a href="/">Home</a></div></footer>
+<footer>
+  <p>&copy; 2026 tinybench.dev</p>
+  <div class="fl">
+    <a href="/privacy-policy/">Privacy</a>
+    <a href="/terms/">Terms</a>
+    <a href="/cookie-policy/">Cookies</a>
+    <a href="/contact/">Contact</a>
+    <a href="/">Home</a>
+  </div>
+</footer>
 <script>function copyCode(b){const p=b.closest('.cb').querySelector('pre');navigator.clipboard.writeText(p.textContent).then(()=>{b.textContent='copied!';setTimeout(()=>b.textContent='copy',2000)})}</script>
-</body></html>
+</body>
+</html>

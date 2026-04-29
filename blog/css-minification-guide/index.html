@@ -3,18 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CSS Minification Guide — How to Minify CSS for Production</title>
-  <meta name="description" content="Learn what CSS minification is, how it reduces file size, and how to minify CSS online for free. Covers minification techniques, tools, and best practices." />
+  <title>CSS Minification Guide 2026 — Reduce CSS Size by 40% Instantly</title>
+  <meta name="description" content="Paste your CSS and minify it instantly — no build tools needed. Learn what minification removes, how much it saves, and how to automate it in Vite, Webpack, and PostCSS." />
   <link rel="canonical" href="https://tinybench.dev/blog/css-minification-guide/" />
   <meta property="og:type" content="article" />
-  <meta property="og:title" content="CSS Minification Guide — How to Minify CSS for Production" />
-  <meta property="og:description" content="Learn what CSS minification is, how it reduces file size, and how to minify CSS online for free. Covers minification techniques, tools, and best practices." />
+  <meta property="og:title" content="CSS Minification Guide 2026 — Reduce CSS Size by 40% Instantly" />
+  <meta property="og:description" content="Paste your CSS and minify it instantly — no build tools needed. Learn what minification removes, how much it saves, and how to automate it in Vite, Webpack, and PostCSS." />
   <meta property="og:url" content="https://tinybench.dev/blog/css-minification-guide/" />
   <meta property="og:site_name" content="tinybench.dev" />
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="CSS Minification Guide — How to Minify CSS for Production" />
-  <meta name="twitter:description" content="Learn what CSS minification is, how it reduces file size, and how to minify CSS online for free. Covers minification techniques, tools, and best practices." />
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"CSS Minification Guide","description":"Learn what CSS minification is, how it reduces file size, and how to minify CSS online for free. Covers minification techniques, tools, and best practices.","url":"https://tinybench.dev/blog/css-minification-guide/","datePublished":"2025-01-01","dateModified":"2025-01-01","publisher":{"@type":"Organization","name":"tinybench.dev","url":"https://tinybench.dev"}}</script>
+  <meta name="twitter:title" content="CSS Minification Guide 2026 — Reduce CSS Size by 40% Instantly" />
+  <meta name="twitter:description" content="Paste your CSS and minify it instantly — no build tools needed. Learn what minification removes, how much it saves, and how to automate it in Vite, Webpack, and PostCSS." />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"CSS Minification Guide 2026 — Reduce CSS Size by 40% Instantly","description":"Learn what CSS minification removes, how much it saves, and how to minify CSS online for free or automate it in Vite, Webpack, and PostCSS.","url":"https://tinybench.dev/blog/css-minification-guide/","datePublished":"2025-01-01","dateModified":"2026-04-17","publisher":{"@type":"Organization","name":"tinybench.dev","url":"https://tinybench.dev"}}</script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Syne:wght@400;600;800&display=swap" rel="stylesheet" />
@@ -102,15 +102,15 @@
   <div class="breadcrumb"><a href="/">Home</a><span>/</span><a href="/blog/">Blog</a><span>/</span><span>CSS Minification Guide</span></div>
   <div class="article-tag">CSS · Guide</div>
   <h1>CSS Minification — <em>Complete Guide</em></h1>
-  <div class="article-meta"><span>5 min read</span><span>Updated January 2025</span><span>Developer Tools</span></div>
+  <div class="article-meta"><span>5 min read</span><span>Updated April 2026</span><span>Developer Tools</span></div>
   <div class="article-intro">CSS minification is one of the easiest performance wins for any website. This guide explains how CSS minification works, how much it saves, and how to do it without a build tool.</div>
   <div class="cta-box">
-    <h3>Free Online CSS Beautifier & Minifier</h3>
+    <h3>Free Online CSS Beautifier &amp; Minifier</h3>
     <p>Beautify or minify CSS instantly. Runs entirely in your browser — no uploads.</p>
-    <a href="/tools/css-beautifier/" class="cta-btn">Open CSS Beautifier & Minifier &rarr;</a>
+    <a href="/tools/css-beautifier/" class="cta-btn">Open CSS Beautifier &amp; Minifier &rarr;</a>
   </div>
-  
-  <h2>What is CSS minification?</h2>
+
+  <h2 id="what-is">What is CSS minification?</h2>
   <p><strong>CSS minification</strong> is the process of removing all unnecessary characters from CSS code — whitespace, line breaks, comments, and redundant semicolons — without changing the code's functionality. The result is a smaller file that loads faster.</p>
   <div class="code-block"><div class="code-block-header"><span>Before minification (187 bytes)</span></div><pre>.hero {
   display: flex;
@@ -123,7 +123,7 @@
 }</pre></div>
   <div class="code-block"><div class="code-block-header"><span>After minification (106 bytes — 43% smaller)</span></div><pre>.hero{display:flex;flex-direction:column;align-items:center;padding:60px 24px;background-color:#0a0a0f;color:#e8e8f0}</pre></div>
 
-  <h2>How much does minification save?</h2>
+  <h2 id="savings">How much does minification save?</h2>
   <p>Typical CSS minification saves <strong>20–40%</strong> of the original file size. Combined with gzip compression (which most web servers apply automatically), the total savings can be 70–80% compared to uncompressed, unminified CSS.</p>
   <div class="table-wrap"><table>
     <thead><tr><th>File</th><th>Original</th><th>Minified</th><th>Minified + gzip</th></tr></thead>
@@ -134,7 +134,7 @@
     </tbody>
   </table></div>
 
-  <h2>What does CSS minification remove?</h2>
+  <h2 id="what-removed">What does CSS minification remove?</h2>
   <ul>
     <li><strong>Comments</strong> — <code>/* ... */</code> blocks are removed entirely</li>
     <li><strong>Whitespace</strong> — spaces, tabs, and newlines between declarations</li>
@@ -145,9 +145,9 @@
     <li><strong>Redundant quotes</strong> — <code>font-family: "Arial"</code> may become <code>font-family:Arial</code></li>
   </ul>
 
-  <h2>How to minify CSS online for free</h2>
+  <h2 id="how-to">How to minify CSS online for free</h2>
   <ol>
-    <li>Open the <a href="/tools/css-beautifier/">CSS Beautifier & Minifier</a> on tinybench.dev</li>
+    <li>Open the <a href="/tools/css-beautifier/">CSS Beautifier &amp; Minifier</a> on tinybench.dev</li>
     <li>Click the <strong>Minify</strong> tab</li>
     <li>Paste your CSS into the input panel</li>
     <li>Click Minify — the output appears instantly</li>
@@ -155,7 +155,7 @@
   </ol>
   <div class="callout-green"><strong>Private:</strong> The CSS minifier runs entirely in your browser. Your stylesheets are never uploaded to any server — safe for proprietary code.</div>
 
-  <h2>CSS minification in build tools</h2>
+  <h2 id="build-tools">CSS minification in build tools</h2>
   <p>For production projects, CSS minification is typically automated as part of a build pipeline:</p>
   <div class="code-block"><div class="code-block-header"><span>Vite (vite.config.js)</span></div><pre>// Vite minifies CSS automatically in production builds
 // Run: vite build</pre></div>
@@ -172,22 +172,25 @@ optimization: {
   minimizer: [new CssMinimizerPlugin()]
 }</pre></div>
 
-  <h2>CSS beautifier — the reverse operation</h2>
+  <h2 id="beautifier">CSS beautifier — the reverse operation</h2>
   <p>When you receive minified CSS — from a vendor library, a generated stylesheet, or legacy code — the <strong>CSS beautifier</strong> restores it to readable, formatted code. The <a href="/tools/css-beautifier/">tinybench.dev CSS beautifier</a> adds proper indentation, line breaks, and formatting with configurable indent size and property sorting.</p>
 
-  <h2>Frequently asked questions</h2>
+  <h2 id="faq">Frequently asked questions</h2>
   <div class="faq-item"><div class="faq-q">Does CSS minification break my styles?</div><div class="faq-a">No — if done correctly. Minification only removes characters that have no effect on the browser's interpretation of the CSS. However, some advanced minifiers that reorder or deduplicate rules can occasionally cause issues. The tinybench.dev minifier is conservative and only removes whitespace, comments, and safe short-forms.</div></div>
   <div class="faq-item"><div class="faq-q">Should I minify CSS in development?</div><div class="faq-a">No. Use readable, formatted CSS during development so you can debug easily. Minify only for production builds. Keep both the source (unminified) and the output (minified) versions — never lose your source.</div></div>
   <div class="faq-item"><div class="faq-q">Does minification help with Core Web Vitals?</div><div class="faq-a">Yes. Smaller CSS files load and parse faster, which improves First Contentful Paint (FCP) and can reduce render-blocking time. Google PageSpeed Insights specifically recommends minifying CSS as an optimisation.</div></div>
-  
+
   <div class="cta-box">
     <h3>Try it now — free &amp; private</h3>
     <p>Runs entirely in your browser. No sign-up, no uploads, no tracking.</p>
-    <a href="/tools/css-beautifier/" class="cta-btn">Open CSS Beautifier & Minifier &rarr;</a>
+    <a href="/tools/css-beautifier/" class="cta-btn">Open CSS Beautifier &amp; Minifier &rarr;</a>
   </div>
+
   <h2>Related tools on tinybench.dev</h2>
   <ul>
-    <li><a href="/tools/css-beautifier/">CSS Beautifier</a></li><li><a href="/tools/json-formatter/">JSON Formatter</a></li><li><a href="/tools/image-compressor/">Image Compressor</a></li>
+    <li><a href="/tools/css-beautifier/">CSS Beautifier</a></li>
+    <li><a href="/tools/json-formatter/">JSON Formatter</a></li>
+    <li><a href="/tools/image-compressor/">Image Compressor</a></li>
   </ul>
 </article>
 <aside class="sidebar">
@@ -206,7 +209,7 @@ optimization: {
   <div class="sidebar-card">
     <div class="sidebar-title">// try the tool</div>
     <p style="font-size:0.82rem;color:var(--muted);margin-bottom:1rem;line-height:1.6">Beautify or minify CSS instantly. Runs entirely in your browser — no uploads.</p>
-    <a href="/tools/css-beautifier/" class="cta-btn" style="display:block;text-align:center;font-size:0.82rem;padding:0.65rem 1rem;">Open CSS Beautifier & Minifier &rarr;</a>
+    <a href="/tools/css-beautifier/" class="cta-btn" style="display:block;text-align:center;font-size:0.82rem;padding:0.65rem 1rem;">Open CSS Beautifier &amp; Minifier &rarr;</a>
   </div>
   <div class="sidebar-card">
     <div class="sidebar-title">// related tools</div>
@@ -219,8 +222,14 @@ optimization: {
 </aside>
 </div>
 <footer>
-  <p>&copy; 2025 tinybench.dev &mdash; fast developer tools, no backend, no tracking.</p>
-  <div class="footer-legal"><a href="/privacy-policy/">Privacy Policy</a><a href="/terms/">Terms</a><a href="/cookie-policy/">Cookies</a><a href="/contact/">Contact</a><a href="/">Home</a></div>
+  <p>&copy; 2026 tinybench.dev &mdash; fast developer tools, no backend, no tracking.</p>
+  <div class="footer-legal">
+    <a href="/privacy-policy/">Privacy Policy</a>
+    <a href="/terms/">Terms</a>
+    <a href="/cookie-policy/">Cookies</a>
+    <a href="/contact/">Contact</a>
+    <a href="/">Home</a>
+  </div>
 </footer>
 <script>
 function copyCode(btn){const pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.textContent).then(()=>{btn.textContent='copied!';setTimeout(()=>btn.textContent='copy',2000)})}

@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>How to Compress PNG Without Losing Quality — 5 Methods</title>
-  <meta name="description" content="Learn how to compress PNG images without visible quality loss. Covers lossless PNG compression, converting to WebP, stripping metadata, and free online tools."/>
+  <title>Compress PNG Without Losing Quality — 5 Methods That Actually Work</title>
+  <meta name="description" content="Reduce PNG file size by 40–80% with no visible quality loss. Covers WebP conversion, metadata stripping, colour depth, resizing, and pngquant. Free tool included."/>
   <link rel="canonical" href="https://tinybench.dev/blog/compress-png-without-losing-quality/"/>
   <meta property="og:type" content="article"/>
-  <meta property="og:title" content="How to Compress PNG Without Losing Quality — 5 Methods"/>
-  <meta property="og:description" content="Learn how to compress PNG images without visible quality loss. Covers lossless PNG compression, converting to WebP, stripping metadata, and free online tools."/>
+  <meta property="og:title" content="Compress PNG Without Losing Quality — 5 Methods That Actually Work"/>
+  <meta property="og:description" content="Reduce PNG file size by 40–80% with no visible quality loss. Covers WebP conversion, metadata stripping, colour depth, resizing, and pngquant. Free tool included."/>
   <meta property="og:url" content="https://tinybench.dev/blog/compress-png-without-losing-quality/"/>
   <meta property="og:site_name" content="tinybench.dev"/>
   <meta name="twitter:card" content="summary"/>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How to Compress PNG Without Losing Quality — 5 Methods","description":"Learn how to compress PNG images without visible quality loss. Covers lossless PNG compression, converting to WebP, stripping metadata, and free online tools.","url":"https://tinybench.dev/blog/compress-png-without-losing-quality/","datePublished":"2025-01-01","dateModified":"2025-01-01","publisher":{"@type":"Organization","name":"tinybench.dev","url":"https://tinybench.dev"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Compress PNG Without Losing Quality — 5 Methods That Actually Work","description":"Reduce PNG file size by 40–80% with no visible quality loss. Covers WebP conversion, metadata stripping, colour depth reduction, resizing, and command-line tools.","url":"https://tinybench.dev/blog/compress-png-without-losing-quality/","datePublished":"2025-01-01","dateModified":"2026-04-17","publisher":{"@type":"Organization","name":"tinybench.dev","url":"https://tinybench.dev"}}</script>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Syne:wght@400;600;800&display=swap" rel="stylesheet"/>
@@ -97,85 +97,104 @@
   <div class="bc"><a href="/">Home</a><span>/</span><a href="/blog/">Blog</a><span>/</span><span>Compress PNG Without Losing Quality</span></div>
   <div class="atag">Images · PNG</div>
   <h1>Compress PNG <em>Without Losing Quality</em></h1>
-  <div class="ameta"><span>4 min read</span><span>Updated January 2025</span><span>Developer Tools</span></div>
+  <div class="ameta"><span>4 min read</span><span>Updated April 2026</span><span>Developer Tools</span></div>
   <div class="aintro">PNG files can be massive — especially screenshots and UI exports. This guide covers every method to dramatically reduce PNG file size with no visible quality difference.</div>
   <div class="cta"><h3>Image Compressor</h3><p>Compress PNG images free online. Supports lossless mode and WebP conversion. Nothing uploaded.</p><a href="/tools/image-compressor/" class="ctab">Open Image Compressor &rarr;</a></div>
-  
-<h2 id="why-png">Why PNG files are large</h2>
-<p>PNG uses lossless compression — every pixel is preserved exactly. This is great for screenshots, logos, and UI assets where sharpness matters, but it results in large files. A single full-screen screenshot can be 2–5 MB.</p>
 
-<h2 id="method1">Method 1 — Convert PNG to WebP (biggest savings)</h2>
-<p>WebP achieves 25–35% smaller files than PNG at equivalent visual quality, with support for transparency. For web use, WebP is almost always the better choice:</p>
-<ol>
-  <li>Open the <a href="/tools/image-compressor/">image compressor</a></li>
-  <li>Upload your PNG</li>
-  <li>Set output format to <strong>WebP</strong></li>
-  <li>Set quality to 85%</li>
-  <li>Download — typical savings: 40–60% vs original PNG</li>
-</ol>
-<div class="cg"><strong>Browser support:</strong> WebP is supported in all modern browsers — Chrome, Firefox, Safari (since 2020), and Edge. Safe for production use.</div>
+  <h2 id="why-png">Why PNG files are large</h2>
+  <p>PNG uses lossless compression — every pixel is preserved exactly. This is great for screenshots, logos, and UI assets where sharpness matters, but it results in large files. A single full-screen screenshot can be 2–5 MB.</p>
 
-<h2 id="method2">Method 2 — Strip EXIF metadata</h2>
-<p>PNG files exported from design tools (Figma, Photoshop, Sketch) often contain embedded metadata — color profiles, creation dates, software info. This can add 10–50 KB to the file with zero visual impact. Stripping it is pure free savings.</p>
-<p>In the <a href="/tools/image-compressor/">tinybench.dev compressor</a>, enable the <strong>"Strip metadata"</strong> toggle before downloading.</p>
+  <h2 id="method1">Method 1 — Convert PNG to WebP (biggest savings)</h2>
+  <p>WebP achieves 25–35% smaller files than PNG at equivalent visual quality, with support for transparency. For web use, WebP is almost always the better choice:</p>
+  <ol>
+    <li>Open the <a href="/tools/image-compressor/">image compressor</a></li>
+    <li>Upload your PNG</li>
+    <li>Set output format to <strong>WebP</strong></li>
+    <li>Set quality to 85%</li>
+    <li>Download — typical savings: 40–60% vs original PNG</li>
+  </ol>
+  <div class="cg"><strong>Browser support:</strong> WebP is supported in all modern browsers — Chrome, Firefox, Safari (since 2020), and Edge. Safe for production use.</div>
 
-<h2 id="method3">Method 3 — Reduce PNG colour depth</h2>
-<p>If your PNG uses only a small number of colours (logos, icons, simple graphics), converting from 24-bit to 8-bit (indexed colour, 256 colours max) drastically reduces size:</p>
-<div class="tw"><table>
-  <thead><tr><th>Original</th><th>Compressed</th><th>Method</th></tr></thead>
-  <tbody>
-    <tr><td>Logo PNG (24-bit)</td><td>180 KB → 35 KB</td><td>Convert to 8-bit/256 colours</td></tr>
-    <tr><td>Screenshot (24-bit)</td><td>2.1 MB → 1.4 MB</td><td>Lossless compression only</td></tr>
-    <tr><td>Screenshot → WebP</td><td>2.1 MB → 380 KB</td><td>Convert to WebP at 85%</td></tr>
-  </tbody>
-</table></div>
+  <h2 id="method2">Method 2 — Strip EXIF metadata</h2>
+  <p>PNG files exported from design tools (Figma, Photoshop, Sketch) often contain embedded metadata — color profiles, creation dates, software info. This can add 10–50 KB to the file with zero visual impact. Stripping it is pure free savings.</p>
+  <p>In the <a href="/tools/image-compressor/">tinybench.dev compressor</a>, enable the <strong>"Strip metadata"</strong> toggle before downloading.</p>
 
-<h2 id="method4">Method 4 — Resize before compressing</h2>
-<p>If you're displaying an image at 800px wide, there's no reason to serve a 2400px wide PNG. Resize first:</p>
-<ol>
-  <li>Upload to the <a href="/tools/image-compressor/">image compressor</a></li>
-  <li>Enable <strong>Resize</strong> and set width to your display size</li>
-  <li>Keep aspect ratio locked</li>
-  <li>Then compress — combination of resize + compress typically reduces to 10–20% of original</li>
-</ol>
+  <h2 id="method3">Method 3 — Reduce PNG colour depth</h2>
+  <p>If your PNG uses only a small number of colours (logos, icons, simple graphics), converting from 24-bit to 8-bit (indexed colour, 256 colours max) drastically reduces size:</p>
+  <div class="tw"><table>
+    <thead><tr><th>Original</th><th>Compressed</th><th>Method</th></tr></thead>
+    <tbody>
+      <tr><td>Logo PNG (24-bit)</td><td>180 KB → 35 KB</td><td>Convert to 8-bit/256 colours</td></tr>
+      <tr><td>Screenshot (24-bit)</td><td>2.1 MB → 1.4 MB</td><td>Lossless compression only</td></tr>
+      <tr><td>Screenshot → WebP</td><td>2.1 MB → 380 KB</td><td>Convert to WebP at 85%</td></tr>
+    </tbody>
+  </table></div>
 
-<h2 id="method5">Method 5 — Command line (pngquant / oxipng)</h2>
-<div class="cb"><div class="cbh"><span>pngquant — lossy PNG compression (60–80% reduction)</span><button class="cpb" onclick="copyCode(this)">copy</button></div><pre>npm install -g pngquant-bin
+  <h2 id="method4">Method 4 — Resize before compressing</h2>
+  <p>If you're displaying an image at 800px wide, there's no reason to serve a 2400px wide PNG. Resize first:</p>
+  <ol>
+    <li>Upload to the <a href="/tools/image-compressor/">image compressor</a></li>
+    <li>Enable <strong>Resize</strong> and set width to your display size</li>
+    <li>Keep aspect ratio locked</li>
+    <li>Then compress — combination of resize + compress typically reduces to 10–20% of original</li>
+  </ol>
+
+  <h2 id="method5">Method 5 — Command line (pngquant / oxipng)</h2>
+  <div class="cb"><div class="cbh"><span>pngquant — lossy PNG compression (60–80% reduction)</span><button class="cpb" onclick="copyCode(this)">copy</button></div><pre>npm install -g pngquant-bin
 
 # Compress a single file
 pngquant --quality=65-80 image.png
 
 # Compress all PNGs in a folder
 pngquant --quality=65-80 --ext .png --force *.png</pre></div>
-<div class="cb"><div class="cbh"><span>oxipng — lossless PNG compression</span><button class="cpb" onclick="copyCode(this)">copy</button></div><pre># Install (Rust required)
+  <div class="cb"><div class="cbh"><span>oxipng — lossless PNG compression</span><button class="cpb" onclick="copyCode(this)">copy</button></div><pre># Install (Rust required)
 cargo install oxipng
 
 # Lossless compress
 oxipng -o 4 --strip all image.png</pre></div>
 
-<h2 id="faq">Frequently asked questions</h2>
-<div class="fq"><div class="fq-q">Can I compress a PNG with transparency?</div><div class="fq-a">Yes. PNG supports transparency (alpha channel). Our compressor preserves transparency when keeping PNG format. If you convert to WebP, transparency is also preserved. Only JPEG loses transparency (replaces with white).</div></div>
-<div class="fq"><div class="fq-q">What's the best format for logos and icons?</div><div class="fq-a">SVG is best for logos and icons — it's infinitely scalable and typically under 5 KB. If SVG isn't possible, use PNG for icons with transparency, or WebP for photos. Avoid JPEG for logos — compression artifacts on sharp edges look bad.</div></div>
-<div class="fq"><div class="fq-q">Will Google rank my site better if I compress images?</div><div class="fq-a">Yes. Google's Core Web Vitals (especially LCP — Largest Contentful Paint) directly measures image loading speed. Compressed images improve LCP scores, which is a ranking factor.</div></div>
+  <h2 id="faq">Frequently asked questions</h2>
+  <div class="fq"><div class="fq-q">Can I compress a PNG with transparency?</div><div class="fq-a">Yes. PNG supports transparency (alpha channel). Our compressor preserves transparency when keeping PNG format. If you convert to WebP, transparency is also preserved. Only JPEG loses transparency (replaces with white).</div></div>
+  <div class="fq"><div class="fq-q">What's the best format for logos and icons?</div><div class="fq-a">SVG is best for logos and icons — it's infinitely scalable and typically under 5 KB. If SVG isn't possible, use PNG for icons with transparency, or WebP for photos. Avoid JPEG for logos — compression artifacts on sharp edges look bad.</div></div>
+  <div class="fq"><div class="fq-q">Will Google rank my site better if I compress images?</div><div class="fq-a">Yes. Google's Core Web Vitals (especially LCP — Largest Contentful Paint) directly measures image loading speed. Compressed images improve LCP scores, which is a ranking factor.</div></div>
 
   <div class="cta"><h3>Try it free — no sign-up needed</h3><p>Runs entirely in your browser. Nothing uploaded, nothing stored.</p><a href="/tools/image-compressor/" class="ctab">Open Image Compressor &rarr;</a></div>
+
   <h2>Related tools on tinybench.dev</h2>
-  <ul><li><a href="/tools/image-compressor/">Image Compressor</a></li><li><a href="/tools/color-contrast-checker/">Color Contrast</a></li><li><a href="/tools/css-beautifier/">CSS Beautifier</a></li></ul>
+  <ul>
+    <li><a href="/tools/image-compressor/">Image Compressor</a></li>
+    <li><a href="/tools/color-contrast-checker/">Color Contrast</a></li>
+    <li><a href="/tools/css-beautifier/">CSS Beautifier</a></li>
+  </ul>
 </article>
 <aside class="sb">
-  <div class="sc"><div class="st">// contents</div><ul class="tl">      <li><a href="#why-png">Why PNG is large</a></li>
-      <li><a href="#method1">Convert to WebP</a></li>
-      <li><a href="#method2">Strip metadata</a></li>
-      <li><a href="#method3">Reduce colour depth</a></li>
-      <li><a href="#method4">Resize first</a></li>
-      <li><a href="#method5">Command line</a></li>
-      <li><a href="#faq">FAQ</a></li></ul></div>
+  <div class="sc"><div class="st">// contents</div><ul class="tl">
+    <li><a href="#why-png">Why PNG is large</a></li>
+    <li><a href="#method1">Convert to WebP</a></li>
+    <li><a href="#method2">Strip metadata</a></li>
+    <li><a href="#method3">Reduce colour depth</a></li>
+    <li><a href="#method4">Resize first</a></li>
+    <li><a href="#method5">Command line</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul></div>
   <div class="sc"><div class="st">// try the tool</div><p style="font-size:.82rem;color:var(--muted);margin-bottom:1rem;line-height:1.6">Compress PNG images free online. Supports lossless mode and WebP conversion. Nothing uploaded.</p><a href="/tools/image-compressor/" class="ctab" style="display:block;text-align:center;font-size:.82rem;padding:.65rem 1rem;">Open Image Compressor &rarr;</a></div>
-  <div class="sc"><div class="st">// related</div><ul class="rl">      <li><a href="/tools/image-compressor/">Image Compressor</a></li>
-      <li><a href="/tools/color-contrast-checker/">Color Contrast</a></li>
-      <li><a href="/tools/css-beautifier/">CSS Beautifier</a></li></ul></div>
+  <div class="sc"><div class="st">// related</div><ul class="rl">
+    <li><a href="/tools/image-compressor/">Image Compressor</a></li>
+    <li><a href="/tools/color-contrast-checker/">Color Contrast</a></li>
+    <li><a href="/tools/css-beautifier/">CSS Beautifier</a></li>
+  </ul></div>
 </aside>
 </div>
-<footer><p>&copy; 2025 tinybench.dev</p><div class="fl"><a href="/privacy-policy/">Privacy</a><a href="/terms/">Terms</a><a href="/cookie-policy/">Cookies</a><a href="/contact/">Contact</a><a href="/">Home</a></div></footer>
+<footer>
+  <p>&copy; 2026 tinybench.dev</p>
+  <div class="fl">
+    <a href="/privacy-policy/">Privacy</a>
+    <a href="/terms/">Terms</a>
+    <a href="/cookie-policy/">Cookies</a>
+    <a href="/contact/">Contact</a>
+    <a href="/">Home</a>
+  </div>
+</footer>
 <script>function copyCode(b){const p=b.closest('.cb').querySelector('pre');navigator.clipboard.writeText(p.textContent).then(()=>{b.textContent='copied!';setTimeout(()=>b.textContent='copy',2000)})}</script>
-</body></html>
+</body>
+</html>

@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>How to Fix Invalid JSON — Common Errors and How to Solve Them</title>
-  <meta name="description" content="Learn how to fix the most common JSON errors: unexpected token, trailing comma, unterminated string, and more. With examples and a free online JSON validator."/>
+  <title>How to Fix Invalid JSON — 7 Common Errors &amp; Exact Fixes</title>
+  <meta name="description" content="Paste your broken JSON and see the error highlighted instantly. Covers trailing commas, unquoted keys, single quotes, missing commas, comments, and more."/>
   <link rel="canonical" href="https://tinybench.dev/blog/fix-invalid-json/"/>
   <meta property="og:type" content="article"/>
-  <meta property="og:title" content="How to Fix Invalid JSON — Common Errors and How to Solve Them"/>
-  <meta property="og:description" content="Learn how to fix the most common JSON errors: unexpected token, trailing comma, unterminated string, and more. With examples and a free online JSON validator."/>
+  <meta property="og:title" content="How to Fix Invalid JSON — 7 Common Errors &amp; Exact Fixes"/>
+  <meta property="og:description" content="Paste your broken JSON and see the error highlighted instantly. Covers trailing commas, unquoted keys, single quotes, missing commas, comments, and more."/>
   <meta property="og:url" content="https://tinybench.dev/blog/fix-invalid-json/"/>
   <meta property="og:site_name" content="tinybench.dev"/>
   <meta name="twitter:card" content="summary"/>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How to Fix Invalid JSON — Common Errors and How to Solve Them","description":"Learn how to fix the most common JSON errors: unexpected token, trailing comma, unterminated string, and more. With examples and a free online JSON validator.","url":"https://tinybench.dev/blog/fix-invalid-json/","datePublished":"2025-01-01","dateModified":"2025-01-01","publisher":{"@type":"Organization","name":"tinybench.dev","url":"https://tinybench.dev"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How to Fix Invalid JSON — 7 Common Errors & Exact Fixes","description":"Fix invalid JSON fast. Covers trailing commas, unquoted keys, single quotes, missing commas, comments, unescaped characters, and undefined/NaN values.","url":"https://tinybench.dev/blog/fix-invalid-json/","datePublished":"2025-01-01","dateModified":"2026-04-17","publisher":{"@type":"Organization","name":"tinybench.dev","url":"https://tinybench.dev"}}</script>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Syne:wght@400;600;800&display=swap" rel="stylesheet"/>
@@ -97,100 +97,119 @@
   <div class="bc"><a href="/">Home</a><span>/</span><a href="/blog/">Blog</a><span>/</span><span>How to Fix Invalid JSON</span></div>
   <div class="atag">JSON · Debug</div>
   <h1>How to Fix <em>Invalid JSON</em></h1>
-  <div class="ameta"><span>4 min read</span><span>Updated January 2025</span><span>Developer Tools</span></div>
+  <div class="ameta"><span>4 min read</span><span>Updated April 2026</span><span>Developer Tools</span></div>
   <div class="aintro">Got a 'SyntaxError: Unexpected token' or 'JSON Parse error'? This guide covers every common JSON error, what causes it, and exactly how to fix it.</div>
-  <div class="cta"><h3>JSON Formatter & Validator</h3><p>Paste your broken JSON — errors are highlighted with the exact line number. Free and instant.</p><a href="/tools/json-formatter/" class="ctab">Open JSON Formatter & Validator &rarr;</a></div>
-  
-<h2 id="find-errors">Find JSON errors instantly</h2>
-<p>Before manually hunting through your JSON, paste it into the <a href="/tools/json-formatter/">JSON validator on tinybench.dev</a>. It highlights the exact line and position of every syntax error — saving you from scrolling through hundreds of lines looking for a missing comma.</p>
+  <div class="cta"><h3>JSON Formatter &amp; Validator</h3><p>Paste your broken JSON — errors are highlighted with the exact line number. Free and instant.</p><a href="/tools/json-formatter/" class="ctab">Open JSON Formatter &amp; Validator &rarr;</a></div>
 
-<h2 id="trailing-comma">Error: Trailing comma</h2>
-<p>The most common JSON error. JSON does not allow a comma after the last item in an object or array.</p>
-<div class="cb"><div class="cbh"><span>Invalid — trailing comma</span></div><pre>{{
+  <h2 id="find-errors">Find JSON errors instantly</h2>
+  <p>Before manually hunting through your JSON, paste it into the <a href="/tools/json-formatter/">JSON validator on tinybench.dev</a>. It highlights the exact line and position of every syntax error — saving you from scrolling through hundreds of lines looking for a missing comma.</p>
+
+  <h2 id="trailing-comma">Error: Trailing comma</h2>
+  <p>The most common JSON error. JSON does not allow a comma after the last item in an object or array.</p>
+  <div class="cb"><div class="cbh"><span>Invalid — trailing comma</span></div><pre>{
   "name": "Ada",
-  "age": 36,    // ← this comma is invalid
-}}</pre></div>
-<div class="cb"><div class="cbh"><span>Fixed</span><button class="cpb" onclick="copyCode(this)">copy</button></div><pre>{{
+  "age": 36,
+}</pre></div>
+  <div class="cb"><div class="cbh"><span>Fixed</span><button class="cpb" onclick="copyCode(this)">copy</button></div><pre>{
   "name": "Ada",
   "age": 36
-}}</pre></div>
+}</pre></div>
 
-<h2 id="unquoted-keys">Error: Unquoted keys</h2>
-<p>JavaScript allows unquoted object keys, but JSON requires all keys to be double-quoted strings.</p>
-<div class="cb"><div class="cbh"><span>Invalid — unquoted key</span></div><pre>{{ name: "Ada", age: 36 }}</pre></div>
-<div class="cb"><div class="cbh"><span>Fixed</span><button class="cpb" onclick="copyCode(this)">copy</button></div><pre>{{ "name": "Ada", "age": 36 }}</pre></div>
+  <h2 id="unquoted-keys">Error: Unquoted keys</h2>
+  <p>JavaScript allows unquoted object keys, but JSON requires all keys to be double-quoted strings.</p>
+  <div class="cb"><div class="cbh"><span>Invalid — unquoted key</span></div><pre>{ name: "Ada", age: 36 }</pre></div>
+  <div class="cb"><div class="cbh"><span>Fixed</span><button class="cpb" onclick="copyCode(this)">copy</button></div><pre>{ "name": "Ada", "age": 36 }</pre></div>
 
-<h2 id="single-quotes">Error: Single quotes</h2>
-<p>JSON strings must use double quotes. Single quotes are invalid.</p>
-<div class="cb"><div class="cbh"><span>Invalid — single quotes</span></div><pre>{{ 'name': 'Ada Lovelace' }}</pre></div>
-<div class="cb"><div class="cbh"><span>Fixed</span><button class="cpb" onclick="copyCode(this)">copy</button></div><pre>{{ "name": "Ada Lovelace" }}</pre></div>
+  <h2 id="single-quotes">Error: Single quotes</h2>
+  <p>JSON strings must use double quotes. Single quotes are invalid.</p>
+  <div class="cb"><div class="cbh"><span>Invalid — single quotes</span></div><pre>{ 'name': 'Ada Lovelace' }</pre></div>
+  <div class="cb"><div class="cbh"><span>Fixed</span><button class="cpb" onclick="copyCode(this)">copy</button></div><pre>{ "name": "Ada Lovelace" }</pre></div>
 
-<h2 id="missing-comma">Error: Missing comma</h2>
-<p>Each property except the last must be followed by a comma.</p>
-<div class="cb"><div class="cbh"><span>Invalid — missing comma</span></div><pre>{{
+  <h2 id="missing-comma">Error: Missing comma</h2>
+  <p>Each property except the last must be followed by a comma.</p>
+  <div class="cb"><div class="cbh"><span>Invalid — missing comma</span></div><pre>{
   "name": "Ada"
   "age": 36
-}}</pre></div>
-<div class="cb"><div class="cbh"><span>Fixed</span><button class="cpb" onclick="copyCode(this)">copy</button></div><pre>{{
+}</pre></div>
+  <div class="cb"><div class="cbh"><span>Fixed</span><button class="cpb" onclick="copyCode(this)">copy</button></div><pre>{
   "name": "Ada",
   "age": 36
-}}</pre></div>
+}</pre></div>
 
-<h2 id="comments">Error: Comments in JSON</h2>
-<p>JSON does not support comments. Neither // nor /* */ are valid.</p>
-<div class="cb"><div class="cbh"><span>Invalid — comment</span></div><pre>{{
+  <h2 id="comments">Error: Comments in JSON</h2>
+  <p>JSON does not support comments. Neither // nor /* */ are valid.</p>
+  <div class="cb"><div class="cbh"><span>Invalid — comment</span></div><pre>{
   "debug": true  // remove this in production
-}}</pre></div>
-<div class="cb"><div class="cbh"><span>Fixed — remove comments entirely</span><button class="cpb" onclick="copyCode(this)">copy</button></div><pre>{{
+}</pre></div>
+  <div class="cb"><div class="cbh"><span>Fixed — remove comments entirely</span><button class="cpb" onclick="copyCode(this)">copy</button></div><pre>{
   "debug": true
-}}</pre></div>
-<div class="cp"><strong>Need comments in config files?</strong> Use JSON5, JSONC (VS Code's extended format), YAML, or TOML instead — these are supersets that allow comments. Standard JSON parsers can't read them.</div>
+}</pre></div>
+  <div class="cp"><strong>Need comments in config files?</strong> Use JSON5, JSONC (VS Code's extended format), YAML, or TOML instead — these are supersets that allow comments. Standard JSON parsers can't read them.</div>
 
-<h2 id="unescaped">Error: Unescaped special characters in strings</h2>
-<p>Quotes, backslashes, and control characters inside strings must be escaped.</p>
-<div class="cb"><div class="cbh"><span>Invalid — unescaped quote</span></div><pre>{{ "message": "He said "Hello" to her" }}</pre></div>
-<div class="cb"><div class="cbh"><span>Fixed — escaped quote</span><button class="cpb" onclick="copyCode(this)">copy</button></div><pre>{{ "message": "He said \"Hello\" to her" }}</pre></div>
-<div class="tw"><table>
-  <thead><tr><th>Character</th><th>Escape sequence</th></tr></thead>
-  <tbody>
-    <tr><td>Double quote</td><td><code>\"</code></td></tr>
-    <tr><td>Backslash</td><td><code>\\</code></td></tr>
-    <tr><td>Newline</td><td><code>\n</code></td></tr>
-    <tr><td>Tab</td><td><code>\t</code></td></tr>
-    <tr><td>Carriage return</td><td><code>\r</code></td></tr>
-  </tbody>
-</table></div>
+  <h2 id="unescaped">Error: Unescaped special characters in strings</h2>
+  <p>Quotes, backslashes, and control characters inside strings must be escaped.</p>
+  <div class="cb"><div class="cbh"><span>Invalid — unescaped quote</span></div><pre>{ "message": "He said "Hello" to her" }</pre></div>
+  <div class="cb"><div class="cbh"><span>Fixed — escaped quote</span><button class="cpb" onclick="copyCode(this)">copy</button></div><pre>{ "message": "He said \"Hello\" to her" }</pre></div>
+  <div class="tw"><table>
+    <thead><tr><th>Character</th><th>Escape sequence</th></tr></thead>
+    <tbody>
+      <tr><td>Double quote</td><td><code>\"</code></td></tr>
+      <tr><td>Backslash</td><td><code>\\</code></td></tr>
+      <tr><td>Newline</td><td><code>\n</code></td></tr>
+      <tr><td>Tab</td><td><code>\t</code></td></tr>
+      <tr><td>Carriage return</td><td><code>\r</code></td></tr>
+    </tbody>
+  </table></div>
 
-<h2 id="undefined-nan">Error: undefined, NaN, or Infinity</h2>
-<p>These JavaScript values are not valid JSON. Replace them with null or a number string.</p>
-<div class="cb"><div class="cbh"><span>Invalid</span></div><pre>{{ "value": undefined, "score": NaN, "max": Infinity }}</pre></div>
-<div class="cb"><div class="cbh"><span>Fixed</span><button class="cpb" onclick="copyCode(this)">copy</button></div><pre>{{ "value": null, "score": null, "max": 1e308 }}</pre></div>
+  <h2 id="undefined-nan">Error: undefined, NaN, or Infinity</h2>
+  <p>These JavaScript values are not valid JSON. Replace them with null or a number string.</p>
+  <div class="cb"><div class="cbh"><span>Invalid</span></div><pre>{ "value": undefined, "score": NaN, "max": Infinity }</pre></div>
+  <div class="cb"><div class="cbh"><span>Fixed</span><button class="cpb" onclick="copyCode(this)">copy</button></div><pre>{ "value": null, "score": null, "max": 1e308 }</pre></div>
 
-<h2 id="faq">Frequently asked questions</h2>
-<div class="fq"><div class="fq-q">Why does my JSON work in JavaScript but fail JSON.parse()?</div><div class="fq-a">JavaScript object literals are more permissive than JSON — they allow unquoted keys, trailing commas, single quotes, and comments. JSON.parse() is strict and follows the JSON specification (RFC 8259). Always use a JSON validator to check strict compatibility.</div></div>
-<div class="fq"><div class="fq-q">What does "Unexpected token at position N" mean?</div><div class="fq-a">The parser found a character it didn't expect at that position. Count N characters from the start of the string — the character there (or just before it) is where the error is. A JSON validator shows this visually.</div></div>
-<div class="fq"><div class="fq-q">Can I have an empty JSON object or array?</div><div class="fq-a">Yes. {{}} (empty object) and [] (empty array) are both valid JSON.</div></div>
+  <h2 id="faq">Frequently asked questions</h2>
+  <div class="fq"><div class="fq-q">Why does my JSON work in JavaScript but fail JSON.parse()?</div><div class="fq-a">JavaScript object literals are more permissive than JSON — they allow unquoted keys, trailing commas, single quotes, and comments. JSON.parse() is strict and follows the JSON specification (RFC 8259). Always use a JSON validator to check strict compatibility.</div></div>
+  <div class="fq"><div class="fq-q">What does "Unexpected token at position N" mean?</div><div class="fq-a">The parser found a character it didn't expect at that position. Count N characters from the start of the string — the character there (or just before it) is where the error is. A JSON validator shows this visually.</div></div>
+  <div class="fq"><div class="fq-q">Can I have an empty JSON object or array?</div><div class="fq-a">Yes. {} (empty object) and [] (empty array) are both valid JSON.</div></div>
 
-  <div class="cta"><h3>Try it free — no sign-up needed</h3><p>Runs entirely in your browser. Nothing uploaded, nothing stored.</p><a href="/tools/json-formatter/" class="ctab">Open JSON Formatter & Validator &rarr;</a></div>
+  <div class="cta"><h3>Try it free — no sign-up needed</h3><p>Runs entirely in your browser. Nothing uploaded, nothing stored.</p><a href="/tools/json-formatter/" class="ctab">Open JSON Formatter &amp; Validator &rarr;</a></div>
+
   <h2>Related tools on tinybench.dev</h2>
-  <ul><li><a href="/tools/json-formatter/">JSON Formatter</a></li><li><a href="/tools/regex-tester/">Regex Tester</a></li><li><a href="/tools/jwt-decoder/">JWT Decoder</a></li></ul>
+  <ul>
+    <li><a href="/tools/json-formatter/">JSON Formatter</a></li>
+    <li><a href="/tools/regex-tester/">Regex Tester</a></li>
+    <li><a href="/tools/jwt-decoder/">JWT Decoder</a></li>
+  </ul>
 </article>
 <aside class="sb">
-  <div class="sc"><div class="st">// contents</div><ul class="tl">      <li><a href="#find-errors">Find errors online</a></li>
-      <li><a href="#trailing-comma">Trailing comma</a></li>
-      <li><a href="#unquoted-keys">Unquoted keys</a></li>
-      <li><a href="#single-quotes">Single quotes</a></li>
-      <li><a href="#missing-comma">Missing comma</a></li>
-      <li><a href="#comments">Comments</a></li>
-      <li><a href="#unescaped">Unescaped chars</a></li>
-      <li><a href="#undefined-nan">undefined/NaN</a></li>
-      <li><a href="#faq">FAQ</a></li></ul></div>
-  <div class="sc"><div class="st">// try the tool</div><p style="font-size:.82rem;color:var(--muted);margin-bottom:1rem;line-height:1.6">Paste your broken JSON — errors are highlighted with the exact line number. Free and instant.</p><a href="/tools/json-formatter/" class="ctab" style="display:block;text-align:center;font-size:.82rem;padding:.65rem 1rem;">Open JSON Formatter & Validator &rarr;</a></div>
-  <div class="sc"><div class="st">// related</div><ul class="rl">      <li><a href="/tools/json-formatter/">JSON Formatter</a></li>
-      <li><a href="/tools/regex-tester/">Regex Tester</a></li>
-      <li><a href="/tools/jwt-decoder/">JWT Decoder</a></li></ul></div>
+  <div class="sc"><div class="st">// contents</div><ul class="tl">
+    <li><a href="#find-errors">Find errors online</a></li>
+    <li><a href="#trailing-comma">Trailing comma</a></li>
+    <li><a href="#unquoted-keys">Unquoted keys</a></li>
+    <li><a href="#single-quotes">Single quotes</a></li>
+    <li><a href="#missing-comma">Missing comma</a></li>
+    <li><a href="#comments">Comments</a></li>
+    <li><a href="#unescaped">Unescaped chars</a></li>
+    <li><a href="#undefined-nan">undefined/NaN</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul></div>
+  <div class="sc"><div class="st">// try the tool</div><p style="font-size:.82rem;color:var(--muted);margin-bottom:1rem;line-height:1.6">Paste your broken JSON — errors are highlighted with the exact line number. Free and instant.</p><a href="/tools/json-formatter/" class="ctab" style="display:block;text-align:center;font-size:.82rem;padding:.65rem 1rem;">Open JSON Formatter &amp; Validator &rarr;</a></div>
+  <div class="sc"><div class="st">// related</div><ul class="rl">
+    <li><a href="/tools/json-formatter/">JSON Formatter</a></li>
+    <li><a href="/tools/regex-tester/">Regex Tester</a></li>
+    <li><a href="/tools/jwt-decoder/">JWT Decoder</a></li>
+  </ul></div>
 </aside>
 </div>
-<footer><p>&copy; 2025 tinybench.dev</p><div class="fl"><a href="/privacy-policy/">Privacy</a><a href="/terms/">Terms</a><a href="/cookie-policy/">Cookies</a><a href="/contact/">Contact</a><a href="/">Home</a></div></footer>
+<footer>
+  <p>&copy; 2026 tinybench.dev</p>
+  <div class="fl">
+    <a href="/privacy-policy/">Privacy</a>
+    <a href="/terms/">Terms</a>
+    <a href="/cookie-policy/">Cookies</a>
+    <a href="/contact/">Contact</a>
+    <a href="/">Home</a>
+  </div>
+</footer>
 <script>function copyCode(b){const p=b.closest('.cb').querySelector('pre');navigator.clipboard.writeText(p.textContent).then(()=>{b.textContent='copied!';setTimeout(()=>b.textContent='copy',2000)})}</script>
-</body></html>
+</body>
+</html>
