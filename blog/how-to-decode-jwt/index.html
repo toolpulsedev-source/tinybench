@@ -3,18 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>How to Decode a JWT Token — Step by Step Guide</title>
-  <meta name="description" content="Learn how to decode a JWT token online and in code. See what's inside the header, payload, and how to check expiry — with examples in JavaScript, Python, and more." />
+  <title>Decode JWT Token Online — See Claims, Expiry &amp; Payload Instantly</title>
+  <meta name="description" content="Decode any JWT token in seconds — see header, payload, claims, and expiry instantly. Includes JavaScript &amp; Python examples. Runs in your browser, nothing uploaded." />
   <link rel="canonical" href="https://tinybench.dev/blog/how-to-decode-jwt/" />
   <meta property="og:type" content="article" />
-  <meta property="og:title" content="How to Decode a JWT Token — Step by Step Guide" />
-  <meta property="og:description" content="Learn how to decode a JWT token online and in code. See what's inside the header, payload, and how to check expiry — with examples in JavaScript, Python, and more." />
+  <meta property="og:title" content="Decode JWT Token Online — See Claims, Expiry &amp; Payload Instantly" />
+  <meta property="og:description" content="Decode any JWT token in seconds — see header, payload, claims, and expiry instantly. Includes JavaScript &amp; Python examples. Runs in your browser, nothing uploaded." />
   <meta property="og:url" content="https://tinybench.dev/blog/how-to-decode-jwt/" />
   <meta property="og:site_name" content="tinybench.dev" />
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="How to Decode a JWT Token — Step by Step Guide" />
-  <meta name="twitter:description" content="Learn how to decode a JWT token online and in code. See what's inside the header, payload, and how to check expiry — with examples in JavaScript, Python, and more." />
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How to Decode a JWT Token","description":"Learn how to decode a JWT token online and in code. See what's inside the header, payload, and how to check expiry — with examples in JavaScript, Python, and more.","url":"https://tinybench.dev/blog/how-to-decode-jwt/","datePublished":"2025-01-01","dateModified":"2025-01-01","publisher":{"@type":"Organization","name":"tinybench.dev","url":"https://tinybench.dev"}}</script>
+  <meta name="twitter:title" content="Decode JWT Token Online — See Claims, Expiry &amp; Payload Instantly" />
+  <meta name="twitter:description" content="Decode any JWT token in seconds — see header, payload, claims, and expiry instantly. Includes JavaScript &amp; Python examples. Runs in your browser, nothing uploaded." />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Decode JWT Token Online — See Claims, Expiry &amp; Payload Instantly","description":"Decode any JWT token in seconds — see header, payload, claims, and expiry instantly. Includes JavaScript &amp; Python examples. Runs in your browser, nothing uploaded.","url":"https://tinybench.dev/blog/how-to-decode-jwt/","datePublished":"2025-01-01","dateModified":"2026-04-17","publisher":{"@type":"Organization","name":"tinybench.dev","url":"https://tinybench.dev"}}</script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Syne:wght@400;600;800&display=swap" rel="stylesheet" />
@@ -95,30 +95,31 @@
 <body>
 <nav>
   <a href="/" class="logo">tiny<span>bench</span>.dev</a>
-  <ul class="nav-links"><li><a href="/#tools">Tools</a></li><li><a href="/about/">About</a></li></ul>
+  <ul class="nav-links"><li><a href="/#tools">Tools</a></li><li><a href="/blog/">Blog</a></li><li><a href="/about/">About</a></li></ul>
 </nav>
 <div class="page-wrap">
 <article>
-  <div class="breadcrumb"><a href="/">Home</a><span>/</span><a href="/blog/">Blog</a><span>/</span><span>How to Decode a JWT Token</span></div>
+  <div class="breadcrumb"><a href="/">Home</a><span>/</span><a href="/blog/">Blog</a><span>/</span><span>Decode JWT Token</span></div>
   <div class="article-tag">JWT · Guide</div>
-  <h1>How to Decode <em>a JWT Token</em></h1>
-  <div class="article-meta"><span>5 min read</span><span>Updated January 2025</span><span>Developer Tools</span></div>
+  <h1>Decode <em>JWT Token</em> Online — Claims, Expiry &amp; Payload</h1>
+  <div class="article-meta"><span>5 min read</span><span>Updated April 2026</span><span>Developer Tools</span></div>
   <div class="article-intro">You have a JWT but don't know what's inside it. This step-by-step guide shows you how to decode a JWT online in seconds, what each part means, and how to do it in code.</div>
   <div class="cta-box">
     <h3>Free Online JWT Decoder</h3>
     <p>Decode any JWT instantly. See header, payload, claims, and expiry. Nothing sent to any server.</p>
     <a href="/tools/jwt-decoder/" class="cta-btn">Open JWT Decoder &rarr;</a>
   </div>
-  
-  <h2>What you'll find inside a JWT</h2>
+
+  <h2 id="whats-inside">What you'll find inside a JWT</h2>
   <p>Every JWT contains three Base64URL-encoded sections separated by dots. When decoded, they reveal:</p>
   <ul>
     <li><strong>Header</strong> — the signing algorithm (e.g. HS256, RS256) and token type</li>
     <li><strong>Payload</strong> — the claims: user ID, roles, email, expiry time, issue time, and any custom data</li>
     <li><strong>Signature</strong> — a cryptographic hash that prevents tampering (you need the secret key to verify this)</li>
   </ul>
+  <p>New to JWTs entirely? Read <a href="/blog/what-is-jwt/">What is a JWT?</a> first for a full breakdown of the format.</p>
 
-  <h2>How to decode a JWT online (30 seconds)</h2>
+  <h2 id="online">How to decode a JWT online (30 seconds)</h2>
   <ol>
     <li>Copy your JWT — it starts with <code>eyJ</code> (Base64URL for <code>{"</code>)</li>
     <li>Open the <a href="/tools/jwt-decoder/">JWT decoder on tinybench.dev</a></li>
@@ -127,7 +128,7 @@
   </ol>
   <div class="callout-green"><strong>Safe to use:</strong> The decoder runs entirely in your browser. Your token is never sent to any server — unlike many other JWT tools online.</div>
 
-  <h2>Decoding a JWT manually</h2>
+  <h2 id="manually">Decoding a JWT manually</h2>
   <p>A JWT has the format <code>header.payload.signature</code>. The header and payload are just Base64URL-encoded JSON. You can decode them without any special tool:</p>
   <div class="code-block"><div class="code-block-header"><span>Decode JWT payload manually in JavaScript</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div><pre>function decodeJWT(token) {
   const parts = token.split('.');
@@ -152,8 +153,9 @@ def decode_jwt_payload(token):
 payload = decode_jwt_payload(your_token)
 print(payload['sub'])   # user ID
 print(payload['exp'])   # expiry timestamp</pre></div>
+  <p>For a deeper Python example using the <code>PyJWT</code> library, see our guide on <a href="/blog/decode-jwt-python/">decoding JWTs in Python</a>.</p>
 
-  <h2>Important JWT claims to check</h2>
+  <h2 id="claims">Important JWT claims to check</h2>
   <div class="table-wrap"><table>
     <thead><tr><th>Claim</th><th>Meaning</th><th>Format</th></tr></thead>
     <tbody>
@@ -166,8 +168,9 @@ print(payload['exp'])   # expiry timestamp</pre></div>
       <tr><td><code>jti</code></td><td>JWT ID — unique identifier for this token</td><td>String</td></tr>
     </tbody>
   </table></div>
+  <p>The <code>exp</code> claim is a Unix timestamp — use the <a href="/tools/timestamp-converter/">Unix timestamp converter</a> to convert it to a readable date.</p>
 
-  <h2>How to check if a JWT is expired</h2>
+  <h2 id="check-expiry">How to check if a JWT is expired</h2>
   <div class="code-block"><div class="code-block-header"><span>JavaScript — check expiry</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div><pre>function isTokenExpired(token) {
   const { payload } = decodeJWT(token);
   if (!payload.exp) return false; // No expiry set
@@ -181,19 +184,25 @@ if (isTokenExpired(token)) {
 
   <div class="callout"><strong>Never trust a decoded JWT without verifying the signature server-side.</strong> Decoding tells you what claims the token contains. Only signature verification (using your secret key) proves the token wasn't forged or tampered with.</div>
 
-  <h2>Frequently asked questions</h2>
+  <h2 id="faq">Frequently asked questions</h2>
   <div class="faq-item"><div class="faq-q">Can I decode a JWT without the secret key?</div><div class="faq-a">Yes — you can decode (read) the header and payload without the secret key. The secret key is only needed to verify the signature. This is why you should never put sensitive data in a JWT payload.</div></div>
   <div class="faq-item"><div class="faq-q">Why does my JWT start with eyJ?</div><div class="faq-a">All JWTs start with eyJ because the header always begins with {"alg" — and Base64URL encoding of {"alg" starts with eyJ. It's a reliable way to identify a JWT.</div></div>
   <div class="faq-item"><div class="faq-q">What's the difference between decoding and verifying a JWT?</div><div class="faq-a">Decoding reads the contents (header + payload). Verifying checks the signature to confirm the token is genuine and unmodified. Always verify in production code — never trust a JWT based on decoding alone.</div></div>
-  
+
   <div class="cta-box">
     <h3>Try it now — free &amp; private</h3>
     <p>Runs entirely in your browser. No sign-up, no uploads, no tracking.</p>
     <a href="/tools/jwt-decoder/" class="cta-btn">Open JWT Decoder &rarr;</a>
   </div>
-  <h2>Related tools on tinybench.dev</h2>
+
+  <h2>Related tools &amp; guides</h2>
   <ul>
-    <li><a href="/tools/jwt-decoder/">JWT Decoder</a></li><li><a href="/tools/base64/">Base64 Encoder</a></li><li><a href="/tools/json-formatter/">JSON Formatter</a></li>
+    <li><a href="/tools/jwt-decoder/">JWT Decoder</a> — free, browser-based, nothing uploaded</li>
+    <li><a href="/tools/base64/">Base64 Encoder / Decoder</a></li>
+    <li><a href="/tools/json-formatter/">JSON Formatter</a></li>
+    <li><a href="/tools/timestamp-converter/">Unix Timestamp Converter</a></li>
+    <li><a href="/blog/what-is-jwt/">What is a JWT? — Full Explainer</a></li>
+    <li><a href="/blog/decode-jwt-python/">Decode JWT in Python</a></li>
   </ul>
 </article>
 <aside class="sidebar">
@@ -214,18 +223,21 @@ if (isTokenExpired(token)) {
     <a href="/tools/jwt-decoder/" class="cta-btn" style="display:block;text-align:center;font-size:0.82rem;padding:0.65rem 1rem;">Open JWT Decoder &rarr;</a>
   </div>
   <div class="sidebar-card">
-    <div class="sidebar-title">// related tools</div>
+    <div class="sidebar-title">// related</div>
     <ul class="related-list">
       <li><a href="/tools/jwt-decoder/">JWT Decoder</a></li>
       <li><a href="/tools/base64/">Base64 Encoder</a></li>
       <li><a href="/tools/json-formatter/">JSON Formatter</a></li>
+      <li><a href="/tools/timestamp-converter/">Timestamp Converter</a></li>
+      <li><a href="/blog/what-is-jwt/">What is a JWT?</a></li>
+      <li><a href="/blog/decode-jwt-python/">Decode JWT in Python</a></li>
     </ul>
   </div>
 </aside>
 </div>
 <footer>
-  <p>&copy; 2025 tinybench.dev &mdash; fast developer tools, no backend, no tracking.</p>
-  <div class="footer-legal"><a href="/privacy-policy/">Privacy Policy</a><a href="/terms/">Terms</a><a href="/cookie-policy/">Cookies</a><a href="/contact/">Contact</a><a href="/">Home</a></div>
+  <p>&copy; 2026 tinybench.dev &mdash; fast developer tools, no backend, no tracking.</p>
+  <div class="footer-legal"><a href="/privacy-policy/">Privacy Policy</a><a href="/terms/">Terms</a><a href="/cookie-policy/">Cookies</a><a href="/contact/">Contact</a><a href="/blog/">Blog</a><a href="/">Home</a></div>
 </footer>
 <script>
 function copyCode(btn){const pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.textContent).then(()=>{btn.textContent='copied!';setTimeout(()=>btn.textContent='copy',2000)})}
