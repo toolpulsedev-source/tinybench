@@ -4,23 +4,18 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- SEO -->
-  <title>UUID Generator Online — Free Random UUID v4 Generator | TinyBench</title>
-  <meta name="description" content="Free online UUID generator. Instantly generate cryptographically random UUID v4, single or bulk up to 100 at once. No sign-up, 100% client-side. Copy or download as .txt." />
+  <title>UUID Generator Online — Free UUID v4 Generator, Bulk &amp; Instant</title>
+  <meta name="description" content="Generate UUID v4 online instantly — single or bulk up to 100. Free, cryptographically random, 100% client-side. Also supports uppercase, braces, and .txt download." />
 
-  <!-- Canonical -->
   <link rel="canonical" href="https://tinybench.dev/tools/uuid-generator/" />
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="UUID Generator Online — Free Random UUID v4 Generator" />
-  <meta property="og:description" content="Generate cryptographically random UUID v4 instantly. Single or bulk up to 100. Free, fast, 100% client-side." />
+  <meta property="og:title" content="UUID Generator Online — Free UUID v4 Generator, Bulk &amp; Instant" />
+  <meta property="og:description" content="Generate UUID v4 online instantly — single or bulk up to 100. Free, cryptographically random, 100% client-side." />
   <meta property="og:url" content="https://tinybench.dev/tools/uuid-generator/" />
   <meta property="og:type" content="website" />
 
-  <!-- Last Modified -->
   <meta name="last-modified" content="2026-04-17" />
 
-  <!-- Schema: SoftwareApplication -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -42,663 +37,167 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #0a0a0f;
-      --surface: #111118;
-      --border: #1e1e2e;
-      --accent: #00ff99;
-      --accent2: #7b61ff;
-      --text: #e8e8f0;
-      --muted: #555570;
-      --card-bg: #13131c;
-      --error: #ff5566;
+      --bg: #0a0a0f; --surface: #111118; --border: #1e1e2e;
+      --accent: #00ff99; --accent2: #7b61ff;
+      --text: #e8e8f0; --muted: #555570; --card-bg: #13131c; --error: #ff5566;
     }
 
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Syne', sans-serif;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
+    body { background: var(--bg); color: var(--text); font-family: 'Syne', sans-serif; min-height: 100vh; overflow-x: hidden; }
 
     body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(0,255,153,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,255,153,0.03) 1px, transparent 1px);
-      background-size: 40px 40px;
-      pointer-events: none;
-      z-index: 0;
+      content: ''; position: fixed; inset: 0;
+      background-image: linear-gradient(rgba(0,255,153,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,255,153,0.03) 1px, transparent 1px);
+      background-size: 40px 40px; pointer-events: none; z-index: 0;
     }
 
-    nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 1rem 2rem;
-      background: rgba(10,10,15,0.9);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .logo {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--accent);
-      text-decoration: none;
-    }
-
+    nav { position: sticky; top: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1rem 2rem; background: rgba(10,10,15,0.9); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+    .logo { font-family: 'JetBrains Mono', monospace; font-size: 1rem; font-weight: 700; color: var(--accent); text-decoration: none; }
     .logo span { color: var(--muted); }
-
-    .nav-back {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.75rem;
-      color: var(--muted);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
+    .nav-back { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--muted); text-decoration: none; transition: color 0.2s; }
     .nav-back:hover { color: var(--accent); }
 
-    .page-header {
-      position: relative;
-      z-index: 1;
-      padding: 3rem 2rem 2rem;
-      max-width: 900px;
-      margin: 0 auto;
-    }
+    .page-header { position: relative; z-index: 1; padding: 3rem 2rem 2rem; max-width: 900px; margin: 0 auto; }
+    .page-tag { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--accent); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.6rem; }
+    .page-header h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; letter-spacing: -0.03em; margin-bottom: 0.5rem; }
+    .page-header p { color: var(--muted); font-size: 0.9rem; line-height: 1.6; }
+    .updated-badge { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--muted); border: 1px solid var(--border); padding: 0.2rem 0.6rem; border-radius: 4px; margin-top: 0.7rem; }
 
-    .page-tag {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.7rem;
-      color: var(--accent);
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      margin-bottom: 0.6rem;
-    }
-
-    .page-header h1 {
-      font-size: clamp(1.8rem, 4vw, 2.8rem);
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      margin-bottom: 0.5rem;
-    }
-
-    .page-header p {
-      color: var(--muted);
-      font-size: 0.9rem;
-      line-height: 1.6;
-    }
-
-    .updated-badge {
-      display: inline-block;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.65rem;
-      color: var(--muted);
-      border: 1px solid var(--border);
-      padding: 0.2rem 0.6rem;
-      border-radius: 4px;
-      margin-top: 0.7rem;
-    }
-
-    .single-section {
-      position: relative;
-      z-index: 1;
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 0 2rem 2rem;
-    }
-
-    .single-card {
-      background: var(--card-bg);
-      border: 1px solid rgba(0,255,153,0.2);
-      border-radius: 16px;
-      padding: 2rem;
-      display: flex;
-      flex-direction: column;
-      gap: 1.2rem;
-      align-items: center;
-      text-align: center;
-    }
-
-    .uuid-display {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: clamp(1rem, 2.5vw, 1.4rem);
-      font-weight: 700;
-      color: var(--accent);
-      letter-spacing: 0.05em;
-      word-break: break-all;
-      line-height: 1.4;
-      padding: 1rem 1.5rem;
-      background: rgba(0,255,153,0.05);
-      border: 1px solid rgba(0,255,153,0.15);
-      border-radius: 10px;
-      width: 100%;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-
+    .single-section { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 0 2rem 2rem; }
+    .single-card { background: var(--card-bg); border: 1px solid rgba(0,255,153,0.2); border-radius: 16px; padding: 2rem; display: flex; flex-direction: column; gap: 1.2rem; align-items: center; text-align: center; }
+    .uuid-display { font-family: 'JetBrains Mono', monospace; font-size: clamp(1rem, 2.5vw, 1.4rem); font-weight: 700; color: var(--accent); letter-spacing: 0.05em; word-break: break-all; line-height: 1.4; padding: 1rem 1.5rem; background: rgba(0,255,153,0.05); border: 1px solid rgba(0,255,153,0.15); border-radius: 10px; width: 100%; cursor: pointer; transition: background 0.2s; }
     .uuid-display:hover { background: rgba(0,255,153,0.1); }
+    .uuid-hint { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--muted); }
+    .single-actions { display: flex; gap: 0.8rem; flex-wrap: wrap; justify-content: center; }
 
-    .uuid-hint {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.7rem;
-      color: var(--muted);
-    }
-
-    .single-actions {
-      display: flex;
-      gap: 0.8rem;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    .btn {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.82rem;
-      font-weight: 700;
-      padding: 0.65rem 1.4rem;
-      border-radius: 8px;
-      border: none;
-      cursor: pointer;
-      transition: transform 0.15s, box-shadow 0.15s;
-      letter-spacing: 0.02em;
-    }
-
+    .btn { font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; font-weight: 700; padding: 0.65rem 1.4rem; border-radius: 8px; border: none; cursor: pointer; transition: transform 0.15s, box-shadow 0.15s; letter-spacing: 0.02em; }
     .btn:hover { transform: translateY(-1px); }
     .btn-accent { background: var(--accent); color: #000; font-size: 0.9rem; padding: 0.75rem 2rem; }
     .btn-accent:hover { box-shadow: 0 8px 24px rgba(0,255,153,0.35); }
     .btn-outline { background: transparent; color: var(--text); border: 1px solid var(--border); }
     .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
 
-    .options-section {
-      position: relative;
-      z-index: 1;
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 0 2rem 1.5rem;
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-
-    .option-group {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.75rem;
-      color: var(--muted);
-    }
-
-    .toggle-group {
-      display: flex;
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      overflow: hidden;
-    }
-
-    .toggle-btn {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.72rem;
-      font-weight: 700;
-      padding: 0.35rem 0.75rem;
-      border: none;
-      background: transparent;
-      color: var(--muted);
-      cursor: pointer;
-      transition: all 0.15s;
-    }
-
+    .options-section { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 0 2rem 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+    .option-group { display: flex; align-items: center; gap: 0.5rem; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--muted); }
+    .toggle-group { display: flex; border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
+    .toggle-btn { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; font-weight: 700; padding: 0.35rem 0.75rem; border: none; background: transparent; color: var(--muted); cursor: pointer; transition: all 0.15s; }
     .toggle-btn.active { background: rgba(0,255,153,0.15); color: var(--accent); }
-
-    .count-input {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 0.35rem 0.7rem;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.8rem;
-      color: var(--text);
-      width: 70px;
-      outline: none;
-      transition: border-color 0.2s;
-    }
-
+    .count-input { background: var(--card-bg); border: 1px solid var(--border); border-radius: 6px; padding: 0.35rem 0.7rem; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--text); width: 70px; outline: none; transition: border-color 0.2s; }
     .count-input:focus { border-color: rgba(0,255,153,0.4); }
 
-    .bulk-section {
-      position: relative;
-      z-index: 1;
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 0 2rem 1.5rem;
-    }
-
-    .bulk-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      overflow: hidden;
-    }
-
-    .bulk-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0.75rem 1.1rem;
-      border-bottom: 1px solid var(--border);
-      background: var(--surface);
-    }
-
-    .bulk-title {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.72rem;
-      color: var(--accent);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      font-weight: 700;
-    }
-
+    .bulk-section { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 0 2rem 1.5rem; }
+    .bulk-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+    .bulk-header { display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.1rem; border-bottom: 1px solid var(--border); background: var(--surface); }
+    .bulk-title { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700; }
     .bulk-actions { display: flex; gap: 0.5rem; }
-
-    .icon-btn {
-      background: transparent;
-      border: none;
-      color: var(--muted);
-      cursor: pointer;
-      font-size: 0.75rem;
-      padding: 0.2rem 0.5rem;
-      border-radius: 4px;
-      font-family: 'JetBrains Mono', monospace;
-      transition: color 0.2s, background 0.2s;
-    }
-
+    .icon-btn { background: transparent; border: none; color: var(--muted); cursor: pointer; font-size: 0.75rem; padding: 0.2rem 0.5rem; border-radius: 4px; font-family: 'JetBrains Mono', monospace; transition: color 0.2s, background 0.2s; }
     .icon-btn:hover { color: var(--accent); background: rgba(0,255,153,0.08); }
-
     .uuid-list { max-height: 400px; overflow-y: auto; }
-
-    .uuid-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0.65rem 1.1rem;
-      border-bottom: 1px solid rgba(30,30,46,0.5);
-      transition: background 0.15s;
-      gap: 1rem;
-    }
-
+    .uuid-row { display: flex; align-items: center; justify-content: space-between; padding: 0.65rem 1.1rem; border-bottom: 1px solid rgba(30,30,46,0.5); transition: background 0.15s; gap: 1rem; }
     .uuid-row:last-child { border-bottom: none; }
     .uuid-row:hover { background: rgba(0,255,153,0.03); }
-
-    .uuid-num {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.65rem;
-      color: var(--muted);
-      min-width: 24px;
-      flex-shrink: 0;
-    }
-
-    .uuid-val {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.82rem;
-      color: var(--text);
-      flex: 1;
-      word-break: break-all;
-    }
-
-    .uuid-copy-btn {
-      background: transparent;
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      color: var(--muted);
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.65rem;
-      padding: 0.2rem 0.5rem;
-      cursor: pointer;
-      transition: all 0.15s;
-      flex-shrink: 0;
-      opacity: 0;
-    }
-
+    .uuid-num { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--muted); min-width: 24px; flex-shrink: 0; }
+    .uuid-val { font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; color: var(--text); flex: 1; word-break: break-all; }
+    .uuid-copy-btn { background: transparent; border: 1px solid var(--border); border-radius: 4px; color: var(--muted); font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; padding: 0.2rem 0.5rem; cursor: pointer; transition: all 0.15s; flex-shrink: 0; opacity: 0; }
     .uuid-row:hover .uuid-copy-btn { opacity: 1; }
     .uuid-copy-btn:hover { color: var(--accent); border-color: var(--accent); }
 
-    .info-section {
-      position: relative;
-      z-index: 1;
-      max-width: 900px;
-      margin: 2rem auto 0;
-      padding: 0 2rem 2rem;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.2rem;
-    }
-
-    .info-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.6rem;
-    }
-
+    .info-section { position: relative; z-index: 1; max-width: 900px; margin: 2rem auto 0; padding: 0 2rem 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+    .info-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 1.6rem; }
     .info-card h2 { font-size: 1rem; font-weight: 700; margin-bottom: 1rem; color: var(--accent); }
     .info-card p, .info-card li { font-size: 0.83rem; color: var(--muted); line-height: 1.8; }
     .info-card ul { padding-left: 1.2rem; display: flex; flex-direction: column; gap: 0.3rem; }
-
-    .uuid-anatomy {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.78rem;
-      margin: 1rem 0;
-      word-break: break-all;
-    }
-
-    .part-a { color: #79b8ff; }
-    .part-b { color: #a8ff78; }
-    .part-c { color: #ffab70; }
-    .part-d { color: #ff7b72; }
-    .part-e { color: #d2a8ff; }
-    .part-sep { color: var(--muted); }
-
+    .uuid-anatomy { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; margin: 1rem 0; word-break: break-all; }
+    .part-a { color: #79b8ff; } .part-b { color: #a8ff78; } .part-c { color: #ffab70; } .part-d { color: #ff7b72; } .part-e { color: #d2a8ff; } .part-sep { color: var(--muted); }
     .anatomy-legend { display: flex; flex-direction: column; gap: 0.4rem; margin-top: 0.8rem; }
     .legend-item { display: flex; gap: 0.6rem; font-size: 0.75rem; align-items: center; }
     .legend-dot { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
     .legend-text { color: var(--muted); }
 
-    /* SEO */
-    .seo-section {
-      position: relative;
-      z-index: 1;
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 0 2rem 2rem;
-    }
+    /* DEEP CONTENT SECTION */
+    .deep-section { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 0 2rem 2rem; }
+    .deep-section h2 { font-family: 'Syne', sans-serif; font-size: 1.2rem; font-weight: 800; color: var(--text); margin: 2rem 0 0.8rem; letter-spacing: -0.02em; }
+    .deep-section h2::before { content: '// '; font-family: 'JetBrains Mono', monospace; color: var(--accent); font-size: 1rem; }
+    .deep-section p { font-size: 0.92rem; color: var(--muted); line-height: 1.85; margin-bottom: 0.9rem; }
+    .deep-section ul, .deep-section ol { margin: 0.5rem 0 1rem 1.4rem; }
+    .deep-section li { font-size: 0.9rem; color: var(--muted); line-height: 1.8; margin-bottom: 0.3rem; }
+    .deep-section strong { color: var(--text); }
+    .deep-section a { color: var(--accent); text-decoration: none; }
+    .deep-section a:hover { text-decoration: underline; }
 
-    .seo-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.2rem;
-      margin-bottom: 1.2rem;
-    }
+    .version-table-wrap { overflow-x: auto; margin: 1rem 0 1.5rem; }
+    .version-table { width: 100%; border-collapse: collapse; font-size: 0.83rem; }
+    .version-table th { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); text-align: left; padding: 0.6rem 0.8rem; border-bottom: 1px solid var(--border); }
+    .version-table td { color: var(--muted); padding: 0.65rem 0.8rem; border-bottom: 1px solid rgba(30,30,46,0.5); vertical-align: top; }
+    .version-table tr:last-child td { border-bottom: none; }
+    .version-table td strong { color: var(--text); }
 
+    .code-block { background: #13131c; border: 1px solid var(--border); border-radius: 8px; margin: 0.8rem 0 1.5rem; overflow: hidden; }
+    .code-block-header { display: flex; align-items: center; justify-content: space-between; padding: 0.5rem 1rem; background: var(--surface); border-bottom: 1px solid var(--border); font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--muted); }
+    .copy-btn { background: none; border: 1px solid var(--border); color: var(--muted); font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; padding: 2px 8px; border-radius: 4px; cursor: pointer; transition: all 0.15s; }
+    .copy-btn:hover { color: var(--accent); border-color: var(--accent); }
+    pre { padding: 1rem 1.2rem; overflow-x: auto; font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; line-height: 1.7; color: var(--text); }
+    .kw { color: #7b61ff; } .fn { color: #79c0ff; } .str { color: #00ff99; } .cm { color: #444; font-style: italic; }
+
+    .seo-section { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 0 2rem 2rem; }
+    .seo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-bottom: 1.2rem; }
     @media (max-width: 620px) { .seo-grid { grid-template-columns: 1fr; } }
-
-    .seo-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.4rem;
-    }
-
-    .seo-card h2 {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.72rem;
-      color: var(--accent);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: 0.8rem;
-    }
-
+    .seo-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 1.4rem; }
+    .seo-card h2 { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.8rem; }
     .seo-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.7; }
     .seo-card p + p { margin-top: 0.6rem; }
 
-    .faq-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      overflow: hidden;
-      margin-bottom: 1.2rem;
-    }
-
-    .faq-header {
-      padding: 0.9rem 1.2rem;
-      border-bottom: 1px solid var(--border);
-      background: var(--surface);
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.72rem;
-      color: var(--accent);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-
-    .faq-item {
-      padding: 1.1rem 1.4rem;
-      border-bottom: 1px solid var(--border);
-    }
-
+    .faq-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-bottom: 1.2rem; }
+    .faq-header { padding: 0.9rem 1.2rem; border-bottom: 1px solid var(--border); background: var(--surface); font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; }
+    .faq-item { padding: 1.1rem 1.4rem; border-bottom: 1px solid var(--border); }
     .faq-item:last-child { border-bottom: none; }
     .faq-q { font-size: 0.88rem; font-weight: 700; color: var(--text); margin-bottom: 0.5rem; }
     .faq-a { font-size: 0.82rem; color: var(--muted); line-height: 1.7; }
+    .faq-a code { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; background: var(--surface); border: 1px solid var(--border); padding: 0.1rem 0.4rem; border-radius: 4px; color: var(--accent); }
 
-    .faq-a code {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.78rem;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      padding: 0.1rem 0.4rem;
-      border-radius: 4px;
-      color: var(--accent);
-    }
+    .blog-cta-section { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 0 2rem 2rem; }
+    .section-label { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--accent); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 1rem; }
+    .blog-links-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 0.8rem; }
+    .blog-link-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 10px; padding: 1rem 1.2rem; text-decoration: none; display: flex; flex-direction: column; gap: 0.3rem; transition: border-color 0.2s, transform 0.15s; }
+    .blog-link-card:hover { border-color: rgba(0,255,153,0.3); transform: translateY(-2px); }
+    .blog-link-tag { font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; }
+    .blog-link-title { font-size: 0.85rem; font-weight: 600; color: var(--text); line-height: 1.4; }
+    .blog-link-arrow { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--muted); margin-top: 0.2rem; }
 
-    /* BLOG LINKS */
-    .blog-cta-section {
-      position: relative;
-      z-index: 1;
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 0 2rem 2rem;
-    }
-
-    .section-label {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.7rem;
-      color: var(--accent);
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      margin-bottom: 1rem;
-    }
-
-    .blog-links-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 0.8rem;
-    }
-
-    .blog-link-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1rem 1.2rem;
-      text-decoration: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.3rem;
-      transition: border-color 0.2s, transform 0.15s;
-    }
-
-    .blog-link-card:hover {
-      border-color: rgba(0,255,153,0.3);
-      transform: translateY(-2px);
-    }
-
-    .blog-link-tag {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.62rem;
-      color: var(--accent);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .blog-link-title {
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--text);
-      line-height: 1.4;
-    }
-
-    .blog-link-arrow {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.72rem;
-      color: var(--muted);
-      margin-top: 0.2rem;
-    }
-
-    /* RELATED TOOLS */
-    .related-section {
-      position: relative;
-      z-index: 1;
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 0 2rem 2rem;
-    }
-
-    .tools-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap: 0.8rem;
-    }
-
-    .tool-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1rem 1.2rem;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-      transition: border-color 0.2s, transform 0.15s;
-    }
-
-    .tool-card:hover {
-      border-color: rgba(123,97,255,0.4);
-      transform: translateY(-2px);
-    }
-
-    .tool-icon {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.7rem;
-      color: var(--accent2);
-      background: rgba(123,97,255,0.1);
-      border: 1px solid rgba(123,97,255,0.2);
-      padding: 0.3rem 0.5rem;
-      border-radius: 6px;
-      flex-shrink: 0;
-      white-space: nowrap;
-    }
-
+    .related-section { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 0 2rem 2rem; }
+    .tools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 0.8rem; }
+    .tool-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 10px; padding: 1rem 1.2rem; text-decoration: none; display: flex; align-items: center; gap: 0.8rem; transition: border-color 0.2s, transform 0.15s; }
+    .tool-card:hover { border-color: rgba(123,97,255,0.4); transform: translateY(-2px); }
+    .tool-icon { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--accent2); background: rgba(123,97,255,0.1); border: 1px solid rgba(123,97,255,0.2); padding: 0.3rem 0.5rem; border-radius: 6px; flex-shrink: 0; white-space: nowrap; }
     .tool-info { display: flex; flex-direction: column; gap: 0.15rem; }
     .tool-name { font-size: 0.85rem; font-weight: 600; color: var(--text); }
     .tool-desc { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--muted); }
 
-    /* RICH FOOTER */
-    .rich-footer {
-      position: relative;
-      z-index: 1;
-      background: var(--surface);
-      border-top: 1px solid var(--border);
-      padding: 3rem 2rem 2rem;
-      margin-top: 2rem;
-    }
-
+    .rich-footer { position: relative; z-index: 1; background: var(--surface); border-top: 1px solid var(--border); padding: 3rem 2rem 2rem; margin-top: 2rem; }
     .footer-inner { max-width: 900px; margin: 0 auto; }
-
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 2rem;
-      margin-bottom: 2rem;
-    }
-
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2rem; margin-bottom: 2rem; }
     @media (max-width: 700px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
     @media (max-width: 420px) { .footer-grid { grid-template-columns: 1fr; } }
-
     .footer-brand .logo { font-size: 1.1rem; display: block; margin-bottom: 0.6rem; }
-
-    .footer-tagline {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.7rem;
-      color: var(--muted);
-      line-height: 1.6;
-    }
-
-    .footer-col h4 {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.65rem;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: 0.8rem;
-    }
-
+    .footer-tagline { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--muted); line-height: 1.6; }
+    .footer-col h4 { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.8rem; }
     .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
-
-    .footer-col ul li a {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.72rem;
-      color: var(--muted);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
+    .footer-col ul li a { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--muted); text-decoration: none; transition: color 0.2s; }
     .footer-col ul li a:hover { color: var(--accent); }
-
-    .footer-bottom {
-      border-top: 1px solid var(--border);
-      padding-top: 1.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-
-    .footer-bottom p {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.68rem;
-      color: var(--muted);
-    }
-
+    .footer-bottom { border-top: 1px solid var(--border); padding-top: 1.5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+    .footer-bottom p { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--muted); }
     .footer-bottom a { color: var(--accent); text-decoration: none; }
 
-    .toast {
-      position: fixed;
-      bottom: 2rem;
-      right: 2rem;
-      background: var(--accent);
-      color: #000;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.8rem;
-      font-weight: 700;
-      padding: 0.7rem 1.4rem;
-      border-radius: 8px;
-      z-index: 999;
-      opacity: 0;
-      transform: translateY(10px);
-      transition: opacity 0.2s, transform 0.2s;
-      pointer-events: none;
-    }
-
+    .toast { position: fixed; bottom: 2rem; right: 2rem; background: var(--accent); color: #000; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; font-weight: 700; padding: 0.7rem 1.4rem; border-radius: 8px; z-index: 999; opacity: 0; transform: translateY(10px); transition: opacity 0.2s, transform 0.2s; pointer-events: none; }
     .toast.show { opacity: 1; transform: translateY(0); }
 
-    @media (max-width: 600px) {
-      .info-section { grid-template-columns: 1fr; }
-      .uuid-display { font-size: 0.85rem; }
-    }
+    @media (max-width: 600px) { .info-section { grid-template-columns: 1fr; } .uuid-display { font-size: 0.85rem; } }
   </style>
 </head>
 <body>
 
   <nav>
     <a href="/" class="logo">tiny<span>bench</span>.dev</a>
-    <a href="/" class="nav-back">← All Tools</a>
+    <a href="/" class="nav-back">&larr; All Tools</a>
   </nav>
 
   <div class="page-header">
@@ -708,21 +207,19 @@
     <span class="updated-badge">// updated April 2026</span>
   </div>
 
-  <!-- SINGLE UUID -->
   <div class="single-section">
     <div class="single-card">
       <div class="uuid-display" id="singleUuid" onclick="copySingle()" title="Click to copy">
         Click Generate to create a UUID
       </div>
-      <div class="uuid-hint">// click UUID to copy · uses crypto.randomUUID()</div>
+      <div class="uuid-hint">// click UUID to copy &middot; uses crypto.randomUUID()</div>
       <div class="single-actions">
-        <button class="btn btn-accent" onclick="generateSingle()">⚡ Generate</button>
+        <button class="btn btn-accent" onclick="generateSingle()">&#9889; Generate</button>
         <button class="btn btn-outline" onclick="copySingle()">Copy</button>
       </div>
     </div>
   </div>
 
-  <!-- OPTIONS -->
   <div class="options-section">
     <div class="option-group">
       <span>Count:</span>
@@ -745,7 +242,6 @@
     <button class="btn btn-outline" style="margin-left:auto;" onclick="generateBulk()">Generate Bulk</button>
   </div>
 
-  <!-- BULK LIST -->
   <div class="bulk-section">
     <div class="bulk-card">
       <div class="bulk-header">
@@ -764,7 +260,6 @@
     </div>
   </div>
 
-  <!-- INFO -->
   <div class="info-section">
     <div class="info-card">
       <h2>UUID v4 Anatomy</h2>
@@ -794,119 +289,182 @@
     </div>
   </div>
 
-  <!-- SEO CONTENT -->
+  <!-- DEEP CONTENT -->
+  <div class="deep-section">
+
+    <h2 id="what-is-uuid">What is a UUID?</h2>
+    <p>A <strong>UUID (Universally Unique Identifier)</strong> is a 128-bit identifier standardised as RFC 4122. It is represented as 32 hexadecimal characters in the format <strong>xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx</strong> — always 36 characters including the four hyphens.</p>
+    <p>UUIDs are designed to be generated independently by any system, at any time, without coordination — and still be unique across the entire world. This makes them ideal for distributed systems, databases, and APIs where a central ID-issuing authority is impractical.</p>
+
+    <h2 id="uuid-versions">UUID versions compared — v1, v4, v5, v7</h2>
+    <p>There are multiple UUID versions, each generated differently. Here's when to use each:</p>
+    <div class="version-table-wrap">
+      <table class="version-table">
+        <thead><tr><th>Version</th><th>How generated</th><th>Sortable</th><th>Best for</th></tr></thead>
+        <tbody>
+          <tr><td><strong>v1</strong></td><td>Timestamp + MAC address</td><td>Yes</td><td>Time-ordered logs, legacy systems. Exposes MAC address — privacy risk.</td></tr>
+          <tr><td><strong>v3</strong></td><td>MD5 hash of namespace + name</td><td>No</td><td>Deterministic IDs from a known name. Deprecated — use v5 instead.</td></tr>
+          <tr><td><strong>v4</strong></td><td>Fully random (122 bits)</td><td>No</td><td><strong>Most use cases</strong> — databases, APIs, tokens. Private and collision-resistant.</td></tr>
+          <tr><td><strong>v5</strong></td><td>SHA-1 hash of namespace + name</td><td>No</td><td>Reproducible IDs from the same input (e.g. URL &rarr; UUID).</td></tr>
+          <tr><td><strong>v7</strong></td><td>Unix timestamp + random</td><td>Yes</td><td>Modern replacement for v1. Time-sortable without exposing MAC address.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>This tool generates <strong>UUID v4</strong> — the most widely supported version, used by default in PostgreSQL, MySQL, MongoDB, and all major languages.</p>
+
+    <h2 id="generate-uuid-code">Generate a UUID in code</h2>
+    <p>Need UUIDs in your project rather than via the browser? Here are the one-liners for every common language:</p>
+
+    <div class="code-block">
+      <div class="code-block-header"><span>JavaScript / Node.js</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+      <pre><span class="cm">// Browser and Node.js 19+ (no library needed)</span>
+<span class="kw">const</span> id = crypto.<span class="fn">randomUUID</span>();
+<span class="cm">// → "110e8400-e29b-41d4-a716-446655440000"</span>
+
+<span class="cm">// Node.js (older versions)</span>
+<span class="kw">const</span> { v4: uuidv4 } = <span class="fn">require</span>(<span class="str">'uuid'</span>);
+<span class="kw">const</span> id = <span class="fn">uuidv4</span>();</pre>
+    </div>
+
+    <div class="code-block">
+      <div class="code-block-header"><span>Python</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+      <pre><span class="kw">import</span> uuid
+
+<span class="cm"># UUID v4 with hyphens</span>
+id = str(uuid.<span class="fn">uuid4</span>())
+<span class="cm"># → "550e8400-e29b-41d4-a716-446655440000"</span>
+
+<span class="cm"># UUID v4 without hyphens (32 hex chars)</span>
+id_clean = uuid.<span class="fn">uuid4</span>().hex</pre>
+    </div>
+
+    <div class="code-block">
+      <div class="code-block-header"><span>Terminal (Linux / macOS)</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+      <pre><span class="cm"># macOS</span>
+uuidgen | tr '[:upper:]' '[:lower:]'
+
+<span class="cm"># Linux</span>
+cat /proc/sys/kernel/random/uuid</pre>
+    </div>
+
+    <div class="code-block">
+      <div class="code-block-header"><span>SQL — PostgreSQL</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+      <pre><span class="cm">-- Enable extension once</span>
+CREATE EXTENSION IF NOT EXISTS "pgcrypto";
+
+<span class="cm">-- Generate UUID v4</span>
+SELECT gen_random_uuid();
+
+<span class="cm">-- Use as default primary key</span>
+CREATE TABLE users (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  email TEXT NOT NULL
+);</pre>
+    </div>
+
+    <h2 id="when-to-use-uuid">When should you use a UUID?</h2>
+    <ul>
+      <li><strong>Database primary keys</strong> — UUIDs let you generate IDs client-side before inserting, avoiding database round-trips in distributed systems.</li>
+      <li><strong>API resource identifiers</strong> — UUIDs in URLs (e.g. <code>/users/550e8400-e29b-41d4-a716-446655440000</code>) don't expose sequential information to attackers.</li>
+      <li><strong>Session and auth tokens</strong> — UUID v4's randomness makes tokens unpredictable and resistant to enumeration attacks.</li>
+      <li><strong>File and upload naming</strong> — rename uploaded files to UUIDs to prevent path traversal attacks and name collisions.</li>
+      <li><strong>Event and message IDs</strong> — in event-driven systems (Kafka, RabbitMQ), UUID message IDs enable idempotency checks.</li>
+      <li><strong>Testing and mock data</strong> — generate unique identifiers quickly for test fixtures, seeds, and mock APIs.</li>
+    </ul>
+    <p>If sort order matters (e.g. for database index performance or event ordering), consider <a href="/blog/uuid-vs-ulid/">UUID v7 or ULID instead</a> — both are time-sortable.</p>
+
+  </div>
+
   <div class="seo-section">
     <div class="seo-grid">
-      <div class="seo-card">
-        <h2>// what is a uuid?</h2>
-        <p>A UUID (Universally Unique Identifier) is a 128-bit label used to uniquely identify information in computer systems. The standard format is 32 hexadecimal characters split into 5 groups: <strong style="color:var(--text)">xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx</strong>.</p>
-        <p>UUID v4 is the most commonly used version — all bits are randomly generated except for 6 version/variant bits, making it ideal for generating IDs without a central authority.</p>
-      </div>
       <div class="seo-card">
         <h2>// uuid vs ulid vs nanoid</h2>
         <p><strong style="color:var(--text)">UUID v4</strong> — 36 chars, universally supported, random. Best for databases and APIs where compatibility matters.</p>
         <p><strong style="color:var(--text)">ULID</strong> — 26 chars, sortable by time, URL-safe. Better for event logs and time-ordered records.</p>
         <p><strong style="color:var(--text)">NanoID</strong> — customizable length, URL-safe, smaller. Good for short IDs in URLs and filenames.</p>
       </div>
+      <div class="seo-card">
+        <h2>// privacy &amp; security</h2>
+        <p>This tool uses <strong style="color:var(--text)">crypto.randomUUID()</strong> — the same cryptographically secure API used in production applications. Your UUIDs are generated entirely in your browser. Nothing is sent to any server, logged, or stored.</p>
+        <p>UUID v4 is safe to expose in URLs and APIs — it reveals nothing about the generation time, host machine, or user.</p>
+      </div>
     </div>
 
     <div class="faq-card">
       <div class="faq-header">// frequently asked questions</div>
-
       <div class="faq-item">
         <div class="faq-q">How do I generate a UUID in JavaScript?</div>
         <div class="faq-a">Modern browsers and Node.js 19+ support <code>crypto.randomUUID()</code> natively — no library needed. It returns a v4 UUID string like <code>"110e8400-e29b-41d4-a716-446655440000"</code>. This tool uses exactly that API.</div>
       </div>
-
       <div class="faq-item">
         <div class="faq-q">How do I generate a UUID in Python?</div>
         <div class="faq-a">Use the built-in <code>uuid</code> module: <code>import uuid; str(uuid.uuid4())</code>. This generates a random v4 UUID. For a UUID without hyphens use <code>uuid.uuid4().hex</code>.</div>
       </div>
-
       <div class="faq-item">
         <div class="faq-q">Are these UUIDs truly unique?</div>
-        <div class="faq-a">Yes. UUID v4 has 122 random bits, giving 2¹²² possible values (~5.3 undecillion). The chance of two randomly generated UUIDs colliding is negligible for any practical application — including large-scale distributed systems.</div>
+        <div class="faq-a">Yes. UUID v4 has 122 random bits, giving 2¹²² possible values (~5.3 undecillion). The chance of two randomly generated UUIDs colliding is negligible for any practical application.</div>
       </div>
-
       <div class="faq-item">
         <div class="faq-q">Can I use a UUID as a database primary key?</div>
-        <div class="faq-a">Yes — UUIDs are widely used as primary keys, especially in distributed systems where you need to generate IDs on the client without a database round-trip. The trade-off is that they are larger than integer IDs and not naturally sortable. Consider ULID if sort order matters.</div>
+        <div class="faq-a">Yes — UUIDs are widely used as primary keys, especially in distributed systems. The trade-off is they are larger than integer IDs and not naturally sortable. Consider UUID v7 or ULID if sort order matters.</div>
       </div>
-
       <div class="faq-item">
         <div class="faq-q">What is the difference between UUID v1 and UUID v4?</div>
-        <div class="faq-a">UUID v1 is generated from the current timestamp and the machine's MAC address — it is time-sortable but can expose system information. UUID v4 is entirely random and reveals nothing about the host or time of generation, making it safer and more private for most use cases.</div>
+        <div class="faq-a">UUID v1 is generated from the current timestamp and the machine's MAC address — time-sortable but exposes system information. UUID v4 is entirely random and reveals nothing about the host or time of generation, making it safer for most use cases.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What is UUID v7 and should I use it?</div>
+        <div class="faq-a">UUID v7 (RFC 9562, 2024) is a time-ordered UUID that embeds a Unix millisecond timestamp in the first 48 bits, then fills the rest with random data. It is sortable like v1 but without exposing the MAC address. Use v7 when you need both uniqueness and chronological ordering — for example, as a database primary key where index locality matters.</div>
       </div>
     </div>
   </div>
 
-  <!-- BLOG INTERNAL LINKS -->
   <div class="blog-cta-section">
-    <div class="section-label">// related guides & articles</div>
+    <div class="section-label">// related guides &amp; articles</div>
     <div class="blog-links-grid">
       <a href="/blog/uuid-vs-ulid/" class="blog-link-card">
         <span class="blog-link-tag">// comparison</span>
         <span class="blog-link-title">UUID vs ULID — Which Should You Use?</span>
-        <span class="blog-link-arrow">Read article →</span>
+        <span class="blog-link-arrow">Read article &rarr;</span>
       </a>
       <a href="/blog/uuid-generator-online/" class="blog-link-card">
         <span class="blog-link-tag">// guide</span>
         <span class="blog-link-title">UUID Generator Online — How It Works and When to Use It</span>
-        <span class="blog-link-arrow">Read article →</span>
+        <span class="blog-link-arrow">Read article &rarr;</span>
       </a>
     </div>
   </div>
 
-  <!-- RELATED TOOLS -->
   <div class="related-section">
     <div class="section-label">// related tools</div>
     <div class="tools-grid">
       <a href="/tools/timestamp-converter/" class="tool-card">
         <span class="tool-icon">TIME</span>
-        <div class="tool-info">
-          <span class="tool-name">Timestamp Converter</span>
-          <span class="tool-desc">// unix timestamp to date</span>
-        </div>
+        <div class="tool-info"><span class="tool-name">Timestamp Converter</span><span class="tool-desc">// unix timestamp to date</span></div>
       </a>
       <a href="/tools/json-formatter/" class="tool-card">
         <span class="tool-icon">JSON</span>
-        <div class="tool-info">
-          <span class="tool-name">JSON Formatter</span>
-          <span class="tool-desc">// format & validate JSON</span>
-        </div>
+        <div class="tool-info"><span class="tool-name">JSON Formatter</span><span class="tool-desc">// format &amp; validate JSON</span></div>
       </a>
       <a href="/tools/jwt-decoder/" class="tool-card">
         <span class="tool-icon">JWT</span>
-        <div class="tool-info">
-          <span class="tool-name">JWT Decoder</span>
-          <span class="tool-desc">// decode JWT tokens</span>
-        </div>
+        <div class="tool-info"><span class="tool-name">JWT Decoder</span><span class="tool-desc">// decode JWT tokens</span></div>
       </a>
       <a href="/tools/base64/" class="tool-card">
         <span class="tool-icon">B64</span>
-        <div class="tool-info">
-          <span class="tool-name">Base64 Encoder</span>
-          <span class="tool-desc">// encode & decode base64</span>
-        </div>
+        <div class="tool-info"><span class="tool-name">Base64 Encoder</span><span class="tool-desc">// encode &amp; decode base64</span></div>
       </a>
       <a href="/tools/regex-tester/" class="tool-card">
         <span class="tool-icon">REG</span>
-        <div class="tool-info">
-          <span class="tool-name">Regex Tester</span>
-          <span class="tool-desc">// test regular expressions</span>
-        </div>
+        <div class="tool-info"><span class="tool-name">Regex Tester</span><span class="tool-desc">// test regular expressions</span></div>
       </a>
       <a href="/tools/sql-formatter/" class="tool-card">
         <span class="tool-icon">SQL</span>
-        <div class="tool-info">
-          <span class="tool-name">SQL Formatter</span>
-          <span class="tool-desc">// format SQL queries</span>
-        </div>
+        <div class="tool-info"><span class="tool-name">SQL Formatter</span><span class="tool-desc">// format SQL queries</span></div>
       </a>
     </div>
   </div>
 
-  <!-- RICH FOOTER -->
   <footer class="rich-footer">
     <div class="footer-inner">
       <div class="footer-grid">
@@ -946,45 +504,25 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p>© 2026 tinybench.dev — All tools are free and run entirely in your browser.</p>
-        <p>Built with ♥ for developers</p>
+        <p>&copy; 2026 tinybench.dev &mdash; All tools are free and run entirely in your browser.</p>
+        <p>Built with &hearts; for developers</p>
       </div>
     </div>
   </footer>
 
   <div class="toast" id="toast"></div>
 
-  <!-- FAQ Schema -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "How do I generate a UUID in JavaScript?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Use crypto.randomUUID() in modern browsers or Node.js 19+. It returns a v4 UUID string with no dependencies required." }
-      },
-      {
-        "@type": "Question",
-        "name": "How do I generate a UUID in Python?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Use the built-in uuid module: import uuid; str(uuid.uuid4()). For a UUID without hyphens use uuid.uuid4().hex." }
-      },
-      {
-        "@type": "Question",
-        "name": "Are these UUIDs truly unique?",
-        "acceptedAnswer": { "@type": "Answer", "text": "UUID v4 has 122 random bits giving 2^122 possible values. The probability of collision is negligible for any practical application." }
-      },
-      {
-        "@type": "Question",
-        "name": "Can I use a UUID as a database primary key?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Yes. UUIDs are widely used as primary keys in distributed systems. The trade-off is they are larger than integer IDs and not naturally sortable. Consider ULID if sort order matters." }
-      },
-      {
-        "@type": "Question",
-        "name": "What is the difference between UUID v1 and UUID v4?",
-        "acceptedAnswer": { "@type": "Answer", "text": "UUID v1 is generated from a timestamp and MAC address — time-sortable but exposes system info. UUID v4 is entirely random and reveals nothing about the host or generation time." }
-      }
+      { "@type": "Question", "name": "How do I generate a UUID in JavaScript?", "acceptedAnswer": { "@type": "Answer", "text": "Use crypto.randomUUID() in modern browsers or Node.js 19+. It returns a v4 UUID string with no dependencies required." } },
+      { "@type": "Question", "name": "How do I generate a UUID in Python?", "acceptedAnswer": { "@type": "Answer", "text": "Use the built-in uuid module: import uuid; str(uuid.uuid4()). For a UUID without hyphens use uuid.uuid4().hex." } },
+      { "@type": "Question", "name": "Are these UUIDs truly unique?", "acceptedAnswer": { "@type": "Answer", "text": "UUID v4 has 122 random bits giving 2^122 possible values. The probability of collision is negligible for any practical application." } },
+      { "@type": "Question", "name": "Can I use a UUID as a database primary key?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. UUIDs are widely used as primary keys in distributed systems. The trade-off is they are larger than integer IDs and not naturally sortable. Consider ULID or UUID v7 if sort order matters." } },
+      { "@type": "Question", "name": "What is the difference between UUID v1 and UUID v4?", "acceptedAnswer": { "@type": "Answer", "text": "UUID v1 is generated from a timestamp and MAC address — time-sortable but exposes system info. UUID v4 is entirely random and reveals nothing about the host or generation time." } },
+      { "@type": "Question", "name": "What is UUID v7 and should I use it?", "acceptedAnswer": { "@type": "Answer", "text": "UUID v7 (RFC 9562, 2024) embeds a Unix millisecond timestamp in the first 48 bits then fills the rest with random data. It is sortable without exposing the MAC address. Use v7 when you need both uniqueness and chronological ordering." } }
     ]
   }
   </script>
@@ -1008,10 +546,7 @@
 
     function copySingle() {
       const uuid = document.getElementById('singleUuid').textContent;
-      if (uuid === 'Click Generate to create a UUID') {
-        generateSingle();
-        return;
-      }
+      if (uuid === 'Click Generate to create a UUID') { generateSingle(); return; }
       navigator.clipboard.writeText(uuid).then(() => showToast('Copied!'));
     }
 
@@ -1032,9 +567,7 @@
       `).join('');
     }
 
-    function copyOne(uuid) {
-      navigator.clipboard.writeText(uuid).then(() => showToast('Copied!'));
-    }
+    function copyOne(uuid) { navigator.clipboard.writeText(uuid).then(() => showToast('Copied!')); }
 
     function copyAll() {
       if (!bulkList.length) { showToast('Generate UUIDs first'); return; }
@@ -1068,6 +601,11 @@
       t.textContent = msg;
       t.classList.add('show');
       setTimeout(() => t.classList.remove('show'), 2000);
+    }
+
+    function copyCode(btn) {
+      const pre = btn.closest('.code-block').querySelector('pre');
+      navigator.clipboard.writeText(pre.textContent).then(() => { btn.textContent = 'copied!'; setTimeout(() => btn.textContent = 'copy', 2000); });
     }
 
     generateSingle();
