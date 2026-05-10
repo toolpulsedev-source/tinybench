@@ -3,16 +3,18 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>How to Minify CSS in VS Code — 4 Easy Methods</title>
-  <meta name="description" content="Learn how to minify CSS in VS Code using extensions, build tools, and the free online CSS minifier. Step-by-step guide for developers."/>
+  <title>Minify CSS in VS Code — 4 Methods: Extension, cssnano, Vite &amp; Online</title>
+  <meta name="description" content="Minify CSS in VS Code in seconds — install the Minify extension, run cssnano, use Vite, or paste into a free online CSS minifier. Step-by-step for each method."/>
   <link rel="canonical" href="https://tinybench.dev/blog/minify-css-vscode/"/>
   <meta property="og:type" content="article"/>
-  <meta property="og:title" content="How to Minify CSS in VS Code — 4 Easy Methods"/>
-  <meta property="og:description" content="Learn how to minify CSS in VS Code using extensions, build tools, and the free online CSS minifier. Step-by-step guide for developers."/>
+  <meta property="og:title" content="Minify CSS in VS Code — 4 Methods: Extension, cssnano, Vite &amp; Online"/>
+  <meta property="og:description" content="Minify CSS in VS Code in seconds — install the Minify extension, run cssnano, use Vite, or paste into a free online CSS minifier. Step-by-step for each method."/>
   <meta property="og:url" content="https://tinybench.dev/blog/minify-css-vscode/"/>
   <meta property="og:site_name" content="tinybench.dev"/>
   <meta name="twitter:card" content="summary"/>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How to Minify CSS in VS Code — 4 Easy Methods","description":"Learn how to minify CSS in VS Code using extensions, build tools, and the free online CSS minifier. Step-by-step guide for developers.","url":"https://tinybench.dev/blog/minify-css-vscode/","datePublished":"2025-01-01","dateModified":"2025-01-01","publisher":{"@type":"Organization","name":"tinybench.dev","url":"https://tinybench.dev"}}</script>
+  <meta name="twitter:title" content="Minify CSS in VS Code — 4 Methods: Extension, cssnano, Vite &amp; Online"/>
+  <meta name="twitter:description" content="Minify CSS in VS Code in seconds — install the Minify extension, run cssnano, use Vite, or paste into a free online CSS minifier. Step-by-step for each method."/>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Minify CSS in VS Code — 4 Methods: Extension, cssnano, Vite &amp; Online","description":"Minify CSS in VS Code in seconds — install the Minify extension, run cssnano, use Vite, or paste into a free online CSS minifier. Step-by-step for each method.","url":"https://tinybench.dev/blog/minify-css-vscode/","datePublished":"2025-01-01","dateModified":"2026-04-17","publisher":{"@type":"Organization","name":"tinybench.dev","url":"https://tinybench.dev"}}</script>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Syne:wght@400;600;800&display=swap" rel="stylesheet"/>
@@ -91,18 +93,19 @@
   </style>
 </head>
 <body>
-<nav><a href="/" class="logo">tiny<span>bench</span>.dev</a><ul class="nav-links"><li><a href="/#tools">Tools</a></li><li><a href="/about/">About</a></li></ul></nav>
+<nav><a href="/" class="logo">tiny<span>bench</span>.dev</a><ul class="nav-links"><li><a href="/#tools">Tools</a></li><li><a href="/blog/">Blog</a></li><li><a href="/about/">About</a></li></ul></nav>
 <div class="pw">
 <article>
-  <div class="bc"><a href="/">Home</a><span>/</span><a href="/blog/">Blog</a><span>/</span><span>How to Minify CSS in VS Code</span></div>
+  <div class="bc"><a href="/">Home</a><span>/</span><a href="/blog/">Blog</a><span>/</span><span>Minify CSS in VS Code</span></div>
   <div class="atag">CSS · VS Code</div>
-  <h1>How to Minify CSS <em>in VS Code</em></h1>
-  <div class="ameta"><span>4 min read</span><span>Updated January 2025</span><span>Developer Tools</span></div>
+  <h1>Minify CSS <em>in VS Code</em> — 4 Methods</h1>
+  <div class="ameta"><span>4 min read</span><span>Updated April 2026</span><span>Developer Tools</span></div>
   <div class="aintro">Working in VS Code and need to minify your CSS? Here are four methods — from zero-config extensions to build pipelines — so you can pick what fits your project.</div>
-  <div class="cta"><h3>CSS Beautifier & Minifier</h3><p>Minify CSS instantly online. No extensions, no build tools needed.</p><a href="/tools/css-beautifier/" class="ctab">Open CSS Beautifier & Minifier &rarr;</a></div>
-  
+  <div class="cta"><h3>CSS Beautifier &amp; Minifier</h3><p>Minify CSS instantly online. No extensions, no build tools needed.</p><a href="/tools/css-beautifier/" class="ctab">Open CSS Beautifier &amp; Minifier &rarr;</a></div>
+
 <h2 id="method1">Method 1 — Online CSS minifier (fastest, no setup)</h2>
 <p>For a quick one-off minification without installing anything, use the <a href="/tools/css-beautifier/">CSS minifier on tinybench.dev</a>. Paste your CSS, click Minify, copy the result. Works for any project regardless of your build setup.</p>
+<p>For more context on what minification does and why it matters, see the <a href="/blog/css-minification-guide/">CSS minification guide</a>.</p>
 
 <h2 id="method2">Method 2 — VS Code extension (CSS Minifier)</h2>
 <p>The simplest VS Code approach is to install a minification extension:</p>
@@ -111,7 +114,7 @@
   <li>Press <code>Ctrl+Shift+X</code> to open Extensions</li>
   <li>Search for <strong>"CSS Minifier"</strong> or <strong>"Minify"</strong></li>
   <li>Install "Minify" by HookyQR (most popular)</li>
-  <li>Open your CSS file, press <code>Ctrl+Shift+P</code> → type "Minify" → select Minify Document</li>
+  <li>Open your CSS file, press <code>Ctrl+Shift+P</code> &rarr; type "Minify" &rarr; select Minify Document</li>
 </ol>
 <div class="cg"><strong>Result:</strong> The extension writes a new <code>filename.min.css</code> file alongside your original — it doesn't overwrite your source.</div>
 
@@ -146,24 +149,36 @@ module.exports = {
 <h2 id="faq">Frequently asked questions</h2>
 <div class="fq"><div class="fq-q">Does minifying CSS break my styles?</div><div class="fq-a">No — proper minification only removes whitespace, comments, and applies safe shorthand transformations. Your styles render identically. Always keep your original unminified source file.</div></div>
 <div class="fq"><div class="fq-q">How much does CSS minification reduce file size?</div><div class="fq-a">Typically 20–40%. Combined with gzip compression from your server, total savings can reach 70–80% compared to uncompressed unminified CSS.</div></div>
-<div class="fq"><div class="fq-q">Should I commit minified CSS to git?</div><div class="fq-a">For most projects, no — generate it during CI/CD build. Add *.min.css to .gitignore and minify as part of your deployment pipeline. This keeps your repo clean and avoids merge conflicts in generated files.</div></div>
+<div class="fq"><div class="fq-q">Should I commit minified CSS to git?</div><div class="fq-a">For most projects, no — generate it during CI/CD build. Add <code>*.min.css</code> to <code>.gitignore</code> and minify as part of your deployment pipeline. This keeps your repo clean and avoids merge conflicts in generated files.</div></div>
 
-  <div class="cta"><h3>Try it free — no sign-up needed</h3><p>Runs entirely in your browser. Nothing uploaded, nothing stored.</p><a href="/tools/css-beautifier/" class="ctab">Open CSS Beautifier & Minifier &rarr;</a></div>
-  <h2>Related tools on tinybench.dev</h2>
-  <ul><li><a href="/tools/css-beautifier/">CSS Beautifier</a></li><li><a href="/tools/json-formatter/">JSON Formatter</a></li><li><a href="/tools/image-compressor/">Image Compressor</a></li></ul>
+  <div class="cta"><h3>Try it free — no sign-up needed</h3><p>Runs entirely in your browser. Nothing uploaded, nothing stored.</p><a href="/tools/css-beautifier/" class="ctab">Open CSS Beautifier &amp; Minifier &rarr;</a></div>
+
+  <h2>Related tools &amp; guides</h2>
+  <ul>
+    <li><a href="/tools/css-beautifier/">CSS Beautifier &amp; Minifier</a> — free, client-side, instant</li>
+    <li><a href="/tools/json-formatter/">JSON Formatter</a></li>
+    <li><a href="/tools/image-compressor/">Image Compressor</a></li>
+    <li><a href="/blog/css-minification-guide/">CSS Minification Guide — What It Does &amp; Why It Matters</a></li>
+    <li><a href="/blog/how-to-compress-images/">How to Compress Images Online</a></li>
+  </ul>
 </article>
 <aside class="sb">
-  <div class="sc"><div class="st">// contents</div><ul class="tl">      <li><a href="#method1">Online minifier</a></li>
-      <li><a href="#method2">VS Code extension</a></li>
-      <li><a href="#method3">cssnano task</a></li>
-      <li><a href="#method4">Build pipeline</a></li>
-      <li><a href="#faq">FAQ</a></li></ul></div>
-  <div class="sc"><div class="st">// try the tool</div><p style="font-size:.82rem;color:var(--muted);margin-bottom:1rem;line-height:1.6">Minify CSS instantly online. No extensions, no build tools needed.</p><a href="/tools/css-beautifier/" class="ctab" style="display:block;text-align:center;font-size:.82rem;padding:.65rem 1rem;">Open CSS Beautifier & Minifier &rarr;</a></div>
-  <div class="sc"><div class="st">// related</div><ul class="rl">      <li><a href="/tools/css-beautifier/">CSS Beautifier</a></li>
-      <li><a href="/tools/json-formatter/">JSON Formatter</a></li>
-      <li><a href="/tools/image-compressor/">Image Compressor</a></li></ul></div>
+  <div class="sc"><div class="st">// contents</div><ul class="tl">
+    <li><a href="#method1">Online minifier</a></li>
+    <li><a href="#method2">VS Code extension</a></li>
+    <li><a href="#method3">cssnano task</a></li>
+    <li><a href="#method4">Build pipeline</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul></div>
+  <div class="sc"><div class="st">// try the tool</div><p style="font-size:.82rem;color:var(--muted);margin-bottom:1rem;line-height:1.6">Minify CSS instantly online. No extensions, no build tools needed.</p><a href="/tools/css-beautifier/" class="ctab" style="display:block;text-align:center;font-size:.82rem;padding:.65rem 1rem;">Open CSS Minifier &rarr;</a></div>
+  <div class="sc"><div class="st">// related</div><ul class="rl">
+    <li><a href="/tools/css-beautifier/">CSS Beautifier</a></li>
+    <li><a href="/tools/json-formatter/">JSON Formatter</a></li>
+    <li><a href="/tools/image-compressor/">Image Compressor</a></li>
+    <li><a href="/blog/css-minification-guide/">CSS Minification Guide</a></li>
+  </ul></div>
 </aside>
 </div>
-<footer><p>&copy; 2025 tinybench.dev</p><div class="fl"><a href="/privacy-policy/">Privacy</a><a href="/terms/">Terms</a><a href="/cookie-policy/">Cookies</a><a href="/contact/">Contact</a><a href="/">Home</a></div></footer>
+<footer><p>&copy; 2026 tinybench.dev</p><div class="fl"><a href="/privacy-policy/">Privacy</a><a href="/terms/">Terms</a><a href="/cookie-policy/">Cookies</a><a href="/contact/">Contact</a><a href="/blog/">Blog</a><a href="/">Home</a></div></footer>
 <script>function copyCode(b){const p=b.closest('.cb').querySelector('pre');navigator.clipboard.writeText(p.textContent).then(()=>{b.textContent='copied!';setTimeout(()=>b.textContent='copy',2000)})}</script>
 </body></html>
